@@ -36,18 +36,18 @@ class DetailViewController: UIViewController, BreakerEdit {
     }
     
     //Mark:- Navigation Bar Items
-    @IBAction func editClicked(sender: UIBarButtonItem) {
-        self.performSegueWithIdentifier("EditCurrentBreaker", sender: self)
+    @IBAction func editClicked(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "EditCurrentBreaker", sender: self)
     }
     
-    @IBAction func doneClicked(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneClicked(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     //Mark:- Segue
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditCurrentBreaker" {
-            let destination = segue.destinationViewController as! EditBreakerViewController
+            let destination = segue.destination as! EditBreakerViewController
             destination.breaker = breaker
             destination.delegate = self
             destination.nextBreakerIsDoublePole = false
@@ -56,7 +56,7 @@ class DetailViewController: UIViewController, BreakerEdit {
     }
     
     //Mark:- Protocol
-    func editBreaker(breakerDescription breakerDescription:String, amperage:BreakerAmperage, breakerType:BreakerType) {
+    func editBreaker(breakerDescription:String, amperage:BreakerAmperage, breakerType:BreakerType) {
         breakerDescriptionLabel.text = breakerDescription
         amperageLabel.text = amperage.description
         breakerTypeLabel.text = breakerType.description
@@ -64,7 +64,7 @@ class DetailViewController: UIViewController, BreakerEdit {
     }
     
     //Not possible to be used
-    func addBreaker(breakerDescription breakerDescription: String, amperage: BreakerAmperage, breakerType: BreakerType) {
+    func addBreaker(breakerDescription: String, amperage: BreakerAmperage, breakerType: BreakerType) {
         return
     }
 }

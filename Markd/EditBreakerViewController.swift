@@ -18,11 +18,11 @@ class EditBreakerViewController:UIViewController {
     //Mark:- AlertControllers
     let alertController = UIAlertController( title: "Are you sure?",
                                              message: "This action will affect other breakers.",
-                                             preferredStyle: .Alert)
+                                             preferredStyle: .alert)
     
     let notAllowedAlert = UIAlertController(title: "Not Allowed",
                                             message: "This breaker can not be a double pole.",
-                                            preferredStyle: .Alert)
+                                            preferredStyle: .alert)
     
     //Mark:- UIControllers
     var breakerTypePickerController = BreakerTypePicker()
@@ -41,8 +41,8 @@ class EditBreakerViewController:UIViewController {
     }
     
     override func viewDidLoad() {
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {action in self.breakerTypePicker.selectRow(0, inComponent: 0, animated: true)})
-        let confirmAction = UIAlertAction(title: "Confirm", style: .Default, handler: {action in self.breakerTypePickerController.selectedType = .DoublePole})
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {action in self.breakerTypePicker.selectRow(0, inComponent: 0, animated: true)})
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default, handler: {action in self.breakerTypePickerController.selectedType = .doublePole})
         alertController.addAction(cancelAction)
         alertController.addAction(confirmAction)
         configureView()
@@ -67,15 +67,15 @@ class EditBreakerViewController:UIViewController {
             
             //Enable or Disable Picker
             if(nextBreakerIsDoublePole) {
-                breakerTypePicker.userInteractionEnabled = false
+                breakerTypePicker.isUserInteractionEnabled = false
             } else {
-                breakerTypePicker.userInteractionEnabled = true
+                breakerTypePicker.isUserInteractionEnabled = true
             }
             
             //Store State
             originalBreakerType = breaker.breakerType
             breakerTypePickerController.selectedType = originalBreakerType!
-            if(originalBreakerType == .DoublePoleBottom) {
+            if(originalBreakerType == .doublePoleBottom) {
                 breakerTypePicker.selectRow(1, inComponent: 0, animated: true)
             } else {
                 breakerTypePicker.selectRow(breaker.breakerType.hashValue, inComponent: 0, animated: true)
@@ -97,38 +97,38 @@ class EditBreakerViewController:UIViewController {
             amperagePicker.dataSource = amperagePickerController
             
             //Initialize Picker to 20A
-            amperagePicker.selectRow(BreakerAmperage.Twenty.hashValue, inComponent: 0, animated: true)
+            amperagePicker.selectRow(BreakerAmperage.twenty.hashValue, inComponent: 0, animated: true)
         }
     }
     
     // Mark:- Button Actions
-    @IBAction func onCancel(sender: UIBarButtonItem) {
+    @IBAction func onCancel(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
-    @IBAction func onSave(sender: UIBarButtonItem) {
+    @IBAction func onSave(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
-        let amperage = BreakerAmperage(rawValue: amperagePicker.selectedRowInComponent(0))!
+        let amperage = BreakerAmperage(rawValue: amperagePicker.selectedRow(inComponent: 0))!
         
         if(new) {
             delegate?.addBreaker(breakerDescription: breakerTextField.text!, amperage: amperage, breakerType: breakerTypePickerController.selectedType)
         } else {
             let breakerType = breakerTypePickerController.selectedType
             //Case in which breaker type stayed as .DoublePoleBottom
-            if (breakerType == .DoublePole && originalBreakerType == .DoublePoleBottom) {
-                delegate?.editBreaker(breakerDescription: breakerTextField.text!, amperage:amperage, breakerType: .DoublePoleBottom)
-                self.dismissViewControllerAnimated(true, completion: nil)
+            if (breakerType == .doublePole && originalBreakerType == .doublePoleBottom) {
+                delegate?.editBreaker(breakerDescription: breakerTextField.text!, amperage:amperage, breakerType: .doublePoleBottom)
+                self.dismiss(animated: true, completion: nil)
                 return
             }
             delegate?.editBreaker(breakerDescription: breakerTextField.text!, amperage: amperage, breakerType: breakerType)
         }
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     //From: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
     //Dismisses keyboard when clicking outside of textfield
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 }

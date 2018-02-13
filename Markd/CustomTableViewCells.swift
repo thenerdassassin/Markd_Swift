@@ -15,18 +15,18 @@ class NewPanelTableCell: UITableViewCell {
     var panelAmperagePickerController = PanelAmperagePicker()
     var delegate: UIViewController?
     
-    func setUp(viewController:UIViewController) {
+    func setUp(_ viewController:UIViewController) {
         panelAmperagepicker.delegate = panelAmperagePickerController
         panelAmperagepicker.dataSource = panelAmperagePickerController
         panelAmperagePickerController.viewController = viewController
         delegate = viewController
     }
     
-    @IBAction func isMainPanelValueChange(sender: UISwitch) {
+    @IBAction func isMainPanelValueChange(_ sender: UISwitch) {
         if let delegate = delegate as? NewPanelSetupViewController {
-            delegate.newPanel!.isMainPanel = sender.on
+            delegate.newPanel!.isMainPanel = sender.isOn
         }
-        panelAmperagePickerController.isMainPanel = sender.on
+        panelAmperagePickerController.isMainPanel = sender.isOn
     }
     
 }
@@ -40,7 +40,7 @@ class NewPanelBreakerTableCell: UITableViewCell {
     var breakerNumber = 0
     var delegate:NewPanelSetupViewController?
     
-    func setUp(breakerInt:Int, description:String, type:BreakerType, pickerDelegate: UIPickerViewDelegate, breakers: [Breaker], viewDelegate: NewPanelSetupViewController) {
+    func setUp(_ breakerInt:Int, description:String, type:BreakerType, pickerDelegate: UIPickerViewDelegate, breakers: [Breaker], viewDelegate: NewPanelSetupViewController) {
         breakerLabel.text = "\(breakerInt+1)"
         breakerTitleTextField.attributedPlaceholder = NSAttributedString(string: "Breaker")
         
@@ -52,12 +52,12 @@ class NewPanelBreakerTableCell: UITableViewCell {
         } else {
             breakerTitleTextField.text = nil
         }
-        if(type == .DoublePoleBottom) {
+        if(type == .doublePoleBottom) {
             breakerTypePicker.selectRow(1, inComponent: 0, animated: true)
-            breakerTitleTextField.userInteractionEnabled = false
+            breakerTitleTextField.isUserInteractionEnabled = false
         } else {
             breakerTypePicker.selectRow(type.hashValue, inComponent: 0, animated: true)
-            breakerTitleTextField.userInteractionEnabled = true
+            breakerTitleTextField.isUserInteractionEnabled = true
         }
         breakerTitleTextField.delegate = NewPanelTextFieldController()
         attachedBreakers = breakers
@@ -69,10 +69,10 @@ class NewPanelBreakerTableCell: UITableViewCell {
         return breakerTitleTextField.text!
     }
     
-    @IBAction func onTextChange(sender: UITextField) {
+    @IBAction func onTextChange(_ sender: UITextField) {
         let currentBreaker = attachedBreakers![breakerNumber]
         currentBreaker.breakerDescription = sender.text!
-        if(currentBreaker.breakerType == .DoublePole)  {
+        if(currentBreaker.breakerType == .doublePole)  {
             while(breakerNumber+2 >= attachedBreakers!.count) {
                 attachedBreakers!.append(Breaker(number: breakerNumber+1, breakerDescription: ""))
             }
@@ -96,7 +96,7 @@ class BreakerTableCell: UITableViewCell {
     @IBOutlet var rightBottomConnectors: [UIView]!
     
   
-    func setUp(leftNumber leftNumber: Int, leftTitle: String, leftBreakerType:BreakerType, rightNumber:Int, rightTitle:String, rightBreakerType:BreakerType) {
+    func setUp(leftNumber: Int, leftTitle: String, leftBreakerType:BreakerType, rightNumber:Int, rightTitle:String, rightBreakerType:BreakerType) {
         leftBreaker.layer.cornerRadius = 5
         rightBreaker.layer.cornerRadius = 5
         leftBreaker.layer.masksToBounds = true
@@ -106,23 +106,23 @@ class BreakerTableCell: UITableViewCell {
         self.leftNumber.text = "\(leftNumber)"
         self.leftTitle.text = leftTitle
         
-        if(leftBreakerType == .DoublePole) {
+        if(leftBreakerType == .doublePole) {
             for connector in leftBottomConnectors {
-                connector.backgroundColor = UIColor.whiteColor()
+                connector.backgroundColor = UIColor.white
             }
         } else {
             for connector in leftBottomConnectors {
-                connector.backgroundColor = UIColor.clearColor()
+                connector.backgroundColor = UIColor.clear
             }
         }
         
-        if(leftBreakerType == .DoublePoleBottom) {
+        if(leftBreakerType == .doublePoleBottom) {
             for connector in leftTopConnectors {
-                connector.backgroundColor = UIColor.whiteColor()
+                connector.backgroundColor = UIColor.white
             }
         } else {
             for connector in leftTopConnectors {
-                connector.backgroundColor = UIColor.clearColor()
+                connector.backgroundColor = UIColor.clear
             }
         }
         
@@ -130,41 +130,41 @@ class BreakerTableCell: UITableViewCell {
         //Set up Right Breaker
         if(rightNumber > 0) {
             self.rightNumber.text = "\(rightNumber)"
-            rightBreaker.backgroundColor = UIColor.whiteColor()
+            rightBreaker.backgroundColor = UIColor.white
         } else {
-            rightBreaker.backgroundColor = UIColor.clearColor()
+            rightBreaker.backgroundColor = UIColor.clear
             self.rightNumber.text = ""
             hideAllConnectors()
         }
         self.rightTitle.text = rightTitle
         
-        if(rightBreakerType == .DoublePole) {
+        if(rightBreakerType == .doublePole) {
             for connector in rightBottomConnectors {
-                connector.backgroundColor = UIColor.whiteColor()
+                connector.backgroundColor = UIColor.white
             }
         } else {
             for connector in rightBottomConnectors {
-                connector.backgroundColor = UIColor.clearColor()
+                connector.backgroundColor = UIColor.clear
             }
         }
         
-        if(rightBreakerType == .DoublePoleBottom) {
+        if(rightBreakerType == .doublePoleBottom) {
             for connector in rightTopConnectors {
-                connector.backgroundColor = UIColor.whiteColor()
+                connector.backgroundColor = UIColor.white
             }
         } else {
             for connector in rightTopConnectors {
-                connector.backgroundColor = UIColor.clearColor()
+                connector.backgroundColor = UIColor.clear
             }
         }
     }
 
-    private func hideAllConnectors() {
+    fileprivate func hideAllConnectors() {
         for connector in rightTopConnectors {
-            connector.backgroundColor = UIColor.clearColor()
+            connector.backgroundColor = UIColor.clear
         }
         for connector in rightBottomConnectors {
-            connector.backgroundColor = UIColor.clearColor()
+            connector.backgroundColor = UIColor.clear
         }
     }
 }

@@ -30,7 +30,7 @@ class EditPanelViewController: UIViewController {
     
     func configureView() {
         if let panel = panel, let isMainPanel = isMainPanel, let navigationBar = navigationBar, let panelAmperagePicker = panelAmperagePicker, let manufacturerPicker = manufacturerPicker {
-            isMainPanel.on = panel.isMainPanel
+            isMainPanel.isOn = panel.isMainPanel
             navigationBar.title = panel.panelTitle
             
             //Set Up Pickers
@@ -48,17 +48,17 @@ class EditPanelViewController: UIViewController {
     }
     
     //Mark:- Navigation Items
-    @IBAction func onCancel(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func onCancel(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func onSave(sender: UIBarButtonItem) {
+    @IBAction func onSave(_ sender: UIBarButtonItem) {
         delegate!.editPanel(panel!)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func isMainPanelValueChanged(sender: UISwitch) {
-        panel!.isMainPanel = sender.on
-        panelAmperagePickerController.isMainPanel = sender.on
+    @IBAction func isMainPanelValueChanged(_ sender: UISwitch) {
+        panel!.isMainPanel = sender.isOn
+        panelAmperagePickerController.isMainPanel = sender.isOn
     }
 }

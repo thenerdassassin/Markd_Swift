@@ -9,12 +9,12 @@
 import UIKit
 
 protocol BreakerEdit {
-    func editBreaker(breakerDescription breakerDescription:String, amperage:BreakerAmperage, breakerType:BreakerType)
-    func addBreaker(breakerDescription breakerDescription:String, amperage:BreakerAmperage, breakerType:BreakerType)
+    func editBreaker(breakerDescription:String, amperage:BreakerAmperage, breakerType:BreakerType)
+    func addBreaker(breakerDescription:String, amperage:BreakerAmperage, breakerType:BreakerType)
 }
 
 protocol PanelEdit {
-    func editPanel(newPanel:Panel)
+    func editPanel(_ newPanel:Panel)
 }
 
 //From: http://stackoverflow.com/questions/33191532/swift-enum-inheritance

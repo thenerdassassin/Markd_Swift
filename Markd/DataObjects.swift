@@ -10,115 +10,115 @@ import UIKit
 
 //From: http://stackoverflow.com/questions/30025481/take-data-from-enum-to-show-on-uipickerview-swift
 enum MainPanelAmperage: Int, CustomStringConvertible, PanelAmperage {
-    case OneHundred = 0
-    case TwoHundred = 1
-    case FourHundred = 2
-    case SixHundred = 3
-    case EightHundred = 4
-    case OneThousand = 5
-    case OneThousandTwoHundred = 6
+    case oneHundred = 0
+    case twoHundred = 1
+    case fourHundred = 2
+    case sixHundred = 3
+    case eightHundred = 4
+    case oneThousand = 5
+    case oneThousandTwoHundred = 6
     
-    static var count: Int { return MainPanelAmperage.OneThousandTwoHundred.hashValue + 1 }
+    static var count: Int { return MainPanelAmperage.oneThousandTwoHundred.hashValue + 1 }
     
     var description: String {
         switch self {
-        case .OneHundred: return "100A"
-        case .TwoHundred: return "200A"
-        case .FourHundred: return "400A"
-        case .SixHundred: return "600A"
-        case .EightHundred: return "800A"
-        case .OneThousand: return "1000A"
-        case .OneThousandTwoHundred: return "1200A"
+        case .oneHundred: return "100A"
+        case .twoHundred: return "200A"
+        case .fourHundred: return "400A"
+        case .sixHundred: return "600A"
+        case .eightHundred: return "800A"
+        case .oneThousand: return "1000A"
+        case .oneThousandTwoHundred: return "1200A"
         }
     }
 }
 
 enum SubPanelAmperage: Int, CustomStringConvertible, PanelAmperage {
-    case OneHundred = 0
-    case OneHundredTwentyFive = 1
-    case OneHundredFifty = 2
-    case TwoHundred = 3
+    case oneHundred = 0
+    case oneHundredTwentyFive = 1
+    case oneHundredFifty = 2
+    case twoHundred = 3
     
-    static var count: Int { return SubPanelAmperage.TwoHundred.hashValue + 1 }
+    static var count: Int { return SubPanelAmperage.twoHundred.hashValue + 1 }
     
     var description: String {
         switch self {
-        case .OneHundred: return "100A"
-        case .OneHundredTwentyFive: return "125A"
-        case .OneHundredFifty: return "150A"
-        case .TwoHundred: return "200A"
+        case .oneHundred: return "100A"
+        case .oneHundredTwentyFive: return "125A"
+        case .oneHundredFifty: return "150A"
+        case .twoHundred: return "200A"
         }
     }
 }
 
 enum PanelManufacturer: Int, CustomStringConvertible {
-    case Bryant = 0
-    case GeneralElectric = 1
-    case Murry = 2
-    case SquareDHomline = 3
-    case SquareDQOSeries = 4
-    case SiemensITE = 5
-    case Wadsworth = 6
-    case Westinghouse = 7
-    case Unknown = 8
+    case bryant = 0
+    case generalElectric = 1
+    case murry = 2
+    case squareDHomline = 3
+    case squareDQOSeries = 4
+    case siemensITE = 5
+    case wadsworth = 6
+    case westinghouse = 7
+    case unknown = 8
     
-    static var count: Int { return PanelManufacturer.Unknown.hashValue + 1 }
+    static var count: Int { return PanelManufacturer.unknown.hashValue + 1 }
     
     var description: String {
         switch self {
-        case .Bryant: return "Bryant"
-        case .GeneralElectric: return "General Electric"
-        case .Murry: return "Murry"
-        case .SquareDHomline: return "Square D Homline"
-        case .SquareDQOSeries: return "Square D QO"
-        case .SiemensITE: return "Siemens ITE"
-        case .Wadsworth: return "Wadsworth"
-        case .Westinghouse: return "Westinghouse"
-        case .Unknown: return "Unknown"
+        case .bryant: return "Bryant"
+        case .generalElectric: return "General Electric"
+        case .murry: return "Murry"
+        case .squareDHomline: return "Square D Homline"
+        case .squareDQOSeries: return "Square D QO"
+        case .siemensITE: return "Siemens ITE"
+        case .wadsworth: return "Wadsworth"
+        case .westinghouse: return "Westinghouse"
+        case .unknown: return "Unknown"
         }
     }
 }
 
 enum BreakerAmperage: Int, CustomStringConvertible {
-    case Fifteen = 0
-    case Twenty = 1
-    case Thirty = 2
-    case Fourty = 3
-    case Fifty = 4
-    case Sixty = 5
-    case Seventy = 6
-    case Eighty = 7
-    case OneHundred = 8
-    case OneHundredTwentyFive = 9
-    case OneHundredFifty = 10
-    case TwoHundred = 11
+    case fifteen = 0
+    case twenty = 1
+    case thirty = 2
+    case fourty = 3
+    case fifty = 4
+    case sixty = 5
+    case seventy = 6
+    case eighty = 7
+    case oneHundred = 8
+    case oneHundredTwentyFive = 9
+    case oneHundredFifty = 10
+    case twoHundred = 11
     
     //Note: Change Fifty to last case if adding more amperages
-    static var count: Int { return BreakerAmperage.TwoHundred.hashValue + 1 }
+    static var count: Int { return BreakerAmperage.twoHundred.hashValue + 1 }
     
     //Note: Add Descriptions when adding more amperages
     var description: String {
         switch self {
-        case .Fifteen: return "15A"
-        case .Twenty: return "20A"
-        case .Thirty: return "30A"
-        case .Fourty: return "40A"
-        case .Fifty: return "50A"
-        case .Sixty: return "60A"
-        case .Seventy: return "70A"
-        case .Eighty: return "80A"
-        case .OneHundred: return "100A"
-        case .OneHundredTwentyFive: return "125A"
-        case .OneHundredFifty: return "150A"
-        case .TwoHundred: return "200A"
+        case .fifteen: return "15A"
+        case .twenty: return "20A"
+        case .thirty: return "30A"
+        case .fourty: return "40A"
+        case .fifty: return "50A"
+        case .sixty: return "60A"
+        case .seventy: return "70A"
+        case .eighty: return "80A"
+        case .oneHundred: return "100A"
+        case .oneHundredTwentyFive: return "125A"
+        case .oneHundredFifty: return "150A"
+        case .twoHundred: return "200A"
         }
     }
 }
 
 enum BreakerType: Int, CustomStringConvertible {
-    case SinglePole = 0
-    case DoublePole = 1
-    case DoublePoleBottom = 2
+    case singlePole = 0
+    case doublePole = 1
+    case doublePoleBottom = 2
     
     //Number Shown to Public
     static var count: Int { return 2 } //Don't have Double Pole Bottom in Count
@@ -126,9 +126,9 @@ enum BreakerType: Int, CustomStringConvertible {
     //Note: Add Descriptions when adding more amperages
     var description: String {
         switch self {
-        case .SinglePole: return "Single-Pole"
-        case .DoublePole: return "Double-Pole"
-        case .DoublePoleBottom: return "Double-Pole"
+        case .singlePole: return "Single-Pole"
+        case .doublePole: return "Double-Pole"
+        case .doublePoleBottom: return "Double-Pole"
         }
     }
 }
@@ -161,11 +161,11 @@ class Panel {
     }
     
     convenience init(isMainPanel:Bool, amperage: PanelAmperage, breakers:[Breaker]) {
-        self.init(isMainPanel: isMainPanel, amperage: amperage, breakers: breakers, manufacturer: .Unknown)
+        self.init(isMainPanel: isMainPanel, amperage: amperage, breakers: breakers, manufacturer: .unknown)
     }
     
     convenience init(amperage: PanelAmperage, breakers:[Breaker]) {
-        self.init(isMainPanel: true, amperage: amperage, breakers: breakers, manufacturer: .Unknown)
+        self.init(isMainPanel: true, amperage: amperage, breakers: breakers, manufacturer: .unknown)
     }
 }
 
@@ -195,9 +195,9 @@ class Electrician {
     // Used: http://stackoverflow.com/questions/24044851/how-do-you-use-string-substringwithrange-or-how-do-ranges-work-in-swift
     func formattedPhone() -> String {
         let phone = phoneNumber as NSString
-        let areaCode = phone.substringWithRange(NSRange(location: 0, length: 3))
-        let threeDigit = phone.substringWithRange(NSRange(location: 3, length: 3))
-        let fourDigit = phone.substringWithRange(NSRange(location: 6, length: 4))
+        let areaCode = phone.substring(with: NSRange(location: 0, length: 3))
+        let threeDigit = phone.substring(with: NSRange(location: 3, length: 3))
+        let fourDigit = phone.substring(with: NSRange(location: 6, length: 4))
         return "(\(areaCode)) \(threeDigit)-\(fourDigit)"
     }
 }
@@ -216,11 +216,11 @@ class Breaker: Equatable {
     }
     
     convenience init(number:Int, breakerDescription:String, breakerType:BreakerType) {
-        self.init(number:number, breakerDescription:breakerDescription, amperage: .Twenty, breakerType:breakerType)
+        self.init(number:number, breakerDescription:breakerDescription, amperage: .twenty, breakerType:breakerType)
     }
     
     convenience init(number:Int, breakerDescription:String) {
-        self.init(number:number, breakerDescription:breakerDescription, amperage: .Twenty, breakerType:.SinglePole)
+        self.init(number:number, breakerDescription:breakerDescription, amperage: .twenty, breakerType:.singlePole)
     }
     
     

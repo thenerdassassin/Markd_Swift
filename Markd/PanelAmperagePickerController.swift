@@ -16,22 +16,22 @@ class PanelAmperagePicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
                 picker = viewController.panelAmperagePicker
             }
             else if let viewController = self.viewController as? NewPanelSetupViewController {
-                let cell = viewController.panelSetupTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! NewPanelTableCell
+                let cell = viewController.panelSetupTable.cellForRow(at: IndexPath(row: 0, section: 0)) as! NewPanelTableCell
                 picker = cell.panelAmperagepicker
             }
             if let picker = picker {
                 picker.reloadAllComponents()
-                setAmperage(picker, picker.selectedRowInComponent(0))
+                setAmperage(picker, picker.selectedRow(inComponent: 0))
             }
         }
     }
     var viewController: UIViewController?
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if(isMainPanel) {
             return MainPanelAmperage.count.hashValue
         } else {
@@ -39,7 +39,7 @@ class PanelAmperagePicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if(isMainPanel) {
             return MainPanelAmperage(rawValue: row)?.description
         } else {
@@ -47,11 +47,11 @@ class PanelAmperagePicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.setAmperage(pickerView, row)
     }
     
-    func setAmperage(pickerView: UIPickerView, _ row: Int) {
+    func setAmperage(_ pickerView: UIPickerView, _ row: Int) {
         if let viewController = self.viewController as? EditPanelViewController {
             if(isMainPanel) {
                 viewController.panel!.amperage = MainPanelAmperage(rawValue: row)!

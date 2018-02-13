@@ -23,23 +23,23 @@ class NewPanelSetupViewController: UIViewController, UITableViewDelegate, UITabl
             var breakers:[Breaker] = []
             breakers.append(Breaker(number: 1, breakerDescription: ""))
             breakers.append(Breaker(number: 2, breakerDescription: ""))
-            newPanel = Panel(isMainPanel: true, amperage: MainPanelAmperage.OneHundred, breakers: breakers, manufacturer: .Unknown)
+            newPanel = Panel(isMainPanel: true, amperage: MainPanelAmperage.oneHundred, breakers: breakers, manufacturer: .unknown)
             panelSetupTable.reloadData()
         }
     }
     
     // Mark:- TableView
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newPanel!.breakers.count+1 //Extra one for NewPanelTableCell
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row == 0) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("NewPanelCell") as! NewPanelTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewPanelCell") as! NewPanelTableCell
             cell.setUp(self)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("NewPanelBreaker", forIndexPath: indexPath) as! NewPanelBreakerTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewPanelBreaker", for: indexPath) as! NewPanelBreakerTableCell
             if let breakers = newPanel?.breakers {
                 cell.setUp(indexPath.row-1, description: breakers[indexPath.row-1].breakerDescription, type: breakers[indexPath.row-1].breakerType, pickerDelegate: self, breakers: breakers, viewDelegate: self)
             }
@@ -48,24 +48,24 @@ class NewPanelSetupViewController: UIViewController, UITableViewDelegate, UITabl
     }    
     
     // Mark:- Button Events
-    @IBAction func backClicked(sender: UIBarButtonItem) {
+    @IBAction func backClicked(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func addBreaker(sender: UIBarButtonItem) {
+    @IBAction func addBreaker(_ sender: UIBarButtonItem) {
         if let breakers = newPanel?.breakers {
             newPanel!.breakers.append(Breaker(number: breakers.count, breakerDescription: ""))
             panelSetupTable.reloadData()
         }
     }
-    @IBAction func savePanel(sender: UIButton) {
+    @IBAction func savePanel(_ sender: UIButton) {
         self.view.endEditing(true)
-        self.performSegueWithIdentifier("SavePanel", sender: self)
+        self.performSegue(withIdentifier: "SavePanel", sender: self)
     }
     
     // Mark: - Picker View Delegate
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
         var pickerLabel = view as? UILabel;
         
@@ -73,7 +73,7 @@ class NewPanelSetupViewController: UIViewController, UITableViewDelegate, UITabl
         {
             pickerLabel = UILabel()
             pickerLabel?.font = UIFont(name: "Helvetica Neue", size: 14)
-            pickerLabel?.textAlignment = NSTextAlignment.Center
+            pickerLabel?.textAlignment = NSTextAlignment.center
         }
         
         pickerLabel?.text = BreakerType(rawValue: row)?.description
@@ -81,41 +81,41 @@ class NewPanelSetupViewController: UIViewController, UITableViewDelegate, UITabl
         return pickerLabel!;
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if let breakers = newPanel?.breakers {
             if row == 0 {
                 let currentBreaker = breakers[pickerView.tag]
-                if(currentBreaker.breakerType == .DoublePole) {
-                    breakers[pickerView.tag+2].breakerType = .SinglePole
-                } else if (currentBreaker.breakerType == .DoublePoleBottom) {
-                    breakers[pickerView.tag-2].breakerType = .SinglePole
+                if(currentBreaker.breakerType == .doublePole) {
+                    breakers[pickerView.tag+2].breakerType = .singlePole
+                } else if (currentBreaker.breakerType == .doublePoleBottom) {
+                    breakers[pickerView.tag-2].breakerType = .singlePole
                 }
-                currentBreaker.breakerType = .SinglePole
+                currentBreaker.breakerType = .singlePole
                 panelSetupTable.reloadData()
             }
             else if row == 1 {
                 let currentBreaker = breakers[pickerView.tag]
                 
-                if(currentBreaker.breakerType == .DoublePoleBottom) {
-                    breakers[pickerView.tag].breakerType = .DoublePoleBottom
-                    breakers[pickerView.tag-2].breakerType = .DoublePole
+                if(currentBreaker.breakerType == .doublePoleBottom) {
+                    breakers[pickerView.tag].breakerType = .doublePoleBottom
+                    breakers[pickerView.tag-2].breakerType = .doublePole
                     panelSetupTable.reloadData()
                 }
                 else {
                     //Check if Breaker below is already Double Pole
                     if(pickerView.tag+2 < breakers.count) {
-                        if(breakers[pickerView.tag + 2].breakerType == .DoublePole) {
+                        if(breakers[pickerView.tag + 2].breakerType == .doublePole) {
                             panelSetupTable.reloadData()
                             return
                         }
                     }
                     
-                    breakers[pickerView.tag].breakerType = .DoublePole
+                    breakers[pickerView.tag].breakerType = .doublePole
                     while(pickerView.tag+2 >= breakers.count) {
                         newPanel!.breakers.append(Breaker(number: breakers.count+1, breakerDescription: ""))
                     }
                     
-                    breakers[pickerView.tag+2].breakerType = .DoublePoleBottom
+                    breakers[pickerView.tag+2].breakerType = .doublePoleBottom
                     breakers[pickerView.tag+2].breakerDescription = breakers[pickerView.tag].breakerDescription
                     panelSetupTable.reloadData()
                 }
@@ -128,7 +128,7 @@ class NewPanelSetupViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     //Dismisses keyboard when clicking outside of textfield
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 }

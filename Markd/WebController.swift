@@ -24,12 +24,12 @@ class WebController: UIViewController, UIWebViewDelegate {
     
     func configureView() {
         if let url = url, let webView = webView {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.\(url)")!))
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            webView.loadRequest(URLRequest(url: URL(string: "http://www.\(url)")!))
         }
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }
