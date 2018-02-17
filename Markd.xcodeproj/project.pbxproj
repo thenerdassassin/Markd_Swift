@@ -84,7 +84,10 @@
 		47E0EA401DF3865C001F417F /* Markd */ = {
 			isa = PBXGroup;
 			children = (
-				FF45F4D620388F2A008B2007 /* LoginViewController.swift */,
+				FF6C030C2038965A0058259F /* DataObjects */,
+				FF6C030B203896230058259F /* CustomerSubMenuViewControllers */,
+				FF6C030A203895E00058259F /* CustomerMenuViewControllers */,
+				FF6C0309203895B60058259F /* UserAuthentication */,
 				47E0EA451DF3865C001F417F /* Main.storyboard */,
 				47E0EA411DF3865C001F417F /* AppDelegate.swift */,
 				47133A5E1DF632B000D86E07 /* DataObjects.swift */,
@@ -107,6 +110,35 @@
 				47A89F841E1C5C2C00381967 /* BreakerAmperagePickerController.swift */,
 			);
 			path = Markd;
+			sourceTree = "<group>";
+		};
+		FF6C0309203895B60058259F /* UserAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				FF45F4D620388F2A008B2007 /* LoginViewController.swift */,
+			);
+			path = UserAuthentication;
+			sourceTree = "<group>";
+		};
+		FF6C030A203895E00058259F /* CustomerMenuViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomerMenuViewControllers;
+			sourceTree = "<group>";
+		};
+		FF6C030B203896230058259F /* CustomerSubMenuViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomerSubMenuViewControllers;
+			sourceTree = "<group>";
+		};
+		FF6C030C2038965A0058259F /* DataObjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
