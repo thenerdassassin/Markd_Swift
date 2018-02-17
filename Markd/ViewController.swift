@@ -134,7 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // Mark:- Gesture Function
-    func longPressBreaker(_ gesture:UILongPressGestureRecognizer) {
+    @objc func longPressBreaker(_ gesture:UILongPressGestureRecognizer) {
         if gesture.state == .began {
             let point = gesture.location(in: breakerTable)
             cellPressed = breakerTable.indexPathForRow(at: point)
@@ -154,7 +154,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func tapBreaker(_ gesture: UITapGestureRecognizer) {
+    @objc func tapBreaker(_ gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: breakerTable)
         cellPressed = breakerTable.indexPathForRow(at: point)
         let breakers = panels[panelNumber].breakers
@@ -176,11 +176,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.performSegue(withIdentifier: "ViewBreaker", sender: self)
     }
     
-    func tapPanelTitle(_ gesture:UILongPressGestureRecognizer) {
+    @objc func tapPanelTitle(_ gesture:UILongPressGestureRecognizer) {
         self.performSegue(withIdentifier: "EditPanel", sender: self)
     }
     
-    func swipe(_ gesture:UISwipeGestureRecognizer) {
+    @objc func swipe(_ gesture:UISwipeGestureRecognizer) {
         if(gesture.direction == .left) {
             panelNumber = (panelNumber+1)%panels.count
             panelTitle.text = panels[panelNumber].panelTitle

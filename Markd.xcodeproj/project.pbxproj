@@ -26,6 +26,7 @@
 		47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E0EA4A1DF3865C001F417F /* LaunchScreen.storyboard */; };
 		47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */; };
 		47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */; };
+		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		47E0EA4D1DF3865C001F417F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCells.swift; sourceTree = "<group>"; };
 		47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBreakerViewController.swift; sourceTree = "<group>"; };
+		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		47E0EA401DF3865C001F417F /* Markd */ = {
 			isa = PBXGroup;
 			children = (
+				FF45F4D620388F2A008B2007 /* LoginViewController.swift */,
 				47E0EA451DF3865C001F417F /* Main.storyboard */,
 				47E0EA411DF3865C001F417F /* AppDelegate.swift */,
 				47133A5E1DF632B000D86E07 /* DataObjects.swift */,
@@ -192,6 +195,7 @@
 				4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */,
 				47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */,
 				47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */,
+				FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */,
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
 				47500AC51E0794400099B0EE /* WebController.swift in Sources */,
 				47A89F851E1C5C2C00381967 /* BreakerAmperagePickerController.swift in Sources */,
