@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol BreakerEdit {
     func editBreaker(breakerDescription:String, amperage:BreakerAmperage, breakerType:BreakerType)
@@ -22,5 +23,10 @@ protocol PanelAmperage {
     var description: String {get}
     var hashValue: Int {get}
     static var count: Int {get}
+}
+
+protocol LoginHandler {
+    func loginSuccessHandler(_ user:User)
+    func loginFailureHandler(_ error:Error)
 }
 
