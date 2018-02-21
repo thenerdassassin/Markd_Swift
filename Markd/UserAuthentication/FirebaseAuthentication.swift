@@ -12,16 +12,24 @@ import Firebase
 
 public class FirebaseAuthentication {
 
-    func signIn(_ sender: LoginHandler, withEmail email: String, andPassword password: String){
+    func signIn(_ sender: LoginHandler, withEmail email: String, andPassword password: String) {
         Auth.auth().signIn(withEmail: email, password: password) {  (user, error) in
             if let error = error {
                 print("Error: ", error)
-                //Error
                 sender.loginFailureHandler(error)
             }
             if let user = user {
                 print("User:" , user)
                 sender.loginSuccessHandler(user)
+            }
+        }
+    }
+    
+    func forgotPassword(_ sender: LoginHandler, withEmail email:String) {
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            if let error = error {
+                print("Error: ", error)
+                sender.loginFailureHandler(error)
             }
         }
     }
