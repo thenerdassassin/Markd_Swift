@@ -33,7 +33,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BreakerEdit, PanelEdit {
-    var electrician:Electrician = Electrician(url: "connwestelectric.com", company: "Conn West Electric, LLC", street: "135 N Maple Tree Hill Rd", city: "Oxford", state: "CT", zip: "06807", logo: UIImage(named: "connwest logo")!, phoneNumber: "2038819055")
+    var electrician:Electrician = Electrician(url: "connwestelectric.com", company: "Conn West Electric, LLC", street: "135 N Maple Tree Hill Rd", city: "Oxford", state: "CT", zip: "06807", logo: UIImage(named: "connwestLogo")!, phoneNumber: "2038819055")
     
     var panels:[Panel] = [
         Panel(amperage: MainPanelAmperage.fourHundred, breakers:[Breaker(number:1, breakerDescription: "Master bedroom recepticals", breakerType: .singlePole), Breaker(number:2, breakerDescription: "Master bedroom lighting", breakerType: .singlePole),Breaker(number:3, breakerDescription: "Master bathroom GFCI", breakerType: .singlePole), Breaker(number:4, breakerDescription: "Master bathroom floor heat", breakerType: .singlePole), Breaker(number:5, breakerDescription: "Bedroom recepticals", breakerType: .singlePole), Breaker(number:6, breakerDescription: "2nd floor hallway lighting", breakerType: .singlePole), Breaker(number:7, breakerDescription: "Washing machine", breakerType: .singlePole), Breaker(number:8, breakerDescription: "Dryer", breakerType: .singlePole), Breaker(number: 9, breakerDescription: "Hot water heater", breakerType: .singlePole), Breaker(number:10, breakerDescription: "well pump", breakerType: .singlePole), Breaker(number: 11, breakerDescription: "Refrigerator", breakerType: .singlePole), Breaker(number: 12, breakerDescription: "Microwave", breakerType: .singlePole), Breaker(number: 13, breakerDescription: "Oven", breakerType: .singlePole), Breaker(number: 14, breakerDescription: "Kitchen Recepticals", breakerType: .singlePole), Breaker(number: 15, breakerDescription: "Kitchen island recepticals", breakerType: .singlePole), Breaker(number: 16, breakerDescription: "Kitchen Lighting", breakerType: .singlePole), Breaker(number: 17, breakerDescription: "Spot lights", breakerType: .singlePole), Breaker(number: 18, breakerDescription: "Garbage Disposal", breakerType: .singlePole), Breaker(number: 19, breakerDescription: "Dishwasher"), Breaker(number: 20, breakerDescription: "Kitchen Hood"), Breaker(number: 21, breakerDescription: "Dining room recepticals"), Breaker(number: 22, breakerDescription: "Dining room lighting"), Breaker(number: 23, breakerDescription: "Living room recpeticals"), Breaker(number: 24, breakerDescription: "Living Room lighting"), Breaker(number: 25, breakerDescription: "Family room recipticals"), Breaker(number: 26, breakerDescription: "Family room lighting"), Breaker(number: 27, breakerDescription: "Foyer recepticals"), Breaker(number: 28, breakerDescription: "Foyer lighting"), Breaker(number: 29, breakerDescription: "Furnace"), Breaker(number: 30, breakerDescription: "Air compressor"), Breaker(number: 31, breakerDescription: "Air handler"), Breaker(number: 32, breakerDescription: "Central vacuum"), Breaker(number: 33, breakerDescription: "Sump pump"), Breaker(number: 34, breakerDescription: "Basement Lighting"), Breaker(number: 35, breakerDescription: "Exterior Lighting"), Breaker(number: 36, breakerDescription: "Landscape Lighting"), Breaker(number: 37, breakerDescription: "Garage door receptical")]),
@@ -134,7 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // Mark:- Gesture Function
-    func longPressBreaker(_ gesture:UILongPressGestureRecognizer) {
+    @objc func longPressBreaker(_ gesture:UILongPressGestureRecognizer) {
         if gesture.state == .began {
             let point = gesture.location(in: breakerTable)
             cellPressed = breakerTable.indexPathForRow(at: point)
@@ -154,7 +154,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func tapBreaker(_ gesture: UITapGestureRecognizer) {
+    @objc func tapBreaker(_ gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: breakerTable)
         cellPressed = breakerTable.indexPathForRow(at: point)
         let breakers = panels[panelNumber].breakers
@@ -176,11 +176,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.performSegue(withIdentifier: "ViewBreaker", sender: self)
     }
     
-    func tapPanelTitle(_ gesture:UILongPressGestureRecognizer) {
+    @objc func tapPanelTitle(_ gesture:UILongPressGestureRecognizer) {
         self.performSegue(withIdentifier: "EditPanel", sender: self)
     }
     
-    func swipe(_ gesture:UISwipeGestureRecognizer) {
+    @objc func swipe(_ gesture:UISwipeGestureRecognizer) {
         if(gesture.direction == .left) {
             panelNumber = (panelNumber+1)%panels.count
             panelTitle.text = panels[panelNumber].panelTitle

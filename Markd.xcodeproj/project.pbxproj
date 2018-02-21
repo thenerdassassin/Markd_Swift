@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4067C6E07EFE63BA165B7ECB /* Pods_Markd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5098B1444AC29248521536 /* Pods_Markd.framework */; };
 		47000A6F1DFDEA2E00D85548 /* NewPanelSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */; };
 		4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */; };
 		47133A5F1DF632B000D86E07 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47133A5E1DF632B000D86E07 /* DataObjects.swift */; };
@@ -26,9 +27,15 @@
 		47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E0EA4A1DF3865C001F417F /* LaunchScreen.storyboard */; };
 		47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */; };
 		47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */; };
+		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
+		FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */; };
+		FFF45D802038C3C200EC732B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */; };
+		FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */; };
+		FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D84203CE77200EC732B /* ToastUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DFBB433CDDC1835F81D6E42 /* Pods-Markd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.debug.xcconfig"; sourceTree = "<group>"; };
 		47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPanelSetupViewController.swift; sourceTree = "<group>"; };
 		4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		47133A5E1DF632B000D86E07 /* DataObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
@@ -50,6 +57,13 @@
 		47E0EA4D1DF3865C001F417F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCells.swift; sourceTree = "<group>"; };
 		47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBreakerViewController.swift; sourceTree = "<group>"; };
+		5F8AAE28D9CA323AB69658E5 /* Pods-Markd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.release.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.release.xcconfig"; sourceTree = "<group>"; };
+		7C5098B1444AC29248521536 /* Pods_Markd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Markd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
+		FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUtilities.swift; sourceTree = "<group>"; };
+		FFF45D84203CE77200EC732B /* ToastUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,17 +71,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4067C6E07EFE63BA165B7ECB /* Pods_Markd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		192851EE2A7DACBABF1297FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7C5098B1444AC29248521536 /* Pods_Markd.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		47E0EA351DF3865C001F417F = {
 			isa = PBXGroup;
 			children = (
 				47E0EA401DF3865C001F417F /* Markd */,
 				47E0EA3F1DF3865C001F417F /* Products */,
+				4FAA6F45A5991E58AC108B00 /* Pods */,
+				192851EE2A7DACBABF1297FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +107,11 @@
 		47E0EA401DF3865C001F417F /* Markd */ = {
 			isa = PBXGroup;
 			children = (
+				FFF45D81203CE57200EC732B /* Utilities */,
+				FF6C030C2038965A0058259F /* DataObjects */,
+				FF6C030B203896230058259F /* CustomerSubMenuViewControllers */,
+				FF6C030A203895E00058259F /* CustomerMenuViewControllers */,
+				FF6C0309203895B60058259F /* UserAuthentication */,
 				47E0EA451DF3865C001F417F /* Main.storyboard */,
 				47E0EA411DF3865C001F417F /* AppDelegate.swift */,
 				47133A5E1DF632B000D86E07 /* DataObjects.swift */,
@@ -90,6 +120,7 @@
 				476295BC1E1DE02D008CDBFC /* DetailViewController.swift */,
 				47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */,
 				476295BE1E1DF198008CDBFC /* EditPanelViewController.swift */,
+				FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */,
 				47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */,
 				47500AC41E0794400099B0EE /* WebController.swift */,
 				47E0EA481DF3865C001F417F /* Assets.xcassets */,
@@ -106,6 +137,54 @@
 			path = Markd;
 			sourceTree = "<group>";
 		};
+		4FAA6F45A5991E58AC108B00 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0DFBB433CDDC1835F81D6E42 /* Pods-Markd.debug.xcconfig */,
+				5F8AAE28D9CA323AB69658E5 /* Pods-Markd.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FF6C0309203895B60058259F /* UserAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				FF45F4D620388F2A008B2007 /* LoginViewController.swift */,
+				FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */,
+			);
+			path = UserAuthentication;
+			sourceTree = "<group>";
+		};
+		FF6C030A203895E00058259F /* CustomerMenuViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomerMenuViewControllers;
+			sourceTree = "<group>";
+		};
+		FF6C030B203896230058259F /* CustomerSubMenuViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomerSubMenuViewControllers;
+			sourceTree = "<group>";
+		};
+		FF6C030C2038965A0058259F /* DataObjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataObjects;
+			sourceTree = "<group>";
+		};
+		FFF45D81203CE57200EC732B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */,
+				FFF45D84203CE77200EC732B /* ToastUtilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -113,9 +192,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47E0EA501DF3865C001F417F /* Build configuration list for PBXNativeTarget "Markd" */;
 			buildPhases = (
+				BBF72383FE700DB4D259801C /* [CP] Check Pods Manifest.lock */,
 				47E0EA3A1DF3865C001F417F /* Sources */,
 				47E0EA3B1DF3865C001F417F /* Frameworks */,
 				47E0EA3C1DF3865C001F417F /* Resources */,
+				64F12FC7BA492C4A1188752B /* [CP] Embed Pods Frameworks */,
+				B2F9E70F6D89BD148F80F951 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,12 +249,75 @@
 			buildActionMask = 2147483647;
 			files = (
 				47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */,
+				FFF45D802038C3C200EC732B /* GoogleService-Info.plist in Resources */,
 				47E0EA491DF3865C001F417F /* Assets.xcassets in Resources */,
 				47E0EA471DF3865C001F417F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		64F12FC7BA492C4A1188752B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Markd/Pods-Markd-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Markd/Pods-Markd-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2F9E70F6D89BD148F80F951 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Markd/Pods-Markd-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBF72383FE700DB4D259801C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Markd-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		47E0EA3A1DF3865C001F417F /* Sources */ = {
@@ -181,6 +326,7 @@
 			files = (
 				479734E31E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift in Sources */,
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
+				FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */,
 				479937681E1D806F00ADCD35 /* EditBreakerTextFieldController.swift in Sources */,
 				47133A5F1DF632B000D86E07 /* DataObjects.swift in Sources */,
 				476295BD1E1DE02D008CDBFC /* DetailViewController.swift in Sources */,
@@ -190,8 +336,11 @@
 				476295BF1E1DF198008CDBFC /* EditPanelViewController.swift in Sources */,
 				47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */,
 				4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */,
+				FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */,
 				47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */,
+				FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */,
 				47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */,
+				FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */,
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
 				47500AC51E0794400099B0EE /* WebController.swift in Sources */,
 				47A89F851E1C5C2C00381967 /* BreakerAmperagePickerController.swift in Sources */,
@@ -324,6 +473,7 @@
 		};
 		47E0EA511DF3865C001F417F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DFBB433CDDC1835F81D6E42 /* Pods-Markd.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -338,6 +488,7 @@
 		};
 		47E0EA521DF3865C001F417F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F8AAE28D9CA323AB69658E5 /* Pods-Markd.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
