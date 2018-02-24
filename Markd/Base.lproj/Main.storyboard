@@ -94,8 +94,8 @@
                                     <constraint firstItem="kz7-wW-oqp" firstAttribute="height" secondItem="YEq-1T-v0e" secondAttribute="height" constant="-10" id="aqn-VF-cw0"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Yq-JS-HC8">
-                                <rect key="frame" x="181" y="298" width="144" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Yq-JS-HC8">
+                                <rect key="frame" x="216" y="295" width="109" height="28.5"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Forgot Password">
