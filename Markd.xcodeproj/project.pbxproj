@@ -29,6 +29,10 @@
 		47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */; };
+		FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C892041D3B500A9392E /* MainViewController.swift */; };
+		FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */; };
+		FFF27C8E2041E18600A9392E /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C8D2041E18600A9392E /* Customer.swift */; };
+		FFF27C902041F76E00A9392E /* StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C8F2041F76E00A9392E /* StringUtilities.swift */; };
 		FFF45D802038C3C200EC732B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */; };
 		FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */; };
 		FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D84203CE77200EC732B /* ToastUtilities.swift */; };
@@ -61,6 +65,10 @@
 		7C5098B1444AC29248521536 /* Pods_Markd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Markd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
+		FFF27C892041D3B500A9392E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCustomerData.swift; sourceTree = "<group>"; };
+		FFF27C8D2041E18600A9392E /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		FFF27C8F2041F76E00A9392E /* StringUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilities.swift; sourceTree = "<group>"; };
 		FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUtilities.swift; sourceTree = "<group>"; };
 		FFF45D84203CE77200EC732B /* ToastUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUtilities.swift; sourceTree = "<group>"; };
@@ -158,6 +166,7 @@
 		FF6C030A203895E00058259F /* CustomerMenuViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FFF27C892041D3B500A9392E /* MainViewController.swift */,
 			);
 			path = CustomerMenuViewControllers;
 			sourceTree = "<group>";
@@ -172,6 +181,8 @@
 		FF6C030C2038965A0058259F /* DataObjects */ = {
 			isa = PBXGroup;
 			children = (
+				FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */,
+				FFF27C8D2041E18600A9392E /* Customer.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -181,6 +192,7 @@
 			children = (
 				FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */,
 				FFF45D84203CE77200EC732B /* ToastUtilities.swift */,
+				FFF27C8F2041F76E00A9392E /* StringUtilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -324,9 +336,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */,
+				FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */,
 				479734E31E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift in Sources */,
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
 				FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */,
+				FFF27C8E2041E18600A9392E /* Customer.swift in Sources */,
 				479937681E1D806F00ADCD35 /* EditBreakerTextFieldController.swift in Sources */,
 				47133A5F1DF632B000D86E07 /* DataObjects.swift in Sources */,
 				476295BD1E1DE02D008CDBFC /* DetailViewController.swift in Sources */,
@@ -340,6 +355,7 @@
 				47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */,
 				FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */,
 				47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */,
+				FFF27C902041F76E00A9392E /* StringUtilities.swift in Sources */,
 				FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */,
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
 				47500AC51E0794400099B0EE /* WebController.swift in Sources */,
