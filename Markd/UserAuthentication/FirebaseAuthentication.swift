@@ -11,8 +11,11 @@ import os.log
 import Firebase
 
 public class FirebaseAuthentication {
-    //TODO: token handling
-    //TODO: getUserType
+    func NEED_TO_ADD_ANDROID_METHODS😤() {
+        var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
+        //TODO: token handling
+        //TODO: getUserType
+    }
     static let sharedInstance = FirebaseAuthentication()
     static private let auth:Auth = Auth.auth()
     

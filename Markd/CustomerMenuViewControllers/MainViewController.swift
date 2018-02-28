@@ -16,7 +16,7 @@ public class MainViewController: UIViewController, OnGetDataListener {
     
     @IBOutlet weak var preparedForLabel: UILabel!
     @IBOutlet weak var streetAddressLabel: UILabel!
-    
+    @IBOutlet weak var homeInformationLabel: UILabel!
     
     public func onStart() {
         print("Getting Customer Data")
@@ -32,7 +32,7 @@ public class MainViewController: UIViewController, OnGetDataListener {
     
     override public func viewWillAppear(_ animated: Bool) {
         if(!authentication.checkLogin()) {
-            //TODO: go to Login Screen
+            var TODO_GoToLoginViewController_🤪: AnyObject?
         } else {
             customerData = TempCustomerData(self)
         }
@@ -44,10 +44,20 @@ public class MainViewController: UIViewController, OnGetDataListener {
     }
     
     func configureView() {
-        //TODO: setUpView with Customer info
-        if let preparedForLabel = preparedForLabel, let customerData = customerData {
-            preparedForLabel.text = "Prepared For \(customerData.getName())"
+        if let customerData = customerData, let preparedForLabel = preparedForLabel, let streetAddressLabel = streetAddressLabel, let homeInformationLabel = homeInformationLabel {
+            preparedForLabel.text = "Prepared for \(customerData.getName())"
+            if let streetAddress = customerData.getFormattedAddress() {
+                streetAddressLabel.text = "\(streetAddress)"
+            } else {
+                var TODO_GoToHomeEditViewController_🤪: AnyObject?
+            }
+            if let roomInformation = customerData.getRoomInformation(), let squareFootage = customerData.getSquareFootageString() {
+                homeInformationLabel.text = "\(roomInformation) \n\(squareFootage)"
+            } else {
+                var TODO_GoToHomeEditViewController_🤪: AnyObject?
+            }
         }
+    
     }
     
 }

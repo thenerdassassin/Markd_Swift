@@ -33,6 +33,8 @@
 		FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */; };
 		FFF27C8E2041E18600A9392E /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C8D2041E18600A9392E /* Customer.swift */; };
 		FFF27C902041F76E00A9392E /* StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C8F2041F76E00A9392E /* StringUtilities.swift */; };
+		FFF27C92204203E500A9392E /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C91204203E500A9392E /* Address.swift */; };
+		FFF27C94204619A700A9392E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C93204619A700A9392E /* Home.swift */; };
 		FFF45D802038C3C200EC732B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */; };
 		FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */; };
 		FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D84203CE77200EC732B /* ToastUtilities.swift */; };
@@ -69,6 +71,8 @@
 		FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCustomerData.swift; sourceTree = "<group>"; };
 		FFF27C8D2041E18600A9392E /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		FFF27C8F2041F76E00A9392E /* StringUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilities.swift; sourceTree = "<group>"; };
+		FFF27C91204203E500A9392E /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		FFF27C93204619A700A9392E /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUtilities.swift; sourceTree = "<group>"; };
 		FFF45D84203CE77200EC732B /* ToastUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUtilities.swift; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 			children = (
 				FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */,
 				FFF27C8D2041E18600A9392E /* Customer.swift */,
+				FFF27C91204203E500A9392E /* Address.swift */,
+				FFF27C93204619A700A9392E /* Home.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -342,9 +348,11 @@
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
 				FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */,
 				FFF27C8E2041E18600A9392E /* Customer.swift in Sources */,
+				FFF27C94204619A700A9392E /* Home.swift in Sources */,
 				479937681E1D806F00ADCD35 /* EditBreakerTextFieldController.swift in Sources */,
 				47133A5F1DF632B000D86E07 /* DataObjects.swift in Sources */,
 				476295BD1E1DE02D008CDBFC /* DetailViewController.swift in Sources */,
+				FFF27C92204203E500A9392E /* Address.swift in Sources */,
 				47000A6F1DFDEA2E00D85548 /* NewPanelSetupViewController.swift in Sources */,
 				47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */,
 				4746A0A01E1F315F00FB76E3 /* ManufacturerPickerController.swift in Sources */,
