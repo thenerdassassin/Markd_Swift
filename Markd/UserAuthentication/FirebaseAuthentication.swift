@@ -18,6 +18,7 @@ public class FirebaseAuthentication {
     }
     static let sharedInstance = FirebaseAuthentication()
     static private let auth:Auth = Auth.auth()
+    static var authStateDidChangeHandle: AuthStateDidChangeListenerHandle?
     
     private init() {}
     
@@ -46,8 +47,23 @@ public class FirebaseAuthentication {
         return FirebaseAuthentication.auth.currentUser
     }
     
-    func checkLogin() -> Bool {
-        return (getCurrentUser() != nil)
+    func checkLogin(_ sender: UIViewController) -> Bool {
+        FirebaseAuthentication.authStateDidChangeHandle = FirebaseAuthentication.auth.addStateDidChangeListener { (auth, user) in
+            if user == nil {
+                sender.performSegue(withIdentifier:"goToLoginViewController", sender:sender)
+            }
+        }
+        let isLoggedIn:Bool = getCurrentUser() != nil
+        if(!isLoggedIn) {
+            sender.performSegue(withIdentifier:"goToLoginViewController", sender:sender)
+        }
+        return isLoggedIn
+    }
+    
+    func removeStateListener() {
+        if let handle = FirebaseAuthentication.authStateDidChangeHandle {
+            FirebaseAuthentication.auth.removeStateDidChangeListener(handle)
+        }
     }
     
     func getAuthCredential(withEmail email:String, andPassword password: String) -> AuthCredential {

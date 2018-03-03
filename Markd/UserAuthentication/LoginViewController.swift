@@ -34,12 +34,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
             password.delegate = self
         }
         
-        if(authenticator.checkLogin()) {
+        if(authenticator.checkLogin(self)) {
             loginSuccessHandler(authenticator.getCurrentUser()!)
         }
     }
 
     //MARK:- IBAction Methods
+    @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue) {
+        
+    }
+    
     @IBAction func passwordEditingDidEnd(_ sender: Any) {
         signIn()
     }

@@ -18,6 +18,43 @@ public class MainViewController: UIViewController, OnGetDataListener {
     @IBOutlet weak var streetAddressLabel: UILabel!
     @IBOutlet weak var homeInformationLabel: UILabel!
     
+    override public func viewWillAppear(_ animated: Bool) {
+        if(authentication.checkLogin(self)) {
+            customerData = TempCustomerData(self)
+            var TODO_SetUpActionBar_🤪: AnyObject?
+            var TODO_CameraHomeImageCapture_🤪: AnyObject?
+            var TODO_HomeImageClickListeners_🤪: AnyObject?
+            var TODO_LoadImage_🤪: AnyObject?
+            var TODO_RealtorBuilderAndArchitect_🤪: AnyObject?
+            var TODO_ContactRealtorEtcAlertAction_🤪: AnyObject?
+        }
+    }
+    
+    override public func viewDidLoad() {
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+        configureView()
+    }
+    
+    override public func viewWillDisappear(_ animated: Bool) {
+        FirebaseAuthentication.sharedInstance.removeStateListener()
+        if let customerData = customerData {
+            customerData.removeListeners()
+        }
+    }
+    
+    func configureView() {
+        if let customerData = customerData, let preparedForLabel = preparedForLabel, let streetAddressLabel = streetAddressLabel, let homeInformationLabel = homeInformationLabel {
+            preparedForLabel.text = "Prepared for \(customerData.getName())"
+            if let streetAddress = customerData.getFormattedAddress(), let roomInformation = customerData.getRoomInformation(), let squareFootage = customerData.getSquareFootageString() {
+                streetAddressLabel.text = "\(streetAddress)"
+                homeInformationLabel.text = "\(roomInformation) \n\(squareFootage)"
+            } else {
+                var TODO_GoToHomeEditViewController_🤪: AnyObject?
+            }
+        }
+    }
+    
+    //Mark:- OnGetDataListener Implementation
     public func onStart() {
         print("Getting Customer Data")
     }
@@ -28,36 +65,6 @@ public class MainViewController: UIViewController, OnGetDataListener {
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
-    }
-    
-    override public func viewWillAppear(_ animated: Bool) {
-        if(!authentication.checkLogin()) {
-            var TODO_GoToLoginViewController_🤪: AnyObject?
-        } else {
-            customerData = TempCustomerData(self)
-        }
-    }
-    
-    override public func viewDidLoad() {
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
-        configureView()
-    }
-    
-    func configureView() {
-        if let customerData = customerData, let preparedForLabel = preparedForLabel, let streetAddressLabel = streetAddressLabel, let homeInformationLabel = homeInformationLabel {
-            preparedForLabel.text = "Prepared for \(customerData.getName())"
-            if let streetAddress = customerData.getFormattedAddress() {
-                streetAddressLabel.text = "\(streetAddress)"
-            } else {
-                var TODO_GoToHomeEditViewController_🤪: AnyObject?
-            }
-            if let roomInformation = customerData.getRoomInformation(), let squareFootage = customerData.getSquareFootageString() {
-                homeInformationLabel.text = "\(roomInformation) \n\(squareFootage)"
-            } else {
-                var TODO_GoToHomeEditViewController_🤪: AnyObject?
-            }
-        }
-    
     }
     
 }

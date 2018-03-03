@@ -29,6 +29,12 @@ public class TempCustomerData {
         }
     }
     
+    public func removeListeners() {
+        if let userReference = userReference {
+            userReference.removeAllObservers()
+        }
+    }
+    
     private func customerSuccessListener(_ snapshot:DataSnapshot) {
         print("got data:", snapshot)
         if let dictionary = snapshot.value as? [String : AnyObject] {
