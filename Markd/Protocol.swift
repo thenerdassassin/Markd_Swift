@@ -30,3 +30,22 @@ protocol LoginHandler {
     func loginFailureHandler(_ error:Error)
 }
 
+public protocol OnGetDataListener {
+    func onStart()
+    func onSuccess()
+    func onFailure(_ error: Error)
+}
+
+extension CustomStringConvertible {
+    public var description: String {
+        var description = "***** \(type(of: self)) ***** \n "
+        let selfMirror = Mirror(reflecting:self)
+        for child in selfMirror.children {
+            if let propertyName = child.label {
+                description += "     \(propertyName) : \(child.value) \n "
+            }
+        }
+        return description
+    }
+}
+

@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
-    private var authenticator:FirebaseAuthentication = FirebaseAuthentication()
+    private var authenticator:FirebaseAuthentication = FirebaseAuthentication.sharedInstance
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var createAccountButton: UIButton!
@@ -33,9 +33,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         if let password = password {
             password.delegate = self
         }
+        
+        if(authenticator.checkLogin(self)) {
+            loginSuccessHandler(authenticator.getCurrentUser()!)
+        }
     }
 
     //MARK:- IBAction Methods
+    @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue) {
+        
+    }
+    
     @IBAction func passwordEditingDidEnd(_ sender: Any) {
         signIn()
     }
@@ -75,30 +83,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     
     func loginFailureHandler(_ error: Error) {
         debugPrint(error)
-        if let errCode = AuthErrorCode(rawValue: error._code) {
-            switch errCode {
-                case .invalidEmail:
-                    let alert = UIAlertController(title: "Invalid Email", message: "The email entered is invalid. Please type in a valid email address.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                case .wrongPassword:
-                    let alert = UIAlertController(title: "Wrong username/password", message: "This user and password do not match. Please try again or click 'Forgot Password' to change it.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                case .networkError:
-                    let alert = UIAlertController(title: "Network Error", message: "Make sure you are connected to internet and try again.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                case .userNotFound:
-                    let alert = UIAlertController(title: "Create Account", message: "This account does not yet exist. Please create an account.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                default:
-                    let alert = UIAlertController(title: "Something went wrong", message: "Something went wrong. Please try again.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
-                    self.present(alert, animated: true)
-                }
-            }
+        authenticator.errorHandler(self, forError: error)
     }
     
     //MARK:- Segue Methods
