@@ -191,7 +191,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4OC-Pn-mMy">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action_camera" translatesAutoresizingMaskIntoConstraints="NO" id="4OC-Pn-mMy">
                                 <rect key="frame" x="62" y="132.5" width="250" height="187.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -218,6 +218,12 @@
                                     <constraint firstAttribute="height" constant="1" id="coa-xS-gf5"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon!!! Add you personal Architects, Builders, and Realtors to this page." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUr-wA-DSh">
+                                <rect key="frame" x="50" y="512" width="275" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -226,14 +232,18 @@
                             <constraint firstItem="Zuj-aG-sqH" firstAttribute="centerX" secondItem="pUn-uv-Xjp" secondAttribute="centerX" id="6KG-ju-eVg"/>
                             <constraint firstItem="o9F-uJ-cHH" firstAttribute="leading" secondItem="pUn-uv-Xjp" secondAttribute="leading" constant="20" id="9Ls-eq-gOf"/>
                             <constraint firstItem="4OC-Pn-mMy" firstAttribute="height" secondItem="4qP-qq-ViP" secondAttribute="height" multiplier="3" id="NS6-Nk-V7n"/>
+                            <constraint firstItem="hUr-wA-DSh" firstAttribute="leading" secondItem="pUn-uv-Xjp" secondAttribute="leading" constant="50" id="UFL-Ox-pZ0"/>
                             <constraint firstItem="4Fa-Cd-RE3" firstAttribute="top" secondItem="vAZ-96-L9T" secondAttribute="bottom" constant="10" id="V2U-rp-gmV"/>
                             <constraint firstItem="vAZ-96-L9T" firstAttribute="centerX" secondItem="pUn-uv-Xjp" secondAttribute="centerX" id="XAn-Uo-4Qy"/>
                             <constraint firstAttribute="trailing" secondItem="vAZ-96-L9T" secondAttribute="trailing" constant="20" id="YYc-fd-tzm"/>
                             <constraint firstItem="Zuj-aG-sqH" firstAttribute="top" secondItem="zzX-Rc-ULx" secondAttribute="bottom" constant="15" id="Z1X-p3-mGy"/>
+                            <constraint firstAttribute="trailing" secondItem="hUr-wA-DSh" secondAttribute="trailing" constant="50" id="Z1q-Jl-QpX"/>
                             <constraint firstItem="4Fa-Cd-RE3" firstAttribute="leading" secondItem="pUn-uv-Xjp" secondAttribute="leading" constant="20" id="Zzc-xo-z3M"/>
+                            <constraint firstItem="hUr-wA-DSh" firstAttribute="centerX" secondItem="pUn-uv-Xjp" secondAttribute="centerX" id="bvw-jU-H20"/>
                             <constraint firstAttribute="trailing" secondItem="zzX-Rc-ULx" secondAttribute="trailing" constant="20" id="fAc-we-rwE"/>
                             <constraint firstItem="4qP-qq-ViP" firstAttribute="top" secondItem="g50-ZN-hDQ" secondAttribute="bottom" id="fOZ-VG-mxV"/>
                             <constraint firstAttribute="trailing" secondItem="4Fa-Cd-RE3" secondAttribute="trailing" constant="20" id="g5z-Bz-6QH"/>
+                            <constraint firstItem="hUr-wA-DSh" firstAttribute="top" secondItem="o9F-uJ-cHH" secondAttribute="bottom" constant="30" id="gGR-7i-MuD"/>
                             <constraint firstItem="4OC-Pn-mMy" firstAttribute="top" secondItem="4qP-qq-ViP" secondAttribute="bottom" constant="50" id="ibc-O8-6oR"/>
                             <constraint firstItem="4OC-Pn-mMy" firstAttribute="centerX" secondItem="pUn-uv-Xjp" secondAttribute="centerX" id="mTB-01-E9l"/>
                             <constraint firstItem="zzX-Rc-ULx" firstAttribute="top" secondItem="4OC-Pn-mMy" secondAttribute="bottom" constant="20" id="oFv-OC-4F9"/>
@@ -1208,6 +1218,7 @@
     </scenes>
     <resources>
         <image name="connwestLogo" width="958" height="539"/>
+        <image name="ic_action_camera" width="96" height="96"/>
         <image name="whiteTransparentLogo" width="2410" height="846"/>
     </resources>
     <inferredMetricsTieBreakers>
