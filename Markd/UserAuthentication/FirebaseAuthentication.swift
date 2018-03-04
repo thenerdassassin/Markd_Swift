@@ -35,9 +35,12 @@ public class FirebaseAuthentication {
         }
     }
     
-    func signOut() {
+    func signOut(_ sender: UIViewController) {
         do {
             try FirebaseAuthentication.auth.signOut()
+            if !(sender is LoginViewController) {
+                sender.performSegue(withIdentifier:"goToLoginViewController", sender:sender)
+            }
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
@@ -50,12 +53,16 @@ public class FirebaseAuthentication {
     func checkLogin(_ sender: UIViewController) -> Bool {
         FirebaseAuthentication.authStateDidChangeHandle = FirebaseAuthentication.auth.addStateDidChangeListener { (auth, user) in
             if user == nil {
-                sender.performSegue(withIdentifier:"goToLoginViewController", sender:sender)
+                if !(sender is LoginViewController) {
+                    sender.performSegue(withIdentifier:"goToLoginViewController", sender:sender)
+                }
             }
         }
         let isLoggedIn:Bool = getCurrentUser() != nil
         if(!isLoggedIn) {
-            sender.performSegue(withIdentifier:"goToLoginViewController", sender:sender)
+            if !(sender is LoginViewController) {
+                sender.performSegue(withIdentifier:"goToLoginViewController", sender:sender)
+            }
         }
         return isLoggedIn
     }

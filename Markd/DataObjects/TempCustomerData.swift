@@ -17,7 +17,7 @@ public class TempCustomerData {
     private var listener: OnGetDataListener?
     
     public init(_ getDataListener: OnGetDataListener?) {
-        self.customerId = FirebaseAuthentication.sharedInstance.getCurrentUser() != nil ? FirebaseAuthentication.sharedInstance.getCurrentUser()!.uid : nil
+        self.customerId = FirebaseAuthentication.sharedInstance.getCurrentUser()?.uid
         self.listener = getDataListener
         if let customerId = customerId {
             userReference = TempCustomerData.database.child(customerId)
