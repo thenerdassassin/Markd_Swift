@@ -50,6 +50,8 @@ public class MainViewController: UIViewController, OnGetDataListener {
                 homeInformationLabel.text = "\(roomInformation) \n\(squareFootage)"
             } else {
                 var TODO_GoToHomeEditViewController_🤪: AnyObject?
+                streetAddressLabel.text = "Loading...."
+                homeInformationLabel.text = "-- bathrooms -- bedrooms \n -- square feet"
             }
         }
     }
