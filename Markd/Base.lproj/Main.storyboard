@@ -162,7 +162,7 @@
                         <segue destination="pxg-Cy-DRC" kind="relationship" relationship="viewControllers" id="kNt-EG-oT1"/>
                         <segue destination="Sos-x6-u9a" kind="relationship" relationship="viewControllers" id="9e0-Lx-awo"/>
                         <segue destination="AQ4-4e-0EU" kind="relationship" relationship="viewControllers" id="bcZ-oG-aao"/>
-                        <segue destination="xYT-qh-c4w" kind="relationship" relationship="viewControllers" id="6gX-0t-cIF"/>
+                        <segue destination="HCd-DL-dvR" kind="relationship" relationship="viewControllers" id="6gX-0t-cIF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oZi-C5-k1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -347,12 +347,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Z0-YG-xfq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2402" y="50"/>
+            <point key="canvasLocation" x="-2063.1999999999998" y="49.925037481259373"/>
         </scene>
-        <!--Help-->
+        <!--Help View Controller-->
         <scene sceneID="tqU-hN-DTq">
             <objects>
-                <viewController id="xYT-qh-c4w" sceneMemberID="viewController">
+                <viewController id="xYT-qh-c4w" customClass="HelpViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Er8-EU-0hl"/>
                         <viewControllerLayoutGuide type="bottom" id="WoP-fT-Adg"/>
@@ -360,13 +360,59 @@
                     <view key="view" contentMode="scaleToFill" id="50V-7s-vSx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.20556968449999999" green="0.46900236610000001" blue="0.96475535629999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCt-Ky-u7S" userLabel="SupportMessage">
+                                <rect key="frame" x="20" y="104" width="335" height="223.5"/>
+                                <string key="text">We are happy to hear from the people who make Markd great, YOU! 
+
+Please don't be shy to ask for help or if there is something new you want us to add let us know!
+
+Thanks again for using Markd!
+
+Sincerly,
+The Markd Support Team</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9uE-X2-xKT">
+                                <rect key="frame" x="20" y="357.5" width="335" height="220.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9uE-X2-xKT" secondAttribute="trailing" constant="20" id="0Pm-bY-Fma"/>
+                            <constraint firstAttribute="trailing" secondItem="OCt-Ky-u7S" secondAttribute="trailing" constant="20" id="1RE-uZ-koP"/>
+                            <constraint firstItem="9uE-X2-xKT" firstAttribute="top" secondItem="OCt-Ky-u7S" secondAttribute="bottom" constant="30" id="7Yr-Gl-ST0"/>
+                            <constraint firstItem="WoP-fT-Adg" firstAttribute="top" secondItem="9uE-X2-xKT" secondAttribute="bottom" constant="40" id="OFx-wn-vj9"/>
+                            <constraint firstItem="OCt-Ky-u7S" firstAttribute="leading" secondItem="50V-7s-vSx" secondAttribute="leading" constant="20" id="T1z-H3-KBE"/>
+                            <constraint firstItem="OCt-Ky-u7S" firstAttribute="top" secondItem="Er8-EU-0hl" secondAttribute="bottom" constant="40" id="UYq-ua-7rh"/>
+                            <constraint firstItem="9uE-X2-xKT" firstAttribute="leading" secondItem="50V-7s-vSx" secondAttribute="leading" constant="20" id="cRZ-6K-jEa"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Help" image="ic_action_help" selectedImage="ic_action_help" id="cNe-73-8qG"/>
+                    <navigationItem key="navigationItem" id="F4T-G7-e0A">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="fuj-1O-gqT">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="cancelNavigationButton:" destination="xYT-qh-c4w" id="VwN-CS-V6y"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="0tF-Xr-5MG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="sendMessage:" destination="xYT-qh-c4w" id="Eup-Wc-YwT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="messageTextView" destination="9uE-X2-xKT" id="UwS-Vi-aOn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6R-pX-qGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3327" y="50"/>
+            <point key="canvasLocation" x="-2988" y="49.925037481259373"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Q5Y-gh-iJt">
@@ -385,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k4q-mJ-0xE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1538" y="50"/>
+            <point key="canvasLocation" x="-1199.2" y="49.925037481259373"/>
         </scene>
         <!--Edit Panel View Controller-->
         <scene sceneID="l4w-j4-sKy">
@@ -1032,7 +1078,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LSz-bS-QnJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vLx-vg-wyH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1115" y="-106"/>
+            <point key="canvasLocation" x="1453.5999999999999" y="-106.59670164917542"/>
         </scene>
         <!--New Panel Setup View Controller-->
         <scene sceneID="vDo-53-2lm">
@@ -1221,7 +1267,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Th4-af-Qd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Crx-O3-fGi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="375" y="-106"/>
+            <point key="canvasLocation" x="712.79999999999995" y="-106.59670164917542"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="wjt-43-bE7">
@@ -1354,6 +1400,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GdI-u3-4nI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2332" y="-1730"/>
+        </scene>
+        <!--Help-->
+        <scene sceneID="COp-DL-qRg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HCd-DL-dvR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Help" image="ic_action_help" selectedImage="ic_action_help" id="cNe-73-8qG"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="6EU-BA-MMa">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xYT-qh-c4w" kind="relationship" relationship="rootViewController" id="72Q-aX-6Kl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="svO-IP-hCA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3801" y="50"/>
         </scene>
     </scenes>
     <resources>
