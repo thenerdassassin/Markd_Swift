@@ -19,9 +19,6 @@ public class HelpViewController: UIViewController, OnGetDataListener {
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let navigationBar = self.navigationController?.navigationBar as? MarkdNavigationBar {
-            navigationBar.setUp()
-        }
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
         }
