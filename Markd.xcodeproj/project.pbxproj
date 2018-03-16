@@ -42,7 +42,6 @@
 		FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */; };
 		FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D84203CE77200EC732B /* ToastUtilities.swift */; };
 		FFFD3F15205B25A9005B7325 /* AlertControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD3F14205B25A9005B7325 /* AlertControllerUtilities.swift */; };
-		FFFD3F17205B3796005B7325 /* MarkdNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD3F16205B3796005B7325 /* MarkdNavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,7 +84,6 @@
 		FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUtilities.swift; sourceTree = "<group>"; };
 		FFF45D84203CE77200EC732B /* ToastUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUtilities.swift; sourceTree = "<group>"; };
 		FFFD3F14205B25A9005B7325 /* AlertControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerUtilities.swift; sourceTree = "<group>"; };
-		FFFD3F16205B3796005B7325 /* MarkdNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdNavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +153,6 @@
 				479734E21E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift */,
 				4746A09F1E1F315F00FB76E3 /* ManufacturerPickerController.swift */,
 				47A89F841E1C5C2C00381967 /* BreakerAmperagePickerController.swift */,
-				FFFD3F16205B3796005B7325 /* MarkdNavigationBar.swift */,
 			);
 			path = Markd;
 			sourceTree = "<group>";
@@ -384,7 +381,6 @@
 				FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */,
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
 				47500AC51E0794400099B0EE /* WebController.swift in Sources */,
-				FFFD3F17205B3796005B7325 /* MarkdNavigationBar.swift in Sources */,
 				FFF27C96204CB8B500A9392E /* PlumbingViewController.swift in Sources */,
 				47A89F851E1C5C2C00381967 /* BreakerAmperagePickerController.swift in Sources */,
 				FFFD3F15205B25A9005B7325 /* AlertControllerUtilities.swift in Sources */,
