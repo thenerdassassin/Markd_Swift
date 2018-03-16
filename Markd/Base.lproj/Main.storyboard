@@ -362,7 +362,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCt-Ky-u7S" userLabel="SupportMessage">
-                                <rect key="frame" x="20" y="104" width="335" height="223.5"/>
+                                <rect key="frame" x="20" y="141.5" width="335" height="223.5"/>
                                 <string key="text">We are happy to hear from the people who make Markd great, YOU! 
 
 Please don't be shy to ask for help or if there is something new you want us to add let us know!
@@ -376,36 +376,71 @@ The Markd Support Team</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9uE-X2-xKT">
-                                <rect key="frame" x="20" y="357.5" width="335" height="220.5"/>
+                                <rect key="frame" x="20" y="395" width="335" height="183"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPA-7K-xDV" userLabel="Top Bar">
+                                <rect key="frame" x="0.0" y="59" width="375" height="62.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteTransparentLogo" translatesAutoresizingMaskIntoConstraints="NO" id="j6Y-td-QdN">
+                                        <rect key="frame" x="96" y="5" width="183.5" height="52.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="j6Y-td-QdN" secondAttribute="height" multiplier="3.5:1" id="1ZN-4Y-ZhF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTI-c4-PRe">
+                                        <rect key="frame" x="289.5" y="21.5" width="75.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendMessage:" destination="xYT-qh-c4w" eventType="touchUpInside" id="9Uq-ct-JXf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="j6Y-td-QdN" firstAttribute="centerX" secondItem="mPA-7K-xDV" secondAttribute="centerX" id="1kW-2h-6o7"/>
+                                    <constraint firstItem="gTI-c4-PRe" firstAttribute="leading" secondItem="j6Y-td-QdN" secondAttribute="trailing" constant="10" id="I3t-N9-qbY"/>
+                                    <constraint firstAttribute="width" secondItem="mPA-7K-xDV" secondAttribute="height" multiplier="6:1" id="LLo-U9-Vp0"/>
+                                    <constraint firstAttribute="bottom" secondItem="gTI-c4-PRe" secondAttribute="bottom" constant="5" id="Otw-Yx-UiZ"/>
+                                    <constraint firstItem="j6Y-td-QdN" firstAttribute="centerY" secondItem="mPA-7K-xDV" secondAttribute="centerY" id="QWK-fA-bNj"/>
+                                    <constraint firstItem="j6Y-td-QdN" firstAttribute="height" secondItem="mPA-7K-xDV" secondAttribute="height" constant="-10" id="VJz-tr-ZEh"/>
+                                    <constraint firstAttribute="trailing" secondItem="gTI-c4-PRe" secondAttribute="trailing" constant="10" id="nIs-Q0-z9k"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-BN-tpa">
+                                <rect key="frame" x="10" y="80.5" width="76" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelNavigationButton:" destination="xYT-qh-c4w" eventType="touchUpInside" id="EEy-Hd-DlE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9uE-X2-xKT" secondAttribute="trailing" constant="20" id="0Pm-bY-Fma"/>
                             <constraint firstAttribute="trailing" secondItem="OCt-Ky-u7S" secondAttribute="trailing" constant="20" id="1RE-uZ-koP"/>
                             <constraint firstItem="9uE-X2-xKT" firstAttribute="top" secondItem="OCt-Ky-u7S" secondAttribute="bottom" constant="30" id="7Yr-Gl-ST0"/>
+                            <constraint firstItem="mPA-7K-xDV" firstAttribute="width" secondItem="mPA-7K-xDV" secondAttribute="height" multiplier="6:1" id="DD6-RB-q3G"/>
                             <constraint firstItem="WoP-fT-Adg" firstAttribute="top" secondItem="9uE-X2-xKT" secondAttribute="bottom" constant="40" id="OFx-wn-vj9"/>
                             <constraint firstItem="OCt-Ky-u7S" firstAttribute="leading" secondItem="50V-7s-vSx" secondAttribute="leading" constant="20" id="T1z-H3-KBE"/>
-                            <constraint firstItem="OCt-Ky-u7S" firstAttribute="top" secondItem="Er8-EU-0hl" secondAttribute="bottom" constant="40" id="UYq-ua-7rh"/>
+                            <constraint firstItem="mPA-7K-xDV" firstAttribute="leading" secondItem="PQn-BN-tpa" secondAttribute="leading" constant="-10" id="ad0-VM-v9b"/>
                             <constraint firstItem="9uE-X2-xKT" firstAttribute="leading" secondItem="50V-7s-vSx" secondAttribute="leading" constant="20" id="cRZ-6K-jEa"/>
+                            <constraint firstAttribute="trailing" secondItem="mPA-7K-xDV" secondAttribute="trailing" id="daE-EL-ffE"/>
+                            <constraint firstItem="j6Y-td-QdN" firstAttribute="leading" secondItem="PQn-BN-tpa" secondAttribute="trailing" constant="10" id="jNg-NU-rJk"/>
+                            <constraint firstItem="mPA-7K-xDV" firstAttribute="width" secondItem="50V-7s-vSx" secondAttribute="width" id="ncd-Bh-e0p"/>
+                            <constraint firstItem="OCt-Ky-u7S" firstAttribute="top" secondItem="mPA-7K-xDV" secondAttribute="bottom" constant="20" id="qVd-NR-vl2"/>
+                            <constraint firstItem="PQn-BN-tpa" firstAttribute="bottom" secondItem="mPA-7K-xDV" secondAttribute="bottom" constant="-5" id="tjd-jT-319"/>
+                            <constraint firstItem="j6Y-td-QdN" firstAttribute="top" secondItem="Er8-EU-0hl" secondAttribute="bottom" id="x7f-Vw-vqh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="F4T-G7-e0A">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="fuj-1O-gqT">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="cancelNavigationButton:" destination="xYT-qh-c4w" id="VwN-CS-V6y"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Send" id="0tF-Xr-5MG">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="sendMessage:" destination="xYT-qh-c4w" id="Eup-Wc-YwT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="F4T-G7-e0A"/>
                     <connections>
                         <outlet property="messageTextView" destination="9uE-X2-xKT" id="UwS-Vi-aOn"/>
                     </connections>
@@ -1407,7 +1442,7 @@ The Markd Support Team</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HCd-DL-dvR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Help" image="ic_action_help" selectedImage="ic_action_help" id="cNe-73-8qG"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="6EU-BA-MMa">
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="6EU-BA-MMa">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
