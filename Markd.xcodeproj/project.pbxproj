@@ -30,6 +30,7 @@
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */; };
 		FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82F315205439BA00E33304 /* HelpViewController.swift */; };
+		FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE8003205D8C8200A7D9FE /* HotWater.swift */; };
 		FFDE253620588868009D1790 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE253520588868009D1790 /* SendEmail.swift */; };
 		FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C892041D3B500A9392E /* MainViewController.swift */; };
 		FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */; };
@@ -72,6 +73,7 @@
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		FF82F315205439BA00E33304 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
 		FFDE253520588868009D1790 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
 		FFF27C892041D3B500A9392E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCustomerData.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				FFF27C8D2041E18600A9392E /* Customer.swift */,
 				FFF27C91204203E500A9392E /* Address.swift */,
 				FFF27C93204619A700A9392E /* Home.swift */,
+				FFBE8003205D8C8200A7D9FE /* HotWater.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
 				FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */,
 				FFF27C8E2041E18600A9392E /* Customer.swift in Sources */,
+				FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */,
 				FFF27C94204619A700A9392E /* Home.swift in Sources */,
 				FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */,
 				479937681E1D806F00ADCD35 /* EditBreakerTextFieldController.swift in Sources */,

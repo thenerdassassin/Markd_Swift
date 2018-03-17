@@ -148,6 +148,9 @@ public class TempCustomerData {
         return nil
     }
     
+    //Mark:- PlumbingPage
+    var NEED_TO_ADD_HotWater_METHODS😤:AnyObject?
+    
     func NEED_TO_ADD_ANDROID_METHODS😤() {
         var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
         //TODO: addContractorListener, attachListener, removeListener, getUid

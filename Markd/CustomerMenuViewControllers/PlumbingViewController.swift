@@ -14,8 +14,12 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     private var customerData: TempCustomerData?
     
-    
     @IBOutlet weak var plumbingScrollView: UIScrollView!
+    @IBOutlet weak var hotWaterManufacturer: UILabel!
+    @IBOutlet weak var hotWaterModel: UILabel!
+    @IBOutlet weak var hotWaterInstallDate: UILabel!
+    @IBOutlet weak var hotWaterLifeSpan: UILabel!
+    
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(authentication.checkLogin(self)) {
@@ -40,8 +44,10 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     }
     
     func configureView() {
-        if let _ = customerData {
-            
+        if let customerData = customerData {
+            if let hotWaterManufacturer = hotWaterManufacturer, let hotWaterModel = hotWaterModel, let hotWaterInstallDate = hotWaterInstallDate, let hotWaterLifeSpan = hotWaterLifeSpan {
+                var TODO_SetTextInViews🤪:AnyClass?
+            }
         }
     }
     @IBAction func showActionSheet(_ sender: UIBarButtonItem) {

@@ -1521,7 +1521,7 @@ The Markd Support Team</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manufacturer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8W-h4-uVl">
-                                <rect key="frame" x="0.0" y="68.5" width="108" height="21"/>
+                                <rect key="frame" x="0.0" y="68.5" width="108" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1532,23 +1532,80 @@ The Markd Support Team</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOl-mt-Rrz">
+                                <rect key="frame" x="0.0" y="94" width="52.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v01-ho-eQv">
+                                <rect key="frame" x="252" y="93.5" width="23" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Installed on:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M13-P5-cxD">
+                                <rect key="frame" x="0.0" y="120" width="92.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpM-q2-XD8">
+                                <rect key="frame" x="252" y="120" width="23" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected Life Span:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yk5-qb-Ugs">
+                                <rect key="frame" x="0.0" y="146" width="154" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTF-A2-EIP">
+                                <rect key="frame" x="252" y="146" width="23" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="R2D-3e-uJV" firstAttribute="leading" secondItem="4vQ-Hu-j9T" secondAttribute="leading" id="2jO-Xk-KsJ"/>
                             <constraint firstItem="0fB-Bp-s6I" firstAttribute="centerX" secondItem="4vQ-Hu-j9T" secondAttribute="centerX" id="5yj-Zo-uxK"/>
+                            <constraint firstItem="Yk5-qb-Ugs" firstAttribute="leading" secondItem="4vQ-Hu-j9T" secondAttribute="leading" id="8CV-fG-DFf"/>
                             <constraint firstItem="0fB-Bp-s6I" firstAttribute="leading" secondItem="T8W-h4-uVl" secondAttribute="leading" id="B0t-7N-s77"/>
                             <constraint firstItem="T8W-h4-uVl" firstAttribute="top" secondItem="0fB-Bp-s6I" secondAttribute="bottom" constant="10" id="B6g-8j-HII"/>
+                            <constraint firstItem="LpM-q2-XD8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="M13-P5-cxD" secondAttribute="trailing" constant="5" id="Cdu-ZY-DPo"/>
+                            <constraint firstItem="tOl-mt-Rrz" firstAttribute="top" secondItem="T8W-h4-uVl" secondAttribute="bottom" constant="5" id="ClT-NB-Vzx"/>
                             <constraint firstItem="R2D-3e-uJV" firstAttribute="top" secondItem="4vQ-Hu-j9T" secondAttribute="top" constant="30" id="DJt-3J-5Ed"/>
                             <constraint firstItem="b9K-sE-K1t" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T8W-h4-uVl" secondAttribute="trailing" constant="5" id="MZA-DA-bWv"/>
+                            <constraint firstAttribute="trailing" secondItem="v01-ho-eQv" secondAttribute="trailing" id="Oc5-8y-Tv9"/>
                             <constraint firstItem="0fB-Bp-s6I" firstAttribute="top" secondItem="R2D-3e-uJV" secondAttribute="bottom" constant="1" id="Tkk-u8-Tsb"/>
+                            <constraint firstItem="LpM-q2-XD8" firstAttribute="top" secondItem="M13-P5-cxD" secondAttribute="top" id="VFv-Rj-VEI"/>
                             <constraint firstAttribute="trailing" secondItem="0fB-Bp-s6I" secondAttribute="trailing" id="Xb2-74-uBK"/>
+                            <constraint firstItem="M13-P5-cxD" firstAttribute="leading" secondItem="4vQ-Hu-j9T" secondAttribute="leading" id="cJ0-of-Krh"/>
+                            <constraint firstItem="QTF-A2-EIP" firstAttribute="top" secondItem="Yk5-qb-Ugs" secondAttribute="top" id="gFy-w6-InP"/>
+                            <constraint firstItem="tOl-mt-Rrz" firstAttribute="leading" secondItem="4vQ-Hu-j9T" secondAttribute="leading" id="grI-3r-SCg"/>
                             <constraint firstItem="0fB-Bp-s6I" firstAttribute="leading" secondItem="4vQ-Hu-j9T" secondAttribute="leading" id="h7J-eu-ejY"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="R2D-3e-uJV" secondAttribute="trailing" id="hEE-yO-8J7"/>
+                            <constraint firstItem="M13-P5-cxD" firstAttribute="top" secondItem="tOl-mt-Rrz" secondAttribute="bottom" constant="5" id="iAR-4E-7MW"/>
                             <constraint firstItem="b9K-sE-K1t" firstAttribute="top" secondItem="T8W-h4-uVl" secondAttribute="top" id="kID-Bx-hTI"/>
+                            <constraint firstItem="v01-ho-eQv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tOl-mt-Rrz" secondAttribute="trailing" constant="5" id="kTn-9I-4MY"/>
+                            <constraint firstAttribute="trailing" secondItem="LpM-q2-XD8" secondAttribute="trailing" id="qhk-DL-lMy"/>
                             <constraint firstItem="0fB-Bp-s6I" firstAttribute="trailing" secondItem="b9K-sE-K1t" secondAttribute="trailing" id="sef-5w-EfL"/>
+                            <constraint firstItem="Yk5-qb-Ugs" firstAttribute="top" secondItem="M13-P5-cxD" secondAttribute="bottom" constant="5" id="u5y-pV-Rcw"/>
+                            <constraint firstAttribute="trailing" secondItem="QTF-A2-EIP" secondAttribute="trailing" id="upe-ib-wBY"/>
+                            <constraint firstItem="v01-ho-eQv" firstAttribute="top" secondItem="tOl-mt-Rrz" secondAttribute="top" id="xLB-rx-hgm"/>
+                            <constraint firstItem="QTF-A2-EIP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yk5-qb-Ugs" secondAttribute="trailing" constant="5" id="zE5-eL-iZh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="hotWaterInstallDate" destination="LpM-q2-XD8" id="Vfq-fY-XFw"/>
+                        <outlet property="hotWaterLifeSpan" destination="QTF-A2-EIP" id="xd2-Wc-vG4"/>
+                        <outlet property="hotWaterManufacturer" destination="b9K-sE-K1t" id="xbm-w3-sVg"/>
+                        <outlet property="hotWaterModel" destination="v01-ho-eQv" id="Y3w-vl-xUO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pJe-bG-9ks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
