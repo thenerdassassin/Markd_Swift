@@ -15,18 +15,24 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     private var customerData: TempCustomerData?
     
     
+    @IBOutlet weak var plumbingScrollView: UIScrollView!
     override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
         }
     }
     
     override public func viewDidLoad() {
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+        super.viewDidLoad()
+        if let plumbingView = plumbingScrollView {
+            plumbingView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+        }
         configureView()
     }
     
     override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()
         if let customerData = customerData {
             customerData.removeListeners()
@@ -39,6 +45,8 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
         }
     }
     @IBAction func showActionSheet(_ sender: UIBarButtonItem) {
+        var TODO_ChangeRootView🤪:AnyClass?
+        
         let alert = UIAlertController(title: "Switch Page", message: "Which page would you like to switch to?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "HVAC", style: .default, handler: { _ in
             NSLog("Switching to HVAC Page")
