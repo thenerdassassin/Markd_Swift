@@ -24,7 +24,7 @@ public class StringUtilities {
         if(day > 31) {
             print("Day was greater than 31 it was \(day)")
             return nil
-        } else if (day < 31) {
+        } else if (day < 10) {
             dateString += "0"
         }
         dateString += "\(day)\(seperator)"

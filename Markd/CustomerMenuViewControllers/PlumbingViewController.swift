@@ -25,6 +25,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
         }
+        configureView()
     }
     
     override public func viewDidLoad() {
@@ -32,11 +33,9 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
         if let plumbingView = plumbingScrollView {
             plumbingView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
         }
-        configureView()
     }
     
-    override public func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override public func viewDidDisappear(_ animated: Bool) {
         FirebaseAuthentication.sharedInstance.removeStateListener()
         if let customerData = customerData {
             customerData.removeListeners()
@@ -44,9 +43,18 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     }
     
     func configureView() {
-        if let customerData = customerData {
-            if let hotWaterManufacturer = hotWaterManufacturer, let hotWaterModel = hotWaterModel, let hotWaterInstallDate = hotWaterInstallDate, let hotWaterLifeSpan = hotWaterLifeSpan {
-                var TODO_SetTextInViews🤪:AnyClass?
+        if let hotWater = customerData?.getHotWater() {
+            if let hotWaterManufacturer = hotWaterManufacturer {
+                hotWaterManufacturer.text = hotWater.getManufacturer()
+            }
+            if let hotWaterModel = hotWaterModel {
+                hotWaterModel.text = hotWater.getModel()
+            }
+            if let hotWaterInstallDate = hotWaterInstallDate, let installDate = hotWater.installDateAsString() {
+                hotWaterInstallDate.text = installDate
+            }
+            if let hotWaterLifeSpan = hotWaterLifeSpan {
+                hotWaterLifeSpan.text = hotWater.lifeSpanAsString()
             }
         }
     }
@@ -75,11 +83,13 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     }
     
     public func onSuccess() {
+        print("PlumbingViewController:- Got Customer Data")
         configureView()
     }
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
+        AlertControllerUtilities.somethingWentWrong(with: self)
     }
     
 }

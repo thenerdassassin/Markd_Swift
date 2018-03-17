@@ -17,48 +17,47 @@ public class HotWater {
     private var lifeSpan: Int
     private var units: String
     
-    var TODO_InitFunction🤨:AnyObject?
-    var TODO_GettersAndSetters🙃:AnyObject?
-    var TODO_HelperFunction🤯:AnyObject?
-    public init() {
-        self.manufacturer = ""
-        self.model = ""
-        self.month = 0
-        self.day = 5
-        self.year = 2010
-        self.lifeSpan = 5
-        self.units = "years"
+    public init(_ dictionary: Dictionary<String, AnyObject>) {
+        self.manufacturer = dictionary["manufacturer"] != nil ? dictionary["manufacturer"] as! String: ""
+        self.model = dictionary["model"] != nil ? dictionary["model"] as! String: ""
+        self.month = dictionary["month"] != nil ? dictionary["month"] as! Int: 0
+        self.day = dictionary["day"] != nil ? dictionary["day"] as! Int: 0
+        self.year = dictionary["year"] != nil ? dictionary["year"] as! Int: 0
+        self.lifeSpan = dictionary["lifeSpan"] != nil ? dictionary["lifeSpan"] as! Int: 0
+        self.units = dictionary["units"] != nil ? dictionary["units"] as! String: ""
         
     }
-    /*
-    public init(_ dictionary: Dictionary<String, AnyObject>) {
-        self.bedrooms = dictionary["bedrooms"] != nil ? dictionary["bedrooms"] as! Double: 0.0
-        self.squareFootage = dictionary["squareFootage"] != nil ? dictionary["squareFootage"] as! Int: 0
-        self.bathrooms = dictionary["bathrooms"] != nil ? dictionary["bathrooms"] as! Double: 0.0
+    
+    public func getManufacturer() -> String {
+        return self.manufacturer
+    }
+    public func setManufacturer(_ manufacturer:String) {
+        self.manufacturer = manufacturer
     }
     
-    func getBedrooms() -> Double {
-        return self.bedrooms
+    public func getModel() -> String {
+        return self.model
+    }
+    public func setModel(_ model:String) {
+        self.model = model
     }
     
-    func setBedrooms(_ bedrooms:Double) {
-        self.bedrooms = bedrooms
+    public func installDateAsString() -> String? {
+        return StringUtilities.getDateString(withMonth: month, withDay: day, withYear: year)
     }
-     
-     public String installDateAsString() {
-     return StringUtilities.getDateString(month, day, year);
-     }
-     public void updateInstallDate(String installDate) {
-     this.day = StringUtilities.getDayFromDotFormmattedString(installDate);
-     this.month = StringUtilities.getMonthFromDotFormattedString(installDate);
-     this.year = StringUtilities.getYearFromDotFormmattedString(installDate);
-     }
-     public String lifeSpanAsString() {
-     return lifeSpan.toString() + " " + units;
-     }
-     public void updateLifeSpan(Integer lifeSpanInteger, String lifeSpanUnits) {
-     this.lifeSpan = lifeSpanInteger;
-     this.units = lifeSpanUnits;
-     }
- */
+    public func updateInstallDate(to installDate:String) {
+        var TODO_Implement_DotFormattedStringGetters💩:AnyObject?
+        
+        //self.day = StringUtilities.getDayFromDotFormmattedString(installDate);
+        //self.month = StringUtilities.getMonthFromDotFormattedString(installDate);
+        //self.year = StringUtilities.getYearFromDotFormmattedString(installDate);
+    }
+    
+    public func lifeSpanAsString() -> String {
+        return "\(lifeSpan) \(units)"
+    }
+    public func updateLifeSpan(to lifeSpanInt: Int, _ units:String) {
+        self.lifeSpan = lifeSpanInt
+        self.units = units
+    }
 }
