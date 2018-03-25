@@ -29,7 +29,7 @@ public class Customer: CustomStringConvertible {
     
     //For Plumbing Page
     private var hotWater: HotWater?
-    //TODO: private var boiler: Boiler
+    private var boiler: Boiler?
     private var plumberReference: String
     //TODO: private List<ContractorService> plumbingServices
     
@@ -65,11 +65,12 @@ public class Customer: CustomStringConvertible {
         self.realtorReference = dictionary["realtorReference"] != nil ? dictionary["realtorReference"] as! String: ""
         self.homeImageFileName = dictionary["homeImageFileName"] != nil ? dictionary["homeImageFileName"] as! String: ""
         
-        //TODO: hotWater
         if let hotWaterDictionary = dictionary["hotWater"] as? Dictionary<String, AnyObject> {
             self.hotWater = HotWater(hotWaterDictionary)
         }
-        //TODO: boilder
+        if let boilerDictionary = dictionary["boiler"] as? Dictionary<String, AnyObject> {
+            self.boiler = Boiler(boilerDictionary)
+        }
         self.plumberReference = dictionary["plumberReference"] != nil ? dictionary["plumberReference"] as! String: ""
         //TODO: plumbingServices
         
@@ -156,6 +157,9 @@ public class Customer: CustomStringConvertible {
     //:- Helper functions
     func getHotWater() -> HotWater? {
         return hotWater
+    }
+    func getBoiler() -> Boiler? {
+        return boiler
     }
     
     

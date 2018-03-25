@@ -15,10 +15,16 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     private var customerData: TempCustomerData?
     
     @IBOutlet weak var plumbingScrollView: UIScrollView!
+    //Hot Water
     @IBOutlet weak var hotWaterManufacturer: UILabel!
     @IBOutlet weak var hotWaterModel: UILabel!
     @IBOutlet weak var hotWaterInstallDate: UILabel!
     @IBOutlet weak var hotWaterLifeSpan: UILabel!
+    //Boiler
+    @IBOutlet weak var boilerManufacturer: UILabel!
+    @IBOutlet weak var boilerModel: UILabel!
+    @IBOutlet weak var boilerInstallDate: UILabel!
+    @IBOutlet weak var boilerLifeSpan: UILabel!
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -55,6 +61,20 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
             }
             if let hotWaterLifeSpan = hotWaterLifeSpan {
                 hotWaterLifeSpan.text = hotWater.lifeSpanAsString()
+            }
+        }
+        if let boiler = customerData?.getBoiler() {
+            if let boilerManufacturer = boilerManufacturer {
+                boilerManufacturer.text = boiler.getManufacturer()
+            }
+            if let boilerModel = boilerModel {
+                boilerModel.text = boiler.getModel()
+            }
+            if let boilerInstallDate = boilerInstallDate, let installDate = boiler.installDateAsString() {
+                boilerInstallDate.text = installDate
+            }
+            if let boilerLifeSpan = boilerLifeSpan {
+                boilerLifeSpan.text = boiler.lifeSpanAsString()
             }
         }
     }

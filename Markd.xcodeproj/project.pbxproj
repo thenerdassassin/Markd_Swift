@@ -28,6 +28,7 @@
 		47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */; };
 		47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
+		FF592F7320683E090031DA92 /* Boiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF592F7220683E090031DA92 /* Boiler.swift */; };
 		FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */; };
 		FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82F315205439BA00E33304 /* HelpViewController.swift */; };
 		FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE8003205D8C8200A7D9FE /* HotWater.swift */; };
@@ -71,6 +72,7 @@
 		5F8AAE28D9CA323AB69658E5 /* Pods-Markd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.release.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.release.xcconfig"; sourceTree = "<group>"; };
 		7C5098B1444AC29248521536 /* Pods_Markd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Markd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FF592F7220683E090031DA92 /* Boiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boiler.swift; sourceTree = "<group>"; };
 		FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		FF82F315205439BA00E33304 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				FFF27C91204203E500A9392E /* Address.swift */,
 				FFF27C93204619A700A9392E /* Home.swift */,
 				FFBE8003205D8C8200A7D9FE /* HotWater.swift */,
+				FF592F7220683E090031DA92 /* Boiler.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */,
 				FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */,
 				479734E31E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift in Sources */,
+				FF592F7320683E090031DA92 /* Boiler.swift in Sources */,
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
 				FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */,
 				FFF27C8E2041E18600A9392E /* Customer.swift in Sources */,

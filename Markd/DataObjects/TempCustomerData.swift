@@ -159,7 +159,13 @@ public class TempCustomerData {
         return getCustomer()?.getHotWater()
     }
     public func updateHotWater(to hotWater:HotWater) {
-        var TODO_ImplementUpdate🤔:AnyObject?
+        var TODO_ImplementUpdateHotWater🤔:AnyObject?
+    }
+    public func getBoiler() -> Boiler? {
+        return getCustomer()?.getBoiler()
+    }
+    public func updateBoiler(to boiler:Boiler) {
+        var TODO_ImplementUpdateBoiler🤔:AnyObject?
     }
     func NEED_TO_ADD_ANDROID_METHODS😤() {
         var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
