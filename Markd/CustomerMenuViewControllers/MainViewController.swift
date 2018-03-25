@@ -18,7 +18,11 @@ public class MainViewController: UIViewController, OnGetDataListener {
     @IBOutlet weak var streetAddressLabel: UILabel!
     @IBOutlet weak var homeInformationLabel: UILabel!
     
+    override public func viewDidLoad() {
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+    }
     override public func viewWillAppear(_ animated: Bool) {
+        print("MainViewController:- viewWillAppear")
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
             var TODO_SetUpActionBar_🤪: AnyObject?
@@ -28,14 +32,10 @@ public class MainViewController: UIViewController, OnGetDataListener {
             var TODO_RealtorBuilderAndArchitect_🤪: AnyObject?
             var TODO_ContactRealtorEtcAlertAction_🤪: AnyObject?
         }
-    }
-    
-    override public func viewDidLoad() {
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
         configureView()
     }
     
-    override public func viewWillDisappear(_ animated: Bool) {
+    override public func viewDidDisappear(_ animated: Bool) {
         FirebaseAuthentication.sharedInstance.removeStateListener()
         if let customerData = customerData {
             customerData.removeListeners()
@@ -62,6 +62,7 @@ public class MainViewController: UIViewController, OnGetDataListener {
     }
     
     public func onSuccess() {
+        print("MainViewController:- Got Customer Data")
         configureView()
     }
     

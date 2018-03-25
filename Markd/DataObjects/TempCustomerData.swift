@@ -11,34 +11,40 @@ import Firebase
 
 public class TempCustomerData {
     private static let database:DatabaseReference = Database.database().reference().child("users");
-    private static var customer: Customer?
+    private var customer: Customer?
     private var customerId: String?
     private var userReference: DatabaseReference?
     private var listener: OnGetDataListener?
+    private var handle: UInt?
     
     public init(_ getDataListener: OnGetDataListener?) {
+        TempCustomerData.database.keepSynced(true)
         self.customerId = FirebaseAuthentication.sharedInstance.getCurrentUser()?.uid
         self.listener = getDataListener
         if let customerId = customerId {
             userReference = TempCustomerData.database.child(customerId)
-            userReference?.observe(DataEventType.value, with: customerSuccessListener, withCancel: customerCancelListener)
+            if let userReference = userReference {
+                handle = userReference.observe(DataEventType.value, with: customerSuccessListener, withCancel: customerCancelListener)
+            } else {
+                print("No userReference")
+            }
         } else {
             var NOT_IMPLEMENTED_🤪:AnyObject
             self.userReference = nil
-            TempCustomerData.customer = nil
+            customer = nil
         }
     }
     
     public func removeListeners() {
-        if let userReference = userReference {
-            userReference.removeAllObservers()
+        if let userReference = userReference, let handle = handle {
+            print("handle removed")
+            userReference.removeObserver(withHandle: handle)
         }
     }
     
     private func customerSuccessListener(_ snapshot:DataSnapshot) {
-        print("got data:", snapshot)
         if let dictionary = snapshot.value as? [String : AnyObject] {
-            TempCustomerData.customer = Customer(dictionary)
+            customer = Customer(dictionary)
             if let listener = self.listener {
                 listener.onSuccess()
             } else {
@@ -55,7 +61,7 @@ public class TempCustomerData {
     }
 
     private func getCustomer() -> Customer? {
-        return TempCustomerData.customer
+        return customer
     }
     
     private func updateCustomer(to customer: Customer) {
@@ -68,14 +74,14 @@ public class TempCustomerData {
     
     //Mark:- Home Page
     public func getName() -> String {
-        if let customer = TempCustomerData.customer {
+        if let customer = customer {
             return customer.getName()
         } else {
             return ""
         }
     }
     public func getFormattedAddress() -> String? {
-        if let _ = TempCustomerData.customer?.getHome() {
+        if let _ = customer?.getHome() {
             if let street = getStreet(), let city = getCity(), let state = getState(), let zip = getZipcode() {
                 return """
                 \(street)
@@ -86,7 +92,7 @@ public class TempCustomerData {
         return nil
     }
     public func getRoomInformation() -> String? {
-        if let home = TempCustomerData.customer?.getHome() {
+        if let home = customer?.getHome() {
             let middot:String = "\u{00B7}";
             let bedrooms: Double = home.getBedrooms();
             let bathrooms: Double = home.getBathrooms();
@@ -96,21 +102,21 @@ public class TempCustomerData {
         }
     }
     public func getSquareFootageString() -> String? {
-        if let home = TempCustomerData.customer?.getHome() {
+        if let home = customer?.getHome() {
             return "\(home.getSquareFootage()) square feet"
         } else {
             return nil
         }
     }
     public func getHomeImageFileName() -> String? {
-        if let customer = TempCustomerData.customer, let customerId = customerId {
+        if let customer = customer, let customerId = customerId {
             return "homes/" + customerId + "/" + customer.getHomeImageFileName();
         } else {
             return nil
         }
     }
     public func setHomeImageFileName() -> String? {
-        if let customer = TempCustomerData.customer {
+        if let customer = customer {
             updateCustomer(to: customer.setHomeImageFileName())
             return self.getHomeImageFileName()
         } else {
@@ -148,6 +154,19 @@ public class TempCustomerData {
         return nil
     }
     
+    //Mark:- PlumbingPage
+    public func getHotWater() -> HotWater? {
+        return getCustomer()?.getHotWater()
+    }
+    public func updateHotWater(to hotWater:HotWater) {
+        var TODO_ImplementUpdateHotWater🤔:AnyObject?
+    }
+    public func getBoiler() -> Boiler? {
+        return getCustomer()?.getBoiler()
+    }
+    public func updateBoiler(to boiler:Boiler) {
+        var TODO_ImplementUpdateBoiler🤔:AnyObject?
+    }
     func NEED_TO_ADD_ANDROID_METHODS😤() {
         var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
         //TODO: addContractorListener, attachListener, removeListener, getUid

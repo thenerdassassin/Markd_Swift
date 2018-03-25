@@ -43,15 +43,19 @@ public class HelpViewController: UIViewController, OnGetDataListener {
     }
     
     func configureView() {
-        sendingIndicator.frame = self.view.frame
-        sendingIndicator.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        sendingIndicator.hidesWhenStopped = true
-        self.view.addSubview(sendingIndicator)
+        addSendingIndicator(to:self.view)
         if let messageTextView = messageTextView {
             messageTextView.layer.borderColor = UIColor.gray.cgColor
             messageTextView.layer.borderWidth = 0.5;
             messageTextView.layer.cornerRadius = 6;
         }
+    }
+    
+    private func addSendingIndicator(to view:UIView) {
+        sendingIndicator.frame = self.view.frame
+        sendingIndicator.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        sendingIndicator.hidesWhenStopped = true
+        view.addSubview(sendingIndicator)
     }
     
     //Mark:- Navigation Buttons
