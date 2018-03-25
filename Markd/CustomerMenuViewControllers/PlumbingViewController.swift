@@ -26,6 +26,14 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     @IBOutlet weak var boilerInstallDate: UILabel!
     @IBOutlet weak var boilerLifeSpan: UILabel!
     
+    var TODO_NotYetImplementedPlumbingPage:AnyObject?
+    /*
+     Check if Contractor or Home Owner on page
+     Add Contractor to Footer
+     Initialize Services
+     Implement Edit Button
+     */
+    
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(authentication.checkLogin(self)) {
@@ -48,7 +56,11 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
         }
     }
     
-    func configureView() {
+    private func configureView() {
+        initializeHotWater()
+        initializeBoiler()
+    }
+    private func initializeHotWater() {
         if let hotWater = customerData?.getHotWater() {
             if let hotWaterManufacturer = hotWaterManufacturer {
                 hotWaterManufacturer.text = hotWater.getManufacturer()
@@ -63,6 +75,8 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
                 hotWaterLifeSpan.text = hotWater.lifeSpanAsString()
             }
         }
+    }
+    private func initializeBoiler() {
         if let boiler = customerData?.getBoiler() {
             if let boilerManufacturer = boilerManufacturer {
                 boilerManufacturer.text = boiler.getManufacturer()
