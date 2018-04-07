@@ -31,6 +31,9 @@
 		FF592F7320683E090031DA92 /* Boiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF592F7220683E090031DA92 /* Boiler.swift */; };
 		FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */; };
 		FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82F315205439BA00E33304 /* HelpViewController.swift */; };
+		FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB565892079274400F6E8F1 /* HvacViewController.swift */; };
+		FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658B2079335100F6E8F1 /* AirHandler.swift */; };
+		FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658D2079335B00F6E8F1 /* Compressor.swift */; };
 		FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE8003205D8C8200A7D9FE /* HotWater.swift */; };
 		FFDE253620588868009D1790 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE253520588868009D1790 /* SendEmail.swift */; };
 		FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C892041D3B500A9392E /* MainViewController.swift */; };
@@ -75,6 +78,9 @@
 		FF592F7220683E090031DA92 /* Boiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boiler.swift; sourceTree = "<group>"; };
 		FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		FF82F315205439BA00E33304 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		FFB565892079274400F6E8F1 /* HvacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HvacViewController.swift; sourceTree = "<group>"; };
+		FFB5658B2079335100F6E8F1 /* AirHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirHandler.swift; sourceTree = "<group>"; };
+		FFB5658D2079335B00F6E8F1 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
 		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
 		FFDE253520588868009D1790 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
 		FFF27C892041D3B500A9392E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 				FFF27C892041D3B500A9392E /* MainViewController.swift */,
 				FFF27C95204CB8B500A9392E /* PlumbingViewController.swift */,
 				FF82F315205439BA00E33304 /* HelpViewController.swift */,
+				FFB565892079274400F6E8F1 /* HvacViewController.swift */,
 			);
 			path = CustomerMenuViewControllers;
 			sourceTree = "<group>";
@@ -205,6 +212,8 @@
 				FFF27C93204619A700A9392E /* Home.swift */,
 				FFBE8003205D8C8200A7D9FE /* HotWater.swift */,
 				FF592F7220683E090031DA92 /* Boiler.swift */,
+				FFB5658B2079335100F6E8F1 /* AirHandler.swift */,
+				FFB5658D2079335B00F6E8F1 /* Compressor.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -251,7 +260,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Joshua Daniel Schmidt";
 				TargetAttributes = {
 					47E0EA3D1DF3865C001F417F = {
@@ -360,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */,
 				FFDE253620588868009D1790 /* SendEmail.swift in Sources */,
 				FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */,
 				FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */,
@@ -380,12 +390,14 @@
 				4746A0A01E1F315F00FB76E3 /* ManufacturerPickerController.swift in Sources */,
 				476295BF1E1DF198008CDBFC /* EditPanelViewController.swift in Sources */,
 				47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */,
+				FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */,
 				4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */,
 				FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */,
 				47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */,
 				FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */,
 				47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */,
 				FFF27C902041F76E00A9392E /* StringUtilities.swift in Sources */,
+				FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */,
 				FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */,
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
 				47500AC51E0794400099B0EE /* WebController.swift in Sources */,
@@ -430,12 +442,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -484,12 +498,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

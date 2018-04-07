@@ -34,19 +34,19 @@ public class Customer: CustomStringConvertible {
     //TODO: private List<ContractorService> plumbingServices
     
     //For HVAC Page
-    //TODO: private var airHandler: AirHandler;
-    //TODO: private var compressor: Compressor;
+    private var airHandler: AirHandler?
+    private var compressor: Compressor?
     private var hvactechnicianReference: String
     //TODO: private List<ContractorService> hvacServices;
     
     //For Electrical Page
-    //TODO: private List<Panel> panels;
+    //TODO: private List<Panel> panels
     private var electricianReference: String
-    //TODO: private List<ContractorService> electricalServices;
+    //TODO: private List<ContractorService> electricalServices
     
     //For Painting Page
-    //TODO: private List<PaintSurface> interiorPaintSurfaces;
-    //TODO: private List<PaintSurface> exteriorPaintSurfaces;
+    //TODO: private List<PaintSurface> interiorPaintSurfaces
+    //TODO: private List<PaintSurface> exteriorPaintSurfaces
     private var painterReference: String
     
     public init(_ dictionary: Dictionary<String, AnyObject>) {
@@ -74,8 +74,12 @@ public class Customer: CustomStringConvertible {
         self.plumberReference = dictionary["plumberReference"] != nil ? dictionary["plumberReference"] as! String: ""
         //TODO: plumbingServices
         
-        //TODO: AirHandler
-        //TODO: Compressor
+        if let airHandlerDictionary = dictionary["airHandler"] as? Dictionary<String, AnyObject> {
+            self.airHandler = AirHandler(airHandlerDictionary)
+        }
+        if let compressorDictionary = dictionary["compressor"] as? Dictionary<String, AnyObject> {
+            self.compressor = Compressor(compressorDictionary)
+        }
         self.hvactechnicianReference = dictionary["hvactechnicianReference"] != nil ? dictionary["hvactechnicianReference"] as! String: ""
         //TODO: hvacServices
         
@@ -160,6 +164,12 @@ public class Customer: CustomStringConvertible {
     }
     func getBoiler() -> Boiler? {
         return boiler
+    }
+    func getAirHandler() -> AirHandler? {
+        return airHandler
+    }
+    func getCompressor() -> Compressor? {
+        return compressor
     }
     
     
