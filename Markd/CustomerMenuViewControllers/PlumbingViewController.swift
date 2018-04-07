@@ -94,10 +94,13 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     }
     @IBAction func showActionSheet(_ sender: UIBarButtonItem) {
         var TODO_ChangeRootView🤪:AnyClass?
-        
-        let alert = UIAlertController(title: "Switch Page", message: "Which page would you like to switch to?", preferredStyle: .actionSheet)
+                let alert = UIAlertController(title: "Switch Page", message: "Which page would you like to switch to?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "HVAC", style: .default, handler: { _ in
             NSLog("Switching to HVAC Page")
+            if let navigationController = self.navigationController {
+                let hvacViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HvacViewController") as! HvacViewController
+                navigationController.setViewControllers([hvacViewController], animated: true)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Electrical", style: .default, handler: { _ in
             NSLog("Switching to Electrical Page")

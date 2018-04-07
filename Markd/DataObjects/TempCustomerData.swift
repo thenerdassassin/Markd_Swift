@@ -167,11 +167,43 @@ public class TempCustomerData {
     public func updateBoiler(to boiler:Boiler) {
         var TODO_ImplementUpdateBoiler🤔:AnyObject?
     }
+    public func getPlumber() {
+        var TODO_ImplementGetPlumber🤔:AnyObject?
+    }
+    public func getPlumberReference() {
+        var TODO_ImplementGetPlumberReference🤔:AnyObject?
+    }
+    public func getPlumbingServices() {
+        var TODO_ImplementGetPlumbingServices🤔:AnyObject?
+    }
+    
+    //Mark:- HvacPage
+    public func getAirHandler() -> AirHandler? {
+        return getCustomer()?.getAirHandler()
+    }
+    public func updateAirHandler(to airHandler:AirHandler) {
+        var TODO_ImplementUpdateAirHandler🤔:AnyObject?
+    }
+    public func getCompressor() -> Compressor? {
+        return getCustomer()?.getCompressor()
+    }
+    public func updateCompressor(to compressor:Compressor) {
+        var TODO_ImplementUpdateCompressor🤔:AnyObject?
+    }
+    public func getHvacTechnician() {
+        var TODO_ImplementGetHvacTechnician🤔:AnyObject?
+    }
+    public func getHvactechnicianReference() {
+        var TODO_ImplementGetHvactechnicianReference🤔:AnyObject?
+    }
+    public func getHvacServices() {
+        var TODO_ImplementGetHvacServices🤔:AnyObject?
+    }
+        
+    
     func NEED_TO_ADD_ANDROID_METHODS😤() {
         var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
         //TODO: addContractorListener, attachListener, removeListener, getUid
-        //TODO: plumbingPage
-        //TODO: hvacPage
         //TODO: electricalPage
         //TODO: paintingPage
         //TODO: services
