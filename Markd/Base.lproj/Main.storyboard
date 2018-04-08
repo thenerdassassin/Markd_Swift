@@ -347,7 +347,11 @@
                                 <action selector="showActionSheet:" destination="FpA-Vf-33i" id="PcI-aH-eSS"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="0IR-Xr-aVZ"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="0IR-Xr-aVZ">
+                            <connections>
+                                <segue destination="dR7-DA-dEl" kind="show" id="ygL-e1-FNE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
@@ -1705,7 +1709,25 @@ The Markd Support Team</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pJe-bG-9ks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1702" y="-920"/>
+            <point key="canvasLocation" x="-1738" y="-661"/>
+        </scene>
+        <!--Appliance Edit View Controller-->
+        <scene sceneID="cDp-ob-qU6">
+            <objects>
+                <viewController id="dR7-DA-dEl" customClass="ApplianceEditViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="enL-wr-zZY"/>
+                        <viewControllerLayoutGuide type="bottom" id="KYX-bT-zYY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="phF-Iy-zbe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.20556968449999999" green="0.46900236610000001" blue="0.96475535629999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vbo-gA-CpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1658" y="-1444"/>
         </scene>
         <!--Hvac View Controller-->
         <scene sceneID="JGf-Ym-vac">
@@ -1774,7 +1796,7 @@ The Markd Support Team</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNf-0X-Khf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2615" y="-24"/>
+            <point key="canvasLocation" x="-2615" y="241"/>
         </scene>
         <!--Hvac View Controller-->
         <scene sceneID="3ya-hE-33x">
@@ -1982,7 +2004,7 @@ The Markd Support Team</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97j-DQ-bJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1738" y="-24"/>
+            <point key="canvasLocation" x="-1738" y="241"/>
         </scene>
     </scenes>
     <resources>
