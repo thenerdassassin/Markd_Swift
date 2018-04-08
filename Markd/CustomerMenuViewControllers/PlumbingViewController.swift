@@ -13,6 +13,7 @@ import Firebase
 public class PlumbingViewController: UIViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     private var customerData: TempCustomerData?
+    private var applianceToEdit: Appliance?
     
     @IBOutlet weak var plumbingScrollView: UIScrollView!
     //Hot Water
@@ -31,7 +32,6 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
      Check if Contractor or Home Owner on page
      Add Contractor to Footer
      Initialize Services
-     Implement Edit Button
      */
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -93,6 +93,16 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
         }
     }
     
+    //Mark:- Segue
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editPlumbingSegue" {
+            let destination = segue.destination as! ApplianceEditViewController
+            destination.appliance = applianceToEdit
+            destination.delegate = self
+            return
+        }
+    }
+    
     @IBAction func switchButtonAction(_ sender: UIBarButtonItem) {
         var TODO_ChangeRootView🤪:AnyClass?
                 let alert = UIAlertController(title: "Switch Page", message: "Which page would you like to switch to?", preferredStyle: .actionSheet)
@@ -120,15 +130,13 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
         let alert = UIAlertController(title: "Edit Page", message: "Which appliance would you like to change?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Domestic Hot Water", style: .default, handler: { _ in
             NSLog("Editing Hot Water")
-            if let navigationController = self.navigationController {
-                self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
-            }
+            self.applianceToEdit = self.customerData?.getHotWater()
+            self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
         }))
         alert.addAction(UIAlertAction(title: "Boiler", style: .default, handler: { _ in
             NSLog("Editing Boiler")
-            if let navigationController = self.navigationController {
-                self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
-            }
+            self.applianceToEdit = self.customerData?.getBoiler()
+            self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             NSLog("Canceling Edit")

@@ -8,4 +8,4 @@
 
 import Foundation
 
-public class HotWater {}
+public class HotWater:Appliance {}

@@ -368,9 +368,10 @@
             <objects>
                 <navigationController title="PlumbingNavigation" id="Sos-x6-u9a" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="ic_action_pages" selectedImage="ic_action_pages" id="iA3-WF-uAg"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uAv-AE-McN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="uAv-AE-McN">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
                         <segue destination="FpA-Vf-33i" kind="relationship" relationship="rootViewController" id="icP-Yk-ftt"/>
@@ -1493,7 +1494,6 @@ The Markd Support Team</string>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="6EU-BA-MMa">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1728,6 +1728,9 @@ The Markd Support Team</string>
                     <navigationItem key="navigationItem" title="Edit" id="i34-C3-9Br">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="baO-Op-uin"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="navigationBar" destination="i34-C3-9Br" id="djX-vT-7j3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vbo-gA-CpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
