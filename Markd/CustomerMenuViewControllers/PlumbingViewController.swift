@@ -92,7 +92,8 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
             }
         }
     }
-    @IBAction func showActionSheet(_ sender: UIBarButtonItem) {
+    
+    @IBAction func switchButtonAction(_ sender: UIBarButtonItem) {
         var TODO_ChangeRootView🤪:AnyClass?
                 let alert = UIAlertController(title: "Switch Page", message: "Which page would you like to switch to?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "HVAC", style: .default, handler: { _ in
@@ -110,6 +111,27 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             NSLog("Cancels page switch")
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func editButtonAction(_ sender: UIBarButtonItem) {
+        var TODO_StartSegue🤪:AnyClass?
+        let alert = UIAlertController(title: "Edit Page", message: "Which appliance would you like to change?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Domestic Hot Water", style: .default, handler: { _ in
+            NSLog("Editing Hot Water")
+            if let navigationController = self.navigationController {
+                self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Boiler", style: .default, handler: { _ in
+            NSLog("Editing Boiler")
+            if let navigationController = self.navigationController {
+                self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            NSLog("Canceling Edit")
         }))
         self.present(alert, animated: true, completion: nil)
     }

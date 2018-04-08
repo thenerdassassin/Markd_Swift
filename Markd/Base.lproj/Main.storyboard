@@ -344,18 +344,19 @@
                     <navigationItem key="navigationItem" id="fLX-1A-Wzd">
                         <barButtonItem key="leftBarButtonItem" title="Switch" id="mCe-qe-qTt">
                             <connections>
-                                <action selector="showActionSheet:" destination="FpA-Vf-33i" id="PcI-aH-eSS"/>
+                                <action selector="switchButtonAction:" destination="FpA-Vf-33i" id="x9P-YH-T6A"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="0IR-Xr-aVZ">
                             <connections>
-                                <segue destination="dR7-DA-dEl" kind="show" id="ygL-e1-FNE"/>
+                                <action selector="editButtonAction:" destination="FpA-Vf-33i" id="vOa-kB-hDS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="plumbingScrollView" destination="gy7-0I-BHG" id="RAn-Va-gCS"/>
+                        <segue destination="dR7-DA-dEl" kind="show" identifier="editPlumbingSegue" id="gdj-nT-JWj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xfo-UI-HsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -994,7 +995,7 @@ The Markd Support Team</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2638" y="923"/>
+            <point key="canvasLocation" x="2223" y="922"/>
         </scene>
         <!--Edit Breaker View Controller-->
         <scene sceneID="O4L-8g-p5V">
@@ -1711,10 +1712,10 @@ The Markd Support Team</string>
             </objects>
             <point key="canvasLocation" x="-1738" y="-661"/>
         </scene>
-        <!--Appliance Edit View Controller-->
+        <!--Edit-->
         <scene sceneID="cDp-ob-qU6">
             <objects>
-                <viewController id="dR7-DA-dEl" customClass="ApplianceEditViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ApplianceEditViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dR7-DA-dEl" customClass="ApplianceEditViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="enL-wr-zZY"/>
                         <viewControllerLayoutGuide type="bottom" id="KYX-bT-zYY"/>
@@ -1724,6 +1725,9 @@ The Markd Support Team</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.20556968449999999" green="0.46900236610000001" blue="0.96475535629999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Edit" id="i34-C3-9Br">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="baO-Op-uin"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vbo-gA-CpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2017,6 +2021,6 @@ The Markd Support Team</string>
         <image name="whiteTransparentLogo" width="803" height="282"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="adt-oo-mMl"/>
+        <segue reference="0Ta-jB-fSK"/>
     </inferredMetricsTieBreakers>
 </document>
