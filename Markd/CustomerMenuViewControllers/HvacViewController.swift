@@ -49,6 +49,7 @@ public class HvacViewController: UIViewController, OnGetDataListener {
     }
     
     override public func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()
         if let customerData = customerData {
             customerData.removeListeners()
@@ -89,6 +90,16 @@ public class HvacViewController: UIViewController, OnGetDataListener {
             if let compressorLifeSpan = compressorLifeSpan {
                 compressorLifeSpan.text = compressor.lifeSpanAsString()
             }
+        }
+    }
+    
+    //Mark:- Segue
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editHvacSegue" {
+            let destination = segue.destination as! EditApplianceTableViewController
+            destination.appliances = [customerData!.getAirHandler()!, customerData!.getCompressor()!]
+            destination.viewTitle = "Edit Hvac"
+            return
         }
     }
     

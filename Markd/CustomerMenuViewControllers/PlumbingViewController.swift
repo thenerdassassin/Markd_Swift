@@ -27,7 +27,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     @IBOutlet weak var boilerInstallDate: UILabel!
     @IBOutlet weak var boilerLifeSpan: UILabel!
     
-    var TODO_NotYetImplementedPlumbingPage:AnyObject?
+    var TODO_NotYetImplementedPlumbingPage🤔:AnyObject?
     /*
      Check if Contractor or Home Owner on page
      Add Contractor to Footer
@@ -50,6 +50,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     }
     
     override public func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()
         if let customerData = customerData {
             customerData.removeListeners()
@@ -96,52 +97,58 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     //Mark:- Segue
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editPlumbingSegue" {
-            let destination = segue.destination as! ApplianceEditViewController
-            destination.appliance = applianceToEdit
-            destination.delegate = self
+            let destination = segue.destination as! EditApplianceTableViewController
+            destination.appliances = [customerData!.getHotWater()!, customerData!.getBoiler()!]
+            destination.viewTitle = "Edit Plumbing"
             return
         }
     }
     
     @IBAction func switchButtonAction(_ sender: UIBarButtonItem) {
-        var TODO_ChangeRootView🤪:AnyClass?
-                let alert = UIAlertController(title: "Switch Page", message: "Which page would you like to switch to?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "HVAC", style: .default, handler: { _ in
-            NSLog("Switching to HVAC Page")
-            if let navigationController = self.navigationController {
-                let hvacViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HvacViewController") as! HvacViewController
-                navigationController.setViewControllers([hvacViewController], animated: true)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: "Electrical", style: .default, handler: { _ in
-            NSLog("Switching to Electrical Page")
-        }))
-        alert.addAction(UIAlertAction(title: "Painting", style: .default, handler: { _ in
-            NSLog("Switching to Painting Page")
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            NSLog("Cancels page switch")
-        }))
-        self.present(alert, animated: true, completion: nil)
+        var TODO_ChangeRootViewToElectricalOrPainting🤪:AnyClass?
+        AlertControllerUtilities.showActionSheet(
+            withTitle: "Switch Page",
+            andMessage: "Which page would you like to switch to?",
+            withOptions: [
+                UIAlertAction(title: "HVAC", style: .default, handler: { _ in
+                    NSLog("Switching to HVAC Page")
+                    if let navigationController = self.navigationController {
+                        let hvacViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HvacViewController") as! HvacViewController
+                        navigationController.setViewControllers([hvacViewController], animated: true)
+                    }
+                }),
+                UIAlertAction(title: "Electrical", style: .default, handler: { _ in
+                    NSLog("Switching to Electrical Page")
+                }),UIAlertAction(title: "Painting", style: .default, handler: { _ in
+                    NSLog("Switching to Painting Page")
+                }),
+                UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                    NSLog("Canceling Edit")
+                })
+            ],
+            in: self)
     }
     
     @IBAction func editButtonAction(_ sender: UIBarButtonItem) {
-        var TODO_StartSegue🤪:AnyClass?
-        let alert = UIAlertController(title: "Edit Page", message: "Which appliance would you like to change?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Domestic Hot Water", style: .default, handler: { _ in
-            NSLog("Editing Hot Water")
-            self.applianceToEdit = self.customerData?.getHotWater()
-            self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
-        }))
-        alert.addAction(UIAlertAction(title: "Boiler", style: .default, handler: { _ in
-            NSLog("Editing Boiler")
-            self.applianceToEdit = self.customerData?.getBoiler()
-            self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            NSLog("Canceling Edit")
-        }))
-        self.present(alert, animated: true, completion: nil)
+        AlertControllerUtilities.showActionSheet(
+            withTitle: "Edit Page",
+            andMessage: "Which appliance would you like to change?",
+            withOptions: [
+                UIAlertAction(title: "Domestic Hot Water", style: .default, handler: { _ in
+                    NSLog("Editing Hot Water")
+                    self.applianceToEdit = self.customerData?.getHotWater()
+                    self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
+                }),
+                UIAlertAction(title: "Boiler", style: .default, handler: { _ in
+                    NSLog("Editing Boiler")
+                    self.applianceToEdit = self.customerData?.getBoiler()
+                    self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
+                }),
+                UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                    NSLog("Canceling Edit")
+                })
+            ],
+            in: self)
     }
     
     //Mark:- OnGetDataListener Implementation

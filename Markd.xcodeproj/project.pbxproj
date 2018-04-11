@@ -31,10 +31,11 @@
 		FF592F7320683E090031DA92 /* Boiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF592F7220683E090031DA92 /* Boiler.swift */; };
 		FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */; };
 		FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82F315205439BA00E33304 /* HelpViewController.swift */; };
+		FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */; };
+		FFA1E86D207D864E009D2FD3 /* ApplianceEditFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1E86C207D864E009D2FD3 /* ApplianceEditFieldViewController.swift */; };
 		FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB565892079274400F6E8F1 /* HvacViewController.swift */; };
 		FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658B2079335100F6E8F1 /* AirHandler.swift */; };
 		FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658D2079335B00F6E8F1 /* Compressor.swift */; };
-		FFB56590207AA1DF00F6E8F1 /* ApplianceEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658F207AA1DF00F6E8F1 /* ApplianceEditViewController.swift */; };
 		FFB56592207AA8F500F6E8F1 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB56591207AA8F500F6E8F1 /* Appliance.swift */; };
 		FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE8003205D8C8200A7D9FE /* HotWater.swift */; };
 		FFDE253620588868009D1790 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE253520588868009D1790 /* SendEmail.swift */; };
@@ -80,10 +81,11 @@
 		FF592F7220683E090031DA92 /* Boiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boiler.swift; sourceTree = "<group>"; };
 		FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		FF82F315205439BA00E33304 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditApplianceTableViewController.swift; sourceTree = "<group>"; };
+		FFA1E86C207D864E009D2FD3 /* ApplianceEditFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceEditFieldViewController.swift; sourceTree = "<group>"; };
 		FFB565892079274400F6E8F1 /* HvacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HvacViewController.swift; sourceTree = "<group>"; };
 		FFB5658B2079335100F6E8F1 /* AirHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirHandler.swift; sourceTree = "<group>"; };
 		FFB5658D2079335B00F6E8F1 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
-		FFB5658F207AA1DF00F6E8F1 /* ApplianceEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceEditViewController.swift; sourceTree = "<group>"; };
 		FFB56591207AA8F500F6E8F1 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
 		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
 		FFDE253520588868009D1790 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		47E0EA401DF3865C001F417F /* Markd */ = {
 			isa = PBXGroup;
 			children = (
+				FFA1E867207D72B9009D2FD3 /* UITableView */,
 				FFF45D81203CE57200EC732B /* Utilities */,
 				FF6C030C2038965A0058259F /* DataObjects */,
 				FF6C030B203896230058259F /* CustomerSubMenuViewControllers */,
@@ -203,7 +206,8 @@
 		FF6C030B203896230058259F /* CustomerSubMenuViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FFB5658F207AA1DF00F6E8F1 /* ApplianceEditViewController.swift */,
+				FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */,
+				FFA1E86C207D864E009D2FD3 /* ApplianceEditFieldViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
 			sourceTree = "<group>";
@@ -222,6 +226,13 @@
 				FFB56591207AA8F500F6E8F1 /* Appliance.swift */,
 			);
 			path = DataObjects;
+			sourceTree = "<group>";
+		};
+		FFA1E867207D72B9009D2FD3 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UITableView;
 			sourceTree = "<group>";
 		};
 		FFF45D81203CE57200EC732B /* Utilities */ = {
@@ -397,8 +408,9 @@
 				4746A0A01E1F315F00FB76E3 /* ManufacturerPickerController.swift in Sources */,
 				476295BF1E1DF198008CDBFC /* EditPanelViewController.swift in Sources */,
 				47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */,
+				FFA1E86D207D864E009D2FD3 /* ApplianceEditFieldViewController.swift in Sources */,
+				FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */,
 				FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */,
-				FFB56590207AA1DF00F6E8F1 /* ApplianceEditViewController.swift in Sources */,
 				4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */,
 				FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */,
 				47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */,

@@ -152,7 +152,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Gve-kr-fH6">
             <objects>
-                <tabBarController id="J6I-FX-Qjq" sceneMemberID="viewController">
+                <tabBarController modalTransitionStyle="flipHorizontal" id="J6I-FX-Qjq" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="doN-jD-Fum">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -182,7 +182,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4qP-qq-ViP" userLabel="Top Bar">
-                                <rect key="frame" x="0.0" y="64" width="375" height="62.5"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="62.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteTransparentLogo" translatesAutoresizingMaskIntoConstraints="NO" id="irz-Hh-GZA">
                                         <rect key="frame" x="96" y="5" width="183.5" height="52.5"/>
@@ -200,46 +200,46 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prepared for ---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzX-Rc-ULx">
-                                <rect key="frame" x="20" y="384" width="335" height="21"/>
+                                <rect key="frame" x="20" y="340" width="335" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading...." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuj-aG-sqH">
-                                <rect key="frame" x="146" y="420" width="83" height="21.5"/>
+                                <rect key="frame" x="146" y="376" width="83" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action_camera" translatesAutoresizingMaskIntoConstraints="NO" id="4OC-Pn-mMy">
-                                <rect key="frame" x="62" y="176.5" width="250" height="187.5"/>
+                                <rect key="frame" x="62" y="132.5" width="250" height="187.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4OC-Pn-mMy" secondAttribute="height" multiplier="4:3" id="Y1O-Bn-NaI"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAZ-96-L9T" userLabel="Top Seperator">
-                                <rect key="frame" x="20" y="456.5" width="335" height="1"/>
+                                <rect key="frame" x="20" y="412.5" width="335" height="1"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="A2b-yc-iZs"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-- bathrooms -- bedrooms -- square feet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fa-Cd-RE3">
-                                <rect key="frame" x="20" y="467.5" width="335" height="48"/>
+                                <rect key="frame" x="20" y="423.5" width="335" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9F-uJ-cHH" userLabel="Bottom Seperator">
-                                <rect key="frame" x="20" y="525.5" width="335" height="1"/>
+                                <rect key="frame" x="20" y="481.5" width="335" height="1"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="coa-xS-gf5"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon! Add your personal Architects, Builders, and Realtors to this page." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUr-wA-DSh">
-                                <rect key="frame" x="50" y="556.5" width="275" height="61"/>
+                                <rect key="frame" x="50" y="512.5" width="275" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -277,6 +277,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WFy-YY-SmV"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="homeInformationLabel" destination="4Fa-Cd-RE3" id="2L0-1Y-W59"/>
                         <outlet property="preparedForLabel" destination="zzX-Rc-ULx" id="ok5-RB-PB5"/>
@@ -350,13 +351,13 @@
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="0IR-Xr-aVZ">
                             <connections>
                                 <action selector="editButtonAction:" destination="FpA-Vf-33i" id="vOa-kB-hDS"/>
+                                <segue destination="O8v-bg-peO" kind="show" identifier="editPlumbingSegue" id="IeO-Sg-yGc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="plumbingScrollView" destination="gy7-0I-BHG" id="RAn-Va-gCS"/>
-                        <segue destination="dR7-DA-dEl" kind="show" identifier="editPlumbingSegue" id="gdj-nT-JWj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xfo-UI-HsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -367,7 +368,7 @@
         <scene sceneID="YxT-hn-wWI">
             <objects>
                 <navigationController title="PlumbingNavigation" id="Sos-x6-u9a" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="ic_action_pages" selectedImage="ic_action_pages" id="iA3-WF-uAg"/>
+                    <tabBarItem key="tabBarItem" title="Info" image="ic_action_pages" selectedImage="ic_action_pages" id="iA3-WF-uAg"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="uAv-AE-McN">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -411,7 +412,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCt-Ky-u7S" userLabel="SupportMessage">
-                                <rect key="frame" x="20" y="141.5" width="335" height="223.5"/>
+                                <rect key="frame" x="20" y="97.5" width="335" height="223.5"/>
                                 <string key="text">We are happy to hear from the people who make Markd great, YOU! 
 
 Please don't be shy to ask for help or if there is something new you want us to add let us know!
@@ -425,13 +426,13 @@ The Markd Support Team</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9uE-X2-xKT">
-                                <rect key="frame" x="20" y="395" width="335" height="183"/>
+                                <rect key="frame" x="20" y="351" width="335" height="227"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPA-7K-xDV" userLabel="Top Bar">
-                                <rect key="frame" x="0.0" y="59" width="375" height="62.5"/>
+                                <rect key="frame" x="0.0" y="15" width="375" height="62.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteTransparentLogo" translatesAutoresizingMaskIntoConstraints="NO" id="j6Y-td-QdN">
                                         <rect key="frame" x="96" y="5" width="183.5" height="52.5"/>
@@ -462,7 +463,7 @@ The Markd Support Team</string>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-BN-tpa">
-                                <rect key="frame" x="10" y="80.5" width="76" height="36"/>
+                                <rect key="frame" x="10" y="36.5" width="76" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -490,6 +491,7 @@ The Markd Support Team</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="F4T-G7-e0A"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="messageTextView" destination="9uE-X2-xKT" id="UwS-Vi-aOn"/>
                     </connections>
@@ -1504,6 +1506,71 @@ The Markd Support Team</string>
             </objects>
             <point key="canvasLocation" x="-5866" y="-23"/>
         </scene>
+        <!--Edit Plumbing-->
+        <scene sceneID="nXd-zD-k4w">
+            <objects>
+                <tableViewController hidesBottomBarWhenPushed="YES" id="O8v-bg-peO" customClass="EditApplianceTableViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="50" sectionFooterHeight="28" id="r21-bN-qIt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="editApplianceCell" id="T90-oE-hID" customClass="EditApplianceTableViewCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="375" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T90-oE-hID" id="L6e-7d-hdg">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Placeholder" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="BGs-eb-pFa">
+                                            <rect key="frame" x="30" y="5" width="132" height="29.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="BGs-eb-pFa" secondAttribute="bottom" constant="5" id="9lC-Zd-ztt"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BGs-eb-pFa" secondAttribute="trailing" id="Ufu-mO-mQE"/>
+                                        <constraint firstItem="BGs-eb-pFa" firstAttribute="leading" secondItem="L6e-7d-hdg" secondAttribute="leading" constant="30" id="geX-gK-dQz"/>
+                                        <constraint firstItem="BGs-eb-pFa" firstAttribute="top" secondItem="L6e-7d-hdg" secondAttribute="top" constant="5" id="sgt-iV-Hxc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textField" destination="BGs-eb-pFa" id="Fvy-g9-esI"/>
+                                    <segue destination="V26-kT-tZq" kind="show" identifier="editApplianceFieldSegue" id="vB6-RU-ajQ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="O8v-bg-peO" id="hyu-0X-s3U"/>
+                            <outlet property="delegate" destination="O8v-bg-peO" id="ZOK-21-mMt"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Edit Plumbing" id="n4s-9t-a0y"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yOy-Ve-Yig" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1831" y="-479"/>
+        </scene>
+        <!--Appliance Edit Field View Controller-->
+        <scene sceneID="Uog-Mz-Pud">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="V26-kT-tZq" customClass="ApplianceEditFieldViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a6A-aP-2Ei"/>
+                        <viewControllerLayoutGuide type="bottom" id="YD4-yS-aqT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dqe-de-vie">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="itQ-GS-qXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1041" y="-479"/>
+        </scene>
         <!--Plumbing View Controller-->
         <scene sceneID="dfH-wW-BXP">
             <objects>
@@ -1710,31 +1777,7 @@ The Markd Support Team</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pJe-bG-9ks" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1738" y="-661"/>
-        </scene>
-        <!--Edit-->
-        <scene sceneID="cDp-ob-qU6">
-            <objects>
-                <viewController storyboardIdentifier="ApplianceEditViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dR7-DA-dEl" customClass="ApplianceEditViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="enL-wr-zZY"/>
-                        <viewControllerLayoutGuide type="bottom" id="KYX-bT-zYY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="phF-Iy-zbe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.20556968449999999" green="0.46900236610000001" blue="0.96475535629999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Edit" id="i34-C3-9Br">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="baO-Op-uin"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="navigationBar" destination="i34-C3-9Br" id="djX-vT-7j3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vbo-gA-CpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1658" y="-1444"/>
+            <point key="canvasLocation" x="-1911" y="-1326"/>
         </scene>
         <!--Hvac View Controller-->
         <scene sceneID="JGf-Ym-vac">
@@ -1794,7 +1837,11 @@ The Markd Support Team</string>
                                 <action selector="showActionSheet:" destination="Y9Z-X9-gyc" id="ESN-nC-1LR"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="xGN-ml-G57"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="xGN-ml-G57">
+                            <connections>
+                                <segue destination="O8v-bg-peO" kind="show" identifier="editHvacSegue" id="RUw-r6-xxZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
@@ -2011,7 +2058,7 @@ The Markd Support Team</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97j-DQ-bJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1738" y="241"/>
+            <point key="canvasLocation" x="-1708" y="345"/>
         </scene>
     </scenes>
     <resources>
@@ -2024,6 +2071,7 @@ The Markd Support Team</string>
         <image name="whiteTransparentLogo" width="803" height="282"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="RUw-r6-xxZ"/>
         <segue reference="0Ta-jB-fSK"/>
     </inferredMetricsTieBreakers>
 </document>

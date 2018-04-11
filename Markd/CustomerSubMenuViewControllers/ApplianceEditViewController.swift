@@ -16,6 +16,21 @@ public class ApplianceEditViewController: UIViewController {
     var appliance: Appliance?
     
     @IBOutlet weak var navigationBar: UINavigationItem!
+    @IBOutlet weak var manufacturerTextField: UITextField!
+    @IBOutlet weak var modelTextField: UITextField!
+    @IBOutlet weak var installTextField: UITextField!
+    @IBOutlet weak var lifeSpanTextField: UITextField!
+    
+    private var NotYetImplemented😤:AnyObject?
+    /*
+        Pass Two Appliances to Edit Screen
+        Change to Table View Which has 2 appliances in it.
+            -If you hit a text field it lets you edit in line?
+            -If you click the install date it brings you to another screen
+                -Date Picker on other page
+     
+        Save Button
+    */
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,21 +40,23 @@ public class ApplianceEditViewController: UIViewController {
     }
     override public func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
     }
     override public func viewDidDisappear(_ animated: Bool) {
         FirebaseAuthentication.sharedInstance.removeStateListener()
     }
     
     private func configureView() {
-        if let navigatoinBar = navigationBar, let appliance = appliance {
+        if let navigationBar = navigationBar, let appliance = appliance {
             if let _ = appliance as? Boiler {
-                print("It is a Boiler!")
-                navigatoinBar.title = "Edit Boiler"
+                navigationBar.title = "Edit Boiler"
             } else if let _ = appliance as? HotWater {
-                print("It is a Domestic Hot Water!")
-                navigatoinBar.title = "Edit Hot Water"
+                navigationBar.title = "Edit Hot Water"
             }
         }
+    }
+    
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

@@ -19,10 +19,13 @@ public class MainViewController: UIViewController, OnGetDataListener {
     @IBOutlet weak var homeInformationLabel: UILabel!
     
     override public func viewDidLoad() {
+        super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
     }
     override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         print("MainViewController:- viewWillAppear")
+        self.navigationController?.isNavigationBarHidden = true;
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
             var TODO_SetUpActionBar_🤪: AnyObject?
@@ -34,8 +37,12 @@ public class MainViewController: UIViewController, OnGetDataListener {
         }
         configureView()
     }
-    
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false;
+    }
     override public func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()
         if let customerData = customerData {
             customerData.removeListeners()
