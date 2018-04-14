@@ -100,7 +100,7 @@ public class HvacViewController: UIViewController, OnGetDataListener {
             
             let backItem = UIBarButtonItem()
             backItem.title = "Back"
-            navigationItem.backBarButtonItem = backItem
+            destination.navigationItem.backBarButtonItem = backItem
             
             return
         }

@@ -1564,12 +1564,35 @@ The Markd Support Team</string>
                     <view key="view" contentMode="scaleToFill" id="dqe-de-vie">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Manufacturer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AWI-MF-clm">
+                                <rect key="frame" x="40" y="60" width="295" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="AWI-MF-clm" firstAttribute="leading" secondItem="dqe-de-vie" secondAttribute="leading" constant="40" id="3zR-Sv-waB"/>
+                            <constraint firstItem="AWI-MF-clm" firstAttribute="top" secondItem="a6A-aP-2Ei" secondAttribute="bottom" constant="40" id="EOq-Nu-wIS"/>
+                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="AWI-MF-clm" secondAttribute="trailing" constant="40" id="WlO-0I-Sxc"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Appliance Field" id="U5R-7o-Ulj"/>
+                    <navigationItem key="navigationItem" title="Edit Appliance Field" id="U5R-7o-Ulj">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="U64-gl-k5A"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="50u-wx-aR3">
+                            <connections>
+                                <action selector="saveButtonClick:" destination="V26-kT-tZq" id="Tel-4N-U9t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="AWI-MF-clm" id="ut9-di-4Ec"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itQ-GS-qXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1041" y="-479"/>
+            <point key="canvasLocation" x="-924" y="-493"/>
         </scene>
         <!--Plumbing View Controller-->
         <scene sceneID="dfH-wW-BXP">

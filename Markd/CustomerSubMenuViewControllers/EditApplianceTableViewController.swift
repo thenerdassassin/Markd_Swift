@@ -111,6 +111,7 @@ class EditApplianceTableViewController: UITableViewController {
             
             destination.applianceIndex = sender.tag
             destination.originalValue = sender.textField.text
+            destination.fieldEditing = sender.textField.placeholder
             
             switch sender.textField.placeholder {
             case "Manufacturer":
@@ -129,10 +130,13 @@ class EditApplianceTableViewController: UITableViewController {
                 fatalError("No case for: \(sender.textField.placeholder!)")
             }
             
-            let backItem = UIBarButtonItem()
-            backItem.title = "Back"
-            navigationItem.backBarButtonItem = backItem
+            destination.delegate = self
         }
+    }
+    
+    public func change(_ field: String, at index:Int, to updatedValue: String) {
+        var TODO_change_field🤔:AnyObject?
+        print("Changing \(field) at \(index) to \(updatedValue)")
     }
 }
 
