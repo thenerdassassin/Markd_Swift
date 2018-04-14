@@ -40,14 +40,12 @@ public class HvacViewController: UIViewController, OnGetDataListener {
         }
         configureView()
     }
-    
     override public func viewDidLoad() {
         super.viewDidLoad()
         if let hvacView = hvacScrollView {
             hvacView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
         }
     }
-    
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()

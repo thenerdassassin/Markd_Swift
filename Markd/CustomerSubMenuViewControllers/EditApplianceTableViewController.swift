@@ -9,6 +9,7 @@
 import UIKit
 
 class EditApplianceTableViewController: UITableViewController {
+    private let authentication = FirebaseAuthentication.sharedInstance
     let cellIdentifier = "editApplianceCell"
 
     public var appliances = [Appliance]()
@@ -18,6 +19,16 @@ class EditApplianceTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.title = viewTitle
         tableView.tableFooterView = UIView()
+    }
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if(!authentication.checkLogin(self)) {
+            print("Not logged in.")
+        }
+    }
+    override public func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        FirebaseAuthentication.sharedInstance.removeStateListener()
     }
 
     // MARK: - Table view data source
