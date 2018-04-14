@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class ApplianceEditFieldViewController: UIViewController {
+public class EditApplianceFieldViewController: UIViewController {
     public var applianceIndex: Int?
     public var editType: String?
     public var originalValue: String?

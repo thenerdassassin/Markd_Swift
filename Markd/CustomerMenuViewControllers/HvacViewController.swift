@@ -99,6 +99,11 @@ public class HvacViewController: UIViewController, OnGetDataListener {
             let destination = segue.destination as! EditApplianceTableViewController
             destination.appliances = [customerData!.getAirHandler()!, customerData!.getCompressor()!]
             destination.viewTitle = "Edit Hvac"
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
+            
             return
         }
     }

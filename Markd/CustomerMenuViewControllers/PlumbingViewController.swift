@@ -100,6 +100,11 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
             let destination = segue.destination as! EditApplianceTableViewController
             destination.appliances = [customerData!.getHotWater()!, customerData!.getBoiler()!]
             destination.viewTitle = "Edit Plumbing"
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
+            
             return
         }
     }

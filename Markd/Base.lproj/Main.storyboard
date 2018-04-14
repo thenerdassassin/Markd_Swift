@@ -1553,10 +1553,10 @@ The Markd Support Team</string>
             </objects>
             <point key="canvasLocation" x="-1831" y="-479"/>
         </scene>
-        <!--Appliance Edit Field View Controller-->
+        <!--Edit Appliance Field-->
         <scene sceneID="Uog-Mz-Pud">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="V26-kT-tZq" customClass="ApplianceEditFieldViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="V26-kT-tZq" customClass="EditApplianceFieldViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="a6A-aP-2Ei"/>
                         <viewControllerLayoutGuide type="bottom" id="YD4-yS-aqT"/>
@@ -1566,6 +1566,7 @@ The Markd Support Team</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Edit Appliance Field" id="U5R-7o-Ulj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itQ-GS-qXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

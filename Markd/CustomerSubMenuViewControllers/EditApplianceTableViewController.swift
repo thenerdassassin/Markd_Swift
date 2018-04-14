@@ -20,11 +20,6 @@ class EditApplianceTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2 //AirHandler/Compressor or Boiler/Hot Water
@@ -96,8 +91,8 @@ class EditApplianceTableViewController: UITableViewController {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "editApplianceFieldSegue") {
-            guard let destination = segue.destination as? ApplianceEditFieldViewController else {
-                fatalError("Destination not instance of ApplianceEditFieldViewController")
+            guard let destination = segue.destination as? EditApplianceFieldViewController else {
+                fatalError("Destination not instance of EditApplianceFieldViewController")
             }
             guard let sender = sender as? EditApplianceTableViewCell else {
                 fatalError("The sender is not an instance of EditApplianceTableViewCell.")
@@ -109,15 +104,23 @@ class EditApplianceTableViewController: UITableViewController {
             switch sender.textField.placeholder {
             case "Manufacturer":
                 destination.editType = "String"
+                destination.title = "Edit Manufacturer"
             case "Model":
                 destination.editType = "String"
+                destination.title = "Edit Model"
             case "Install Date":
                 destination.editType = "Date"
+                destination.title = "Edit Install Date"
             case "Projected Life Span":
                 destination.editType = "LifeSpan"
+                destination.title = "Edit Life Span"
             default:
                 fatalError("No case for: \(sender.textField.placeholder!)")
             }
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
         }
     }
 }
