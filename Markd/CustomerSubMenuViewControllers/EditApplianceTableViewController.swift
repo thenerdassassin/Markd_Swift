@@ -80,13 +80,13 @@ class EditApplianceTableViewController: UITableViewController {
     
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
         if(viewTitle.lowercased().contains("plumbing")) {
-            if(section == 0) {
+            if let _ = appliances[section] as? Boiler {
                 return "Boiler"
             } else {
                 return "Hot Water"
             }
         } else if(viewTitle.lowercased().contains("hvac")) {
-            if(section == 0) {
+            if let _ = appliances[section] as? AirHandler {
                 return "Air Handler"
             } else {
                 return "Compressor"
@@ -112,32 +112,16 @@ class EditApplianceTableViewController: UITableViewController {
             destination.applianceIndex = sender.tag
             destination.originalValue = sender.textField.text
             destination.fieldEditing = sender.textField.placeholder
-            
-            switch sender.textField.placeholder {
-            case "Manufacturer":
-                destination.editType = "String"
-                destination.title = "Edit Manufacturer"
-            case "Model":
-                destination.editType = "String"
-                destination.title = "Edit Model"
-            case "Install Date":
-                destination.editType = "Date"
-                destination.title = "Edit Install Date"
-            case "Projected Life Span":
-                destination.editType = "LifeSpan"
-                destination.title = "Edit Life Span"
-            default:
-                fatalError("No case for: \(sender.textField.placeholder!)")
-            }
-            
             destination.delegate = self
         }
     }
     
     public func change(_ field: String, at index:Int, to updatedValue: String) {
-        var TODO_change_field🤔:AnyObject?
         print("Changing \(field) at \(index) to \(updatedValue)")
+        appliances[index].set(field, to: updatedValue)
+        self.tableView.reloadData()
     }
+    
 }
 
 public class EditApplianceTableViewCell: UITableViewCell {

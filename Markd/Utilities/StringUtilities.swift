@@ -54,14 +54,40 @@ public class StringUtilities {
                              withYear: calendar.component(Calendar.Component.year, from: date))!
     }
     
-    //TODO: getMonth/Day/Year FromDotFormattedString
+    public static func getComponentsFrom(dotFormmattedString date: String?) -> [Int?] {
+        var componentsToReturn = [Int?](repeating: nil, count:3)
+        guard StringUtilities.isNotNilOrEmpty(date) else {
+            return componentsToReturn
+        }
+        
+        let components = date?.split(separator: ".")
+        guard components != nil && components!.count == 3 else {
+            print("Date not in correct format")
+            return componentsToReturn
+        }
+        
+        componentsToReturn[0] = Int("\(components![0])")
+        componentsToReturn[1] = Int("\(components![1])")
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let currentYear = calendar.component(Calendar.Component.year, from: date)
+        guard let year = Int("\(components![2])") else {
+            return componentsToReturn
+        }
+        componentsToReturn[2] = year + 2000
+        if(componentsToReturn[2]! > currentYear) {
+            componentsToReturn[2]! -= 100
+        }
+        return componentsToReturn
+    }
     
     public static func getFormattedName(withPrefix prefix: String, withFirstName firstName: String, withLastName lastName: String, withMaritalStatus maritalStatus: String) -> String{
         return "\(isNotNilOrEmpty(prefix) ? prefix + " " : "")\(maritalStatus == "Married" && isNotNilOrEmpty(prefix) ? "and Mrs. " : "")\(isNotNilOrEmpty(firstName) ? "\(firstName) " : "") \(lastName)"
     }
     
     public static func isNilOrEmpty(_ stringToCheck:String?) -> Bool {
-        return stringToCheck == nil || stringToCheck == ""
+        return stringToCheck == nil || stringToCheck!.replacingOccurrences(of: " ", with: "") == ""
     }
     
     private static func isNotNilOrEmpty(_ stringToCheck:String?) -> Bool {

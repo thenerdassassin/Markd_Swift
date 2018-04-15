@@ -1571,11 +1571,34 @@ The Markd Support Team</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="ZDX-ki-dSS">
+                                <rect key="frame" x="0.0" y="140" width="375" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="545421305.99561799">
+                                    <!--2018-04-14 17:55:05 +0000-->
+                                </date>
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                                    <!--2037-12-31 11:00:00 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="onDateChange:" destination="V26-kT-tZq" eventType="valueChanged" id="FfF-h4-mBk"/>
+                                </connections>
+                            </datePicker>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ug-4p-R5f" customClass="LifeSpanPickerView" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="140" width="375" height="216"/>
+                            </pickerView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="6ug-4p-R5f" firstAttribute="leading" secondItem="dqe-de-vie" secondAttribute="leading" id="2SE-KZ-QNq"/>
                             <constraint firstItem="AWI-MF-clm" firstAttribute="leading" secondItem="dqe-de-vie" secondAttribute="leading" constant="40" id="3zR-Sv-waB"/>
+                            <constraint firstItem="ZDX-ki-dSS" firstAttribute="centerX" secondItem="dqe-de-vie" secondAttribute="centerX" id="7zT-cq-IdO"/>
+                            <constraint firstAttribute="trailing" secondItem="6ug-4p-R5f" secondAttribute="trailing" id="9Lv-4D-50E"/>
+                            <constraint firstItem="YD4-yS-aqT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6ug-4p-R5f" secondAttribute="bottom" constant="50" id="Cbg-9R-lZ7"/>
                             <constraint firstItem="AWI-MF-clm" firstAttribute="top" secondItem="a6A-aP-2Ei" secondAttribute="bottom" constant="40" id="EOq-Nu-wIS"/>
+                            <constraint firstItem="6ug-4p-R5f" firstAttribute="top" secondItem="AWI-MF-clm" secondAttribute="bottom" constant="50" id="Wez-WE-P1m"/>
                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="AWI-MF-clm" secondAttribute="trailing" constant="40" id="WlO-0I-Sxc"/>
+                            <constraint firstItem="YD4-yS-aqT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ZDX-ki-dSS" secondAttribute="bottom" constant="50" id="bzT-Je-ckr"/>
+                            <constraint firstItem="ZDX-ki-dSS" firstAttribute="top" secondItem="AWI-MF-clm" secondAttribute="bottom" constant="50" id="e9G-q1-q4g"/>
+                            <constraint firstItem="ZDX-ki-dSS" firstAttribute="width" secondItem="dqe-de-vie" secondAttribute="width" id="wyX-M0-cY2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Appliance Field" id="U5R-7o-Ulj">
@@ -1587,12 +1610,14 @@ The Markd Support Team</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datePicker" destination="ZDX-ki-dSS" id="RkH-Of-wSc"/>
+                        <outlet property="lifeSpanPicker" destination="6ug-4p-R5f" id="WRr-rh-2AA"/>
                         <outlet property="textField" destination="AWI-MF-clm" id="ut9-di-4Ec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itQ-GS-qXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-924" y="-493"/>
+            <point key="canvasLocation" x="-924" y="-493.40329835082463"/>
         </scene>
         <!--Plumbing View Controller-->
         <scene sceneID="dfH-wW-BXP">
