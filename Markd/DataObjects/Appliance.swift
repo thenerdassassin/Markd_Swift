@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Appliance {
+public class Appliance:CustomStringConvertible {
     
     private var manufacturer: String
     private var model: String
@@ -26,6 +26,22 @@ public class Appliance {
         self.year = dictionary["year"] != nil ? dictionary["year"] as! Int: 0
         self.lifeSpan = dictionary["lifeSpan"] != nil ? dictionary["lifeSpan"] as! Int: 0
         self.units = dictionary["units"] != nil ? dictionary["units"] as! String: ""
+    }
+    
+    public func toDictionary() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        dictionary["manufacturer"] = self.manufacturer as AnyObject
+        dictionary["model"] = self.model as AnyObject
+        if(month != 0 || day != 0 || year != 0) {
+            dictionary["month"] = self.month as AnyObject
+            dictionary["day"] = self.day as AnyObject
+            dictionary["year"] = self.year as AnyObject
+        }
+        if(lifeSpan != 0) {
+            dictionary["lifeSpan"] = self.lifeSpan as AnyObject
+            dictionary["units"] = self.units as AnyObject
+        }
+        return dictionary
     }
     
     public func getManufacturer() -> String {
@@ -55,6 +71,9 @@ public class Appliance {
     }
     
     public func lifeSpanAsString() -> String {
+        if(lifeSpan <= 0 || StringUtilities.isNilOrEmpty(units)) {
+            return ""
+        }
         return "\(lifeSpan) \(units)"
     }
     public func updateLifeSpan(to lifeSpanInt: Int, _ units:String) {

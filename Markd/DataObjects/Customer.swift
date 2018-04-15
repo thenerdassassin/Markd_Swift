@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-public class Customer: CustomStringConvertible {
+public class Customer:CustomStringConvertible {
     func NEED_TO_ADD_ANDROID_METHODS😤() {
         var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
     }
@@ -162,16 +162,65 @@ public class Customer: CustomStringConvertible {
     func getHotWater() -> HotWater? {
         return hotWater
     }
+    func setHotWater(to hotWater:HotWater) -> Customer {
+        self.hotWater = hotWater
+        return self
+    }
     func getBoiler() -> Boiler? {
         return boiler
+    }
+    func setBoiler(to boiler:Boiler) -> Customer {
+        self.boiler = boiler
+        return self
     }
     func getAirHandler() -> AirHandler? {
         return airHandler
     }
+    func setAirHandler(to airHandler:AirHandler) -> Customer {
+        self.airHandler = airHandler
+        return self
+    }
     func getCompressor() -> Compressor? {
         return compressor
     }
+    func setCompressor(to compressor:Compressor) -> Customer {
+        self.compressor = compressor
+        return self
+    }
+    var TODO_Implement_All_Setters_And_Helpers🤬:AnyObject?
     
-    
-    //TODO: getters/setters/helpers etc.
+    func toDictionary() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        
+        dictionary["namePrefix"] = self.namePrefix as AnyObject
+        dictionary["firstName"] = self.firstName as AnyObject
+        dictionary["lastName"] = self.lastName as AnyObject
+        dictionary["maritalStatus"] = self.maritalStatus as AnyObject
+        dictionary["address"] = self.address?.toDictionary() as AnyObject
+        dictionary["home"] = self.home?.toDictionary() as AnyObject
+        dictionary["architectReference"] = self.architectReference as AnyObject
+        dictionary["builderReference"] = self.builderReference as AnyObject
+        dictionary["realtorReference"] = self.realtorReference as AnyObject
+        dictionary["homeImageFileName"] = self.homeImageFileName as AnyObject
+        
+        dictionary["hotWater"] = self.hotWater?.toDictionary() as AnyObject
+        dictionary["boiler"] = self.boiler?.toDictionary() as AnyObject
+        dictionary["plumberReference"] = self.plumberReference as AnyObject
+        //TODO: plumbingServices
+        
+        dictionary["airHandler"] = self.airHandler?.toDictionary() as AnyObject
+        dictionary["compressor"] = self.compressor?.toDictionary() as AnyObject
+        dictionary["hvactechnicianReference"] = self.hvactechnicianReference as AnyObject
+        //TODO: hvacServices
+        
+        //TODO: panels
+        dictionary["electricianReference"] = self.electricianReference as AnyObject
+        //TODO: electricalServices
+        
+        //TODO: interiorPaintSurfaces
+        //TODO: exteriorPaintSurfaces
+        dictionary["painterReference"] = self.painterReference as AnyObject
+        
+        return dictionary
+    }
 }

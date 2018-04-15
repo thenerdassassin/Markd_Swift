@@ -61,32 +61,32 @@ public class HvacViewController: UIViewController, OnGetDataListener {
     private func initializeAirHandler() {
         if let airHandler = customerData?.getAirHandler() {
             if let airHandlerManufacturer = airHandlerManufacturer {
-                airHandlerManufacturer.text = airHandler.getManufacturer()
+                StringUtilities.set(textOf: airHandlerManufacturer, to: airHandler.getManufacturer())
             }
             if let airHandlerModel = airHandlerModel {
-                airHandlerModel.text = airHandler.getModel()
+                StringUtilities.set(textOf: airHandlerModel, to: airHandler.getModel())
             }
-            if let airHandlerInstallDate = airHandlerInstallDate, let installDate = airHandler.installDateAsString() {
-                airHandlerInstallDate.text = installDate
+            if let airHandlerInstallDate = airHandlerInstallDate {
+                StringUtilities.set(textOf: airHandlerInstallDate, to: airHandler.installDateAsString())
             }
             if let airHandlerLifeSpan = airHandlerLifeSpan {
-                airHandlerLifeSpan.text = airHandler.lifeSpanAsString()
+                StringUtilities.set(textOf: airHandlerLifeSpan, to: airHandler.lifeSpanAsString())
             }
         }
     }
     private func initializeCompressor() {
         if let compressor = customerData?.getCompressor() {
             if let compressorManufacturer = compressorManufacturer {
-                compressorManufacturer.text = compressor.getManufacturer()
+                StringUtilities.set(textOf: compressorManufacturer, to: compressor.getManufacturer())
             }
             if let compressorModel = compressorModel {
-                compressorModel.text = compressor.getModel()
+                StringUtilities.set(textOf: compressorModel, to: compressor.getModel())
             }
-            if let compressorInstallDate = compressorInstallDate, let installDate = compressor.installDateAsString() {
-                compressorInstallDate.text = installDate
+            if let compressorInstallDate = compressorInstallDate {
+                StringUtilities.set(textOf: compressorInstallDate, to: compressor.installDateAsString())
             }
             if let compressorLifeSpan = compressorLifeSpan {
-                compressorLifeSpan.text = compressor.lifeSpanAsString()
+                StringUtilities.set(textOf: compressorLifeSpan, to: compressor.lifeSpanAsString())
             }
         }
     }
@@ -95,13 +95,17 @@ public class HvacViewController: UIViewController, OnGetDataListener {
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editHvacSegue" {
             let destination = segue.destination as! EditApplianceTableViewController
-            destination.appliances = [customerData!.getAirHandler()!, customerData!.getCompressor()!]
+            var airHandler = customerData?.getAirHandler()
+            var compressor = customerData?.getCompressor()
+            if(airHandler == nil) {
+                airHandler = AirHandler(Dictionary.init())
+            }
+            if (compressor == nil) {
+                compressor = Compressor(Dictionary.init())
+            }
+            destination.appliances = [airHandler!, compressor!]
             destination.viewTitle = "Edit Hvac"
-            
-            let backItem = UIBarButtonItem()
-            backItem.title = "Back"
-            destination.navigationItem.backBarButtonItem = backItem
-            
+            destination.customerData = customerData
             return
         }
     }

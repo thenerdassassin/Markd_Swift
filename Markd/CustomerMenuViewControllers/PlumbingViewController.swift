@@ -64,32 +64,32 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     private func initializeHotWater() {
         if let hotWater = customerData?.getHotWater() {
             if let hotWaterManufacturer = hotWaterManufacturer {
-                hotWaterManufacturer.text = hotWater.getManufacturer()
+                StringUtilities.set(textOf: hotWaterManufacturer, to: hotWater.getManufacturer())
             }
             if let hotWaterModel = hotWaterModel {
-                hotWaterModel.text = hotWater.getModel()
+                StringUtilities.set(textOf: hotWaterModel, to: hotWater.getModel())
             }
-            if let hotWaterInstallDate = hotWaterInstallDate, let installDate = hotWater.installDateAsString() {
-                hotWaterInstallDate.text = installDate
+            if let hotWaterInstallDate = hotWaterInstallDate {
+                StringUtilities.set(textOf: hotWaterInstallDate, to: hotWater.installDateAsString())
             }
             if let hotWaterLifeSpan = hotWaterLifeSpan {
-                hotWaterLifeSpan.text = hotWater.lifeSpanAsString()
+                StringUtilities.set(textOf: hotWaterLifeSpan, to: hotWater.lifeSpanAsString())
             }
         }
     }
     private func initializeBoiler() {
         if let boiler = customerData?.getBoiler() {
             if let boilerManufacturer = boilerManufacturer {
-                boilerManufacturer.text = boiler.getManufacturer()
+                StringUtilities.set(textOf: boilerManufacturer, to: boiler.getManufacturer())
             }
             if let boilerModel = boilerModel {
-                boilerModel.text = boiler.getModel()
+                StringUtilities.set(textOf: boilerModel, to: boiler.getModel())
             }
-            if let boilerInstallDate = boilerInstallDate, let installDate = boiler.installDateAsString() {
-                boilerInstallDate.text = installDate
+            if let boilerInstallDate = boilerInstallDate {
+                StringUtilities.set(textOf: boilerInstallDate, to: boiler.installDateAsString())
             }
             if let boilerLifeSpan = boilerLifeSpan {
-                boilerLifeSpan.text = boiler.lifeSpanAsString()
+                StringUtilities.set(textOf: boilerLifeSpan, to: boiler.lifeSpanAsString())
             }
         }
     }
@@ -98,13 +98,17 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editPlumbingSegue" {
             let destination = segue.destination as! EditApplianceTableViewController
-            destination.appliances = [customerData!.getHotWater()!, customerData!.getBoiler()!]
+            var hotWater = customerData?.getHotWater()
+            var boiler = customerData?.getBoiler()
+            if (hotWater == nil) {
+                hotWater = HotWater(Dictionary.init())
+            }
+            if (boiler == nil) {
+                boiler = Boiler(Dictionary.init())
+            }
+            destination.appliances = [hotWater!, boiler!]
             destination.viewTitle = "Edit Plumbing"
-            
-            let backItem = UIBarButtonItem()
-            backItem.title = "Back"
-            destination.navigationItem.backBarButtonItem = backItem
-            
+            destination.customerData = customerData
             return
         }
     }
@@ -126,28 +130,6 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
                     NSLog("Switching to Electrical Page")
                 }),UIAlertAction(title: "Painting", style: .default, handler: { _ in
                     NSLog("Switching to Painting Page")
-                }),
-                UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-                    NSLog("Canceling Edit")
-                })
-            ],
-            in: self)
-    }
-    
-    @IBAction func editButtonAction(_ sender: UIBarButtonItem) {
-        AlertControllerUtilities.showActionSheet(
-            withTitle: "Edit Page",
-            andMessage: "Which appliance would you like to change?",
-            withOptions: [
-                UIAlertAction(title: "Domestic Hot Water", style: .default, handler: { _ in
-                    NSLog("Editing Hot Water")
-                    self.applianceToEdit = self.customerData?.getHotWater()
-                    self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
-                }),
-                UIAlertAction(title: "Boiler", style: .default, handler: { _ in
-                    NSLog("Editing Boiler")
-                    self.applianceToEdit = self.customerData?.getBoiler()
-                    self.performSegue(withIdentifier: "editPlumbingSegue", sender: self)
                 }),
                 UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
                     NSLog("Canceling Edit")

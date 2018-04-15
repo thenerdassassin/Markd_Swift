@@ -29,9 +29,11 @@ public class TempCustomerData {
                 print("No userReference")
             }
         } else {
-            var NOT_IMPLEMENTED_🤪:AnyObject
             self.userReference = nil
             customer = nil
+            if let currentView = UIApplication.shared.keyWindow?.rootViewController {
+                AlertControllerUtilities.somethingWentWrong(with: currentView)
+            }
         }
     }
     
@@ -48,7 +50,9 @@ public class TempCustomerData {
             if let listener = self.listener {
                 listener.onSuccess()
             } else {
-                var NOT_IMPLEMENTED_🤪:AnyObject
+                if let currentView = UIApplication.shared.keyWindow?.rootViewController {
+                    AlertControllerUtilities.somethingWentWrong(with: currentView)
+                }
             }
         }
     }
@@ -64,11 +68,13 @@ public class TempCustomerData {
         return customer
     }
     
-    private func updateCustomer(to customer: Customer) {
-        if let userReference = userReference {
-            userReference.setValue(customer)
+    private func updateCustomer(to customer: Customer?) {
+        if let userReference = userReference, let customer = customer {
+            userReference.setValue(customer.toDictionary())
         } else {
-            var NOT_IMPLEMENTED_🤪:AnyObject
+            if let currentView = UIApplication.shared.keyWindow?.rootViewController {
+                AlertControllerUtilities.somethingWentWrong(with: currentView)
+            }
         }
     }
     
@@ -159,13 +165,13 @@ public class TempCustomerData {
         return getCustomer()?.getHotWater()
     }
     public func updateHotWater(to hotWater:HotWater) {
-        var TODO_ImplementUpdateHotWater🤔:AnyObject?
+         updateCustomer(to: getCustomer()?.setHotWater(to: hotWater))
     }
     public func getBoiler() -> Boiler? {
         return getCustomer()?.getBoiler()
     }
     public func updateBoiler(to boiler:Boiler) {
-        var TODO_ImplementUpdateBoiler🤔:AnyObject?
+         updateCustomer(to: getCustomer()?.setBoiler(to: boiler))
     }
     public func getPlumber() {
         var TODO_ImplementGetPlumber🤔:AnyObject?
@@ -182,13 +188,13 @@ public class TempCustomerData {
         return getCustomer()?.getAirHandler()
     }
     public func updateAirHandler(to airHandler:AirHandler) {
-        var TODO_ImplementUpdateAirHandler🤔:AnyObject?
+        updateCustomer(to: getCustomer()?.setAirHandler(to: airHandler))
     }
     public func getCompressor() -> Compressor? {
         return getCustomer()?.getCompressor()
     }
     public func updateCompressor(to compressor:Compressor) {
-        var TODO_ImplementUpdateCompressor🤔:AnyObject?
+         updateCustomer(to: getCustomer()?.setCompressor(to: compressor))
     }
     public func getHvacTechnician() {
         var TODO_ImplementGetHvacTechnician🤔:AnyObject?
@@ -200,7 +206,19 @@ public class TempCustomerData {
         var TODO_ImplementGetHvacServices🤔:AnyObject?
     }
         
-    
+    public func setAppliance(to newAppliance: Appliance) {
+        if let hotWater = newAppliance as? HotWater {
+            self.updateHotWater(to: hotWater)
+        } else if let boiler = newAppliance as? Boiler {
+            self.updateBoiler(to: boiler)
+        } else if let airHandler = newAppliance as? AirHandler {
+            self.updateAirHandler(to: airHandler)
+        } else if let compressor = newAppliance as? Compressor {
+            self.updateCompressor(to: compressor)
+        } else {
+            print("Appliance type does not match")
+        }
+    }
     func NEED_TO_ADD_ANDROID_METHODS😤() {
         var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
         //TODO: addContractorListener, attachListener, removeListener, getUid

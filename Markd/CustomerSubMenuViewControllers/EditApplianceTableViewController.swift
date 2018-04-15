@@ -10,6 +10,7 @@ import UIKit
 
 class EditApplianceTableViewController: UITableViewController {
     private let authentication = FirebaseAuthentication.sharedInstance
+    public var customerData:TempCustomerData?
     let cellIdentifier = "editApplianceCell"
 
     public var appliances = [Appliance]()
@@ -25,6 +26,9 @@ class EditApplianceTableViewController: UITableViewController {
         if(!authentication.checkLogin(self)) {
             print("Not logged in.")
         }
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
     }
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -118,10 +122,17 @@ class EditApplianceTableViewController: UITableViewController {
     
     public func change(_ field: String, at index:Int, to updatedValue: String) {
         print("Changing \(field) at \(index) to \(updatedValue)")
-        appliances[index].set(field, to: updatedValue)
-        self.tableView.reloadData()
+        let updatedAppliance = appliances[index]
+        updatedAppliance.set(field, to: updatedValue)
+        print(updatedAppliance)
+        if let customerData = customerData {
+            customerData.setAppliance(to: updatedAppliance)
+            self.tableView.reloadData()
+        } else {
+            print("TempCustomerData is nil")
+            AlertControllerUtilities.somethingWentWrong(with: self)
+        }
     }
-    
 }
 
 public class EditApplianceTableViewCell: UITableViewCell {

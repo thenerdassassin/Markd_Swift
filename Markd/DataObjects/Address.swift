@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Address: CustomStringConvertible {
+public class Address:CustomStringConvertible {
     private var street: String
     private var city: String
     private var state: String
@@ -19,6 +19,15 @@ public class Address: CustomStringConvertible {
         self.city = dictionary["city"] != nil ? dictionary["city"] as! String: ""
         self.state = dictionary["state"] != nil ? dictionary["state"] as! String: ""
         self.zipCode = dictionary["zipCode"] != nil ? dictionary["zipCode"] as! String: ""
+    }
+    
+    public func toDictionary() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        dictionary["street"] = self.street as AnyObject
+        dictionary["city"] = self.city as AnyObject
+        dictionary["state"] = self.state as AnyObject
+        dictionary["zipCode"] = self.zipCode as AnyObject
+        return dictionary
     }
     
     func getStreet() -> String {

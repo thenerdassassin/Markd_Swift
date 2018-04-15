@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class StringUtilities {
     
@@ -23,6 +24,9 @@ public class StringUtilities {
         
         if(day > 31) {
             print("Day was greater than 31 it was \(day)")
+            return nil
+        } else if(day <= 0) {
+            print("Day was less than 1 it was \(day)")
             return nil
         } else if (day < 10) {
             dateString += "0"
@@ -84,6 +88,14 @@ public class StringUtilities {
     
     public static func getFormattedName(withPrefix prefix: String, withFirstName firstName: String, withLastName lastName: String, withMaritalStatus maritalStatus: String) -> String{
         return "\(isNotNilOrEmpty(prefix) ? prefix + " " : "")\(maritalStatus == "Married" && isNotNilOrEmpty(prefix) ? "and Mrs. " : "")\(isNotNilOrEmpty(firstName) ? "\(firstName) " : "") \(lastName)"
+    }
+    
+    public static func set(textOf label: UILabel, to newString: String?) {
+        if(isNilOrEmpty(newString)) {
+            label.text = "---"
+        } else {
+            label.text = newString
+        }
     }
     
     public static func isNilOrEmpty(_ stringToCheck:String?) -> Bool {
