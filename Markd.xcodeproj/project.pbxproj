@@ -27,13 +27,17 @@
 		47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E0EA4A1DF3865C001F417F /* LaunchScreen.storyboard */; };
 		47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */; };
 		47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */; };
+		FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF592F7320683E090031DA92 /* Boiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF592F7220683E090031DA92 /* Boiler.swift */; };
 		FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */; };
 		FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82F315205439BA00E33304 /* HelpViewController.swift */; };
+		FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */; };
+		FFA1E86D207D864E009D2FD3 /* EditApplianceFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */; };
 		FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB565892079274400F6E8F1 /* HvacViewController.swift */; };
 		FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658B2079335100F6E8F1 /* AirHandler.swift */; };
 		FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658D2079335B00F6E8F1 /* Compressor.swift */; };
+		FFB56592207AA8F500F6E8F1 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB56591207AA8F500F6E8F1 /* Appliance.swift */; };
 		FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE8003205D8C8200A7D9FE /* HotWater.swift */; };
 		FFDE253620588868009D1790 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE253520588868009D1790 /* SendEmail.swift */; };
 		FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C892041D3B500A9392E /* MainViewController.swift */; };
@@ -74,13 +78,17 @@
 		47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBreakerViewController.swift; sourceTree = "<group>"; };
 		5F8AAE28D9CA323AB69658E5 /* Pods-Markd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.release.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.release.xcconfig"; sourceTree = "<group>"; };
 		7C5098B1444AC29248521536 /* Pods_Markd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Markd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpanPickerView.swift; sourceTree = "<group>"; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF592F7220683E090031DA92 /* Boiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boiler.swift; sourceTree = "<group>"; };
 		FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		FF82F315205439BA00E33304 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditApplianceTableViewController.swift; sourceTree = "<group>"; };
+		FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditApplianceFieldViewController.swift; sourceTree = "<group>"; };
 		FFB565892079274400F6E8F1 /* HvacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HvacViewController.swift; sourceTree = "<group>"; };
 		FFB5658B2079335100F6E8F1 /* AirHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirHandler.swift; sourceTree = "<group>"; };
 		FFB5658D2079335B00F6E8F1 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
+		FFB56591207AA8F500F6E8F1 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
 		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
 		FFDE253520588868009D1790 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
 		FFF27C892041D3B500A9392E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +145,7 @@
 		47E0EA401DF3865C001F417F /* Markd */ = {
 			isa = PBXGroup;
 			children = (
+				FF40718B20827E980008883A /* PickerViewControllers */,
 				FFF45D81203CE57200EC732B /* Utilities */,
 				FF6C030C2038965A0058259F /* DataObjects */,
 				FF6C030B203896230058259F /* CustomerSubMenuViewControllers */,
@@ -176,6 +185,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FF40718B20827E980008883A /* PickerViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */,
+			);
+			path = PickerViewControllers;
+			sourceTree = "<group>";
+		};
 		FF6C0309203895B60058259F /* UserAuthentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +216,8 @@
 		FF6C030B203896230058259F /* CustomerSubMenuViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */,
+				FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
 			sourceTree = "<group>";
@@ -214,6 +233,7 @@
 				FF592F7220683E090031DA92 /* Boiler.swift */,
 				FFB5658B2079335100F6E8F1 /* AirHandler.swift */,
 				FFB5658D2079335B00F6E8F1 /* Compressor.swift */,
+				FFB56591207AA8F500F6E8F1 /* Appliance.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -381,6 +401,7 @@
 				FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */,
 				FFF27C94204619A700A9392E /* Home.swift in Sources */,
 				FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */,
+				FFB56592207AA8F500F6E8F1 /* Appliance.swift in Sources */,
 				479937681E1D806F00ADCD35 /* EditBreakerTextFieldController.swift in Sources */,
 				47133A5F1DF632B000D86E07 /* DataObjects.swift in Sources */,
 				476295BD1E1DE02D008CDBFC /* DetailViewController.swift in Sources */,
@@ -390,6 +411,9 @@
 				4746A0A01E1F315F00FB76E3 /* ManufacturerPickerController.swift in Sources */,
 				476295BF1E1DF198008CDBFC /* EditPanelViewController.swift in Sources */,
 				47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */,
+				FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */,
+				FFA1E86D207D864E009D2FD3 /* EditApplianceFieldViewController.swift in Sources */,
+				FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */,
 				FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */,
 				4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */,
 				FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */,

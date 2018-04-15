@@ -23,4 +23,12 @@ public class AlertControllerUtilities {
         } 
         viewController.present(alert, animated: true)
     }
+    
+    public static func showActionSheet(withTitle title: String, andMessage message: String, withOptions actions:[UIAlertAction], in viewController: UIViewController) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        for action in actions {
+            alert.addAction(action)
+        }
+        viewController.present(alert, animated: true)
+    }
 }

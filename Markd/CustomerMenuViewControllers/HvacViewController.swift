@@ -30,7 +30,6 @@ public class HvacViewController: UIViewController, OnGetDataListener {
      Check if Contractor or Home Owner on page
      Add Contractor to Footer
      Initialize Services
-     Implement Edit Button
      */
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -40,15 +39,14 @@ public class HvacViewController: UIViewController, OnGetDataListener {
         }
         configureView()
     }
-    
     override public func viewDidLoad() {
         super.viewDidLoad()
         if let hvacView = hvacScrollView {
             hvacView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
         }
     }
-    
     override public func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()
         if let customerData = customerData {
             customerData.removeListeners()
@@ -62,33 +60,52 @@ public class HvacViewController: UIViewController, OnGetDataListener {
     private func initializeAirHandler() {
         if let airHandler = customerData?.getAirHandler() {
             if let airHandlerManufacturer = airHandlerManufacturer {
-                airHandlerManufacturer.text = airHandler.getManufacturer()
+                StringUtilities.set(textOf: airHandlerManufacturer, to: airHandler.getManufacturer())
             }
             if let airHandlerModel = airHandlerModel {
-                airHandlerModel.text = airHandler.getModel()
+                StringUtilities.set(textOf: airHandlerModel, to: airHandler.getModel())
             }
-            if let airHandlerInstallDate = airHandlerInstallDate, let installDate = airHandler.installDateAsString() {
-                airHandlerInstallDate.text = installDate
+            if let airHandlerInstallDate = airHandlerInstallDate {
+                StringUtilities.set(textOf: airHandlerInstallDate, to: airHandler.installDateAsString())
             }
             if let airHandlerLifeSpan = airHandlerLifeSpan {
-                airHandlerLifeSpan.text = airHandler.lifeSpanAsString()
+                StringUtilities.set(textOf: airHandlerLifeSpan, to: airHandler.lifeSpanAsString())
             }
         }
     }
     private func initializeCompressor() {
         if let compressor = customerData?.getCompressor() {
             if let compressorManufacturer = compressorManufacturer {
-                compressorManufacturer.text = compressor.getManufacturer()
+                StringUtilities.set(textOf: compressorManufacturer, to: compressor.getManufacturer())
             }
             if let compressorModel = compressorModel {
-                compressorModel.text = compressor.getModel()
+                StringUtilities.set(textOf: compressorModel, to: compressor.getModel())
             }
-            if let compressorInstallDate = compressorInstallDate, let installDate = compressor.installDateAsString() {
-                compressorInstallDate.text = installDate
+            if let compressorInstallDate = compressorInstallDate {
+                StringUtilities.set(textOf: compressorInstallDate, to: compressor.installDateAsString())
             }
             if let compressorLifeSpan = compressorLifeSpan {
-                compressorLifeSpan.text = compressor.lifeSpanAsString()
+                StringUtilities.set(textOf: compressorLifeSpan, to: compressor.lifeSpanAsString())
             }
+        }
+    }
+    
+    //Mark:- Segue
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editHvacSegue" {
+            let destination = segue.destination as! EditApplianceTableViewController
+            var airHandler = customerData?.getAirHandler()
+            var compressor = customerData?.getCompressor()
+            if(airHandler == nil) {
+                airHandler = AirHandler(Dictionary.init())
+            }
+            if (compressor == nil) {
+                compressor = Compressor(Dictionary.init())
+            }
+            destination.appliances = [airHandler!, compressor!]
+            destination.viewTitle = "Edit Hvac"
+            destination.customerData = customerData
+            return
         }
     }
     

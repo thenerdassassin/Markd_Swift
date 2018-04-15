@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Home {
+public class Home:CustomStringConvertible {
     private var bedrooms: Double
     private var squareFootage: Int
     private var bathrooms: Double
@@ -17,6 +17,14 @@ public class Home {
         self.bedrooms = dictionary["bedrooms"] != nil ? dictionary["bedrooms"] as! Double: 0.0
         self.squareFootage = dictionary["squareFootage"] != nil ? dictionary["squareFootage"] as! Int: 0
         self.bathrooms = dictionary["bathrooms"] != nil ? dictionary["bathrooms"] as! Double: 0.0
+    }
+    
+    public func toDictionary() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        dictionary["bedrooms"] = self.bedrooms as AnyObject
+        dictionary["squareFootage"] = self.squareFootage as AnyObject
+        dictionary["bathrooms"] = self.bathrooms as AnyObject
+        return dictionary
     }
     
     func getBedrooms() -> Double {
@@ -42,4 +50,5 @@ public class Home {
     func setBathrooms(_ bathrooms:Double) {
         self.bathrooms = bathrooms
     }
+    
 }
