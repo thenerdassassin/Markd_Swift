@@ -12,6 +12,8 @@ class EditApplianceTableViewController: UITableViewController {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var customerData:TempCustomerData?
     let cellIdentifier = "editApplianceCell"
+    
+    var TODO_Check_If_Contractor🤯:AnyObject?
 
     public var appliances = [Appliance]()
     public var viewTitle = "Edit"

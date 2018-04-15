@@ -30,7 +30,6 @@ public class HvacViewController: UIViewController, OnGetDataListener {
      Check if Contractor or Home Owner on page
      Add Contractor to Footer
      Initialize Services
-     Implement Edit Button
      */
     
     override public func viewWillAppear(_ animated: Bool) {

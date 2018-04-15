@@ -12,6 +12,8 @@ import UIKit
 public class EditApplianceFieldViewController: UIViewController, LifeSpanViewProtocol {
     private let authentication = FirebaseAuthentication.sharedInstance
     
+    var TODO_Check_If_Contractor🤯:AnyObject?
+    
     var applianceIndex: Int?
     var originalValue: String? {
         didSet {
