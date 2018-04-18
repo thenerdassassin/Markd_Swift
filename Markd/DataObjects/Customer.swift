@@ -158,7 +158,7 @@ public class Customer:CustomStringConvertible {
         return self;
     }
     
-    //:- Helper functions
+    //Mark:- Plumbing Page
     func getHotWater() -> HotWater? {
         return hotWater
     }
@@ -173,6 +173,14 @@ public class Customer:CustomStringConvertible {
         self.boiler = boiler
         return self
     }
+    func getPlumber() -> String? {
+        if(StringUtilities.isNilOrEmpty(plumberReference)) {
+            return nil
+        }
+        return plumberReference
+    }
+    
+    //Mark:- HVAC
     func getAirHandler() -> AirHandler? {
         return airHandler
     }

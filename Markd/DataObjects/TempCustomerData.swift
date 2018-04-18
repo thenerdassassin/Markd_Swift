@@ -17,6 +17,11 @@ public class TempCustomerData {
     private var listener: OnGetDataListener?
     private var handle: UInt?
     
+    public func printCustomer() {
+        if let customer = customer {
+            print(customer.description)
+        }
+    }
     public init(_ getDataListener: OnGetDataListener?) {
         TempCustomerData.database.keepSynced(true)
         self.customerId = FirebaseAuthentication.sharedInstance.getCurrentUser()?.uid
@@ -39,7 +44,6 @@ public class TempCustomerData {
     
     public func removeListeners() {
         if let userReference = userReference, let handle = handle {
-            print("handle removed")
             userReference.removeObserver(withHandle: handle)
         }
     }
@@ -173,11 +177,37 @@ public class TempCustomerData {
     public func updateBoiler(to boiler:Boiler) {
          updateCustomer(to: getCustomer()?.setBoiler(to: boiler))
     }
-    public func getPlumber() {
-        var TODO_ImplementGetPlumber🤔:AnyObject?
+    public func getPlumber(plumberListener: OnGetDataSnapshotListener?) -> Bool{
+        guard let customer = customer else {
+            print("Customer is nil")
+            return false
+        }
+        guard let plumber = customer.getPlumber() else {
+            print("There is no plumber")
+            return false
+        }
+        let plumberReference:DatabaseReference = TempCustomerData.database.child(plumber)
+        if let plumberListener = plumberListener {
+            plumberListener.onStart();
+        }
+        plumberReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                //var plumber = Contrator(dictionary)
+                if let listener = plumberListener {
+                    print(dictionary)
+                    listener.onSuccess(dataSnapshot: snapshot)
+                }
+            }
+        }) { (error) in
+            if let listener = plumberListener {
+                listener.onFailure(error)
+                
+            }
+        }
+        return true
     }
-    public func getPlumberReference() {
-        var TODO_ImplementGetPlumberReference🤔:AnyObject?
+    public func getPlumberReference() -> String? {
+        return getCustomer()?.getPlumber()
     }
     public func getPlumbingServices() {
         var TODO_ImplementGetPlumbingServices🤔:AnyObject?

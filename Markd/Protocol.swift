@@ -35,10 +35,15 @@ public protocol OnGetDataListener {
     func onSuccess()
     func onFailure(_ error: Error)
 }
+public protocol OnGetDataSnapshotListener {
+    func onStart()
+    func onSuccess(dataSnapshot: DataSnapshot)
+    func onFailure(_ error: Error)
+}
 
 extension CustomStringConvertible {
     public var description: String {
-        var description = "***** \(type(of: self)) ***** \n "
+        var description = "\n***** \(type(of: self)) ***** \n "
         let selfMirror = Mirror(reflecting:self)
         for child in selfMirror.children {
             if let propertyName = child.label {

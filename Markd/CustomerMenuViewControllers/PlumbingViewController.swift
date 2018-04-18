@@ -10,10 +10,13 @@ import Foundation
 import UIKit
 import Firebase
 
-public class PlumbingViewController: UIViewController, OnGetDataListener {
+public class PlumbingViewController: UIViewController, OnGetDataListener, OnGetDataSnapshotListener {
+
+    
     private let authentication = FirebaseAuthentication.sharedInstance
     private var customerData: TempCustomerData?
     private var applianceToEdit: Appliance?
+    var plumber: DataSnapshot?
     
     @IBOutlet weak var plumbingScrollView: UIScrollView!
     //Hot Water
@@ -30,7 +33,6 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     var TODO_NotYetImplementedPlumbingPage🤔:AnyObject?
     /*
      Check if Contractor or Home Owner on page
-     Add Contractor to Footer
      Initialize Services
      */
     
@@ -60,6 +62,10 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     private func configureView() {
         initializeHotWater()
         initializeBoiler()
+    }
+    private func configureFooterView(with contractor:Contractor) {
+        var TODO_ImplementConfigureFooter😭:AnyObject?
+        print(contractor)
     }
     private func initializeHotWater() {
         if let hotWater = customerData?.getHotWater() {
@@ -138,19 +144,30 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
             in: self)
     }
     
-    //Mark:- OnGetDataListener Implementation
+    //Mark:- GetData Protocols
     public func onStart() {
-        print("Getting Customer Data")
+        print("Getting Data")
     }
     
     public func onSuccess() {
         print("PlumbingViewController:- Got Customer Data")
         configureView()
+        guard customerData!.getPlumber(plumberListener: self) else {
+            //initializeEmpty
+            var TODO_InitializeEmptyFooter😧:AnyObject?
+            return
+        }
+    }
+    
+    public func onSuccess(dataSnapshot: DataSnapshot) {
+        print("ContractorGetDataListener:- Got Plumber Data")
+        if let contractorDictionary = dataSnapshot.value as? Dictionary<String, AnyObject> {
+            configureFooterView(with: Contractor(contractorDictionary))
+        }
     }
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
         AlertControllerUtilities.somethingWentWrong(with: self)
     }
-    
 }
