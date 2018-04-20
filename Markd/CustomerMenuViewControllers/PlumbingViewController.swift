@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-public class PlumbingViewController: UIViewController, OnGetDataListener, OnGetDataSnapshotListener {
+public class PlumbingViewController: UIViewController, OnGetDataListener {
 
     
     private let authentication = FirebaseAuthentication.sharedInstance
@@ -30,6 +30,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener, OnGetD
     @IBOutlet weak var boilerInstallDate: UILabel!
     @IBOutlet weak var boilerLifeSpan: UILabel!
     
+    var plumberFooterViewController: OnGetContractorListener?
     var TODO_NotYetImplementedPlumbingPage🤔:AnyObject?
     /*
      Check if Contractor or Home Owner on page
@@ -62,10 +63,6 @@ public class PlumbingViewController: UIViewController, OnGetDataListener, OnGetD
     private func configureView() {
         initializeHotWater()
         initializeBoiler()
-    }
-    private func configureFooterView(with contractor:Contractor) {
-        var TODO_ImplementConfigureFooter😭:AnyObject?
-        print(contractor)
     }
     private func initializeHotWater() {
         if let hotWater = customerData?.getHotWater() {
@@ -117,6 +114,11 @@ public class PlumbingViewController: UIViewController, OnGetDataListener, OnGetD
             destination.customerData = customerData
             return
         }
+        if segue.identifier == "plumberFooterSegue" {
+            let destination = segue.destination as! ContractorFooterViewController
+            self.plumberFooterViewController = destination
+            return
+        }
     }
     
     @IBAction func switchButtonAction(_ sender: UIBarButtonItem) {
@@ -152,18 +154,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener, OnGetD
     public func onSuccess() {
         print("PlumbingViewController:- Got Customer Data")
         configureView()
-        guard customerData!.getPlumber(plumberListener: self) else {
-            //initializeEmpty
-            var TODO_InitializeEmptyFooter😧:AnyObject?
-            return
-        }
-    }
-    
-    public func onSuccess(dataSnapshot: DataSnapshot) {
-        print("ContractorGetDataListener:- Got Plumber Data")
-        if let contractorDictionary = dataSnapshot.value as? Dictionary<String, AnyObject> {
-            configureFooterView(with: Contractor(contractorDictionary))
-        }
+        customerData!.getPlumber(plumberListener: plumberFooterViewController)
     }
     
     public func onFailure(_ error: Error) {

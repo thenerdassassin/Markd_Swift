@@ -25,10 +25,10 @@ public class HvacViewController: UIViewController, OnGetDataListener {
     @IBOutlet weak var compressorInstallDate: UILabel!
     @IBOutlet weak var compressorLifeSpan: UILabel!
     
+    var hvacTechnicianFooterViewController: OnGetContractorListener?
     var TODO_NotYetImplementedHvacPage:AnyObject?
     /*
      Check if Contractor or Home Owner on page
-     Add Contractor to Footer
      Initialize Services
      */
     
@@ -107,6 +107,11 @@ public class HvacViewController: UIViewController, OnGetDataListener {
             destination.customerData = customerData
             return
         }
+        if segue.identifier == "hvacFooterSegue" {
+            let destination = segue.destination as! ContractorFooterViewController
+            self.hvacTechnicianFooterViewController = destination
+            return
+        }
     }
     
     @IBAction func showActionSheet(_ sender: UIBarButtonItem) {
@@ -138,6 +143,7 @@ public class HvacViewController: UIViewController, OnGetDataListener {
     public func onSuccess() {
         print("HvacViewController:- Got Customer Data")
         configureView()
+        customerData!.getHvacTechnician(hvacTechnicianListener: hvacTechnicianFooterViewController)
     }
     
     public func onFailure(_ error: Error) {

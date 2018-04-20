@@ -177,34 +177,23 @@ public class TempCustomerData {
     public func updateBoiler(to boiler:Boiler) {
          updateCustomer(to: getCustomer()?.setBoiler(to: boiler))
     }
-    public func getPlumber(plumberListener: OnGetDataSnapshotListener?) -> Bool{
-        guard let customer = customer else {
-            print("Customer is nil")
-            return false
+    public func getPlumber(plumberListener: OnGetContractorListener?) {
+        guard let listener = plumberListener else {
+            return
         }
-        guard let plumber = customer.getPlumber() else {
+        guard let customer = customer, let plumber = customer.getPlumber() else {
             print("There is no plumber")
-            return false
+            listener.onFinished(contractor: nil)
+            return
         }
         let plumberReference:DatabaseReference = TempCustomerData.database.child(plumber)
-        if let plumberListener = plumberListener {
-            plumberListener.onStart();
-        }
         plumberReference.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
-                //var plumber = Contrator(dictionary)
-                if let listener = plumberListener {
-                    print(dictionary)
-                    listener.onSuccess(dataSnapshot: snapshot)
-                }
+                listener.onFinished(contractor: Contractor(dictionary))
             }
         }) { (error) in
-            if let listener = plumberListener {
-                listener.onFailure(error)
-                
-            }
+            listener.onFailure(error)
         }
-        return true
     }
     public func getPlumberReference() -> String? {
         return getCustomer()?.getPlumber()
@@ -226,11 +215,26 @@ public class TempCustomerData {
     public func updateCompressor(to compressor:Compressor) {
          updateCustomer(to: getCustomer()?.setCompressor(to: compressor))
     }
-    public func getHvacTechnician() {
-        var TODO_ImplementGetHvacTechnician🤔:AnyObject?
+    public func getHvacTechnician(hvacTechnicianListener: OnGetContractorListener?) {
+        guard let listener = hvacTechnicianListener else {
+            return
+        }
+        guard let customer = customer, let hvacTechnician = customer.getHvacTechnician() else {
+            print("There is no hvac technician")
+            listener.onFinished(contractor: nil)
+            return
+        }
+        let hvaeTechnicianReference:DatabaseReference = TempCustomerData.database.child(hvacTechnician)
+        hvaeTechnicianReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                listener.onFinished(contractor: Contractor(dictionary))
+            }
+        }) { (error) in
+            listener.onFailure(error)
+        }
     }
-    public func getHvactechnicianReference() {
-        var TODO_ImplementGetHvactechnicianReference🤔:AnyObject?
+    public func getHvactechnicianReference() -> String? {
+        return getCustomer()?.getHvacTechnician()
     }
     public func getHvacServices() {
         var TODO_ImplementGetHvacServices🤔:AnyObject?

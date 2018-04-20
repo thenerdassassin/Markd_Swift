@@ -195,6 +195,13 @@ public class Customer:CustomStringConvertible {
         self.compressor = compressor
         return self
     }
+    func getHvacTechnician() -> String? {
+        if(StringUtilities.isNilOrEmpty(hvactechnicianReference)) {
+            return nil
+        }
+        return hvactechnicianReference
+    }
+    
     var TODO_Implement_All_Setters_And_Helpers🤬:AnyObject?
     
     func toDictionary() -> Dictionary<String, AnyObject> {

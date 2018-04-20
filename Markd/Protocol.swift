@@ -35,9 +35,8 @@ public protocol OnGetDataListener {
     func onSuccess()
     func onFailure(_ error: Error)
 }
-public protocol OnGetDataSnapshotListener {
-    func onStart()
-    func onSuccess(dataSnapshot: DataSnapshot)
+public protocol OnGetContractorListener {
+    func onFinished(contractor: Contractor?)
     func onFailure(_ error: Error)
 }
 

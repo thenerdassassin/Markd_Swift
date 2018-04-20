@@ -34,6 +34,8 @@
 		FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82F315205439BA00E33304 /* HelpViewController.swift */; };
 		FF9A5B3A2086C2D3007E9669 /* Contractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9A5B392086C2D3007E9669 /* Contractor.swift */; };
 		FF9A5B3C2086C69F007E9669 /* ContractorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9A5B3B2086C69F007E9669 /* ContractorDetails.swift */; };
+		FF9A5B40208AA429007E9669 /* ContractorFooter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9A5B3E208AA428007E9669 /* ContractorFooter.storyboard */; };
+		FF9A5B42208AA484007E9669 /* ContractorFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9A5B41208AA484007E9669 /* ContractorFooterViewController.swift */; };
 		FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */; };
 		FFA1E86D207D864E009D2FD3 /* EditApplianceFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */; };
 		FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB565892079274400F6E8F1 /* HvacViewController.swift */; };
@@ -87,6 +89,8 @@
 		FF82F315205439BA00E33304 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		FF9A5B392086C2D3007E9669 /* Contractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contractor.swift; sourceTree = "<group>"; };
 		FF9A5B3B2086C69F007E9669 /* ContractorDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorDetails.swift; sourceTree = "<group>"; };
+		FF9A5B3F208AA428007E9669 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Markd/Base.lproj/ContractorFooter.storyboard; sourceTree = SOURCE_ROOT; };
+		FF9A5B41208AA484007E9669 /* ContractorFooterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorFooterViewController.swift; sourceTree = "<group>"; };
 		FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditApplianceTableViewController.swift; sourceTree = "<group>"; };
 		FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditApplianceFieldViewController.swift; sourceTree = "<group>"; };
 		FFB565892079274400F6E8F1 /* HvacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HvacViewController.swift; sourceTree = "<group>"; };
@@ -149,13 +153,13 @@
 		47E0EA401DF3865C001F417F /* Markd */ = {
 			isa = PBXGroup;
 			children = (
+				FF9A5B3D208AA405007E9669 /* Storyboards */,
 				FF40718B20827E980008883A /* PickerViewControllers */,
 				FFF45D81203CE57200EC732B /* Utilities */,
 				FF6C030C2038965A0058259F /* DataObjects */,
 				FF6C030B203896230058259F /* CustomerSubMenuViewControllers */,
 				FF6C030A203895E00058259F /* CustomerMenuViewControllers */,
 				FF6C0309203895B60058259F /* UserAuthentication */,
-				47E0EA451DF3865C001F417F /* Main.storyboard */,
 				47E0EA411DF3865C001F417F /* AppDelegate.swift */,
 				47133A5E1DF632B000D86E07 /* DataObjects.swift */,
 				4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */,
@@ -244,6 +248,16 @@
 			path = DataObjects;
 			sourceTree = "<group>";
 		};
+		FF9A5B3D208AA405007E9669 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				47E0EA451DF3865C001F417F /* Main.storyboard */,
+				FF9A5B3E208AA428007E9669 /* ContractorFooter.storyboard */,
+				FF9A5B41208AA484007E9669 /* ContractorFooterViewController.swift */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		FFF45D81203CE57200EC732B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +336,7 @@
 				47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */,
 				FFF45D802038C3C200EC732B /* GoogleService-Info.plist in Resources */,
 				47E0EA491DF3865C001F417F /* Assets.xcassets in Resources */,
+				FF9A5B40208AA429007E9669 /* ContractorFooter.storyboard in Resources */,
 				47E0EA471DF3865C001F417F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +440,7 @@
 				4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */,
 				FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */,
 				47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */,
+				FF9A5B42208AA484007E9669 /* ContractorFooterViewController.swift in Sources */,
 				FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */,
 				47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */,
 				FF9A5B3C2086C69F007E9669 /* ContractorDetails.swift in Sources */,
@@ -456,6 +472,14 @@
 				47E0EA4B1DF3865C001F417F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		FF9A5B3E208AA428007E9669 /* ContractorFooter.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF9A5B3F208AA428007E9669 /* Base */,
+			);
+			name = ContractorFooter.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
