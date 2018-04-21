@@ -1566,13 +1566,13 @@ The Markd Support Team</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Manufacturer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AWI-MF-clm">
-                                <rect key="frame" x="40" y="60" width="295" height="30"/>
+                                <rect key="frame" x="40" y="104" width="295" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="ZDX-ki-dSS">
-                                <rect key="frame" x="0.0" y="140" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="184" width="375" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="545421305.99561799">
                                     <!--2018-04-14 17:55:05 +0000-->
                                 </date>
@@ -1584,7 +1584,7 @@ The Markd Support Team</string>
                                 </connections>
                             </datePicker>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ug-4p-R5f" customClass="LifeSpanPickerView" customModule="Markd" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="140" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="184" width="375" height="216"/>
                             </pickerView>
                         </subviews>
                         <constraints>
@@ -2127,8 +2127,8 @@ The Markd Support Team</string>
         <image name="whiteTransparentLogo" width="803" height="282"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RsD-7L-Wkc"/>
-        <segue reference="RUw-r6-xxZ"/>
+        <segue reference="a1A-wZ-rhT"/>
+        <segue reference="IeO-Sg-yGc"/>
         <segue reference="0Ta-jB-fSK"/>
     </inferredMetricsTieBreakers>
 </document>
