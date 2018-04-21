@@ -21,51 +21,42 @@ public class ContractorDetails:CustomStringConvertible {
         self.zipCode = dictionary["zipCode"] != nil ? dictionary["zipCode"] as! String: ""
     }
     
-    var TODO_Contractor_Getter_Setter_😤:AnyObject?
     var TODO_toDictionary_Implementations🤬:AnyObject?
-    /*
-     //Mark:- Getters/Setters
-     public String getCompanyName() {
-     return companyName;
-     }
-     public ContractorDetails setCompanyName(String companyName) {
-     this.companyName = companyName;
-     return this;
-     }
-     
-     public String getTelephoneNumber() {
-     if(telephoneNumber == null) {
-     return "";
-     }
-     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-     return PhoneNumberUtils.formatNumber(telephoneNumber, Locale.getDefault().getCountry());
-     } else {
-     return PhoneNumberUtils.formatNumber(telephoneNumber); //Deprecated method
-     }
-     }
-     public ContractorDetails setTelephoneNumber(String telephoneNumber) {
-     telephoneNumber = telephoneNumber.replaceAll("[^0-9]", "");
-     if(telephoneNumber.length() != 10) {
-     return this;
-     }
-     this.telephoneNumber = telephoneNumber;
-     return this;
-     }
-     
-     public String getWebsiteUrl() {
-     return websiteUrl;
-     }
-     public ContractorDetails setWebsiteUrl(String websiteUrl) {
-     this.websiteUrl = websiteUrl;
-     return this;
-     }
-     
-     public String getZipCode() {
-     return zipCode;
-     }
-     public ContractorDetails setZipCode(String zipCode) {
-     this.zipCode = zipCode;
-     return this;
-     }
-    */
+    //Mark:- Getters/Setters
+    public func getCompanyName() -> String {
+        return self.companyName
+    }
+    public func setCompanyName(to companyName:String) -> ContractorDetails {
+        self.companyName = companyName
+        return self
+    }
+    
+    public func getTelephoneNumber() -> String? {
+        return StringUtilities.format(phoneNumber: self.telephoneNumber)
+    }
+    public func setTelephoneNumber(to telephoneNumber:String) -> ContractorDetails {
+        let phoneNumber = telephoneNumber.replacingOccurrences(of: "[^0-9]", with: "", options:.regularExpression)
+        if phoneNumber.count == 10 {
+            self.telephoneNumber = phoneNumber
+        }
+        return self
+    }
+    
+    public func getWebsiteUrl() -> String {
+        return self.websiteUrl
+    }
+    public func setWebsiteUrl(to websiteUrl: String) -> ContractorDetails {
+        self.websiteUrl = websiteUrl
+        return self
+    }
+    
+    public func getZipCode() -> String {
+        return self.zipCode
+    }
+    public func setZipCode(to zipCode: String) -> ContractorDetails {
+        self.zipCode = zipCode
+        return self
+    }
 }
+
+

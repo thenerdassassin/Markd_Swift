@@ -29,70 +29,69 @@ public class Contractor:CustomStringConvertible {
         if let detailsDictionary = dictionary["contractorDetails"] as? Dictionary<String, AnyObject> {
             self.contractorDetails = ContractorDetails(detailsDictionary)
         }
-        //TODO: Contractor Details
         //TODO: Customers
         self.logoFileName = dictionary["logoFileName"] != nil ? dictionary["logoFileName"] as! String: ""
     }
-    
-    var TODO_Contractor_Getter_Setter_😤:AnyObject?
     var TODO_toDictionary_Implementations🤬:AnyObject?
-    /*Mark:- Getters/Setters
-    public String getNamePrefix() {
-    return namePrefix;
+    
+    //Mark:- Getters/Setters
+    public func getNamePrefix() -> String {
+        return self.namePrefix
     }
-    public Contractor setNamePrefix(String namePrefix) {
-    this.namePrefix = namePrefix;
-    return this;
+    public func setNamePrefix(to namePrefix: String) -> Contractor {
+        self.namePrefix = namePrefix
+        return self
     }
     
-    public String getFirstName() {
-    return firstName;
+    public func getFirstName() -> String {
+        return self.firstName
     }
-    public Contractor setFirstName(String firstName) {
-    this.firstName = firstName;
-    return this;
-    }
-    
-    public String getLastName() {
-    return lastName;
-    }
-    public Contractor setLastName(String lastName) {
-    this.lastName = lastName;
-    return this;
+    public func setFirstName(to firstName: String) -> Contractor {
+        self.firstName = firstName
+        return self
     }
     
-    public String getType() {
-    return type;
+    public func getLastName() -> String {
+        return self.lastName
     }
-    public Contractor setType(String type) {
-    this.type = type;
-    return this;
-    }
-    
-    public ContractorDetails getContractorDetails() {
-    return contractorDetails;
-    }
-    public Contractor setContractorDetails(ContractorDetails contractorDetails) {
-    this.contractorDetails = contractorDetails;
-    return this;
+    public func setLastName(to lastName:String) -> Contractor {
+        self.lastName = lastName
+        return self
     }
     
+    public func getType() -> String {
+        return self.type
+    }
+    public func setType(to type:String) -> Contractor{
+        self.type = type
+        return self
+    }
+    
+    public func getContractorDetails() -> ContractorDetails? {
+        return self.contractorDetails
+    }
+    public func setContractorDetails(to contractorDetails:ContractorDetails) -> Contractor {
+        self.contractorDetails = contractorDetails
+        return self
+    }
+    
+    public func getLogoFileName() -> String {
+        return self.logoFileName
+    }
+    public func setLogoFileName() -> Contractor {
+        self.logoFileName = UUID.init().uuidString
+        return self
+    }
+    /*
     public List<String> getCustomers() {
-    return customers;
+        return customers;
     }
     public Contractor setCustomers(List<String> customers) {
-    this.customers = customers;
-    return this;
-    }
-    
-    public String getLogoFileName() {
-    return logoFileName;
-    }
-    public Contractor setLogoFileName() {
-    this.logoFileName = UUID.randomUUID().toString();
-    return this;
+        this.customers = customers;
+        return this;
     }
     */
+    
     //Mark:- Helper functions
     public func updateProfile(namePrefix:String, firstName:String, lastName:String, contractorType:String) {
         self.namePrefix = namePrefix;
