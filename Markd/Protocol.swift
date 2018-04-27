@@ -36,7 +36,7 @@ public protocol OnGetDataListener {
     func onFailure(_ error: Error)
 }
 public protocol OnGetContractorListener {
-    func onFinished(contractor: Contractor?)
+    func onFinished(contractor: Contractor?, at reference: String?)
     func onFailure(_ error: Error)
 }
 

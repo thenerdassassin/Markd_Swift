@@ -183,13 +183,13 @@ public class TempCustomerData {
         }
         guard let customer = customer, let plumber = customer.getPlumber() else {
             print("There is no plumber")
-            listener.onFinished(contractor: nil)
+            listener.onFinished(contractor: nil, at: nil)
             return
         }
         let plumberReference:DatabaseReference = TempCustomerData.database.child(plumber)
         plumberReference.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
-                listener.onFinished(contractor: Contractor(dictionary))
+                listener.onFinished(contractor: Contractor(dictionary), at: plumber)
             }
         }) { (error) in
             listener.onFailure(error)
@@ -221,13 +221,13 @@ public class TempCustomerData {
         }
         guard let customer = customer, let hvacTechnician = customer.getHvacTechnician() else {
             print("There is no hvac technician")
-            listener.onFinished(contractor: nil)
+            listener.onFinished(contractor: nil, at: nil)
             return
         }
         let hvaeTechnicianReference:DatabaseReference = TempCustomerData.database.child(hvacTechnician)
         hvaeTechnicianReference.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
-                listener.onFinished(contractor: Contractor(dictionary))
+                listener.onFinished(contractor: Contractor(dictionary), at:hvacTechnician)
             }
         }) { (error) in
             listener.onFailure(error)

@@ -11,8 +11,6 @@ import UIKit
 import Firebase
 
 public class PlumbingViewController: UIViewController, OnGetDataListener {
-
-    
     private let authentication = FirebaseAuthentication.sharedInstance
     private var customerData: TempCustomerData?
     private var applianceToEdit: Appliance?
