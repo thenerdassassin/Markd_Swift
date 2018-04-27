@@ -14,6 +14,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     private var customerData: TempCustomerData?
     private var applianceToEdit: Appliance?
+    var plumber: DataSnapshot?
     
     @IBOutlet weak var plumbingScrollView: UIScrollView!
     //Hot Water
@@ -27,10 +28,10 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     @IBOutlet weak var boilerInstallDate: UILabel!
     @IBOutlet weak var boilerLifeSpan: UILabel!
     
+    var plumberFooterViewController: OnGetContractorListener?
     var TODO_NotYetImplementedPlumbingPage🤔:AnyObject?
     /*
      Check if Contractor or Home Owner on page
-     Add Contractor to Footer
      Initialize Services
      */
     
@@ -111,6 +112,11 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
             destination.customerData = customerData
             return
         }
+        if segue.identifier == "plumberFooterSegue" {
+            let destination = segue.destination as! ContractorFooterViewController
+            self.plumberFooterViewController = destination
+            return
+        }
     }
     
     @IBAction func switchButtonAction(_ sender: UIBarButtonItem) {
@@ -138,19 +144,19 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
             in: self)
     }
     
-    //Mark:- OnGetDataListener Implementation
+    //Mark:- GetData Protocols
     public func onStart() {
-        print("Getting Customer Data")
+        print("Getting Data")
     }
     
     public func onSuccess() {
         print("PlumbingViewController:- Got Customer Data")
         configureView()
+        customerData!.getPlumber(plumberListener: plumberFooterViewController)
     }
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
         AlertControllerUtilities.somethingWentWrong(with: self)
     }
-    
 }

@@ -17,6 +17,11 @@ public class TempCustomerData {
     private var listener: OnGetDataListener?
     private var handle: UInt?
     
+    public func printCustomer() {
+        if let customer = customer {
+            print(customer.description)
+        }
+    }
     public init(_ getDataListener: OnGetDataListener?) {
         TempCustomerData.database.keepSynced(true)
         self.customerId = FirebaseAuthentication.sharedInstance.getCurrentUser()?.uid
@@ -39,7 +44,6 @@ public class TempCustomerData {
     
     public func removeListeners() {
         if let userReference = userReference, let handle = handle {
-            print("handle removed")
             userReference.removeObserver(withHandle: handle)
         }
     }
@@ -173,11 +177,26 @@ public class TempCustomerData {
     public func updateBoiler(to boiler:Boiler) {
          updateCustomer(to: getCustomer()?.setBoiler(to: boiler))
     }
-    public func getPlumber() {
-        var TODO_ImplementGetPlumber🤔:AnyObject?
+    public func getPlumber(plumberListener: OnGetContractorListener?) {
+        guard let listener = plumberListener else {
+            return
+        }
+        guard let customer = customer, let plumber = customer.getPlumber() else {
+            print("There is no plumber")
+            listener.onFinished(contractor: nil, at: nil)
+            return
+        }
+        let plumberReference:DatabaseReference = TempCustomerData.database.child(plumber)
+        plumberReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                listener.onFinished(contractor: Contractor(dictionary), at: plumber)
+            }
+        }) { (error) in
+            listener.onFailure(error)
+        }
     }
-    public func getPlumberReference() {
-        var TODO_ImplementGetPlumberReference🤔:AnyObject?
+    public func getPlumberReference() -> String? {
+        return getCustomer()?.getPlumber()
     }
     public func getPlumbingServices() {
         var TODO_ImplementGetPlumbingServices🤔:AnyObject?
@@ -196,11 +215,26 @@ public class TempCustomerData {
     public func updateCompressor(to compressor:Compressor) {
          updateCustomer(to: getCustomer()?.setCompressor(to: compressor))
     }
-    public func getHvacTechnician() {
-        var TODO_ImplementGetHvacTechnician🤔:AnyObject?
+    public func getHvacTechnician(hvacTechnicianListener: OnGetContractorListener?) {
+        guard let listener = hvacTechnicianListener else {
+            return
+        }
+        guard let customer = customer, let hvacTechnician = customer.getHvacTechnician() else {
+            print("There is no hvac technician")
+            listener.onFinished(contractor: nil, at: nil)
+            return
+        }
+        let hvaeTechnicianReference:DatabaseReference = TempCustomerData.database.child(hvacTechnician)
+        hvaeTechnicianReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                listener.onFinished(contractor: Contractor(dictionary), at:hvacTechnician)
+            }
+        }) { (error) in
+            listener.onFailure(error)
+        }
     }
-    public func getHvactechnicianReference() {
-        var TODO_ImplementGetHvactechnicianReference🤔:AnyObject?
+    public func getHvactechnicianReference() -> String? {
+        return getCustomer()?.getHvacTechnician()
     }
     public func getHvacServices() {
         var TODO_ImplementGetHvacServices🤔:AnyObject?
