@@ -171,7 +171,6 @@
 				47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */,
 				47500AC41E0794400099B0EE /* WebController.swift */,
 				47E0EA481DF3865C001F417F /* Assets.xcassets */,
-				47E0EA4A1DF3865C001F417F /* LaunchScreen.storyboard */,
 				47E0EA4D1DF3865C001F417F /* Info.plist */,
 				47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */,
 				479937671E1D806F00ADCD35 /* EditBreakerTextFieldController.swift */,
@@ -251,6 +250,7 @@
 		FF9A5B3D208AA405007E9669 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				47E0EA4A1DF3865C001F417F /* LaunchScreen.storyboard */,
 				47E0EA451DF3865C001F417F /* Main.storyboard */,
 				FF9A5B3E208AA428007E9669 /* ContractorFooter.storyboard */,
 				FF9A5B41208AA484007E9669 /* ContractorFooterViewController.swift */,
