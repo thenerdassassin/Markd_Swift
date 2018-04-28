@@ -107,7 +107,6 @@ public class Customer:CustomStringConvertible {
                 }
             }
         }
-        //TODO: electricalServices
         
         //TODO: interiorPaintSurfaces
         //TODO: exteriorPaintSurfaces
@@ -201,6 +200,9 @@ public class Customer:CustomStringConvertible {
         }
         return plumberReference
     }
+    func getPlumbingServices() -> [ContractorService]? {
+        return plumbingServices
+    }
     
     //Mark:- HVAC
     func getAirHandler() -> AirHandler? {
@@ -223,7 +225,14 @@ public class Customer:CustomStringConvertible {
         }
         return hvactechnicianReference
     }
+    func getHvacServices() -> [ContractorService]? {
+        return hvacServices
+    }
     
+    //Mar:- Electrical
+    func getElectricalServices() -> [ContractorService]? {
+        return electricalServices
+    }
     var TODO_Implement_All_Setters_And_Helpers🤬:AnyObject?
     
     func toDictionary() -> Dictionary<String, AnyObject> {

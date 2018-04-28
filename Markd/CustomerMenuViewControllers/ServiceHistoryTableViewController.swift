@@ -12,9 +12,9 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     private let authentication = FirebaseAuthentication.sharedInstance
     public var customerData:TempCustomerData?
     let cellIdentifier = "serviceCell"
-    var plumbingServices:[AnyObject?]?
-    var hvacServices:[AnyObject?]?
-    var electricalServices:[AnyObject?]?
+    var plumbingServices:[ContractorService]?
+    var hvacServices:[ContractorService]?
+    var electricalServices:[ContractorService]?
     
     var TODO_add_Markd_Header🙌🏻:AnyObject?
     
@@ -77,7 +77,7 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let serviceCell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServiceTableViewCell
-        var service:AnyObject?
+        var service:ContractorService?
         if indexPath.section == 0 {
             service = plumbingServices?[indexPath.row]
         } else if indexPath.section == 1 {
@@ -87,9 +87,9 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         }
         // TODO: Configure the cell...
         if let service = service {
-            serviceCell.contractorLabel.text = "Blah"
-            serviceCell.serviceDateLabel.text = "01.01.10"
-            serviceCell.serviceDetailsLabel.text = service.description
+            serviceCell.contractorLabel.text = service.getContractor()
+            serviceCell.serviceDateLabel.text = service.getDate()
+            serviceCell.commentsLabel.text = service.getComments()
         }
         
         return serviceCell
@@ -124,7 +124,9 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     
     public func onSuccess() {
         print("ServiceHistoryTableViewController:- Got Customer Data")
-        
+        plumbingServices = customerData!.getPlumbingServices()
+        hvacServices = customerData!.getHvacServices()
+        electricalServices = customerData!.getElectricalServices()
     }
     
     public func onFailure(_ error: Error) {
@@ -136,5 +138,5 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
 public class ServiceTableViewCell: UITableViewCell {
     @IBOutlet weak var contractorLabel: UILabel!
     @IBOutlet weak var serviceDateLabel: UILabel!
-    @IBOutlet weak var serviceDetailsLabel: UILabel!
+    @IBOutlet weak var commentsLabel: UILabel!
 }

@@ -32,7 +32,6 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     var TODO_NotYetImplementedPlumbingPage🤔:AnyObject?
     /*
      Check if Contractor or Home Owner on page
-     Initialize Services
      */
     
     override public func viewWillAppear(_ animated: Bool) {

@@ -463,16 +463,6 @@ The Markd Support Team</string>
                                     <constraint firstAttribute="trailing" secondItem="gTI-c4-PRe" secondAttribute="trailing" constant="10" id="nIs-Q0-z9k"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-BN-tpa">
-                                <rect key="frame" x="10" y="36.5" width="76" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelNavigationButton:" destination="xYT-qh-c4w" eventType="touchUpInside" id="EEy-Hd-DlE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9uE-X2-xKT" secondAttribute="trailing" constant="20" id="0Pm-bY-Fma"/>
@@ -481,13 +471,10 @@ The Markd Support Team</string>
                             <constraint firstItem="mPA-7K-xDV" firstAttribute="width" secondItem="mPA-7K-xDV" secondAttribute="height" multiplier="6:1" id="DD6-RB-q3G"/>
                             <constraint firstItem="WoP-fT-Adg" firstAttribute="top" secondItem="9uE-X2-xKT" secondAttribute="bottom" constant="40" id="OFx-wn-vj9"/>
                             <constraint firstItem="OCt-Ky-u7S" firstAttribute="leading" secondItem="50V-7s-vSx" secondAttribute="leading" constant="20" id="T1z-H3-KBE"/>
-                            <constraint firstItem="mPA-7K-xDV" firstAttribute="leading" secondItem="PQn-BN-tpa" secondAttribute="leading" constant="-10" id="ad0-VM-v9b"/>
                             <constraint firstItem="9uE-X2-xKT" firstAttribute="leading" secondItem="50V-7s-vSx" secondAttribute="leading" constant="20" id="cRZ-6K-jEa"/>
                             <constraint firstAttribute="trailing" secondItem="mPA-7K-xDV" secondAttribute="trailing" id="daE-EL-ffE"/>
-                            <constraint firstItem="j6Y-td-QdN" firstAttribute="leading" secondItem="PQn-BN-tpa" secondAttribute="trailing" constant="10" id="jNg-NU-rJk"/>
                             <constraint firstItem="mPA-7K-xDV" firstAttribute="width" secondItem="50V-7s-vSx" secondAttribute="width" id="ncd-Bh-e0p"/>
                             <constraint firstItem="OCt-Ky-u7S" firstAttribute="top" secondItem="mPA-7K-xDV" secondAttribute="bottom" constant="20" id="qVd-NR-vl2"/>
-                            <constraint firstItem="PQn-BN-tpa" firstAttribute="bottom" secondItem="mPA-7K-xDV" secondAttribute="bottom" constant="-5" id="tjd-jT-319"/>
                             <constraint firstItem="j6Y-td-QdN" firstAttribute="top" secondItem="Er8-EU-0hl" secondAttribute="bottom" id="x7f-Vw-vqh"/>
                         </constraints>
                     </view>
