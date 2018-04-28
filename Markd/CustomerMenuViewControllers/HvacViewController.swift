@@ -150,5 +150,4 @@ public class HvacViewController: UIViewController, OnGetDataListener {
         debugPrint(error)
         AlertControllerUtilities.somethingWentWrong(with: self)
     }
-    
 }

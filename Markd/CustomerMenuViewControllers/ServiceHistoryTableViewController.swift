@@ -8,14 +8,33 @@
 
 import UIKit
 
-class ServiceHistoryTableViewController: UITableViewController {
+class ServiceHistoryTableViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var customerData:TempCustomerData?
     let cellIdentifier = "serviceCell"
-
+    var plumbingServices:[AnyObject?]?
+    var hvacServices:[AnyObject?]?
+    var electricalServices:[AnyObject?]?
+    
+    var TODO_add_Markd_Header🙌🏻:AnyObject?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView() //Removes seperators after list
+        self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+    }
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if(authentication.checkLogin(self)) {
+            customerData = TempCustomerData(self)
+        }
+    }
+    override public func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        FirebaseAuthentication.sharedInstance.removeStateListener()
+        if let customerData = customerData {
+            customerData.removeListeners()
+        }
     }
     // MARK: - Table view data source
 
@@ -25,20 +44,23 @@ class ServiceHistoryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if section == 0 {
             //Plumbing
-            return 3
+            if let plumbingServices = plumbingServices {
+                return plumbingServices.count
+            }
         } else if section == 1 {
             //Hvac
-            return 1
+            if let hvacServices = hvacServices {
+                return hvacServices.count
+            }
         } else if section == 2 {
             //Electrical
-            return 1
-        } else {
-            //N/A
-            return 0
+            if let electricalServices = electricalServices {
+                return electricalServices.count
+            }
         }
+        return 0
     }
     
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
@@ -54,20 +76,24 @@ class ServiceHistoryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath)
-
+        let serviceCell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServiceTableViewCell
+        var service:AnyObject?
+        if indexPath.section == 0 {
+            service = plumbingServices?[indexPath.row]
+        } else if indexPath.section == 1 {
+            service = hvacServices?[indexPath.row]
+        } else if indexPath.section == 2 {
+            service = electricalServices?[indexPath.row]
+        }
         // TODO: Configure the cell...
+        if let service = service {
+            serviceCell.contractorLabel.text = "Blah"
+            serviceCell.serviceDateLabel.text = "01.01.10"
+            serviceCell.serviceDetailsLabel.text = service.description
+        }
         
-        return cell
+        return serviceCell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
     /*
     // Override to support editing the table view.
@@ -82,21 +108,6 @@ class ServiceHistoryTableViewController: UITableViewController {
     */
 
     /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -105,7 +116,21 @@ class ServiceHistoryTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    // Mark:- OnGetDataListener
+    public func onStart() {
+        print("Getting Customer Data")
+    }
+    
+    public func onSuccess() {
+        print("ServiceHistoryTableViewController:- Got Customer Data")
+        
+    }
+    
+    public func onFailure(_ error: Error) {
+        debugPrint(error)
+        AlertControllerUtilities.somethingWentWrong(with: self)
+    }
 }
 
 public class ServiceTableViewCell: UITableViewCell {

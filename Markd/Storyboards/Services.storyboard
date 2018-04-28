@@ -58,6 +58,7 @@
                                         <constraint firstItem="8Lk-Wg-t5L" firstAttribute="height" secondItem="GJD-Gx-AaH" secondAttribute="height" multiplier="0.5" constant="-7.5" id="oat-pJ-gRe"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="contractorLabel" destination="8Lk-Wg-t5L" id="vmF-dF-nzj"/>
                                     <outlet property="serviceDateLabel" destination="cBU-9M-zHA" id="sjZ-ye-Vt3"/>
