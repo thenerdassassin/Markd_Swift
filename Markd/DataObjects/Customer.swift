@@ -31,18 +31,18 @@ public class Customer:CustomStringConvertible {
     private var hotWater: HotWater?
     private var boiler: Boiler?
     private var plumberReference: String
-    //TODO: private List<ContractorService> plumbingServices
+    private var plumbingServices: [ContractorService]?
     
     //For HVAC Page
     private var airHandler: AirHandler?
     private var compressor: Compressor?
     private var hvactechnicianReference: String
-    //TODO: private List<ContractorService> hvacServices;
+    private var hvacServices: [ContractorService]?
     
     //For Electrical Page
     //TODO: private List<Panel> panels
     private var electricianReference: String
-    //TODO: private List<ContractorService> electricalServices
+    private var electricalServices: [ContractorService]?
     
     //For Painting Page
     //TODO: private List<PaintSurface> interiorPaintSurfaces
@@ -72,7 +72,14 @@ public class Customer:CustomStringConvertible {
             self.boiler = Boiler(boilerDictionary)
         }
         self.plumberReference = dictionary["plumberReference"] != nil ? dictionary["plumberReference"] as! String: ""
-        //TODO: plumbingServices
+        if let plumbingArray = dictionary["plumbingServices"] as? NSArray {
+            plumbingServices = [ContractorService]()
+            for service in plumbingArray {
+                if let serviceDictionary = service as? Dictionary<String, AnyObject> {
+                    plumbingServices!.append(ContractorService(serviceDictionary))
+                }
+            }
+        }
         
         if let airHandlerDictionary = dictionary["airHandler"] as? Dictionary<String, AnyObject> {
             self.airHandler = AirHandler(airHandlerDictionary)
@@ -81,10 +88,25 @@ public class Customer:CustomStringConvertible {
             self.compressor = Compressor(compressorDictionary)
         }
         self.hvactechnicianReference = dictionary["hvactechnicianReference"] != nil ? dictionary["hvactechnicianReference"] as! String: ""
-        //TODO: hvacServices
+        if let hvacArray = dictionary["hvacServices"] as? NSArray {
+            hvacServices = [ContractorService]()
+            for service in hvacArray {
+                if let serviceDictionary = service as? Dictionary<String, AnyObject> {
+                    hvacServices!.append(ContractorService(serviceDictionary))
+                }
+            }
+        }
         
         //TODO: panels
         self.electricianReference = dictionary["electricianReference"] != nil ? dictionary["electricianReference"] as! String: ""
+        if let electricalArray = dictionary["electricalServices"] as? NSArray {
+            electricalServices = [ContractorService]()
+            for service in electricalArray {
+                if let serviceDictionary = service as? Dictionary<String, AnyObject> {
+                    electricalServices!.append(ContractorService(serviceDictionary))
+                }
+            }
+        }
         //TODO: electricalServices
         
         //TODO: interiorPaintSurfaces
@@ -221,6 +243,11 @@ public class Customer:CustomStringConvertible {
         dictionary["hotWater"] = self.hotWater?.toDictionary() as AnyObject
         dictionary["boiler"] = self.boiler?.toDictionary() as AnyObject
         dictionary["plumberReference"] = self.plumberReference as AnyObject
+        if let plumbingServices = plumbingServices {
+            for service in plumbingServices {
+              print(service)
+            }
+        }
         //TODO: plumbingServices
         
         dictionary["airHandler"] = self.airHandler?.toDictionary() as AnyObject

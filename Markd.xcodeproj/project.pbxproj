@@ -31,6 +31,7 @@
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF592F7320683E090031DA92 /* Boiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF592F7220683E090031DA92 /* Boiler.swift */; };
 		FF6BF1E92093DF64001D55EF /* ServiceHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1E82093DF64001D55EF /* ServiceHistoryTableViewController.swift */; };
+		FF6BF1EB2094EC67001D55EF /* ContractorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1EA2094EC67001D55EF /* ContractorService.swift */; };
 		FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */; };
 		FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82F315205439BA00E33304 /* HelpViewController.swift */; };
 		FF9A5B3A2086C2D3007E9669 /* Contractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9A5B392086C2D3007E9669 /* Contractor.swift */; };
@@ -88,6 +89,7 @@
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF592F7220683E090031DA92 /* Boiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boiler.swift; sourceTree = "<group>"; };
 		FF6BF1E82093DF64001D55EF /* ServiceHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHistoryTableViewController.swift; sourceTree = "<group>"; };
+		FF6BF1EA2094EC67001D55EF /* ContractorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorService.swift; sourceTree = "<group>"; };
 		FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		FF82F315205439BA00E33304 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		FF9A5B392086C2D3007E9669 /* Contractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contractor.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				FFB56591207AA8F500F6E8F1 /* Appliance.swift */,
 				FF9A5B392086C2D3007E9669 /* Contractor.swift */,
 				FF9A5B3B2086C69F007E9669 /* ContractorDetails.swift */,
+				FF6BF1EA2094EC67001D55EF /* ContractorService.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				FFF27C902041F76E00A9392E /* StringUtilities.swift in Sources */,
 				FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */,
 				FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */,
+				FF6BF1EB2094EC67001D55EF /* ContractorService.swift in Sources */,
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
 				47500AC51E0794400099B0EE /* WebController.swift in Sources */,
 				FFF27C96204CB8B500A9392E /* PlumbingViewController.swift in Sources */,
