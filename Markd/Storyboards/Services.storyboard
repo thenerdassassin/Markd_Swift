@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gwu-aW-8dG">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Services-->
+        <scene sceneID="NrM-CS-2EM">
+            <objects>
+                <tableViewController id="gwu-aW-8dG" customClass="ServiceHistoryTableViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bZN-lU-47y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" id="l7l-lV-53i" customClass="ServiceTableViewCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l7l-lV-53i" id="GJD-Gx-AaH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contractor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lk-Wg-t5L">
+                                            <rect key="frame" x="20" y="5" width="83" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBU-9M-zHA">
+                                            <rect key="frame" x="257.5" y="5" width="97.5" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6m-KX-vjO">
+                                            <rect key="frame" x="20" y="17.5" width="335" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="D6m-KX-vjO" secondAttribute="trailing" constant="20" id="1aH-jr-ewx"/>
+                                        <constraint firstItem="D6m-KX-vjO" firstAttribute="leading" secondItem="GJD-Gx-AaH" secondAttribute="leading" constant="20" id="B0v-pm-qDb"/>
+                                        <constraint firstItem="cBU-9M-zHA" firstAttribute="top" secondItem="GJD-Gx-AaH" secondAttribute="top" constant="5" id="FaY-eX-wgv"/>
+                                        <constraint firstItem="cBU-9M-zHA" firstAttribute="height" secondItem="8Lk-Wg-t5L" secondAttribute="height" id="IJe-pI-4u6"/>
+                                        <constraint firstItem="cBU-9M-zHA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Lk-Wg-t5L" secondAttribute="trailing" constant="10" id="anO-oM-emZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="cBU-9M-zHA" secondAttribute="trailing" constant="20" id="dhi-Dc-GEl"/>
+                                        <constraint firstItem="8Lk-Wg-t5L" firstAttribute="top" secondItem="GJD-Gx-AaH" secondAttribute="top" constant="5" id="eaB-mG-DQY"/>
+                                        <constraint firstItem="8Lk-Wg-t5L" firstAttribute="leading" secondItem="GJD-Gx-AaH" secondAttribute="leading" constant="20" id="ka3-sn-h2e"/>
+                                        <constraint firstAttribute="bottom" secondItem="D6m-KX-vjO" secondAttribute="bottom" constant="5" id="o8p-bg-VqN"/>
+                                        <constraint firstItem="8Lk-Wg-t5L" firstAttribute="height" secondItem="GJD-Gx-AaH" secondAttribute="height" multiplier="0.5" constant="-7.5" id="oat-pJ-gRe"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contractorLabel" destination="8Lk-Wg-t5L" id="vmF-dF-nzj"/>
+                                    <outlet property="serviceDateLabel" destination="cBU-9M-zHA" id="sjZ-ye-Vt3"/>
+                                    <outlet property="serviceDetailsLabel" destination="D6m-KX-vjO" id="mrj-GO-Rlf"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gwu-aW-8dG" id="sTR-uW-rkH"/>
+                            <outlet property="delegate" destination="gwu-aW-8dG" id="wMY-dy-Y4p"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Services" image="ic_action_services" selectedImage="ic_action_services" id="x7s-eP-XnM"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hdh-d5-DWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-366" y="-92"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_action_services" width="24" height="24"/>
+    </resources>
+</document>
