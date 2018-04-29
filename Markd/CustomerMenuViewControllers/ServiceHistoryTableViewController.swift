@@ -37,12 +37,10 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         }
     }
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // Plumbing, Hvac, Electrical
         return 3
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             //Plumbing
@@ -62,7 +60,6 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         }
         return 0
     }
-    
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
         if section == 0 {
             return "Plumbing Service History"
@@ -74,7 +71,6 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
             return ""
         }
     }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let serviceCell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServiceTableViewCell
         var service:ContractorService?
@@ -106,16 +102,13 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         }    
     }
     */
-
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showContractorServiceSegue" {
+            //let destination = segue.destination as! ContractorServiceTableViewController
+            var TODO_PassInfoInSegue_😳:AnyObject?
+        }
     }
-    */
     
     // Mark:- OnGetDataListener
     public func onStart() {
@@ -127,6 +120,7 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         plumbingServices = customerData!.getPlumbingServices()
         hvacServices = customerData!.getHvacServices()
         electricalServices = customerData!.getElectricalServices()
+        self.tableView.reloadData()
     }
     
     public func onFailure(_ error: Error) {

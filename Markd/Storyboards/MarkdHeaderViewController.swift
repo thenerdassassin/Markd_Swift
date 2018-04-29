@@ -19,7 +19,15 @@ public class MarkdHeaderViewController:UIViewController {
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         configureView()
+    }
+    
+    override public func viewWillDisappear(_ animated: Bool) {
+        super .viewWillDisappear(animated)
+        // Show the navigation bar on other view controllers
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     public func configureView() {
@@ -40,6 +48,7 @@ public class MarkdHeaderViewController:UIViewController {
             }
         }
     }
+    
     var TODO_ImplementHeaderViewController🤬:AnyObject?
     public func configureHeader() {
         leftTitle = nil
