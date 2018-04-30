@@ -160,8 +160,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="pxg-Cy-DRC" kind="relationship" relationship="viewControllers" id="kNt-EG-oT1"/>
-                        <segue destination="mfy-Kw-ijf" kind="relationship" relationship="viewControllers" id="gcF-qs-47Z"/>
                         <segue destination="Sos-x6-u9a" kind="relationship" relationship="viewControllers" id="9e0-Lx-awo"/>
+                        <segue destination="UVv-6b-l8w" kind="relationship" relationship="viewControllers" id="gcF-qs-47Z"/>
                         <segue destination="AQ4-4e-0EU" kind="relationship" relationship="viewControllers" id="bcZ-oG-aao"/>
                         <segue destination="HCd-DL-dvR" kind="relationship" relationship="viewControllers" id="6gX-0t-cIF"/>
                     </connections>
@@ -400,6 +400,35 @@
             </objects>
             <point key="canvasLocation" x="-4687" y="91"/>
         </scene>
+        <!--Services-->
+        <scene sceneID="rna-7z-Of9">
+            <objects>
+                <tableViewController id="UVv-6b-l8w" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ppe-Dz-5IM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="MvG-2O-j0F">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MvG-2O-j0F" id="V5l-VX-D94">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="UVv-6b-l8w" id="OOS-iM-Q8E"/>
+                            <outlet property="delegate" destination="UVv-6b-l8w" id="1b7-tY-MZo"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Services" id="baE-Vr-Yo1"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F3y-pa-8Ez" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3878" y="96"/>
+        </scene>
         <!--Help View Controller-->
         <scene sceneID="tqU-hN-DTq">
             <objects>
@@ -463,6 +492,16 @@ The Markd Support Team</string>
                                     <constraint firstAttribute="trailing" secondItem="gTI-c4-PRe" secondAttribute="trailing" constant="10" id="nIs-Q0-z9k"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-BN-tpa">
+                                <rect key="frame" x="10" y="36.5" width="76" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelNavigationButton:" destination="xYT-qh-c4w" eventType="touchUpInside" id="EEy-Hd-DlE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9uE-X2-xKT" secondAttribute="trailing" constant="20" id="0Pm-bY-Fma"/>
@@ -471,10 +510,13 @@ The Markd Support Team</string>
                             <constraint firstItem="mPA-7K-xDV" firstAttribute="width" secondItem="mPA-7K-xDV" secondAttribute="height" multiplier="6:1" id="DD6-RB-q3G"/>
                             <constraint firstItem="WoP-fT-Adg" firstAttribute="top" secondItem="9uE-X2-xKT" secondAttribute="bottom" constant="40" id="OFx-wn-vj9"/>
                             <constraint firstItem="OCt-Ky-u7S" firstAttribute="leading" secondItem="50V-7s-vSx" secondAttribute="leading" constant="20" id="T1z-H3-KBE"/>
+                            <constraint firstItem="mPA-7K-xDV" firstAttribute="leading" secondItem="PQn-BN-tpa" secondAttribute="leading" constant="-10" id="ad0-VM-v9b"/>
                             <constraint firstItem="9uE-X2-xKT" firstAttribute="leading" secondItem="50V-7s-vSx" secondAttribute="leading" constant="20" id="cRZ-6K-jEa"/>
                             <constraint firstAttribute="trailing" secondItem="mPA-7K-xDV" secondAttribute="trailing" id="daE-EL-ffE"/>
+                            <constraint firstItem="j6Y-td-QdN" firstAttribute="leading" secondItem="PQn-BN-tpa" secondAttribute="trailing" constant="10" id="jNg-NU-rJk"/>
                             <constraint firstItem="mPA-7K-xDV" firstAttribute="width" secondItem="50V-7s-vSx" secondAttribute="width" id="ncd-Bh-e0p"/>
                             <constraint firstItem="OCt-Ky-u7S" firstAttribute="top" secondItem="mPA-7K-xDV" secondAttribute="bottom" constant="20" id="qVd-NR-vl2"/>
+                            <constraint firstItem="PQn-BN-tpa" firstAttribute="bottom" secondItem="mPA-7K-xDV" secondAttribute="bottom" constant="-5" id="tjd-jT-319"/>
                             <constraint firstItem="j6Y-td-QdN" firstAttribute="top" secondItem="Er8-EU-0hl" secondAttribute="bottom" id="x7f-Vw-vqh"/>
                         </constraints>
                     </view>
@@ -2104,15 +2146,34 @@ The Markd Support Team</string>
             </objects>
             <point key="canvasLocation" x="-2626" y="384"/>
         </scene>
-        <!--Services-->
-        <scene sceneID="tR1-F6-nsG">
+        <!--Root View Controller-->
+        <scene sceneID="AB6-PQ-OtU">
             <objects>
-                <viewControllerPlaceholder storyboardName="Services" id="mfy-Kw-ijf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Services" image="ic_action_services" selectedImage="ic_action_services" id="ZEa-om-VLj"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RNV-fd-1SS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="ZvG-I3-eAb" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eeH-Rj-Rgl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="PRG-Q6-HZn">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PRG-Q6-HZn" id="XaU-gc-wbC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ZvG-I3-eAb" id="m4g-xy-cnX"/>
+                            <outlet property="delegate" destination="ZvG-I3-eAb" id="G8k-WC-jz0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="4Jq-xx-sHH"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1aV-Oi-y84" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3921" y="-237"/>
+            <point key="canvasLocation" x="-2911" y="861"/>
         </scene>
     </scenes>
     <resources>
@@ -2122,7 +2183,6 @@ The Markd Support Team</string>
         <image name="ic_action_home" width="32" height="32"/>
         <image name="ic_action_notifications" width="32" height="32"/>
         <image name="ic_action_pages" width="24" height="24"/>
-        <image name="ic_action_services" width="24" height="24"/>
         <image name="whiteTransparentLogo" width="803" height="282"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -29,7 +29,6 @@ public class HvacViewController: UIViewController, OnGetDataListener {
     var TODO_NotYetImplementedHvacPage:AnyObject?
     /*
      Check if Contractor or Home Owner on page
-     Initialize Services
      */
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -150,5 +149,4 @@ public class HvacViewController: UIViewController, OnGetDataListener {
         debugPrint(error)
         AlertControllerUtilities.somethingWentWrong(with: self)
     }
-    
 }

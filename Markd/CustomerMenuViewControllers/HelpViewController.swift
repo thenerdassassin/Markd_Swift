@@ -66,9 +66,6 @@ public class HelpViewController: UIViewController, OnGetDataListener {
             SendEmail.send(message, from:user, successHandler: self.sendSuccess, errorHandler: self.sendError)
         }
     }
-    @IBAction func cancelNavigationButton(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 0
-    }
 
     //Mark: SendEmailHandlers
     private func sendSuccess(_ data: Data?, _ response: URLResponse?) {

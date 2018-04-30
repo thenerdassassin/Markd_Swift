@@ -198,8 +198,8 @@ public class TempCustomerData {
     public func getPlumberReference() -> String? {
         return getCustomer()?.getPlumber()
     }
-    public func getPlumbingServices() {
-        var TODO_ImplementGetPlumbingServices🤔:AnyObject?
+    public func getPlumbingServices() -> [ContractorService]? {
+        return getCustomer()?.getPlumbingServices()
     }
     
     //Mark:- HvacPage
@@ -236,8 +236,13 @@ public class TempCustomerData {
     public func getHvactechnicianReference() -> String? {
         return getCustomer()?.getHvacTechnician()
     }
-    public func getHvacServices() {
-        var TODO_ImplementGetHvacServices🤔:AnyObject?
+    public func getHvacServices() -> [ContractorService]? {
+        return getCustomer()?.getHvacServices()
+    }
+    
+    //Mark:- ElectricalPage
+    public func getElectricalServices() -> [ContractorService]? {
+        return getCustomer()?.getElectricalServices()
     }
         
     public func setAppliance(to newAppliance: Appliance) {

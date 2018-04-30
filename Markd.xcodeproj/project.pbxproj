@@ -30,6 +30,11 @@
 		FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF592F7320683E090031DA92 /* Boiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF592F7220683E090031DA92 /* Boiler.swift */; };
+		FF6BF1E92093DF64001D55EF /* ServiceHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1E82093DF64001D55EF /* ServiceHistoryTableViewController.swift */; };
+		FF6BF1EB2094EC67001D55EF /* ContractorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1EA2094EC67001D55EF /* ContractorService.swift */; };
+		FF6BF1ED209503EC001D55EF /* MarkdHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1EC209503EC001D55EF /* MarkdHeaderViewController.swift */; };
+		FF6BF1EF2095068B001D55EF /* ServiceHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1EE2095068A001D55EF /* ServiceHistoryViewController.swift */; };
+		FF6BF1F320950CE1001D55EF /* ContractorServiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */; };
 		FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */; };
 		FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82F315205439BA00E33304 /* HelpViewController.swift */; };
 		FF9A5B3A2086C2D3007E9669 /* Contractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9A5B392086C2D3007E9669 /* Contractor.swift */; };
@@ -43,6 +48,7 @@
 		FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658D2079335B00F6E8F1 /* Compressor.swift */; };
 		FFB56592207AA8F500F6E8F1 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB56591207AA8F500F6E8F1 /* Appliance.swift */; };
 		FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE8003205D8C8200A7D9FE /* HotWater.swift */; };
+		FFC5316B2093D2A00010D9AC /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC5316A2093D2A00010D9AC /* Services.storyboard */; };
 		FFDE253620588868009D1790 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE253520588868009D1790 /* SendEmail.swift */; };
 		FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C892041D3B500A9392E /* MainViewController.swift */; };
 		FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */; };
@@ -85,6 +91,11 @@
 		FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpanPickerView.swift; sourceTree = "<group>"; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF592F7220683E090031DA92 /* Boiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boiler.swift; sourceTree = "<group>"; };
+		FF6BF1E82093DF64001D55EF /* ServiceHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHistoryTableViewController.swift; sourceTree = "<group>"; };
+		FF6BF1EA2094EC67001D55EF /* ContractorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorService.swift; sourceTree = "<group>"; };
+		FF6BF1EC209503EC001D55EF /* MarkdHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdHeaderViewController.swift; sourceTree = "<group>"; };
+		FF6BF1EE2095068A001D55EF /* ServiceHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHistoryViewController.swift; sourceTree = "<group>"; };
+		FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorServiceTableViewController.swift; sourceTree = "<group>"; };
 		FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		FF82F315205439BA00E33304 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		FF9A5B392086C2D3007E9669 /* Contractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contractor.swift; sourceTree = "<group>"; };
@@ -98,6 +109,7 @@
 		FFB5658D2079335B00F6E8F1 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
 		FFB56591207AA8F500F6E8F1 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
 		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
+		FFC5316A2093D2A00010D9AC /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
 		FFDE253520588868009D1790 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
 		FFF27C892041D3B500A9392E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCustomerData.swift; sourceTree = "<group>"; };
@@ -216,6 +228,8 @@
 				FFF27C95204CB8B500A9392E /* PlumbingViewController.swift */,
 				FF82F315205439BA00E33304 /* HelpViewController.swift */,
 				FFB565892079274400F6E8F1 /* HvacViewController.swift */,
+				FF6BF1E82093DF64001D55EF /* ServiceHistoryTableViewController.swift */,
+				FF6BF1EE2095068A001D55EF /* ServiceHistoryViewController.swift */,
 			);
 			path = CustomerMenuViewControllers;
 			sourceTree = "<group>";
@@ -225,6 +239,7 @@
 			children = (
 				FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */,
 				FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */,
+				FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
 			sourceTree = "<group>";
@@ -243,6 +258,7 @@
 				FFB56591207AA8F500F6E8F1 /* Appliance.swift */,
 				FF9A5B392086C2D3007E9669 /* Contractor.swift */,
 				FF9A5B3B2086C69F007E9669 /* ContractorDetails.swift */,
+				FF6BF1EA2094EC67001D55EF /* ContractorService.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -254,6 +270,8 @@
 				47E0EA451DF3865C001F417F /* Main.storyboard */,
 				FF9A5B3E208AA428007E9669 /* ContractorFooter.storyboard */,
 				FF9A5B41208AA484007E9669 /* ContractorFooterViewController.swift */,
+				FFC5316A2093D2A00010D9AC /* Services.storyboard */,
+				FF6BF1EC209503EC001D55EF /* MarkdHeaderViewController.swift */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -337,6 +355,7 @@
 				FFF45D802038C3C200EC732B /* GoogleService-Info.plist in Resources */,
 				47E0EA491DF3865C001F417F /* Assets.xcassets in Resources */,
 				FF9A5B40208AA429007E9669 /* ContractorFooter.storyboard in Resources */,
+				FFC5316B2093D2A00010D9AC /* Services.storyboard in Resources */,
 				47E0EA471DF3865C001F417F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */,
+				FF6BF1EF2095068B001D55EF /* ServiceHistoryViewController.swift in Sources */,
 				FFDE253620588868009D1790 /* SendEmail.swift in Sources */,
 				FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */,
 				FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */,
@@ -421,6 +441,7 @@
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
 				FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */,
 				FFF27C8E2041E18600A9392E /* Customer.swift in Sources */,
+				FF6BF1E92093DF64001D55EF /* ServiceHistoryTableViewController.swift in Sources */,
 				FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */,
 				FF9A5B3A2086C2D3007E9669 /* Contractor.swift in Sources */,
 				FFF27C94204619A700A9392E /* Home.swift in Sources */,
@@ -449,8 +470,11 @@
 				FFF27C902041F76E00A9392E /* StringUtilities.swift in Sources */,
 				FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */,
 				FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */,
+				FF6BF1EB2094EC67001D55EF /* ContractorService.swift in Sources */,
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
+				FF6BF1ED209503EC001D55EF /* MarkdHeaderViewController.swift in Sources */,
 				47500AC51E0794400099B0EE /* WebController.swift in Sources */,
+				FF6BF1F320950CE1001D55EF /* ContractorServiceTableViewController.swift in Sources */,
 				FFF27C96204CB8B500A9392E /* PlumbingViewController.swift in Sources */,
 				47A89F851E1C5C2C00381967 /* BreakerAmperagePickerController.swift in Sources */,
 				FFFD3F15205B25A9005B7325 /* AlertControllerUtilities.swift in Sources */,
