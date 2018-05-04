@@ -16,7 +16,7 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     var hvacServices:[ContractorService]?
     var electricalServices:[ContractorService]?
     
-    var TODO_add_Markd_Header🙌🏻:AnyObject?
+    var TODO_Add_Button_Markd_Header🙌🏻:AnyObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,39 +74,38 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let serviceCell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServiceTableViewCell
         var service:ContractorService?
+        serviceCell.tag = indexPath.section
+        
         if indexPath.section == 0 {
             service = plumbingServices?[indexPath.row]
         } else if indexPath.section == 1 {
             service = hvacServices?[indexPath.row]
         } else if indexPath.section == 2 {
             service = electricalServices?[indexPath.row]
+        } else {
+            AlertControllerUtilities.somethingWentWrong(with: self)
         }
-        // TODO: Configure the cell...
+        
         if let service = service {
-            serviceCell.contractorLabel.text = service.getContractor()
-            serviceCell.serviceDateLabel.text = service.getDate()
-            serviceCell.commentsLabel.text = service.getComments()
+            serviceCell.service = service
+        } else {
+            AlertControllerUtilities.somethingWentWrong(with: self)
         }
         
         return serviceCell
     }
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showContractorServiceSegue" {
-            //let destination = segue.destination as! ContractorServiceTableViewController
-            var TODO_PassInfoInSegue_😳:AnyObject?
+            let sender = sender as! ServiceTableViewCell
+            let destination = segue.destination as! ContractorServiceTableViewController
+            if let service = sender.service {
+                print("Setting Destination Service")
+                destination.service = service
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+            }
         }
     }
     
@@ -130,6 +129,15 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
 }
 
 public class ServiceTableViewCell: UITableViewCell {
+    public var service:ContractorService? {
+        didSet {
+            if let service = service {
+                self.contractorLabel.text = service.getContractor()
+                self.serviceDateLabel.text = service.getDate()
+                self.commentsLabel.text = service.getComments()
+            }
+        }
+    }
     @IBOutlet weak var contractorLabel: UILabel!
     @IBOutlet weak var serviceDateLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
