@@ -63,11 +63,13 @@ class ContractorServiceTableViewController: UITableViewController {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "contractorTableCell", for: indexPath) as! ContractorTableViewCell
                 if let service = service {
+                    cell.serviceViewController = self
                     cell.contractor = service.getContractor()
                 }
                 return cell
             case 1: let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell", for: indexPath) as! CommentsTableViewCell
             if let service = service {
+                cell.serviceViewController = self
                 cell.comments = service.getComments()
             }
                 return cell
@@ -121,6 +123,7 @@ class ContractorServiceTableViewController: UITableViewController {
 
 //Mark:- UITableViewCell
 public class ContractorTableViewCell: UITableViewCell, UITextFieldDelegate {
+    var serviceViewController:ContractorServiceTableViewController?
     public var contractor:String? {
         didSet {
             contractorTextField.text = contractor
@@ -131,12 +134,16 @@ public class ContractorTableViewCell: UITableViewCell, UITextFieldDelegate {
             contractorTextField.delegate = self
         }
     }
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        serviceViewController!.service!.setContractor(textField.text!)
+    }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         contractorTextField.resignFirstResponder()
         return true;
     }
 }
 public class CommentsTableViewCell: UITableViewCell, UITextViewDelegate {
+    var serviceViewController:ContractorServiceTableViewController?
     public var comments:String? {
         didSet {
             commentsTextView.text = comments
@@ -147,6 +154,11 @@ public class CommentsTableViewCell: UITableViewCell, UITextViewDelegate {
             commentsTextView.delegate = self
         }
     }
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        serviceViewController!.service!.setComments(textView.text!)
+        print("CommentsCell --- \(serviceViewController!.service!.getComments())")
+    }
+
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
