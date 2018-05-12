@@ -77,6 +77,7 @@ public class Customer:CustomStringConvertible {
             for service in plumbingArray {
                 if let serviceDictionary = service as? Dictionary<String, AnyObject> {
                     plumbingServices!.append(ContractorService(serviceDictionary))
+                    plumbingServices!.sort()
                 }
             }
         }
@@ -93,6 +94,7 @@ public class Customer:CustomStringConvertible {
             for service in hvacArray {
                 if let serviceDictionary = service as? Dictionary<String, AnyObject> {
                     hvacServices!.append(ContractorService(serviceDictionary))
+                    hvacServices!.sort()
                 }
             }
         }
@@ -104,6 +106,7 @@ public class Customer:CustomStringConvertible {
             for service in electricalArray {
                 if let serviceDictionary = service as? Dictionary<String, AnyObject> {
                     electricalServices!.append(ContractorService(serviceDictionary))
+                    electricalServices!.sort()
                 }
             }
         }
@@ -203,6 +206,24 @@ public class Customer:CustomStringConvertible {
     func getPlumbingServices() -> [ContractorService]? {
         return plumbingServices
     }
+    func updatePlumbingService(_ service:ContractorService, _  number:Int) -> Customer {
+        if self.plumbingServices != nil {
+            self.plumbingServices![number] = service
+            return self
+        } else {
+            self.plumbingServices = [ContractorService]()
+            self.plumbingServices![0] = service
+            return self
+        }
+    }
+    func removePlumbingService(_ index:Int) -> Customer {
+        guard self.plumbingServices != nil else {
+            return self
+        }
+        self.plumbingServices!.remove(at: index)
+        return self
+    }
+    
     
     //Mark:- HVAC
     func getAirHandler() -> AirHandler? {
@@ -228,10 +249,66 @@ public class Customer:CustomStringConvertible {
     func getHvacServices() -> [ContractorService]? {
         return hvacServices
     }
+    func updateHvacService(_ service:ContractorService, _  number:Int) -> Customer {
+        if let _ = hvacServices {
+            self.hvacServices![number] = service
+            return self
+        } else {
+            self.hvacServices = [ContractorService]()
+            self.hvacServices![0] = service
+            return self
+        }
+    }
+    func removeHvacService(_ index:Int) -> Customer {
+        guard self.hvacServices != nil else {
+            return self
+        }
+        self.hvacServices!.remove(at: index)
+        return self
+    }
     
-    //Mar:- Electrical
+    //Mark:- Electrical
     func getElectricalServices() -> [ContractorService]? {
         return electricalServices
+    }
+    func updateElectricalService(_ service:ContractorService, _  number:Int) -> Customer {
+        if let _ = electricalServices {
+            self.electricalServices![number] = service
+            return self
+        } else {
+            self.electricalServices = [ContractorService]()
+            self.electricalServices![0] = service
+            return self
+        }
+    }
+    func removeElectricalService(_ index:Int) -> Customer {
+        guard self.electricalServices != nil else {
+            return self
+        }
+        self.electricalServices!.remove(at: index)
+        return self
+    }
+    
+    //Mark:- Services
+    public func update(_ service:ContractorService, _  number:Int, of type:String) -> Customer {
+        if type == "Plumbing" {
+            return updatePlumbingService(service, number)
+        } else if type == "Hvac" {
+            return updateHvacService(service, number)
+        } else if type == "Electrical" {
+            return updateElectricalService(service, number)
+        }
+        return self
+    }
+    public func deleteService(_ number:Int, of type:String) -> Customer{
+        if type == "Plumbing" {
+            return removePlumbingService(number)
+        } else if type == "Hvac" {
+            return removeHvacService(number)
+        } else if type == "Electrical" {
+            return removeElectricalService(number)
+        }
+        return self
     }
     var TODO_Implement_All_Setters_And_Helpers🤬:AnyObject?
     
@@ -252,10 +329,10 @@ public class Customer:CustomStringConvertible {
         dictionary["hotWater"] = self.hotWater?.toDictionary() as AnyObject
         dictionary["boiler"] = self.boiler?.toDictionary() as AnyObject
         dictionary["plumberReference"] = self.plumberReference as AnyObject
-        if let plumbingServices = plumbingServices {
-            let plumbingArray = NSArray()
+        if let plumbingServices = plumbingServices?.sorted() {
+            var plumbingArray = NSArray()
             for service in plumbingServices {
-                plumbingArray.adding(service.toDictionary())
+                plumbingArray = plumbingArray.adding(service.toDictionary()) as NSArray
             }
             dictionary["plumbingServices"] = plumbingArray
         }
@@ -263,20 +340,20 @@ public class Customer:CustomStringConvertible {
         dictionary["airHandler"] = self.airHandler?.toDictionary() as AnyObject
         dictionary["compressor"] = self.compressor?.toDictionary() as AnyObject
         dictionary["hvactechnicianReference"] = self.hvactechnicianReference as AnyObject
-        if let hvacServices = hvacServices {
-            let hvacArray = NSArray()
+        if let hvacServices = hvacServices?.sorted() {
+            var hvacArray = NSArray()
             for service in hvacServices {
-                hvacArray.adding(service.toDictionary())
+                hvacArray = hvacArray.adding(service.toDictionary()) as NSArray
             }
             dictionary["hvacServices"] = hvacArray
         }
         
         //TODO: panels
         dictionary["electricianReference"] = self.electricianReference as AnyObject
-        if let electricalServices = electricalServices {
-            let electricalArray = NSArray()
+        if let electricalServices = electricalServices?.sorted() {
+            var electricalArray = NSArray()
             for service in electricalServices {
-                electricalArray.adding(service.toDictionary())
+                electricalArray = electricalArray.adding(service.toDictionary()) as NSArray
             }
             dictionary["electricalServices"] = electricalArray
         }

@@ -258,12 +258,23 @@ public class TempCustomerData {
             print("Appliance type does not match")
         }
     }
+    
+    //Mark:- Services
+    public func add(_ service:ContractorService, of type:String) {
+        //updateCustomer(to: getCustomer()?.add(service, of: type))
+    }
+    public func update(_ service:ContractorService, _  number:Int, of type:String) {
+        updateCustomer(to: getCustomer()?.update(service, number, of:type))
+    }
+    public func removeService(_ number:Int, of type:String) {
+        updateCustomer(to: getCustomer()?.deleteService(number, of:type))
+    }
+    
     func NEED_TO_ADD_ANDROID_METHODS😤() {
         var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
-        //TODO: addContractorListener, attachListener, removeListener, getUid
+        //TODO: addContractorListener, attachListener, getUid
         //TODO: electricalPage
         //TODO: paintingPage
-        //TODO: services
         //TODO: settingsPage
         //TODO: makeCustomer
     }

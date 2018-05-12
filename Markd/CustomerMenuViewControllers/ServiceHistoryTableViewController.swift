@@ -16,7 +16,7 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     var hvacServices:[ContractorService]?
     var electricalServices:[ContractorService]?
     
-    var TODO_add_Markd_Header🙌🏻:AnyObject?
+    var TODO_Add_Button_Markd_Header🙌🏻:AnyObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,22 +43,25 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            //Plumbing
             if let plumbingServices = plumbingServices {
-                return plumbingServices.count
+                if plumbingServices.count != 0 {
+                    return plumbingServices.count
+                }
             }
         } else if section == 1 {
-            //Hvac
             if let hvacServices = hvacServices {
-                return hvacServices.count
+                if hvacServices.count != 0 {
+                    return hvacServices.count
+                }
             }
         } else if section == 2 {
-            //Electrical
             if let electricalServices = electricalServices {
-                return electricalServices.count
+                if electricalServices.count != 0 {
+                    return electricalServices.count
+                }
             }
         }
-        return 0
+        return 1
     }
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
         if section == 0 {
@@ -74,40 +77,85 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let serviceCell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServiceTableViewCell
         var service:ContractorService?
+        serviceCell.tag = indexPath.section
+        serviceCell.serviceIndex = indexPath.row
+        
         if indexPath.section == 0 {
             service = plumbingServices?[indexPath.row]
         } else if indexPath.section == 1 {
             service = hvacServices?[indexPath.row]
         } else if indexPath.section == 2 {
             service = electricalServices?[indexPath.row]
+        } else {
+            AlertControllerUtilities.somethingWentWrong(with: self)
         }
-        // TODO: Configure the cell...
+        
         if let service = service {
-            serviceCell.contractorLabel.text = service.getContractor()
-            serviceCell.serviceDateLabel.text = service.getDate()
-            serviceCell.commentsLabel.text = service.getComments()
+            serviceCell.service = service
+        } else {
+            return tableView.dequeueReusableCell(withIdentifier: "serviceDefaultCell", for: indexPath) as! ServiceTableViewCell
         }
         
         return serviceCell
     }
-
-    /*
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        var TODO_UpdateFirebase_😬:AnyObject?
         if editingStyle == .delete {
+            guard let customerData = customerData else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
             // Delete the row from the data source
+            if indexPath.section == 0 {
+                plumbingServices!.remove(at: indexPath.row)
+                customerData.removeService(indexPath.row, of: "Plumbing")
+            } else if indexPath.section == 1 {
+                hvacServices!.remove(at: indexPath.row)
+                customerData.removeService(indexPath.row, of: "Hvac")
+            } else if indexPath.section == 2 {
+                electricalServices!.remove(at: indexPath.row)
+                customerData.removeService(indexPath.row, of: "Electrical")
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showContractorServiceSegue" {
-            //let destination = segue.destination as! ContractorServiceTableViewController
-            var TODO_PassInfoInSegue_😳:AnyObject?
+            let sender = sender as! ServiceTableViewCell
+            let destination = segue.destination as! ContractorServiceTableViewController
+            guard let customerData = customerData, let service = sender.service else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            customerData.removeListeners()
+            destination.customerData = customerData
+            destination.service = service
+            destination.serviceType = getTypeFromTag(sender.tag)
+            destination.serviceIndex = sender.serviceIndex
         }
+    }
+    func getTypeFromTag(_ tag:Int) -> String? {
+        if tag == 0 {
+            return "Plumbing"
+        } else if tag == 1 {
+            return "Hvac"
+        } else if tag == 2 {
+            return "Electrical"
+        }
+        return nil
     }
     
     // Mark:- OnGetDataListener
@@ -130,6 +178,16 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
 }
 
 public class ServiceTableViewCell: UITableViewCell {
+    public var service:ContractorService? {
+        didSet {
+            if let service = service {
+                self.contractorLabel.text = service.getContractor()
+                self.serviceDateLabel.text = service.getDate()
+                self.commentsLabel.text = service.getComments()
+            }
+        }
+    }
+    public var serviceIndex: Int?
     @IBOutlet weak var contractorLabel: UILabel!
     @IBOutlet weak var serviceDateLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!

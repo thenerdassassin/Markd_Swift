@@ -36,7 +36,7 @@ public class ContractorService:CustomStringConvertible, Comparable {
             dictionary["day"] = self.day as AnyObject
         }
         if year >= 0 {
-            dictionary["year"] = self.day as AnyObject
+            dictionary["year"] = self.year as AnyObject
         }
         dictionary["contractor"] = self.contractor as AnyObject
         dictionary["comments"] = self.comments as AnyObject
@@ -46,7 +46,7 @@ public class ContractorService:CustomStringConvertible, Comparable {
     func getGuid() -> String {
         return self.guid
     }
-    func setGuid(_ guid:String? ) {
+    func setGuid(_ guid:String?) {
         if let guid = guid {
             self.guid = guid
         } else {
@@ -74,6 +74,13 @@ public class ContractorService:CustomStringConvertible, Comparable {
         return self.year
     }
     func setYear(_ year:Int) -> ContractorService {
+        if year < 0 {
+            return self
+        }
+        if year > 100 {
+            self.year = year % 100
+            return self
+        }
         self.year = year
         return self
     }
@@ -114,26 +121,24 @@ public class ContractorService:CustomStringConvertible, Comparable {
     // Mark:- Comparable
     public static func < (lhs: ContractorService, rhs: ContractorService) -> Bool {
         if lhs.year != rhs.year {
-            return lhs.year < rhs.year
+            return lhs.year > rhs.year
         }
-        
         if lhs.month != rhs.month {
-            return lhs.month < rhs.month
+            return lhs.month > rhs.month
         }
-        
         if lhs.day != rhs.day {
-            return lhs.day < rhs.day
+            return lhs.day > rhs.day
         }
-        
-        return lhs.contractor < rhs.contractor
+        if lhs.contractor != rhs.contractor {
+            return lhs.contractor < rhs.contractor
+        }
+        if lhs.comments != rhs.comments {
+            return lhs.comments < rhs.comments
+        }
+        return lhs.guid < rhs.guid
     }
     
     public static func == (lhs: ContractorService, rhs: ContractorService) -> Bool {
-        return lhs.contractor == rhs.contractor &&
-            lhs.comments == rhs.comments &&
-            lhs.day == rhs.day &&
-            lhs.month == rhs.month &&
-            lhs.year == rhs.year &&
-            lhs.guid == rhs.guid
+        return false
     }
 }

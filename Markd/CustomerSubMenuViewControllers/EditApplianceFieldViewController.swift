@@ -74,7 +74,7 @@ public class EditApplianceFieldViewController: UIViewController, LifeSpanViewPro
                     datePicker.isHidden = false
                     lifeSpanPicker.isHidden = true
                     datePicker.maximumDate = Date() //maxDate = currentDate
-                    setDatePicker(text)
+                    StringUtilities.set(datePicker, to: text)
                 case "projected life span":
                     self.title = "Edit Life Span"
                     textField.isEnabled = false
@@ -119,23 +119,6 @@ public class EditApplianceFieldViewController: UIViewController, LifeSpanViewPro
             return
         }
         lifeSpanPicker.selectRow(unitsRow, inComponent: 1, animated: true)
-    }
-    
-    public func setDatePicker(_ date: String?) {
-        let components = StringUtilities.getComponentsFrom(dotFormmattedString: date)
-        if let month = components[0], let day = components[1], let year = components[2] {
-            var dateComponents = DateComponents()
-            dateComponents.month = month
-            dateComponents.day = day
-            dateComponents.year = year
-            
-            let userCalendar = Calendar.current
-            guard let installDate = userCalendar.date(from: dateComponents) else {
-                print("installDate is null")
-                return
-            }
-            datePicker.setDate(installDate, animated: true)
-        }
     }
     @IBAction func onDateChange(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
