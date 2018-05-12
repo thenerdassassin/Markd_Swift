@@ -216,6 +216,14 @@ public class Customer:CustomStringConvertible {
             return self
         }
     }
+    func removePlumbingService(_ index:Int) -> Customer {
+        guard self.plumbingServices != nil else {
+            return self
+        }
+        self.plumbingServices!.remove(at: index)
+        return self
+    }
+    
     
     //Mark:- HVAC
     func getAirHandler() -> AirHandler? {
@@ -251,8 +259,15 @@ public class Customer:CustomStringConvertible {
             return self
         }
     }
+    func removeHvacService(_ index:Int) -> Customer {
+        guard self.hvacServices != nil else {
+            return self
+        }
+        self.hvacServices!.remove(at: index)
+        return self
+    }
     
-    //Mar:- Electrical
+    //Mark:- Electrical
     func getElectricalServices() -> [ContractorService]? {
         return electricalServices
     }
@@ -266,6 +281,13 @@ public class Customer:CustomStringConvertible {
             return self
         }
     }
+    func removeElectricalService(_ index:Int) -> Customer {
+        guard self.electricalServices != nil else {
+            return self
+        }
+        self.electricalServices!.remove(at: index)
+        return self
+    }
     
     //Mark:- Services
     public func update(_ service:ContractorService, _  number:Int, of type:String) -> Customer {
@@ -275,6 +297,16 @@ public class Customer:CustomStringConvertible {
             return updateHvacService(service, number)
         } else if type == "Electrical" {
             return updateElectricalService(service, number)
+        }
+        return self
+    }
+    public func deleteService(_ number:Int, of type:String) -> Customer{
+        if type == "Plumbing" {
+            return removePlumbingService(number)
+        } else if type == "Hvac" {
+            return removeHvacService(number)
+        } else if type == "Electrical" {
+            return removeElectricalService(number)
         }
         return self
     }

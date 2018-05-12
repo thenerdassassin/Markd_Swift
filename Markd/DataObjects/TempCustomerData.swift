@@ -260,14 +260,14 @@ public class TempCustomerData {
     }
     
     //Mark:- Services
-    public func add(_ service:ContractorService, of serviceType:String) {
+    public func add(_ service:ContractorService, of type:String) {
         //updateCustomer(to: getCustomer()?.add(service, of: type))
     }
     public func update(_ service:ContractorService, _  number:Int, of type:String) {
         updateCustomer(to: getCustomer()?.update(service, number, of:type))
     }
-    public func removeService(_ number:Int, of serviceType:String) {
-        //updateCustomer(to: getCustomer()?.deleteService(number, of:type))
+    public func removeService(_ number:Int, of type:String) {
+        updateCustomer(to: getCustomer()?.deleteService(number, of:type))
     }
     
     func NEED_TO_ADD_ANDROID_METHODS😤() {

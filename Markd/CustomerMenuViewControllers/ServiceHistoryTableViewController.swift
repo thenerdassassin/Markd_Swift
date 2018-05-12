@@ -102,13 +102,20 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         var TODO_UpdateFirebase_😬:AnyObject?
         if editingStyle == .delete {
+            guard let customerData = customerData else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
             // Delete the row from the data source
             if indexPath.section == 0 {
                 plumbingServices!.remove(at: indexPath.row)
+                customerData.removeService(indexPath.row, of: "Plumbing")
             } else if indexPath.section == 1 {
                 hvacServices!.remove(at: indexPath.row)
+                customerData.removeService(indexPath.row, of: "Hvac")
             } else if indexPath.section == 2 {
                 electricalServices!.remove(at: indexPath.row)
+                customerData.removeService(indexPath.row, of: "Electrical")
             } else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
             }
