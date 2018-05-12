@@ -44,18 +44,24 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             if let plumbingServices = plumbingServices {
-                return plumbingServices.count
+                if plumbingServices.count != 0 {
+                    return plumbingServices.count
+                }
             }
         } else if section == 1 {
             if let hvacServices = hvacServices {
-                return hvacServices.count
+                if hvacServices.count != 0 {
+                    return hvacServices.count
+                }
             }
         } else if section == 2 {
             if let electricalServices = electricalServices {
-                return electricalServices.count
+                if electricalServices.count != 0 {
+                    return electricalServices.count
+                }
             }
         }
-        return 0
+        return 1
     }
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
         if section == 0 {
@@ -87,12 +93,14 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         if let service = service {
             serviceCell.service = service
         } else {
-            AlertControllerUtilities.somethingWentWrong(with: self)
+            return tableView.dequeueReusableCell(withIdentifier: "serviceDefaultCell", for: indexPath) as! ServiceTableViewCell
         }
         
         return serviceCell
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
