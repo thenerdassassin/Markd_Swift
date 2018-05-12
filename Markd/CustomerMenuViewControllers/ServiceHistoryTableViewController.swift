@@ -43,17 +43,14 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            //Plumbing
             if let plumbingServices = plumbingServices {
                 return plumbingServices.count
             }
         } else if section == 1 {
-            //Hvac
             if let hvacServices = hvacServices {
                 return hvacServices.count
             }
         } else if section == 2 {
-            //Electrical
             if let electricalServices = electricalServices {
                 return electricalServices.count
             }
@@ -128,6 +125,7 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
                 AlertControllerUtilities.somethingWentWrong(with: self)
                 return
             }
+            customerData.removeListeners()
             destination.customerData = customerData
             destination.service = service
             destination.serviceType = getTypeFromTag(sender.tag)

@@ -30,8 +30,11 @@ class ContractorServiceTableViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
-        if let customerData = customerData, let number = serviceIndex, let type = serviceType{
+        if let customerData = customerData, let number = serviceIndex, let type = serviceType {
+            print("Number: \(number) changes to###\n\(service!)")
             customerData.update(service!, number, of: type)
+        } else {
+            AlertControllerUtilities.somethingWentWrong(with: self)
         }
     }
 
@@ -251,6 +254,7 @@ class DatePickerTableViewCell: UITableViewCell {
         serviceToUpdate = serviceToUpdate.setDay(day)
         serviceToUpdate = serviceToUpdate.setYear(year)
         serviceViewController!.service = serviceToUpdate
+        print("New Date:- \(date)")
     }
 }
 class DateTableViewCell: UITableViewCell  {

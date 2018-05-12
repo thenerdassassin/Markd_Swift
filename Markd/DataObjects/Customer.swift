@@ -77,6 +77,7 @@ public class Customer:CustomStringConvertible {
             for service in plumbingArray {
                 if let serviceDictionary = service as? Dictionary<String, AnyObject> {
                     plumbingServices!.append(ContractorService(serviceDictionary))
+                    plumbingServices!.sort()
                 }
             }
         }
@@ -93,6 +94,7 @@ public class Customer:CustomStringConvertible {
             for service in hvacArray {
                 if let serviceDictionary = service as? Dictionary<String, AnyObject> {
                     hvacServices!.append(ContractorService(serviceDictionary))
+                    hvacServices!.sort()
                 }
             }
         }
@@ -104,6 +106,7 @@ public class Customer:CustomStringConvertible {
             for service in electricalArray {
                 if let serviceDictionary = service as? Dictionary<String, AnyObject> {
                     electricalServices!.append(ContractorService(serviceDictionary))
+                    electricalServices!.sort()
                 }
             }
         }
@@ -204,7 +207,7 @@ public class Customer:CustomStringConvertible {
         return plumbingServices
     }
     func updatePlumbingService(_ service:ContractorService, _  number:Int) -> Customer {
-        if let _ = self.plumbingServices {
+        if self.plumbingServices != nil {
             self.plumbingServices![number] = service
             return self
         } else {
@@ -294,7 +297,7 @@ public class Customer:CustomStringConvertible {
         dictionary["hotWater"] = self.hotWater?.toDictionary() as AnyObject
         dictionary["boiler"] = self.boiler?.toDictionary() as AnyObject
         dictionary["plumberReference"] = self.plumberReference as AnyObject
-        if let plumbingServices = plumbingServices {
+        if let plumbingServices = plumbingServices?.sorted() {
             var plumbingArray = NSArray()
             for service in plumbingServices {
                 plumbingArray = plumbingArray.adding(service.toDictionary()) as NSArray
@@ -305,7 +308,7 @@ public class Customer:CustomStringConvertible {
         dictionary["airHandler"] = self.airHandler?.toDictionary() as AnyObject
         dictionary["compressor"] = self.compressor?.toDictionary() as AnyObject
         dictionary["hvactechnicianReference"] = self.hvactechnicianReference as AnyObject
-        if let hvacServices = hvacServices {
+        if let hvacServices = hvacServices?.sorted() {
             var hvacArray = NSArray()
             for service in hvacServices {
                 hvacArray = hvacArray.adding(service.toDictionary()) as NSArray
@@ -315,7 +318,7 @@ public class Customer:CustomStringConvertible {
         
         //TODO: panels
         dictionary["electricianReference"] = self.electricianReference as AnyObject
-        if let electricalServices = electricalServices {
+        if let electricalServices = electricalServices?.sorted() {
             var electricalArray = NSArray()
             for service in electricalServices {
                 electricalArray = electricalArray.adding(service.toDictionary()) as NSArray
