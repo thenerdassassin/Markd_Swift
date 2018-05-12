@@ -10,6 +10,9 @@ import UIKit
 
 class ContractorServiceTableViewController: UITableViewController {
     var datePickerVisible = false
+    var customerData:TempCustomerData?
+    var serviceIndex: Int?
+    var serviceType: String?
     public var service:ContractorService? {
         didSet {
             self.tableView.reloadData()
@@ -22,6 +25,14 @@ class ContractorServiceTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = addButton
         tableView.tableFooterView = UIView()
         self.tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.endEditing(true)
+        if let customerData = customerData, let number = serviceIndex, let type = serviceType{
+            customerData.update(service!, number, of: type)
+        }
     }
 
     // MARK: - Table view data source
@@ -95,12 +106,11 @@ class ContractorServiceTableViewController: UITableViewController {
             }
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "serviceFileTableCell", for: indexPath)
-
         // Configure the cell...
-
         return cell
     }
     
+    //Mark:- DatePicker Cell
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if(indexPath.section == 0 && indexPath.row == 2) {
@@ -109,7 +119,6 @@ class ContractorServiceTableViewController: UITableViewController {
             hideDatePicker()
         }
     }
-    
     func toggleDatePicker() {
         self.view.endEditing(true)
         if(datePickerVisible) {
@@ -118,7 +127,6 @@ class ContractorServiceTableViewController: UITableViewController {
             showDatePicker()
         }
     }
-    
     func showDatePicker() {
         if(!datePickerVisible) {
             tableView.beginUpdates()
@@ -127,7 +135,6 @@ class ContractorServiceTableViewController: UITableViewController {
             tableView.endUpdates()
         }
     }
-    
     func hideDatePicker() {
         if(datePickerVisible) {
             tableView.beginUpdates()
@@ -137,30 +144,24 @@ class ContractorServiceTableViewController: UITableViewController {
         }
     }
 
-    // Override to support conditional editing of the table view.
+    // Mark:- Files
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return (indexPath.section == 1)
     }
-
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        var TODO_Pass_File_Data:AnyObject?
     }
-    */
 }
 
-//Mark:- UITableViewCell
+//Mark:- TableViewCells
 public class ContractorTableViewCell: UITableViewCell, UITextFieldDelegate {
     var serviceViewController:ContractorServiceTableViewController?
     public var contractor:String? {
@@ -228,16 +229,28 @@ class DatePickerTableViewCell: UITableViewCell {
     
     func set(to date: String?) {
         if let date = date {
-            if (datePicker == nil) {
-                print("Nil date picker")
-            }
-            print("Setting date to \(date)")
             StringUtilities.set(datePicker, to: date)
         }
     }
     
-    @IBAction func datePickerValueChanged(_ sender: Any) {
-        //self.delegate?.dateChangedForField(toDate: datePicker.date)
+    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM.dd.yy"
+        let date = dateFormatter.string(from:sender.date)
+        let dateComponents = StringUtilities.getComponentsFrom(dotFormmattedString: date)
+        guard dateComponents.count == 3 else {
+            AlertControllerUtilities.somethingWentWrong(with: serviceViewController!)
+            return
+        }
+        guard let month = dateComponents[0], let day = dateComponents[1], let year = dateComponents[2] else {
+            AlertControllerUtilities.somethingWentWrong(with: serviceViewController!)
+            return
+        }
+        var serviceToUpdate = serviceViewController!.service!
+        serviceToUpdate = serviceToUpdate.setMonth(month)
+        serviceToUpdate = serviceToUpdate.setDay(day)
+        serviceToUpdate = serviceToUpdate.setYear(year)
+        serviceViewController!.service = serviceToUpdate
     }
 }
 class DateTableViewCell: UITableViewCell  {

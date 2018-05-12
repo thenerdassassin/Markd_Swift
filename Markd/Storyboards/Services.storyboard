@@ -219,6 +219,9 @@
                                             <date key="date" timeIntervalSinceReferenceDate="547833020.32398903">
                                                 <!--2018-05-12 15:50:20 +0000-->
                                             </date>
+                                            <connections>
+                                                <action selector="datePickerValueChanged:" destination="vax-Od-d2a" eventType="valueChanged" id="GFc-Kq-1ga"/>
+                                            </connections>
                                         </datePicker>
                                     </subviews>
                                     <constraints>
@@ -228,6 +231,9 @@
                                         <constraint firstAttribute="bottom" secondItem="gJl-st-SXE" secondAttribute="bottom" id="pf9-dH-3vK"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="datePicker" destination="gJl-st-SXE" id="nO5-2x-ej4"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="serviceFileTableCell" textLabel="dAb-pn-mNw" style="IBUITableViewCellStyleDefault" id="XN9-rA-bZX" userLabel="Files Cell">
                                 <rect key="frame" x="0.0" y="538" width="375" height="44"/>

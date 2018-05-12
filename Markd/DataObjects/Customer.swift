@@ -203,6 +203,16 @@ public class Customer:CustomStringConvertible {
     func getPlumbingServices() -> [ContractorService]? {
         return plumbingServices
     }
+    func updatePlumbingService(_ service:ContractorService, _  number:Int) -> Customer {
+        if let _ = self.plumbingServices {
+            self.plumbingServices![number] = service
+            return self
+        } else {
+            self.plumbingServices = [ContractorService]()
+            self.plumbingServices![0] = service
+            return self
+        }
+    }
     
     //Mark:- HVAC
     func getAirHandler() -> AirHandler? {
@@ -228,10 +238,42 @@ public class Customer:CustomStringConvertible {
     func getHvacServices() -> [ContractorService]? {
         return hvacServices
     }
+    func updateHvacService(_ service:ContractorService, _  number:Int) -> Customer {
+        if let _ = hvacServices {
+            self.hvacServices![number] = service
+            return self
+        } else {
+            self.hvacServices = [ContractorService]()
+            self.hvacServices![0] = service
+            return self
+        }
+    }
     
     //Mar:- Electrical
     func getElectricalServices() -> [ContractorService]? {
         return electricalServices
+    }
+    func updateElectricalService(_ service:ContractorService, _  number:Int) -> Customer {
+        if let _ = electricalServices {
+            self.electricalServices![number] = service
+            return self
+        } else {
+            self.electricalServices = [ContractorService]()
+            self.electricalServices![0] = service
+            return self
+        }
+    }
+    
+    //Mark:- Services
+    public func update(_ service:ContractorService, _  number:Int, of type:String) -> Customer {
+        if type == "Plumbing" {
+            return updatePlumbingService(service, number)
+        } else if type == "Hvac" {
+            return updateHvacService(service, number)
+        } else if type == "Electrical" {
+            return updateElectricalService(service, number)
+        }
+        return self
     }
     var TODO_Implement_All_Setters_And_Helpers🤬:AnyObject?
     

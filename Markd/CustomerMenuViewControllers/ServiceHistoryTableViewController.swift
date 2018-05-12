@@ -75,6 +75,7 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         let serviceCell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServiceTableViewCell
         var service:ContractorService?
         serviceCell.tag = indexPath.section
+        serviceCell.serviceIndex = indexPath.row
         
         if indexPath.section == 0 {
             service = plumbingServices?[indexPath.row]
@@ -123,13 +124,25 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         if segue.identifier == "showContractorServiceSegue" {
             let sender = sender as! ServiceTableViewCell
             let destination = segue.destination as! ContractorServiceTableViewController
-            if let service = sender.service {
-                print("Setting Destination Service")
-                destination.service = service
-            } else {
+            guard let customerData = customerData, let service = sender.service else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
+                return
             }
+            destination.customerData = customerData
+            destination.service = service
+            destination.serviceType = getTypeFromTag(sender.tag)
+            destination.serviceIndex = sender.serviceIndex
         }
+    }
+    func getTypeFromTag(_ tag:Int) -> String? {
+        if tag == 0 {
+            return "Plumbing"
+        } else if tag == 1 {
+            return "Hvac"
+        } else if tag == 2 {
+            return "Electrical"
+        }
+        return nil
     }
     
     // Mark:- OnGetDataListener
@@ -161,6 +174,7 @@ public class ServiceTableViewCell: UITableViewCell {
             }
         }
     }
+    public var serviceIndex: Int?
     @IBOutlet weak var contractorLabel: UILabel!
     @IBOutlet weak var serviceDateLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
