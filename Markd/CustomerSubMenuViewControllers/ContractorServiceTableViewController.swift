@@ -9,6 +9,7 @@
 import UIKit
 
 class ContractorServiceTableViewController: UITableViewController {
+    var datePickerVisible = false
     public var service:ContractorService? {
         didSet {
             self.tableView.reloadData()
@@ -29,9 +30,13 @@ class ContractorServiceTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == 0) {
-            return 3
+            if datePickerVisible {
+                return 4
+            } else {
+                return 3
+            }
         } else if(section == 1) {
-            return 0
+            return 1
             /*
             guard let files = files else {
                 return 0
@@ -67,11 +72,12 @@ class ContractorServiceTableViewController: UITableViewController {
                     cell.contractor = service.getContractor()
                 }
                 return cell
-            case 1: let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell", for: indexPath) as! CommentsTableViewCell
-            if let service = service {
-                cell.serviceViewController = self
-                cell.comments = service.getComments()
-            }
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell", for: indexPath) as! CommentsTableViewCell
+                if let service = service {
+                    cell.serviceViewController = self
+                    cell.comments = service.getComments()
+                }
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath) as! DateTableViewCell
@@ -80,7 +86,11 @@ class ContractorServiceTableViewController: UITableViewController {
                 }
                 return cell
             default:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "serviceFileTableCell", for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "datePickerTableCell", for: indexPath) as! DatePickerTableViewCell
+                if let service = service {
+                    cell.serviceViewController = self
+                    cell.date = service.getDate()
+                }
                 return cell
             }
         }
@@ -90,26 +100,55 @@ class ContractorServiceTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if(indexPath.section == 0 && indexPath.row == 2) {
+            toggleDatePicker()
+        } else {
+            hideDatePicker()
+        }
+    }
+    
+    func toggleDatePicker() {
+        self.view.endEditing(true)
+        if(datePickerVisible) {
+            hideDatePicker()
+        } else {
+            showDatePicker()
+        }
+    }
+    
+    func showDatePicker() {
+        if(!datePickerVisible) {
+            tableView.beginUpdates()
+            tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: UITableViewRowAnimation.fade)
+            datePickerVisible = true
+            tableView.endUpdates()
+        }
+    }
+    
+    func hideDatePicker() {
+        if(datePickerVisible) {
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [IndexPath(row: 3, section: 0)], with: UITableViewRowAnimation.fade)
+            datePickerVisible = false
+            tableView.endUpdates()
+        }
+    }
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        return (indexPath.section == 1)
     }
-    */
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
 
     /*
     // MARK: - Navigation
@@ -134,6 +173,10 @@ public class ContractorTableViewCell: UITableViewCell, UITextFieldDelegate {
             contractorTextField.delegate = self
         }
     }
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        serviceViewController!.hideDatePicker()
+        return true
+    }
     public func textFieldDidEndEditing(_ textField: UITextField) {
         serviceViewController!.service!.setContractor(textField.text!)
     }
@@ -154,11 +197,13 @@ public class CommentsTableViewCell: UITableViewCell, UITextViewDelegate {
             commentsTextView.delegate = self
         }
     }
+    public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        serviceViewController!.hideDatePicker()
+        return true
+    }
     public func textViewDidEndEditing(_ textView: UITextView) {
         serviceViewController!.service!.setComments(textView.text!)
-        print("CommentsCell --- \(serviceViewController!.service!.getComments())")
     }
-
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
@@ -167,7 +212,35 @@ public class CommentsTableViewCell: UITableViewCell, UITextViewDelegate {
         return true
     }
 }
-public class DateTableViewCell: UITableViewCell  {
+class DatePickerTableViewCell: UITableViewCell {
+    var serviceViewController:ContractorServiceTableViewController?
+    @IBOutlet weak var datePicker: UIDatePicker! {
+        didSet {
+            datePicker.maximumDate = Date()
+            set(to: date)
+        }
+    }
+    public var date:String? {
+        didSet {
+            set(to: date)
+        }
+    }
+    
+    func set(to date: String?) {
+        if let date = date {
+            if (datePicker == nil) {
+                print("Nil date picker")
+            }
+            print("Setting date to \(date)")
+            StringUtilities.set(datePicker, to: date)
+        }
+    }
+    
+    @IBAction func datePickerValueChanged(_ sender: Any) {
+        //self.delegate?.dateChangedForField(toDate: datePicker.date)
+    }
+}
+class DateTableViewCell: UITableViewCell  {
     public var date:String? {
         didSet {
             dateLabel.text = date

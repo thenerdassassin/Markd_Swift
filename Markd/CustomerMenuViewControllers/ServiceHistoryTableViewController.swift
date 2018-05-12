@@ -95,6 +95,29 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         return serviceCell
     }
     
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        var TODO_UpdateFirebase_😬:AnyObject?
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            if indexPath.section == 0 {
+                plumbingServices!.remove(at: indexPath.row)
+            } else if indexPath.section == 1 {
+                hvacServices!.remove(at: indexPath.row)
+            } else if indexPath.section == 2 {
+                electricalServices!.remove(at: indexPath.row)
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showContractorServiceSegue" {

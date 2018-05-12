@@ -90,6 +90,23 @@ public class StringUtilities {
         return "\(isNotNilOrEmpty(prefix) ? prefix + " " : "")\(maritalStatus == "Married" && isNotNilOrEmpty(prefix) ? "and Mrs. " : "")\(isNotNilOrEmpty(firstName) ? "\(firstName) " : "") \(lastName)"
     }
     
+    public static func set(_ datePicker:UIDatePicker, to date:String) {
+        let components = StringUtilities.getComponentsFrom(dotFormmattedString: date)
+        if let month = components[0], let day = components[1], let year = components[2] {
+            var dateComponents = DateComponents()
+            dateComponents.month = month
+            dateComponents.day = day
+            dateComponents.year = year
+            
+            let userCalendar = Calendar.current
+            guard let installDate = userCalendar.date(from: dateComponents) else {
+                print("installDate is null")
+                return
+            }
+            datePicker.setDate(installDate, animated: true)
+        }
+    }
+    
     public static func set(textOf label: UILabel, to newString: String?) {
         if(isNilOrEmpty(newString)) {
             label.text = "---"
