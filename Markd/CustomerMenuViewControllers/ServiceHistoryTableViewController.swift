@@ -16,8 +16,6 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     var hvacServices:[ContractorService]?
     var electricalServices:[ContractorService]?
     
-    var TODO_Add_Button_Markd_Header🙌🏻:AnyObject?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView() //Removes seperators after list
@@ -25,6 +23,7 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        insertMarkdLogo()
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
         }
@@ -35,6 +34,14 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         if let customerData = customerData {
             customerData.removeListeners()
         }
+    }
+    private func insertMarkdLogo() {
+        let image : UIImage = UIImage(named: "whiteTransparentLogo")!
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        self.navigationItem.titleView = imageView
+        self.navigationController!.navigationBar.setTitleVerticalPositionAdjustment(-3.0, for: .defaultPrompt)
     }
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,6 +108,25 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    @IBAction func onAddServiceAction(_ sender: UIBarButtonItem) {
+        AlertControllerUtilities.showActionSheet(
+            withTitle: "Add Service",
+            andMessage: "What service type is beingn added?",
+            withOptions: [
+                UIAlertAction(title: "Plumbing", style: .default, handler: addServiceHandler),
+                UIAlertAction(title: "Hvac", style: .default, handler: addServiceHandler),
+                UIAlertAction(title: "Electrical", style: .default, handler: addServiceHandler),
+                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            ],
+            in: self
+        )
+    }
+    func addServiceHandler(alert: UIAlertAction!) {
+        if alert.title != nil && alert.title != "Cancel" {
+            self.performSegue(withIdentifier: "addContractorServiceSegue", sender: alert)
+        }
+    }
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -108,7 +134,6 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        var TODO_UpdateFirebase_😬:AnyObject?
         if editingStyle == .delete {
             guard let customerData = customerData else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
@@ -142,9 +167,23 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
             }
             customerData.removeListeners()
             destination.customerData = customerData
-            destination.service = service
             destination.serviceType = getTypeFromTag(sender.tag)
             destination.serviceIndex = sender.serviceIndex
+            destination.service = service
+        } else if segue.identifier == "addContractorServiceSegue" {
+            let sender = sender as! UIAlertAction
+            let destination = segue.destination as! ContractorServiceTableViewController
+            guard let customerData = customerData else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            customerData.removeListeners()
+            destination.customerData = customerData
+            destination.serviceType = sender.title
+            destination.serviceIndex = -1
+            let newService = ContractorService()
+            newService.setGuid(nil)
+            destination.service = newService
         }
     }
     func getTypeFromTag(_ tag:Int) -> String? {
@@ -181,8 +220,8 @@ public class ServiceTableViewCell: UITableViewCell {
     public var service:ContractorService? {
         didSet {
             if let service = service {
-                self.contractorLabel.text = service.getContractor()
-                self.serviceDateLabel.text = service.getDate()
+                StringUtilities.set(textOf: self.contractorLabel, to: service.getContractor())
+                StringUtilities.set(textOf: self.serviceDateLabel, to: service.getDate())
                 self.commentsLabel.text = service.getComments()
             }
         }

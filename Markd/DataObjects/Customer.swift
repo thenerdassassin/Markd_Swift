@@ -208,11 +208,15 @@ public class Customer:CustomStringConvertible {
     }
     func updatePlumbingService(_ service:ContractorService, _  number:Int) -> Customer {
         if self.plumbingServices != nil {
-            self.plumbingServices![number] = service
+            if(number == -1) {
+                self.plumbingServices!.append(service)
+            } else {
+                self.plumbingServices![number] = service
+            }
             return self
         } else {
             self.plumbingServices = [ContractorService]()
-            self.plumbingServices![0] = service
+            self.plumbingServices!.append(service)
             return self
         }
     }
@@ -251,11 +255,15 @@ public class Customer:CustomStringConvertible {
     }
     func updateHvacService(_ service:ContractorService, _  number:Int) -> Customer {
         if let _ = hvacServices {
-            self.hvacServices![number] = service
+            if(number == -1) {
+                self.hvacServices!.append(service)
+            } else {
+                self.hvacServices![number] = service
+            }
             return self
         } else {
             self.hvacServices = [ContractorService]()
-            self.hvacServices![0] = service
+            self.hvacServices!.append(service)
             return self
         }
     }
@@ -273,11 +281,15 @@ public class Customer:CustomStringConvertible {
     }
     func updateElectricalService(_ service:ContractorService, _  number:Int) -> Customer {
         if let _ = electricalServices {
-            self.electricalServices![number] = service
+            if(number == -1) {
+                self.electricalServices!.append(service)
+            } else {
+                self.electricalServices![number] = service
+            }
             return self
         } else {
             self.electricalServices = [ContractorService]()
-            self.electricalServices![0] = service
+            self.electricalServices!.append(service)
             return self
         }
     }

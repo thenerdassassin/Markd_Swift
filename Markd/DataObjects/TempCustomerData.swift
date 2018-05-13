@@ -260,9 +260,6 @@ public class TempCustomerData {
     }
     
     //Mark:- Services
-    public func add(_ service:ContractorService, of type:String) {
-        //updateCustomer(to: getCustomer()?.add(service, of: type))
-    }
     public func update(_ service:ContractorService, _  number:Int, of type:String) {
         updateCustomer(to: getCustomer()?.update(service, number, of:type))
     }
