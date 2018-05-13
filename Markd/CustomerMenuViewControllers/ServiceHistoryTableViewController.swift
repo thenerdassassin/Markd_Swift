@@ -108,7 +108,6 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        var TODO_UpdateFirebase_😬:AnyObject?
         if editingStyle == .delete {
             guard let customerData = customerData else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
@@ -145,6 +144,21 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
             destination.service = service
             destination.serviceType = getTypeFromTag(sender.tag)
             destination.serviceIndex = sender.serviceIndex
+        } else if segue.identifier == "addContractorServiceSegue" {
+            let destination = segue.destination as! ContractorServiceTableViewController
+            guard let customerData = customerData else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            customerData.removeListeners()
+            destination.customerData = customerData
+            destination.service = nil
+            destination.serviceType = "Plumbing" //TODO: determine service type
+            if plumbingServices == nil  {
+                destination.serviceIndex = 0
+            } else {
+                destination.serviceIndex = plumbingServices!.count
+            }
         }
     }
     func getTypeFromTag(_ tag:Int) -> String? {

@@ -9,13 +9,26 @@
 import Foundation
 import UIKit
 
+public protocol MarkdHeaderButtonDelegate {
+    func leftButtonClicked(_ sender:UIButton)
+    func rightButtonClicked(_ sender:UIButton)
+}
 public class MarkdHeaderViewController:UIViewController {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     var leftTitle:String?
     var rightTitle:String?
-    var leftAction: ((UIButton) -> Void)?
-    var rightAction: ((UIButton) -> Void)?
+    var delegate:MarkdHeaderButtonDelegate?
+    @IBAction func leftClick(_ sender: UIButton) {
+        if let delegate = delegate {
+            delegate.leftButtonClicked(sender)
+        }
+    }
+    @IBAction func rightClick(_ sender: UIButton) {
+        if let delegate = delegate {
+            delegate.rightButtonClicked(sender)
+        }
+    }
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,7 +38,7 @@ public class MarkdHeaderViewController:UIViewController {
     }
     
     override public func viewWillDisappear(_ animated: Bool) {
-        super .viewWillDisappear(animated)
+        super.viewWillDisappear(animated)
         // Show the navigation bar on other view controllers
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
@@ -53,27 +66,24 @@ public class MarkdHeaderViewController:UIViewController {
     public func configureHeader() {
         leftTitle = nil
         rightTitle = nil
-        leftAction = nil
-        rightAction = nil
         configureView()
     }
-    public func configureHeader(useLeft leftTitle:String, onLeftClick leftAction: @escaping ((UIButton) -> Void), useRight rightTitle: String, onRightClick rightAction: @escaping ((UIButton) -> Void)) {
+    public func configureHeader(useLeft leftTitle:String, useRight rightTitle: String, for delegate:MarkdHeaderButtonDelegate) {
         self.leftTitle = leftTitle
-        self.leftAction = leftAction
         self.rightTitle = rightTitle
-        self.rightAction = rightAction
+        self.delegate = delegate
         configureView()
     }
     
-    public func configureHeader(useRight rightTitle: String, onRightClick rightAction: @escaping ((UIButton) -> Void)) {
+    public func configureHeader(useRight rightTitle: String, for delegate:MarkdHeaderButtonDelegate) {
         self.rightTitle = rightTitle
-        self.rightAction = rightAction
+        self.delegate = delegate
         configureView()
     }
     
-    public func configureHeader(useLeft leftTitle:String, onLeftClick leftAction: @escaping ((UIButton) -> Void)) {
+    public func configureHeader(useLeft leftTitle:String, for delegate:MarkdHeaderButtonDelegate) {
         self.leftTitle = leftTitle
-        self.leftAction = leftAction
+        self.delegate = delegate
         configureView()
     }
 }
