@@ -220,8 +220,8 @@ public class ServiceTableViewCell: UITableViewCell {
     public var service:ContractorService? {
         didSet {
             if let service = service {
-                self.contractorLabel.text = service.getContractor()
-                self.serviceDateLabel.text = service.getDate()
+                StringUtilities.set(textOf: self.contractorLabel, to: service.getContractor())
+                StringUtilities.set(textOf: self.serviceDateLabel, to: service.getDate())
                 self.commentsLabel.text = service.getComments()
             }
         }
