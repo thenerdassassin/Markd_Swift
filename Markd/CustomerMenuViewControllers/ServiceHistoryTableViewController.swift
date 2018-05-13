@@ -25,6 +25,7 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        insertMarkdLogo()
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
         }
@@ -35,6 +36,14 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
         if let customerData = customerData {
             customerData.removeListeners()
         }
+    }
+    private func insertMarkdLogo() {
+        let image : UIImage = UIImage(named: "whiteTransparentLogo")!
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = image
+        self.navigationItem.titleView = imageView
+        self.navigationController!.navigationBar.setTitleVerticalPositionAdjustment(-3.0, for: .defaultPrompt)
     }
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,6 +109,20 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    @IBAction func onAddServiceAction(_ sender: UIBarButtonItem) {
+        AlertControllerUtilities.showActionSheet(
+            withTitle: "Add Service",
+            andMessage: "What service type is beingn added?",
+            withOptions: [
+                UIAlertAction(title: "Plumbing", style: .default, handler: nil),
+                UIAlertAction(title: "Hvac", style: .default, handler: nil),
+                UIAlertAction(title: "Electrical", style: .default, handler: nil),
+                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            ],
+            in: self
+        )
     }
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
