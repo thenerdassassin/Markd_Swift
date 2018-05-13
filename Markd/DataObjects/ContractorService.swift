@@ -9,7 +9,13 @@
 import Foundation
 
 public class ContractorService:CustomStringConvertible, Comparable {
-    private var guid:String
+    private var guid:String {
+        didSet {
+            if guid == "" {
+                self.setGuid(nil)
+            }
+        }
+    }
     private var month:Int
     private var day:Int
     private var year:Int
@@ -17,6 +23,16 @@ public class ContractorService:CustomStringConvertible, Comparable {
     private var comments:String
     //private var files:[FirebaseFile]?
     
+    public init() {
+        let date = Date()
+        let calendar = Calendar.current
+        self.month = calendar.component(Calendar.Component.month, from: date)
+        self.day = calendar.component(Calendar.Component.day, from: date)
+        self.year = calendar.component(Calendar.Component.year, from: date)
+        self.contractor = ""
+        self.comments = ""
+        self.guid = ""
+    }
     public init(_ dictionary: Dictionary<String, AnyObject>) {
         self.guid = dictionary["guid"] != nil ? dictionary["guid"] as! String: ""
         self.month = dictionary["month"] != nil ? dictionary["month"] as! Int: -1

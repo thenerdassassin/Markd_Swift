@@ -16,8 +16,6 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     var hvacServices:[ContractorService]?
     var electricalServices:[ContractorService]?
     
-    var TODO_Add_Button_Markd_Header🙌🏻:AnyObject?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView() //Removes seperators after list
@@ -116,13 +114,18 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
             withTitle: "Add Service",
             andMessage: "What service type is beingn added?",
             withOptions: [
-                UIAlertAction(title: "Plumbing", style: .default, handler: nil),
-                UIAlertAction(title: "Hvac", style: .default, handler: nil),
-                UIAlertAction(title: "Electrical", style: .default, handler: nil),
+                UIAlertAction(title: "Plumbing", style: .default, handler: addServiceHandler),
+                UIAlertAction(title: "Hvac", style: .default, handler: addServiceHandler),
+                UIAlertAction(title: "Electrical", style: .default, handler: addServiceHandler),
                 UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             ],
             in: self
         )
+    }
+    func addServiceHandler(alert: UIAlertAction!) {
+        if alert.title != nil && alert.title != "Cancel" {
+            self.performSegue(withIdentifier: "addContractorServiceSegue", sender: alert)
+        }
     }
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -164,10 +167,11 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
             }
             customerData.removeListeners()
             destination.customerData = customerData
-            destination.service = service
             destination.serviceType = getTypeFromTag(sender.tag)
             destination.serviceIndex = sender.serviceIndex
+            destination.service = service
         } else if segue.identifier == "addContractorServiceSegue" {
+            let sender = sender as! UIAlertAction
             let destination = segue.destination as! ContractorServiceTableViewController
             guard let customerData = customerData else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
@@ -175,13 +179,11 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
             }
             customerData.removeListeners()
             destination.customerData = customerData
-            destination.service = nil
-            destination.serviceType = "Plumbing" //TODO: determine service type
-            if plumbingServices == nil  {
-                destination.serviceIndex = 0
-            } else {
-                destination.serviceIndex = plumbingServices!.count
-            }
+            destination.serviceType = sender.title
+            destination.serviceIndex = -1
+            let newService = ContractorService()
+            newService.setGuid(nil)
+            destination.service = newService
         }
     }
     func getTypeFromTag(_ tag:Int) -> String? {

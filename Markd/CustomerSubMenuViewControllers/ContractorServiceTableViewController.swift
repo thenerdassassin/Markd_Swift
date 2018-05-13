@@ -31,8 +31,13 @@ class ContractorServiceTableViewController: UITableViewController {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
         if let customerData = customerData, let number = serviceIndex, let type = serviceType {
-            print("Number: \(number) changes to###\n\(service!)")
-            customerData.update(service!, number, of: type)
+            if number < 0 {
+                print("Add Service number: \(number) to \(type)")
+                customerData.update(service!, number, of: type)
+            } else {
+                print("Number: \(number) changes to###\n\(service!)")
+                customerData.update(service!, number, of: type)
+            }
         } else {
             AlertControllerUtilities.somethingWentWrong(with: self)
         }
@@ -158,8 +163,7 @@ class ContractorServiceTableViewController: UITableViewController {
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        // Pass the selected file to the new view controller.
         var TODO_Pass_File_Data:AnyObject?
     }
 }

@@ -102,6 +102,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="zzN-K0-BnN" kind="show" identifier="addContractorServiceSegue" id="cho-ZN-Vm6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdh-d5-DWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -246,7 +249,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRM-yt-Siy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1348" y="-49.475262368815599"/>
+            <point key="canvasLocation" x="935" y="-58"/>
         </scene>
         <!--Services-->
         <scene sceneID="c2k-jb-Seg">
@@ -273,4 +276,7 @@
     <resources>
         <image name="ic_action_services" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="cho-ZN-Vm6"/>
+    </inferredMetricsTieBreakers>
 </document>
