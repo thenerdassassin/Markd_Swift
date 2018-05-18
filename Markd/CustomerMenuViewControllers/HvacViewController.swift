@@ -119,7 +119,7 @@ public class HvacViewController: UIViewController, OnGetDataListener {
         alert.addAction(UIAlertAction(title: "Plumbing", style: .default, handler: { _ in
             NSLog("Switching to Plumbing Page")
             if let navigationController = self.navigationController {
-                let plumbingViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PlumbingViewController") as! PlumbingViewController
+                let plumbingViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "PlumbingViewController") as! PlumbingViewController
                 navigationController.setViewControllers([plumbingViewController], animated: true)
             }
         }))
