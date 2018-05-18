@@ -9,19 +9,20 @@
 import Foundation
 import UIKit
 
-class PaintingViewController:UITableViewController {
+class PaintingViewController:UIViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var customerData:TempCustomerData?
     
+    var painterFooterViewController: OnGetContractorListener?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         insertMarkdLogo()
         if(authentication.checkLogin(self)) {
-            //customerData = TempCustomerData(self)
+            customerData = TempCustomerData(self)
         }
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -39,51 +40,28 @@ class PaintingViewController:UITableViewController {
         self.navigationItem.titleView = imageView
         self.navigationController!.navigationBar.setTitleVerticalPositionAdjustment(-3.0, for: .defaultPrompt)
     }
-    // MARK: - Table view data source
-    override public func numberOfSections(in tableView: UITableView) -> Int {
-        // Exterior, Interior Surfaces
-        return 2
-    }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 2
-        } else if section == 1 {
-            return 2
-        }
-        return 0
-    }
-    override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
-        if section == 0 {
-            return "Interior Surfaces"
-        } else if section == 1 {
-            return "Exterior Surfaces"
-        } else {
-            return ""
+
+    //Mark:- Segue
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "painterFooterSegue" {
+            let destination = segue.destination as! ContractorFooterViewController
+            self.painterFooterViewController = destination
+            return
         }
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "testCell")!
-        /*
-        let serviceCell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServiceTableViewCell
-        var service:ContractorService?
-        serviceCell.tag = indexPath.section
-        serviceCell.serviceIndex = indexPath.row
-        
-        if indexPath.section == 0 {
-            service = interiorSurfaces?[indexPath.row]
-        } else if indexPath.section == 1 {
-            service = exteriorSurfaces?[indexPath.row]
-        } } else {
-            AlertControllerUtilities.somethingWentWrong(with: self)
-        }
-        
-        if let service = service {
-            serviceCell.service = service
-        } else {
-            return tableView.dequeueReusableCell(withIdentifier: "serviceDefaultCell", for: indexPath) as! ServiceTableViewCell
-        }
-        
-        return serviceCell
-         */
+    
+    //Mark: OnGetDataListener
+    public func onStart() {
+        print("Getting Customer Data")
+    }
+    
+    public func onSuccess() {
+        print("PaintingViewController:- Got Customer Data")
+        customerData!.getPainter(painterListener: painterFooterViewController)
+    }
+    
+    public func onFailure(_ error: Error) {
+        debugPrint(error)
+        AlertControllerUtilities.somethingWentWrong(with: self)
     }
 }

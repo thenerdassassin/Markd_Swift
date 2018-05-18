@@ -301,6 +301,14 @@ public class Customer:CustomStringConvertible {
         return self
     }
     
+    //Mark:- Painting
+    func getPainter() -> String? {
+        if(StringUtilities.isNilOrEmpty(painterReference)) {
+            return nil
+        }
+        return painterReference
+    }
+    
     //Mark:- Services
     public func update(_ service:ContractorService, _  number:Int, of type:String) -> Customer {
         if type == "Plumbing" {
