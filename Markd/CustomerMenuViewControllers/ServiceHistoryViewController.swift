@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ServiceHistoryTableViewController: UITableViewController, OnGetDataListener {
+class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var customerData:TempCustomerData?
     let cellIdentifier = "serviceCell"
