@@ -13,18 +13,20 @@ class PaintingSurfacesViewController:UITableViewController {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var customerData:TempCustomerData? {
         didSet {
-            //interiorPaintSurfaces = customerData.getInteriorPaintSurfaces()
-            //exteriorPaintSurfaces = customerData.getExteriorPaintSurfaces()
+            if let customerData = customerData {
+                interiorPaintSurfaces = customerData.getInteriorPaintSurfaces()
+                exteriorPaintSurfaces = customerData.getExteriorPaintSurfaces()
+            }
         }
     }
-    private var interiorPaintSurfaces:[AnyObject]? {
+    private var interiorPaintSurfaces:[PaintSurface]? {
         didSet {
             if let tableView = self.tableView {
                 tableView.reloadSections([0], with: .automatic)
             }
         }
     }
-    private var exteriorPaintSurfaces:[AnyObject]? {
+    private var exteriorPaintSurfaces:[PaintSurface]? {
         didSet {
             if let tableView = self.tableView {
                 tableView.reloadSections([1], with: .automatic)
@@ -50,11 +52,8 @@ class PaintingSurfacesViewController:UITableViewController {
     }
     
     private func configureView() {
-        if let customerData = customerData {
-            
-            //interiorPaintSurfaces = customerData.getInteriorPaintSurfaces()
-            //exteriorPaintSurfaces = customerDate.getExteriorPaintSurfaces()
-            //self.tableView.reloadData()
+        if let _ = customerData {
+            self.tableView.reloadData()
         }
     }
     // MARK: - Table view data source
@@ -65,11 +64,15 @@ class PaintingSurfacesViewController:UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             if let surfaces = interiorPaintSurfaces {
-                return surfaces.count
+                if surfaces.count != 0 {
+                    return surfaces.count
+                }
             }
         } else if section == 1 {
             if let surfaces = exteriorPaintSurfaces {
-                return surfaces.count
+                if surfaces.count != 0 {
+                    return surfaces.count
+                }
             }
         }
         return 1
@@ -84,28 +87,117 @@ class PaintingSurfacesViewController:UITableViewController {
         }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "testCell")!
-        /*
-        let serviceCell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServiceTableViewCell
-        var service:ContractorService?
-        serviceCell.tag = indexPath.section
-        serviceCell.serviceIndex = indexPath.row
+        let paintSurfaceCell = tableView.dequeueReusableCell(withIdentifier: "paintingSurfaceCell") as! PaintSurfaceTableViewCell
+        paintSurfaceCell.tag = indexPath.section
+        paintSurfaceCell.index = indexPath.row
         
+        var paintSurface:PaintSurface?
         if indexPath.section == 0 {
-            service = interiorSurfaces?[indexPath.row]
+            paintSurface = interiorPaintSurfaces?[indexPath.row]
         } else if indexPath.section == 1 {
-            service = exteriorSurfaces?[indexPath.row]
-        } } else {
+            paintSurface = exteriorPaintSurfaces?[indexPath.row]
+        } else {
             AlertControllerUtilities.somethingWentWrong(with: self)
         }
-        
-        if let service = service {
-            serviceCell.service = service
+        if let paintSurface = paintSurface {
+            paintSurfaceCell.paintSurface = paintSurface
         } else {
-            return tableView.dequeueReusableCell(withIdentifier: "serviceDefaultCell", for: indexPath) as! ServiceTableViewCell
+            return tableView.dequeueReusableCell(withIdentifier: "paintSurfaceDefaultCell", for: indexPath)
         }
-        
-        return serviceCell
-         */
+        return paintSurfaceCell
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    @IBAction func onAddSurfaceAction(_ sender: UIBarButtonItem) {
+        AlertControllerUtilities.showActionSheet(
+            withTitle: "Add Paint",
+            andMessage: "What surface type is being added?",
+            withOptions: [
+                UIAlertAction(title: "Interior Surface", style: .default, handler: addSurfaceHandler),
+                UIAlertAction(title: "Exterior Surface", style: .default, handler: addSurfaceHandler),
+                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            ],
+            in: self
+        )
+    }
+    func addSurfaceHandler(alert: UIAlertAction!) {
+        if alert.title != nil && alert.title != "Cancel" {
+            //TODO:
+            //self.performSegue(withIdentifier: "addContractorServiceSegue", sender: alert)
+        }
+    }
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //TODO
+            /*
+            guard let customerData = customerData else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            // Delete the row from the data source
+            if indexPath.section == 0 {
+                plumbingServices!.remove(at: indexPath.row)
+                customerData.removeService(indexPath.row, of: "Plumbing")
+            } else if indexPath.section == 1 {
+                hvacServices!.remove(at: indexPath.row)
+                customerData.removeService(indexPath.row, of: "Hvac")
+            } else if indexPath.section == 2 {
+                electricalServices!.remove(at: indexPath.row)
+                customerData.removeService(indexPath.row, of: "Electrical")
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+             */
+        }
+    }
+    //TODO:
+    /* MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showContractorServiceSegue" {
+            let sender = sender as! ServiceTableViewCell
+            let destination = segue.destination as! ContractorServiceTableViewController
+            guard let customerData = customerData, let service = sender.service else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            customerData.removeListeners()
+            destination.customerData = customerData
+            destination.serviceType = getTypeFromTag(sender.tag)
+            destination.serviceIndex = sender.serviceIndex
+            destination.service = service
+        } else if segue.identifier == "addContractorServiceSegue" {
+            let sender = sender as! UIAlertAction
+            let destination = segue.destination as! ContractorServiceTableViewController
+            guard let customerData = customerData else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            customerData.removeListeners()
+            destination.customerData = customerData
+            destination.serviceType = sender.title
+            destination.serviceIndex = -1
+            let newService = ContractorService()
+            newService.setGuid(nil)
+            destination.service = newService
+        }
+    }
+     */
+}
+
+class PaintSurfaceTableViewCell:UITableViewCell {
+    var index:Int?
+    var paintSurface:PaintSurface? {
+        didSet {
+            //TODO
+        }
     }
 }

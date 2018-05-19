@@ -112,7 +112,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
     @IBAction func onAddServiceAction(_ sender: UIBarButtonItem) {
         AlertControllerUtilities.showActionSheet(
             withTitle: "Add Service",
-            andMessage: "What service type is beingn added?",
+            andMessage: "What service type is being added?",
             withOptions: [
                 UIAlertAction(title: "Plumbing", style: .default, handler: addServiceHandler),
                 UIAlertAction(title: "Hvac", style: .default, handler: addServiceHandler),
