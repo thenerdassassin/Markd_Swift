@@ -164,13 +164,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Manufacturer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hzi-ez-0et">
-                                <rect key="frame" x="40" y="60" width="295" height="30"/>
+                                <rect key="frame" x="40" y="104" width="295" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="bOX-gc-SdP">
-                                <rect key="frame" x="0.0" y="140" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="184" width="375" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="545421305.99561799">
                                     <!--2018-04-14 17:55:05 +0000-->
                                 </date>
@@ -182,7 +182,7 @@
                                 </connections>
                             </datePicker>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zi1-9c-X6F" customClass="LifeSpanPickerView" customModule="Markd" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="140" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="184" width="375" height="216"/>
                             </pickerView>
                         </subviews>
                         <constraints>
@@ -605,6 +605,12 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="brandLabel" destination="ls8-c3-Rzv" id="el5-YB-8Us"/>
+                                    <outlet property="colorLabel" destination="iOu-Su-IAR" id="6JG-Wz-v0f"/>
+                                    <outlet property="dateLabel" destination="LUB-t3-pxL" id="Zf0-zm-6U5"/>
+                                    <outlet property="locationLabel" destination="kbr-Fl-yWq" id="fH2-Um-mjK"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="paintSurfaceDefaultCell" textLabel="h4d-nU-XvF" style="IBUITableViewCellStyleDefault" id="wDZ-oE-sXG" customClass="PaintSurfaceTableViewCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
@@ -857,7 +863,7 @@
         <image name="ic_action_pages" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jyb-JC-SRW"/>
-        <segue reference="ghf-ww-zgB"/>
+        <segue reference="0lT-xg-Ick"/>
+        <segue reference="jFv-8g-0vH"/>
     </inferredMetricsTieBreakers>
 </document>

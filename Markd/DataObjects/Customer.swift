@@ -359,7 +359,7 @@ public class Customer:CustomStringConvertible {
             }
         }
     }
-    func removePaintSurface(_ index:Int, fromInteriorSurfaces:Bool) -> Customer {
+    func deletePaintSurface(_ index:Int, fromInteriorSurfaces:Bool) -> Customer {
         if (fromInteriorSurfaces) {
             guard self.interiorPaintSurfaces != nil else {
                 return self
@@ -373,7 +373,6 @@ public class Customer:CustomStringConvertible {
             self.exteriorPaintSurfaces!.remove(at: index)
             return self
         }
-        
     }
     
     //Mark:- Services

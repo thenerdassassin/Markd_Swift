@@ -22,14 +22,14 @@ class PaintingSurfacesViewController:UITableViewController {
     private var interiorPaintSurfaces:[PaintSurface]? {
         didSet {
             if let tableView = self.tableView {
-                tableView.reloadSections([0], with: .automatic)
+                tableView.reloadSections([0], with: .fade)
             }
         }
     }
     private var exteriorPaintSurfaces:[PaintSurface]? {
         didSet {
             if let tableView = self.tableView {
-                tableView.reloadSections([1], with: .automatic)
+                tableView.reloadSections([1], with: .fade)
             }
         }
     }
@@ -136,27 +136,17 @@ class PaintingSurfacesViewController:UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            //TODO
-            /*
             guard let customerData = customerData else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
                 return
             }
-            // Delete the row from the data source
             if indexPath.section == 0 {
-                plumbingServices!.remove(at: indexPath.row)
-                customerData.removeService(indexPath.row, of: "Plumbing")
+                customerData.removePaintSurface(at: indexPath.row, fromInterior: true)
             } else if indexPath.section == 1 {
-                hvacServices!.remove(at: indexPath.row)
-                customerData.removeService(indexPath.row, of: "Hvac")
-            } else if indexPath.section == 2 {
-                electricalServices!.remove(at: indexPath.row)
-                customerData.removeService(indexPath.row, of: "Electrical")
+                customerData.removePaintSurface(at: indexPath.row, fromInterior: false)
             } else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
             }
-            tableView.deleteRows(at: [indexPath], with: .fade)
-             */
         }
     }
     //TODO:
@@ -197,7 +187,17 @@ class PaintSurfaceTableViewCell:UITableViewCell {
     var index:Int?
     var paintSurface:PaintSurface? {
         didSet {
-            //TODO
+            if let paintSurface = paintSurface {
+                StringUtilities.set(textOf: locationLabel, to: paintSurface.getLocation())
+                brandLabel.text = paintSurface.getBrand()
+                colorLabel.text = paintSurface.getColor()
+                dateLabel.text = paintSurface.installDateAsString()
+            }
         }
     }
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var brandLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var colorLabel: UILabel!
+    
 }
