@@ -43,6 +43,11 @@ class PaintingViewController:UIViewController, OnGetDataListener {
 
     //Mark:- Segue
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "paintingSurfacesSegue" {
+            let destination = segue.destination as! PaintingSurfacesViewController
+            destination.customerData = customerData
+            return
+        }
         if segue.identifier == "painterFooterSegue" {
             let destination = segue.destination as! ContractorFooterViewController
             self.painterFooterViewController = destination

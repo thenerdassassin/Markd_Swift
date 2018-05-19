@@ -13,11 +13,24 @@ class PaintingSurfacesViewController:UITableViewController {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var customerData:TempCustomerData? {
         didSet {
-            configureView()
+            //interiorPaintSurfaces = customerData.getInteriorPaintSurfaces()
+            //exteriorPaintSurfaces = customerData.getExteriorPaintSurfaces()
         }
     }
-    private var interiorPaintSurfaces:[AnyObject]?
-    private var exteriorPaintSurfaces:[AnyObject]?
+    private var interiorPaintSurfaces:[AnyObject]? {
+        didSet {
+            if let tableView = self.tableView {
+                tableView.reloadSections([0], with: .automatic)
+            }
+        }
+    }
+    private var exteriorPaintSurfaces:[AnyObject]? {
+        didSet {
+            if let tableView = self.tableView {
+                tableView.reloadSections([1], with: .automatic)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +50,11 @@ class PaintingSurfacesViewController:UITableViewController {
     }
     
     private func configureView() {
-        if let _ = self.tableView, let customerData = customerData {
-            //Set PaintSurfaces
-            self.tableView.reloadData()
+        if let customerData = customerData {
+            
+            //interiorPaintSurfaces = customerData.getInteriorPaintSurfaces()
+            //exteriorPaintSurfaces = customerDate.getExteriorPaintSurfaces()
+            //self.tableView.reloadData()
         }
     }
     // MARK: - Table view data source

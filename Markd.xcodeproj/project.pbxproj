@@ -33,6 +33,7 @@
 		FF5D7A6720AF7565008A05FC /* Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF5D7A6620AF7565008A05FC /* Details.storyboard */; };
 		FF5D7A6920AF79CA008A05FC /* PaintingSurfacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D7A6820AF79CA008A05FC /* PaintingSurfacesViewController.swift */; };
 		FF5D7A6B20AF822C008A05FC /* PaintingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D7A6A20AF822C008A05FC /* PaintingViewController.swift */; };
+		FF5D7A6D20B0AEAD008A05FC /* PaintSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D7A6C20B0AEAD008A05FC /* PaintSurface.swift */; };
 		FF6BF1E92093DF64001D55EF /* ServiceHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1E82093DF64001D55EF /* ServiceHistoryViewController.swift */; };
 		FF6BF1EB2094EC67001D55EF /* ContractorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1EA2094EC67001D55EF /* ContractorService.swift */; };
 		FF6BF1F320950CE1001D55EF /* ContractorServiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */; };
@@ -95,6 +96,7 @@
 		FF5D7A6620AF7565008A05FC /* Details.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Details.storyboard; sourceTree = "<group>"; };
 		FF5D7A6820AF79CA008A05FC /* PaintingSurfacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingSurfacesViewController.swift; sourceTree = "<group>"; };
 		FF5D7A6A20AF822C008A05FC /* PaintingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingViewController.swift; sourceTree = "<group>"; };
+		FF5D7A6C20B0AEAD008A05FC /* PaintSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintSurface.swift; sourceTree = "<group>"; };
 		FF6BF1E82093DF64001D55EF /* ServiceHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHistoryViewController.swift; sourceTree = "<group>"; };
 		FF6BF1EA2094EC67001D55EF /* ContractorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorService.swift; sourceTree = "<group>"; };
 		FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorServiceTableViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				FF9A5B392086C2D3007E9669 /* Contractor.swift */,
 				FF9A5B3B2086C69F007E9669 /* ContractorDetails.swift */,
 				FF6BF1EA2094EC67001D55EF /* ContractorService.swift */,
+				FF5D7A6C20B0AEAD008A05FC /* PaintSurface.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 			files = (
 				FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */,
 				FFDE253620588868009D1790 /* SendEmail.swift in Sources */,
+				FF5D7A6D20B0AEAD008A05FC /* PaintSurface.swift in Sources */,
 				FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */,
 				FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */,
 				479734E31E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift in Sources */,

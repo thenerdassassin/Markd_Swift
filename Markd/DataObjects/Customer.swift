@@ -45,8 +45,8 @@ public class Customer:CustomStringConvertible {
     private var electricalServices: [ContractorService]?
     
     //For Painting Page
-    //TODO: private List<PaintSurface> interiorPaintSurfaces
-    //TODO: private List<PaintSurface> exteriorPaintSurfaces
+    private var interiorPaintSurfaces: [PaintSurface]?
+    private var exteriorPaintSurfaces: [PaintSurface]?
     private var painterReference: String
     
     public init(_ dictionary: Dictionary<String, AnyObject>) {
@@ -111,8 +111,24 @@ public class Customer:CustomStringConvertible {
             }
         }
         
-        //TODO: interiorPaintSurfaces
-        //TODO: exteriorPaintSurfaces
+        if let interiorPaintArray = dictionary["interiorPaintSurfaces"] as? NSArray {
+            interiorPaintSurfaces = [PaintSurface]()
+            for surface in interiorPaintArray {
+                if let surfaceDictionary = surface as? Dictionary<String, AnyObject> {
+                    interiorPaintSurfaces!.append(PaintSurface(surfaceDictionary))
+                    interiorPaintSurfaces!.sort()
+                }
+            }
+        }
+        if let exteriorPaintArray = dictionary["exteriorPaintSurfaces"] as? NSArray {
+            exteriorPaintSurfaces = [PaintSurface]()
+            for surface in exteriorPaintArray {
+                if let surfaceDictionary = surface as? Dictionary<String, AnyObject> {
+                    exteriorPaintSurfaces!.append(PaintSurface(surfaceDictionary))
+                    exteriorPaintSurfaces!.sort()
+                }
+            }
+        }
         self.painterReference = dictionary["painterReference"] != nil ? dictionary["painterReference"] as! String: ""
     }
     
@@ -302,11 +318,62 @@ public class Customer:CustomStringConvertible {
     }
     
     //Mark:- Painting
+    func getInteriorPaintSurfaces() -> [PaintSurface]? {
+        return interiorPaintSurfaces
+    }
+    func getExteriorPaintSurfaces() -> [PaintSurface]? {
+        return exteriorPaintSurfaces
+    }
     func getPainter() -> String? {
         if(StringUtilities.isNilOrEmpty(painterReference)) {
             return nil
         }
         return painterReference
+    }
+    func updatePaintSurface(_ surface:PaintSurface, _  number:Int, isInterior:Bool) -> Customer {
+        if(isInterior) {
+            if let _ = interiorPaintSurfaces {
+                if(number == -1) {
+                    self.interiorPaintSurfaces!.append(surface)
+                } else {
+                    self.interiorPaintSurfaces![number] = surface
+                }
+                return self
+            } else {
+                self.interiorPaintSurfaces = [PaintSurface]()
+                self.interiorPaintSurfaces!.append(surface)
+                return self
+            }
+        } else {
+            if let _ = exteriorPaintSurfaces {
+                if(number == -1) {
+                    self.exteriorPaintSurfaces!.append(surface)
+                } else {
+                    self.exteriorPaintSurfaces![number] = surface
+                }
+                return self
+            } else {
+                self.exteriorPaintSurfaces = [PaintSurface]()
+                self.exteriorPaintSurfaces!.append(surface)
+                return self
+            }
+        }
+    }
+    func removePaintSurface(_ index:Int, fromInteriorSurfaces:Bool) -> Customer {
+        if (fromInteriorSurfaces) {
+            guard self.interiorPaintSurfaces != nil else {
+                return self
+            }
+            self.interiorPaintSurfaces!.remove(at: index)
+            return self
+        } else {
+            guard self.exteriorPaintSurfaces != nil else {
+                return self
+            }
+            self.exteriorPaintSurfaces!.remove(at: index)
+            return self
+        }
+        
     }
     
     //Mark:- Services
@@ -378,8 +445,20 @@ public class Customer:CustomStringConvertible {
             dictionary["electricalServices"] = electricalArray
         }
         
-        //TODO: interiorPaintSurfaces
-        //TODO: exteriorPaintSurfaces
+        if let interiorPaintSurfaces = interiorPaintSurfaces?.sorted() {
+            var interiorPaintSurfacesArray = NSArray()
+            for surface in interiorPaintSurfaces {
+                interiorPaintSurfacesArray = interiorPaintSurfacesArray.adding(surface.toDictionary()) as NSArray
+            }
+            dictionary["interiorPaintSurfaces"] = interiorPaintSurfacesArray
+        }
+        if let exteriorPaintSurfaces = exteriorPaintSurfaces?.sorted() {
+            var exteriorPaintSurfaceArray = NSArray()
+            for surface in exteriorPaintSurfaces {
+                exteriorPaintSurfaceArray = exteriorPaintSurfaceArray.adding(surface.toDictionary()) as NSArray
+            }
+            dictionary["exteriorPaintSurfaces"] = exteriorPaintSurfaceArray
+        }
         dictionary["painterReference"] = self.painterReference as AnyObject
         
         return dictionary

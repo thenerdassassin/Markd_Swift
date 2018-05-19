@@ -246,6 +246,13 @@ public class TempCustomerData {
     }
     
     //Mark:- PaintingPage
+    public func getInteriorPaintSurfaces() -> [PaintSurface]? {
+        return getCustomer()?.getInteriorPaintSurfaces()
+    }
+    public func getExteriorPaintSurfaces() -> [PaintSurface]? {
+        return getCustomer()?.getExteriorPaintSurfaces()
+    }
+    var TODO_Update_OR_Add_Surface_😤:AnyObject?
     public func getPainter(painterListener: OnGetContractorListener?) {
         guard let listener = painterListener else {
             return

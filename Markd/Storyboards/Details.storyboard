@@ -512,7 +512,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pZX-cd-tOA">
                                 <rect key="frame" x="0.0" y="20" width="375" height="529.5"/>
                                 <connections>
-                                    <segue destination="9Yc-7D-iCJ" kind="embed" id="xHi-Sh-RSP"/>
+                                    <segue destination="9Yc-7D-iCJ" kind="embed" identifier="paintingSurfacesSegue" id="xHi-Sh-RSP"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EGr-vH-0XE">

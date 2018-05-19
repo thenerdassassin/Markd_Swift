@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PaintSurface:CustomStringConvertible {
+public class PaintSurface:CustomStringConvertible, Comparable {
     private var brand:String
     private var color:String
     private var location:String
@@ -65,5 +65,29 @@ public class PaintSurface:CustomStringConvertible {
             self.day = day
             self.year = year
         }
+    }
+    
+    // Mark:- Comparable
+    public static func < (lhs: PaintSurface, rhs: PaintSurface) -> Bool {
+        if lhs.year != rhs.year {
+            return lhs.year > rhs.year
+        }
+        if lhs.month != rhs.month {
+            return lhs.month > rhs.month
+        }
+        if lhs.day != rhs.day {
+            return lhs.day > rhs.day
+        }
+        if lhs.brand != rhs.brand {
+            return lhs.brand < rhs.brand
+        }
+        if lhs.color != rhs.color {
+            return lhs.color < rhs.color
+        }
+        return lhs.location < rhs.location
+    }
+    
+    public static func == (lhs: PaintSurface, rhs: PaintSurface) -> Bool {
+        return false
     }
 }
