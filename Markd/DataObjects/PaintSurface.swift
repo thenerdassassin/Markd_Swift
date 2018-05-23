@@ -16,6 +16,14 @@ public class PaintSurface:CustomStringConvertible, Comparable {
     private var day:Int
     private var year:Int
     
+    public init() {
+        self.brand = ""
+        self.color = ""
+        self.location = ""
+        self.month = -1
+        self.day = -1
+        self.year = -1
+    }
     public init(_ dictionary: Dictionary<String, AnyObject>) {
         self.brand = dictionary["brand"] != nil ? dictionary["brand"] as! String: ""
         self.color = dictionary["color"] != nil ? dictionary["color"] as! String: ""

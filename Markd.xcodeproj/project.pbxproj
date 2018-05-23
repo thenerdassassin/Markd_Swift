@@ -29,6 +29,7 @@
 		47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */; };
 		FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
+		FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */; };
 		FF592F7320683E090031DA92 /* Boiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF592F7220683E090031DA92 /* Boiler.swift */; };
 		FF5D7A6720AF7565008A05FC /* Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF5D7A6620AF7565008A05FC /* Details.storyboard */; };
 		FF5D7A6920AF79CA008A05FC /* PaintingSurfacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5D7A6820AF79CA008A05FC /* PaintingSurfacesViewController.swift */; };
@@ -92,6 +93,7 @@
 		7C5098B1444AC29248521536 /* Pods_Markd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Markd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpanPickerView.swift; sourceTree = "<group>"; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPaintingSurfaceViewController.swift; sourceTree = "<group>"; };
 		FF592F7220683E090031DA92 /* Boiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boiler.swift; sourceTree = "<group>"; };
 		FF5D7A6620AF7565008A05FC /* Details.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Details.storyboard; sourceTree = "<group>"; };
 		FF5D7A6820AF79CA008A05FC /* PaintingSurfacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintingSurfacesViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */,
 				FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */,
 				FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */,
+				FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
 				FF5D7A6B20AF822C008A05FC /* PaintingViewController.swift in Sources */,
 				47500AC51E0794400099B0EE /* WebController.swift in Sources */,
+				FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */,
 				FF6BF1F320950CE1001D55EF /* ContractorServiceTableViewController.swift in Sources */,
 				FFF27C96204CB8B500A9392E /* PlumbingViewController.swift in Sources */,
 				47A89F851E1C5C2C00381967 /* BreakerAmperagePickerController.swift in Sources */,

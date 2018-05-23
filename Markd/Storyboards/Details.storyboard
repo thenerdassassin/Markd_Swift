@@ -65,6 +65,7 @@
                         <viewLayoutGuide key="safeArea" id="Bdz-ld-ahs"/>
                     </view>
                     <navigationItem key="navigationItem" id="aKi-Vh-Zz6">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="YB2-6l-vlj"/>
                         <barButtonItem key="leftBarButtonItem" title="Switch" id="FQ5-gU-MXc">
                             <connections>
                                 <action selector="switchButtonAction:" destination="Qth-DH-Tc5" id="Xwd-75-nmA"/>
@@ -501,10 +502,10 @@
             </objects>
             <point key="canvasLocation" x="-2218" y="-316"/>
         </scene>
-        <!--Title-->
+        <!--Painting View Controller-->
         <scene sceneID="uyA-XF-gdC">
             <objects>
-                <viewController storyboardIdentifier="PaintingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9zP-1C-KgA" customClass="PaintingViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaintingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9zP-1C-KgA" userLabel="Painting View Controller" customClass="PaintingViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rV9-2G-nfY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -535,7 +536,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="whD-8J-8hd"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="g6B-fR-dEq">
+                    <navigationItem key="navigationItem" id="g6B-fR-dEq">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="tyg-8l-UBT"/>
                         <barButtonItem key="leftBarButtonItem" title="Switch" id="JGP-ga-L62">
                             <connections>
                                 <action selector="showActionSheet:" destination="9zP-1C-KgA" id="QXN-mE-M9O"/>
@@ -610,6 +612,7 @@
                                     <outlet property="colorLabel" destination="iOu-Su-IAR" id="6JG-Wz-v0f"/>
                                     <outlet property="dateLabel" destination="LUB-t3-pxL" id="Zf0-zm-6U5"/>
                                     <outlet property="locationLabel" destination="kbr-Fl-yWq" id="fH2-Um-mjK"/>
+                                    <segue destination="BtB-ed-YNE" kind="show" identifier="showPaintingSurfaceSegue" id="c1D-iW-PT6"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="paintSurfaceDefaultCell" textLabel="h4d-nU-XvF" style="IBUITableViewCellStyleDefault" id="wDZ-oE-sXG" customClass="PaintSurfaceTableViewCell" customModule="Markd" customModuleProvider="target">
@@ -639,7 +642,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qte-xu-bHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3730" y="423"/>
+            <point key="canvasLocation" x="-3734" y="505"/>
         </scene>
         <!--Hvac View Controller-->
         <scene sceneID="Gho-qh-IiI">
@@ -858,12 +861,40 @@
             </objects>
             <point key="canvasLocation" x="-2880" y="140"/>
         </scene>
+        <!--Edit Painting Surface View Controller-->
+        <scene sceneID="G1r-qO-Mco">
+            <objects>
+                <tableViewController hidesBottomBarWhenPushed="YES" id="BtB-ed-YNE" customClass="EditPaintingSurfaceViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F0b-DB-R4N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6vM-Ly-QY1">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6vM-Ly-QY1" id="H5Z-VU-uhd">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BtB-ed-YNE" id="bWj-Ao-kz7"/>
+                            <outlet property="delegate" destination="BtB-ed-YNE" id="68w-UQ-hLd"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YLF-51-tjn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2935" y="505"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ic_action_pages" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0lT-xg-Ick"/>
+        <segue reference="jyb-JC-SRW"/>
         <segue reference="jFv-8g-0vH"/>
     </inferredMetricsTieBreakers>
 </document>

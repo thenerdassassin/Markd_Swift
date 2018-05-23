@@ -149,38 +149,39 @@ class PaintingSurfacesViewController:UITableViewController {
             }
         }
     }
-    //TODO:
-    /* MARK: - Navigation
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showContractorServiceSegue" {
-            let sender = sender as! ServiceTableViewCell
-            let destination = segue.destination as! ContractorServiceTableViewController
-            guard let customerData = customerData, let service = sender.service else {
+        if segue.identifier == "showPaintingSurfaceSegue" {
+            let sender = sender as! PaintSurfaceTableViewCell
+            let destination = segue.destination as! EditPaintingSurfaceViewController
+            guard let customerData = customerData, let paintSurface = sender.paintSurface else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
                 return
             }
             customerData.removeListeners()
             destination.customerData = customerData
-            destination.serviceType = getTypeFromTag(sender.tag)
-            destination.serviceIndex = sender.serviceIndex
-            destination.service = service
-        } else if segue.identifier == "addContractorServiceSegue" {
+            if sender.tag == 0 {
+                destination.isInterior = true
+            }
+            destination.paintSurfaceIndex = sender.index
+            destination.paintSurface = paintSurface
+        } else if segue.identifier == "addPaintingSurfaceSegue" {
             let sender = sender as! UIAlertAction
-            let destination = segue.destination as! ContractorServiceTableViewController
+            let destination = segue.destination as! EditPaintingSurfaceViewController
             guard let customerData = customerData else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
                 return
             }
             customerData.removeListeners()
             destination.customerData = customerData
-            destination.serviceType = sender.title
-            destination.serviceIndex = -1
-            let newService = ContractorService()
-            newService.setGuid(nil)
-            destination.service = newService
+            if sender.title == "Interior" {
+                destination.isInterior = true
+            }
+            destination.paintSurfaceIndex = -1
+            let newPaintSurface = PaintSurface()
+            destination.paintSurface = newPaintSurface
         }
     }
-     */
 }
 
 class PaintSurfaceTableViewCell:UITableViewCell {
