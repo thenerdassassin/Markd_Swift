@@ -119,7 +119,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     }
     
     @IBAction func switchButtonAction(_ sender: UIBarButtonItem) {
-        var TODO_ChangeRootViewToElectricalOrPainting🤪:AnyClass?
+        var TODO_ChangeRootViewToElectrical🤪:AnyClass?
         AlertControllerUtilities.showActionSheet(
             withTitle: "Switch Page",
             andMessage: "Which page would you like to switch to?",
@@ -127,7 +127,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
                 UIAlertAction(title: "HVAC", style: .default, handler: { _ in
                     NSLog("Switching to HVAC Page")
                     if let navigationController = self.navigationController {
-                        let hvacViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HvacViewController") as! HvacViewController
+                        let hvacViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "HvacViewController") as! HvacViewController
                         navigationController.setViewControllers([hvacViewController], animated: true)
                     }
                 }),
@@ -135,6 +135,10 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
                     NSLog("Switching to Electrical Page")
                 }),UIAlertAction(title: "Painting", style: .default, handler: { _ in
                     NSLog("Switching to Painting Page")
+                    if let navigationController = self.navigationController {
+                        let paintingViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "PaintingViewController") as! PaintingViewController
+                        navigationController.setViewControllers([paintingViewController], animated: true)
+                    }
                 }),
                 UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
                     NSLog("Canceling Edit")

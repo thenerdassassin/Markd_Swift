@@ -198,11 +198,21 @@ public class CommentsTableViewCell: UITableViewCell, UITextViewDelegate {
     public var comments:String? {
         didSet {
             commentsTextView.text = comments
+            if StringUtilities.isNilOrEmpty(commentsTextView.text) {
+                commentsTextView.textColor = UIColor.lightGray
+                commentsTextView.text = "Comments"
+            }
         }
     }
     @IBOutlet weak var commentsTextView: UITextView! {
         didSet {
             commentsTextView.delegate = self
+        }
+    }
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Comments" {
+            textView.text = ""
+            textView.textColor = UIColor.black
         }
     }
     public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
@@ -211,6 +221,10 @@ public class CommentsTableViewCell: UITableViewCell, UITextViewDelegate {
     }
     public func textViewDidEndEditing(_ textView: UITextView) {
         serviceViewController!.service!.setComments(textView.text!)
+        if StringUtilities.isNilOrEmpty(textView.text) {
+            textView.textColor = UIColor.lightGray
+            textView.text = "Comments"
+        }
     }
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {

@@ -224,8 +224,8 @@ public class TempCustomerData {
             listener.onFinished(contractor: nil, at: nil)
             return
         }
-        let hvaeTechnicianReference:DatabaseReference = TempCustomerData.database.child(hvacTechnician)
-        hvaeTechnicianReference.observeSingleEvent(of: .value, with: { (snapshot) in
+        let hvacTechnicianReference:DatabaseReference = TempCustomerData.database.child(hvacTechnician)
+        hvacTechnicianReference.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 listener.onFinished(contractor: Contractor(dictionary), at:hvacTechnician)
             }
@@ -244,7 +244,50 @@ public class TempCustomerData {
     public func getElectricalServices() -> [ContractorService]? {
         return getCustomer()?.getElectricalServices()
     }
+    
+    //Mark:- PaintingPage
+    public func getInteriorPaintSurfaces() -> [PaintSurface]? {
+        return getCustomer()?.getInteriorPaintSurfaces()
+    }
+    public func getExteriorPaintSurfaces() -> [PaintSurface]? {
+        return getCustomer()?.getExteriorPaintSurfaces()
+    }
+    public func removePaintSurface(at index:Int, fromInterior isInterior:Bool) {
+        updateCustomer(to: getCustomer()?.deletePaintSurface(index, fromInteriorSurfaces: isInterior))
+    }
+    public func updatePaintSurface(at index: Int, fromInterior isInterior:Bool, to updatedSurface:PaintSurface) {
+        updateCustomer(to: getCustomer()?.updatePaintSurface(updatedSurface, index, isInterior: isInterior))
+    }
+    var TODO_Update_OR_Add_Surface_😤:AnyObject?
+    public func getPainter(painterListener: OnGetContractorListener?) {
+        guard let listener = painterListener else {
+            return
+        }
+        guard let customer = customer, let painter = customer.getPainter() else {
+            print("There is no painter")
+            listener.onFinished(contractor: nil, at: nil)
+            return
+        }
+        let painterReference:DatabaseReference = TempCustomerData.database.child(painter)
+        painterReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                listener.onFinished(contractor: Contractor(dictionary), at:painter)
+            }
+        }) { (error) in
+            listener.onFailure(error)
+        }
+    }
         
+
+    
+    //Mark:- Services
+    public func update(_ service:ContractorService, _  number:Int, of type:String) {
+        updateCustomer(to: getCustomer()?.update(service, number, of:type))
+    }
+    public func removeService(_ number:Int, of type:String) {
+        updateCustomer(to: getCustomer()?.deleteService(number, of:type))
+    }
+    
     public func setAppliance(to newAppliance: Appliance) {
         if let hotWater = newAppliance as? HotWater {
             self.updateHotWater(to: hotWater)
@@ -257,14 +300,6 @@ public class TempCustomerData {
         } else {
             print("Appliance type does not match")
         }
-    }
-    
-    //Mark:- Services
-    public func update(_ service:ContractorService, _  number:Int, of type:String) {
-        updateCustomer(to: getCustomer()?.update(service, number, of:type))
-    }
-    public func removeService(_ number:Int, of type:String) {
-        updateCustomer(to: getCustomer()?.deleteService(number, of:type))
     }
     
     func NEED_TO_ADD_ANDROID_METHODS😤() {

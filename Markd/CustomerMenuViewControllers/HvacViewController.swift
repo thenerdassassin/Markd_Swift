@@ -114,12 +114,12 @@ public class HvacViewController: UIViewController, OnGetDataListener {
     }
     
     @IBAction func showActionSheet(_ sender: UIBarButtonItem) {
-        var TODO_ChangeRootView🤪:AnyClass?
+        var TODO_ChangeRootViewToElectrical🤪:AnyClass?
         let alert = UIAlertController(title: "Switch Page", message: "Which page would you like to switch to?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Plumbing", style: .default, handler: { _ in
             NSLog("Switching to Plumbing Page")
             if let navigationController = self.navigationController {
-                let plumbingViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PlumbingViewController") as! PlumbingViewController
+                let plumbingViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "PlumbingViewController") as! PlumbingViewController
                 navigationController.setViewControllers([plumbingViewController], animated: true)
             }
         }))
@@ -128,9 +128,13 @@ public class HvacViewController: UIViewController, OnGetDataListener {
         }))
         alert.addAction(UIAlertAction(title: "Painting", style: .default, handler: { _ in
             NSLog("Switching to Painting Page")
+            if let navigationController = self.navigationController {
+                let paintingViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "PaintingViewController") as! PaintingViewController
+                navigationController.setViewControllers([paintingViewController], animated: true)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            NSLog("Cancels page switch")
+            NSLog("Cancel page switch")
         }))
         self.present(alert, animated: true, completion: nil)
     }

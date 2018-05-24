@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ServiceHistoryTableViewController: UITableViewController, OnGetDataListener {
+class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var customerData:TempCustomerData?
     let cellIdentifier = "serviceCell"
@@ -112,7 +112,7 @@ class ServiceHistoryTableViewController: UITableViewController, OnGetDataListene
     @IBAction func onAddServiceAction(_ sender: UIBarButtonItem) {
         AlertControllerUtilities.showActionSheet(
             withTitle: "Add Service",
-            andMessage: "What service type is beingn added?",
+            andMessage: "What service type is being added?",
             withOptions: [
                 UIAlertAction(title: "Plumbing", style: .default, handler: addServiceHandler),
                 UIAlertAction(title: "Hvac", style: .default, handler: addServiceHandler),
