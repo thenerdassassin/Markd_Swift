@@ -255,6 +255,9 @@ public class TempCustomerData {
     public func removePaintSurface(at index:Int, fromInterior isInterior:Bool) {
         updateCustomer(to: getCustomer()?.deletePaintSurface(index, fromInteriorSurfaces: isInterior))
     }
+    public func updatePaintSurface(at index: Int, fromInterior isInterior:Bool, to updatedSurface:PaintSurface) {
+        updateCustomer(to: getCustomer()?.updatePaintSurface(updatedSurface, index, isInterior: isInterior))
+    }
     var TODO_Update_OR_Add_Surface_😤:AnyObject?
     public func getPainter(painterListener: OnGetContractorListener?) {
         guard let listener = painterListener else {

@@ -165,21 +165,6 @@ class PaintingSurfacesViewController:UITableViewController {
             }
             destination.paintSurfaceIndex = sender.index
             destination.paintSurface = paintSurface
-        } else if segue.identifier == "addPaintingSurfaceSegue" {
-            let sender = sender as! UIAlertAction
-            let destination = segue.destination as! EditPaintingSurfaceViewController
-            guard let customerData = customerData else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
-                return
-            }
-            customerData.removeListeners()
-            destination.customerData = customerData
-            if sender.title == "Interior" {
-                destination.isInterior = true
-            }
-            destination.paintSurfaceIndex = -1
-            let newPaintSurface = PaintSurface()
-            destination.paintSurface = newPaintSurface
         }
     }
 }

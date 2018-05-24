@@ -55,6 +55,23 @@ class PaintingViewController:UIViewController, OnGetDataListener {
             self.painterFooterViewController = destination
             return
         }
+        if segue.identifier == "addPaintingSurfaceSegue" {
+            let sender = sender as! UIAlertAction
+            let destination = segue.destination as! EditPaintingSurfaceViewController
+            guard let customerData = customerData else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            customerData.removeListeners()
+            destination.customerData = customerData
+            if sender.title == "Interior" {
+                destination.isInterior = true
+            }
+            destination.paintSurfaceIndex = -1
+            let newPaintSurface = PaintSurface()
+            destination.paintSurface = newPaintSurface
+            return
+        }
     }
     @IBAction func showActionSheet(_ sender: UIBarButtonItem) {
         var TODO_ChangeRootViewToElectrical🤪:AnyClass?
@@ -82,6 +99,23 @@ class PaintingViewController:UIViewController, OnGetDataListener {
         self.present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func onAddPaintSurfaceAction(_ sender: Any) {
+        AlertControllerUtilities.showActionSheet(
+            withTitle: "Add Paint Surface",
+            andMessage: "What type of paint surfice is being added?",
+            withOptions: [
+                UIAlertAction(title: "Interior", style: .default, handler: addPaintSurfaceHandler),
+                UIAlertAction(title: "Exterior", style: .default, handler: addPaintSurfaceHandler),
+                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            ],
+            in: self
+        )
+    }
+    func addPaintSurfaceHandler(alert: UIAlertAction!) {
+        if alert.title != nil && alert.title != "Cancel" {
+            self.performSegue(withIdentifier: "addPaintingSurfaceSegue", sender: alert)
+        }
+    }
     //Mark: OnGetDataListener
     public func onStart() {
         print("Getting Customer Data")

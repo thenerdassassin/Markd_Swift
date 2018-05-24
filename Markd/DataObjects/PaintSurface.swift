@@ -20,9 +20,11 @@ public class PaintSurface:CustomStringConvertible, Comparable {
         self.brand = ""
         self.color = ""
         self.location = ""
-        self.month = -1
-        self.day = -1
-        self.year = -1
+        let date = Date()
+        let calendar = Calendar.current
+        self.month = calendar.component(Calendar.Component.month, from: date)
+        self.day = calendar.component(Calendar.Component.day, from: date)
+        self.year = calendar.component(Calendar.Component.year, from: date)
     }
     public init(_ dictionary: Dictionary<String, AnyObject>) {
         self.brand = dictionary["brand"] != nil ? dictionary["brand"] as! String: ""
