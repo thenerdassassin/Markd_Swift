@@ -109,25 +109,6 @@ class PaintingSurfacesViewController:UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    @IBAction func onAddSurfaceAction(_ sender: UIBarButtonItem) {
-        AlertControllerUtilities.showActionSheet(
-            withTitle: "Add Paint",
-            andMessage: "What surface type is being added?",
-            withOptions: [
-                UIAlertAction(title: "Interior Surface", style: .default, handler: addSurfaceHandler),
-                UIAlertAction(title: "Exterior Surface", style: .default, handler: addSurfaceHandler),
-                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            ],
-            in: self
-        )
-    }
-    func addSurfaceHandler(alert: UIAlertAction!) {
-        if alert.title != nil && alert.title != "Cancel" {
-            //TODO:
-            //self.performSegue(withIdentifier: "addContractorServiceSegue", sender: alert)
-        }
-    }
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true

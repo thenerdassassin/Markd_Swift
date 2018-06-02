@@ -13,7 +13,7 @@
             <objects>
                 <navigationController id="AQ4-4e-0EU" userLabel="NotificationsNavigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Notifications" image="ic_action_notifications" selectedImage="ic_action_notifications" id="Efh-Qt-fUG"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MUJ-Oj-GUE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="MUJ-Oj-GUE">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-4687" y="91"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Notifications View Controller-->
         <scene sceneID="HdY-ev-5ct">
             <objects>
-                <tableViewController id="OG6-fa-GBJ" sceneMemberID="viewController">
+                <tableViewController id="OG6-fa-GBJ" customClass="NotificationsViewController" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4mf-m6-DIo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +48,7 @@
                             <outlet property="delegate" destination="OG6-fa-GBJ" id="SAV-sd-xZY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="5LF-DA-mbl"/>
+                    <navigationItem key="navigationItem" id="qUh-go-rZr"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bs-8o-MKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
