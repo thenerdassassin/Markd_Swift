@@ -30,6 +30,7 @@
 		FF0CA3B320C31FBD00630B16 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0CA3B220C31B9A00630B16 /* Notifications.storyboard */; };
 		FF0CA3B520C321F800630B16 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */; };
 		FF0CA3B720C326D500630B16 /* CustomerNotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */; };
+		FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */; };
 		FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */; };
@@ -97,6 +98,7 @@
 		FF0CA3B220C31B9A00630B16 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Notifications.storyboard; path = /Users/joshua.schmidtibm.com/Documents/Markd/Markd_Swift/Markd/Storyboards/Notifications.storyboard; sourceTree = "<absolute>"; };
 		FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationMessage.swift; sourceTree = "<group>"; };
+		FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsUtilities.swift; sourceTree = "<group>"; };
 		FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpanPickerView.swift; sourceTree = "<group>"; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPaintingSurfaceViewController.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				FFF27C8F2041F76E00A9392E /* StringUtilities.swift */,
 				FFDE253520588868009D1790 /* SendEmail.swift */,
 				FFFD3F14205B25A9005B7325 /* AlertControllerUtilities.swift */,
+				FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				479734E31E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift in Sources */,
 				FF592F7320683E090031DA92 /* Boiler.swift in Sources */,
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
+				FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */,
 				FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */,
 				FFF27C8E2041E18600A9392E /* Customer.swift in Sources */,
 				FF6BF1E92093DF64001D55EF /* ServiceHistoryViewController.swift in Sources */,
