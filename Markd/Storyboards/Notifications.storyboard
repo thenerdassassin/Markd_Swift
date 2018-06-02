@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AQ4-4e-0EU">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--NotificationsNavigation-->
+        <scene sceneID="gzU-Fo-G1X">
+            <objects>
+                <navigationController id="AQ4-4e-0EU" userLabel="NotificationsNavigation" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Notifications" image="ic_action_notifications" selectedImage="ic_action_notifications" id="Efh-Qt-fUG"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MUJ-Oj-GUE">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="OG6-fa-GBJ" kind="relationship" relationship="rootViewController" id="L1G-T6-N6F"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Z0-YG-xfq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4687" y="91"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="HdY-ev-5ct">
+            <objects>
+                <tableViewController id="OG6-fa-GBJ" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4mf-m6-DIo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GQO-Pw-FEW">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GQO-Pw-FEW" id="kLK-7u-JbI">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OG6-fa-GBJ" id="gtG-k4-eRW"/>
+                            <outlet property="delegate" destination="OG6-fa-GBJ" id="SAV-sd-xZY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="5LF-DA-mbl"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4bs-8o-MKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4687" y="867"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_action_notifications" width="32" height="32"/>
+    </resources>
+</document>

@@ -27,6 +27,7 @@
 		47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E0EA4A1DF3865C001F417F /* LaunchScreen.storyboard */; };
 		47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */; };
 		47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */; };
+		FF0CA3B320C31FBD00630B16 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0CA3B220C31B9A00630B16 /* Notifications.storyboard */; };
 		FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */; };
@@ -91,6 +92,7 @@
 		47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBreakerViewController.swift; sourceTree = "<group>"; };
 		5F8AAE28D9CA323AB69658E5 /* Pods-Markd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.release.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.release.xcconfig"; sourceTree = "<group>"; };
 		7C5098B1444AC29248521536 /* Pods_Markd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Markd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF0CA3B220C31B9A00630B16 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Notifications.storyboard; path = /Users/joshua.schmidtibm.com/Documents/Markd/Markd_Swift/Markd/Storyboards/Notifications.storyboard; sourceTree = "<absolute>"; };
 		FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpanPickerView.swift; sourceTree = "<group>"; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPaintingSurfaceViewController.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		FF9A5B3D208AA405007E9669 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				FF0CA3B220C31B9A00630B16 /* Notifications.storyboard */,
 				47E0EA4A1DF3865C001F417F /* LaunchScreen.storyboard */,
 				47E0EA451DF3865C001F417F /* Main.storyboard */,
 				FF9A5B3E208AA428007E9669 /* ContractorFooter.storyboard */,
@@ -361,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */,
+				FF0CA3B320C31FBD00630B16 /* Notifications.storyboard in Resources */,
 				FF5D7A6720AF7565008A05FC /* Details.storyboard in Resources */,
 				FFF45D802038C3C200EC732B /* GoogleService-Info.plist in Resources */,
 				47E0EA491DF3865C001F417F /* Assets.xcassets in Resources */,
