@@ -459,6 +459,7 @@ public class Customer:CustomStringConvertible {
             dictionary["exteriorPaintSurfaces"] = exteriorPaintSurfaceArray
         }
         dictionary["painterReference"] = self.painterReference as AnyObject
+        dictionary["userType"] = self.userType as AnyObject
         
         return dictionary
     }

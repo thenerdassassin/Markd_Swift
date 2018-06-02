@@ -258,7 +258,6 @@ public class TempCustomerData {
     public func updatePaintSurface(at index: Int, fromInterior isInterior:Bool, to updatedSurface:PaintSurface) {
         updateCustomer(to: getCustomer()?.updatePaintSurface(updatedSurface, index, isInterior: isInterior))
     }
-    var TODO_Update_OR_Add_Surface_😤:AnyObject?
     public func getPainter(painterListener: OnGetContractorListener?) {
         guard let listener = painterListener else {
             return
@@ -277,8 +276,6 @@ public class TempCustomerData {
             listener.onFailure(error)
         }
     }
-        
-
     
     //Mark:- Services
     public func update(_ service:ContractorService, _  number:Int, of type:String) {
@@ -306,7 +303,6 @@ public class TempCustomerData {
         var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
         //TODO: addContractorListener, attachListener, getUid
         //TODO: electricalPage
-        //TODO: paintingPage
         //TODO: settingsPage
         //TODO: makeCustomer
     }
