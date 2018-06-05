@@ -244,6 +244,24 @@ public class TempCustomerData {
     public func getElectricalServices() -> [ContractorService]? {
         return getCustomer()?.getElectricalServices()
     }
+    public func getElectrician(electricianListener: OnGetContractorListener?) {
+        guard let listener = electricianListener else {
+            return
+        }
+        guard let customer = customer, let electrician = customer.getElectrician() else {
+            print("There is no electrician")
+            listener.onFinished(contractor: nil, at: nil)
+            return
+        }
+        let electricianReference:DatabaseReference = TempCustomerData.database.child(electrician)
+        electricianReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                listener.onFinished(contractor: Contractor(dictionary), at:electrician)
+            }
+        }) { (error) in
+            listener.onFailure(error)
+        }
+    }
     
     //Mark:- PaintingPage
     public func getInteriorPaintSurfaces() -> [PaintSurface]? {

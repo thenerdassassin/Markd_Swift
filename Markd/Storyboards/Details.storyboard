@@ -87,6 +87,82 @@
             </objects>
             <point key="canvasLocation" x="-2879" y="-985"/>
         </scene>
+        <!--Electrical View Controller-->
+        <scene sceneID="Jjr-LY-tfA">
+            <objects>
+                <viewController storyboardIdentifier="ElectricalViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hh2-G1-as7" customClass="ElectricalViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w2O-IR-tCe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qie-tp-1cg">
+                                <rect key="frame" x="0.0" y="20" width="375" height="529.5"/>
+                                <connections>
+                                    <segue destination="gUs-QN-adi" kind="embed" identifier="electricalPanelsSegue" id="Kbc-sE-2rV"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2W-7E-gnL">
+                                <rect key="frame" x="0.0" y="549.5" width="375" height="117.5"/>
+                                <connections>
+                                    <segue destination="Q4I-bf-KgR" kind="embed" identifier="electricianFooterSegue" id="XcI-Le-B8Y"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qie-tp-1cg" firstAttribute="leading" secondItem="fAH-Pz-SBx" secondAttribute="leading" id="S1X-Sh-oQy"/>
+                            <constraint firstItem="fAH-Pz-SBx" firstAttribute="bottom" secondItem="G2W-7E-gnL" secondAttribute="bottom" id="VVr-e5-RuG"/>
+                            <constraint firstItem="qie-tp-1cg" firstAttribute="height" secondItem="G2W-7E-gnL" secondAttribute="height" multiplier="4.5" id="Yc5-8j-G1m"/>
+                            <constraint firstItem="G2W-7E-gnL" firstAttribute="top" secondItem="qie-tp-1cg" secondAttribute="bottom" id="Yy1-2N-717"/>
+                            <constraint firstItem="fAH-Pz-SBx" firstAttribute="trailing" secondItem="G2W-7E-gnL" secondAttribute="trailing" id="aAq-0v-NFs"/>
+                            <constraint firstItem="G2W-7E-gnL" firstAttribute="leading" secondItem="fAH-Pz-SBx" secondAttribute="leading" id="blO-fa-nVK"/>
+                            <constraint firstItem="qie-tp-1cg" firstAttribute="top" secondItem="fAH-Pz-SBx" secondAttribute="top" id="ixj-iI-6hs"/>
+                            <constraint firstItem="fAH-Pz-SBx" firstAttribute="trailing" secondItem="qie-tp-1cg" secondAttribute="trailing" id="n3a-6w-iZO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fAH-Pz-SBx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="27V-zC-OdP">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="mZg-0Z-yeu"/>
+                        <barButtonItem key="leftBarButtonItem" title="Switch" id="Ab3-4m-Zpq">
+                            <connections>
+                                <action selector="switchButtonAction:" destination="hh2-G1-as7" id="33o-an-nJ8"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9dG-1Z-ftl"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZQq-ar-lqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3695" y="-1724"/>
+        </scene>
+        <!--Electrical Panels View Controller-->
+        <scene sceneID="V4t-Zt-xKK">
+            <objects>
+                <tableViewController id="gUs-QN-adi" customClass="ElectricalPanelsViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xqO-Gt-DRg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0bO-Nw-hM9">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0bO-Nw-hM9" id="X8S-da-4Ur">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gUs-QN-adi" id="Lvg-rI-Yga"/>
+                            <outlet property="delegate" destination="gUs-QN-adi" id="E7G-QF-Wc9"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WHc-cJ-F7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2879" y="-1785"/>
+        </scene>
         <!--PlumbingNavigation-->
         <scene sceneID="sJb-U5-NKZ">
             <objects>
@@ -150,7 +226,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J26-p3-MXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1436" y="-669"/>
+            <point key="canvasLocation" x="-1591" y="-599"/>
         </scene>
         <!--Edit Appliance Field-->
         <scene sceneID="ef8-OZ-QP2">
@@ -217,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vYa-Lw-Rk7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-679" y="-670"/>
+            <point key="canvasLocation" x="-793" y="-600"/>
         </scene>
         <!--Plumbing View Controller-->
         <scene sceneID="te8-FF-z3b">
@@ -426,7 +502,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geH-T8-x2u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1982" y="-1310"/>
+            <point key="canvasLocation" x="-2129" y="-1063"/>
         </scene>
         <!--Hvac View Controller-->
         <scene sceneID="9Xh-Ql-vZI">
@@ -500,7 +576,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IE1-Iv-qbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2218" y="-316"/>
+            <point key="canvasLocation" x="-2390" y="-316"/>
         </scene>
         <!--Painting View Controller-->
         <scene sceneID="uyA-XF-gdC">
@@ -537,7 +613,6 @@
                         <viewLayoutGuide key="safeArea" id="whD-8J-8hd"/>
                     </view>
                     <navigationItem key="navigationItem" id="g6B-fR-dEq">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="tyg-8l-UBT"/>
                         <barButtonItem key="leftBarButtonItem" title="Switch" id="JGP-ga-L62">
                             <connections>
                                 <action selector="showActionSheet:" destination="9zP-1C-KgA" id="QXN-mE-M9O"/>
@@ -858,7 +933,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iqP-Zc-ojT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1516" y="-56"/>
+            <point key="canvasLocation" x="-1671" y="30"/>
         </scene>
         <!--ContractorFooterViewController-->
         <scene sceneID="TP5-E1-fgc">
@@ -1017,7 +1092,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0Rx-Ig-gy5"/>
-        <segue reference="0lT-xg-Ick"/>
+        <segue reference="jyb-JC-SRW"/>
         <segue reference="jFv-8g-0vH"/>
     </inferredMetricsTieBreakers>
 </document>

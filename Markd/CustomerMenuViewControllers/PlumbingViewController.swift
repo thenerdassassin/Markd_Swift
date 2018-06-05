@@ -119,7 +119,6 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     }
     
     @IBAction func switchButtonAction(_ sender: UIBarButtonItem) {
-        var TODO_ChangeRootViewToElectrical🤪:AnyClass?
         AlertControllerUtilities.showActionSheet(
             withTitle: "Switch Page",
             andMessage: "Which page would you like to switch to?",
@@ -133,6 +132,10 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
                 }),
                 UIAlertAction(title: "Electrical", style: .default, handler: { _ in
                     NSLog("Switching to Electrical Page")
+                    if let navigationController = self.navigationController {
+                        let electricalViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "ElectricalViewController") as! ElectricalViewController
+                        navigationController.setViewControllers([electricalViewController], animated: true)
+                    }
                 }),UIAlertAction(title: "Painting", style: .default, handler: { _ in
                     NSLog("Switching to Painting Page")
                     if let navigationController = self.navigationController {

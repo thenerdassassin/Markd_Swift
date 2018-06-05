@@ -292,6 +292,13 @@ public class Customer:CustomStringConvertible {
     }
     
     //Mark:- Electrical
+    func getElectrician() -> String? {
+        if(StringUtilities.isNilOrEmpty(electricianReference)) {
+            return nil
+        }
+        return electricianReference
+    }
+        
     func getElectricalServices() -> [ContractorService]? {
         return electricalServices
     }
