@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 class PanelAmperagePicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
     var isMainPanel = true {
         didSet {
@@ -69,3 +69,4 @@ class PanelAmperagePicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
         }
     }
 }
+*/

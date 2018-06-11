@@ -133,42 +133,6 @@ enum BreakerType: Int, CustomStringConvertible {
     }
 }
 
-class Panel {
-    var isMainPanel:Bool
-    var amperage: PanelAmperage
-    var breakers:[Breaker]
-    var manufacturer: PanelManufacturer
-    var panelTitle:String {
-        get {
-            var panelTitleString = ""
-            if(isMainPanel) {
-                panelTitleString += "Main Panel "
-            } else {
-                panelTitleString += "Sub Panel "
-            }
-            
-            panelTitleString += "\(amperage)"
-            
-            return panelTitleString
-        }
-    }
-    
-    init(isMainPanel:Bool, amperage: PanelAmperage, breakers:[Breaker], manufacturer:PanelManufacturer) {
-        self.amperage = amperage
-        self.isMainPanel = isMainPanel
-        self.breakers = breakers
-        self.manufacturer = manufacturer
-    }
-    
-    convenience init(isMainPanel:Bool, amperage: PanelAmperage, breakers:[Breaker]) {
-        self.init(isMainPanel: isMainPanel, amperage: amperage, breakers: breakers, manufacturer: .unknown)
-    }
-    
-    convenience init(amperage: PanelAmperage, breakers:[Breaker]) {
-        self.init(isMainPanel: true, amperage: amperage, breakers: breakers, manufacturer: .unknown)
-    }
-}
-
 class Electrician {
     var url:String
     var company:String

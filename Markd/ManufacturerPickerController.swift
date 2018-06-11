@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 class ManufacturerPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
     var viewController: UIViewController?
     
@@ -29,3 +29,4 @@ class ManufacturerPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
 }
+*/

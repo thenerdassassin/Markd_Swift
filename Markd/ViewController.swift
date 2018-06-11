@@ -5,7 +5,7 @@
 //  Created by Joshua Daniel Schmidt on 12/3/16.
 //  Copyright © 2016 Joshua Daniel Schmidt. All rights reserved.
 //
-
+/*
 import UIKit
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
@@ -377,4 +377,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
 }
-
+*/

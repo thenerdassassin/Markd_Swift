@@ -66,12 +66,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="aKi-Vh-Zz6">
                         <barButtonItem key="backBarButtonItem" title="Back" id="YB2-6l-vlj"/>
-                        <barButtonItem key="leftBarButtonItem" title="Switch" id="FQ5-gU-MXc">
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="FQ5-gU-MXc">
                             <connections>
                                 <action selector="switchButtonAction:" destination="Qth-DH-Tc5" id="Xwd-75-nmA"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Hk2-Sa-24Q">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Hk2-Sa-24Q">
                             <connections>
                                 <action selector="editButtonAction:" destination="Qth-DH-Tc5" id="vyi-Ww-4mX"/>
                                 <segue destination="oAz-0Z-DsJ" kind="show" identifier="editPlumbingSegue" id="jFv-8g-0vH"/>
@@ -123,7 +123,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="27V-zC-OdP">
                         <barButtonItem key="backBarButtonItem" title="Back" id="mZg-0Z-yeu"/>
-                        <barButtonItem key="leftBarButtonItem" title="Switch" id="Ab3-4m-Zpq">
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="Ab3-4m-Zpq">
                             <connections>
                                 <action selector="switchButtonAction:" destination="hh2-G1-as7" id="33o-an-nJ8"/>
                             </connections>
@@ -144,7 +144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0bO-Nw-hM9">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="electricalPanelCell" id="0bO-Nw-hM9" customClass="ElectricalPanelTableViewCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0bO-Nw-hM9" id="X8S-da-4Ur">
@@ -558,12 +558,12 @@
                         <viewLayoutGuide key="safeArea" id="y4h-fh-mzc"/>
                     </view>
                     <navigationItem key="navigationItem" id="3qV-Fg-tA9">
-                        <barButtonItem key="leftBarButtonItem" title="Switch" id="NUQ-Fa-OMI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="NUQ-Fa-OMI">
                             <connections>
                                 <action selector="showActionSheet:" destination="uSU-63-oro" id="DnZ-kC-liq"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Juk-sL-Bg1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Juk-sL-Bg1">
                             <connections>
                                 <segue destination="oAz-0Z-DsJ" kind="show" identifier="editHvacSegue" id="ghf-ww-zgB"/>
                             </connections>
@@ -613,7 +613,7 @@
                         <viewLayoutGuide key="safeArea" id="whD-8J-8hd"/>
                     </view>
                     <navigationItem key="navigationItem" id="g6B-fR-dEq">
-                        <barButtonItem key="leftBarButtonItem" title="Switch" id="JGP-ga-L62">
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="JGP-ga-L62">
                             <connections>
                                 <action selector="showActionSheet:" destination="9zP-1C-KgA" id="QXN-mE-M9O"/>
                             </connections>

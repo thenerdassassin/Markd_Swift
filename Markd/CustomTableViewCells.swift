@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 class NewPanelTableCell: UITableViewCell {
     @IBOutlet weak var isMainPanelSwitch: UISwitch!
     var isMainPanel = true
@@ -168,7 +168,7 @@ class BreakerTableCell: UITableViewCell {
         }
     }
 }
-
+*/
 
 
 
