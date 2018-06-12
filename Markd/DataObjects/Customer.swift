@@ -106,7 +106,7 @@ public class Customer:CustomStringConvertible {
                     panels!.append(Panel(panelDictionary))
                 }
             }
-            var TODO_Sort_Panels_😪:AnyObject?
+            panels!.sort()
         }
         self.electricianReference = dictionary["electricianReference"] != nil ? dictionary["electricianReference"] as! String: ""
         if let electricalArray = dictionary["electricalServices"] as? NSArray {
@@ -458,8 +458,7 @@ public class Customer:CustomStringConvertible {
             dictionary["hvacServices"] = hvacArray
         }
         
-        //TODO: sort panels
-        if let panels = panels {
+        if let panels = panels?.sorted() {
             var panelsArray = NSArray()
             for panel in panels {
                 panelsArray = panelsArray.adding(panel.toDictionary()) as NSArray

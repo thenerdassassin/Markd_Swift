@@ -8,7 +8,30 @@
 
 import Foundation
 
-public class Panel:CustomStringConvertible {
+public class Panel:CustomStringConvertible, Comparable {
+    public static func < (lhs: Panel, rhs: Panel) -> Bool {
+        let lhsComponents = StringUtilities.getComponentsFrom(dotFormmattedString: lhs.installDate)
+        let rhsComponents = StringUtilities.getComponentsFrom(dotFormmattedString: rhs.installDate)
+        
+        //Year
+        if lhsComponents[2]! != rhsComponents[2]! {
+            return lhsComponents[2]! > rhsComponents[2]!
+        }
+        //Month
+        if lhsComponents[0]! != rhsComponents[0]! {
+            return lhsComponents[0]! > rhsComponents[0]!
+        }
+        //Day
+        if lhsComponents[1]! != rhsComponents[1]! {
+            return lhsComponents[1]! > rhsComponents[1]!
+        }
+        return lhs.panelDescription < rhs.panelDescription
+    }
+    
+    public static func == (lhs: Panel, rhs: Panel) -> Bool {
+        return false
+    }
+    
     var TODO_BreakerList_Implementation_🤬:AnyObject?
     private var isMainPanel:Bool
     private var amperage:String //PanelAmperage?
