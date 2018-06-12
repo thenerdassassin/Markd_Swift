@@ -150,6 +150,58 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0bO-Nw-hM9" id="X8S-da-4Ur">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Panel Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpx-Z3-QzC">
+                                            <rect key="frame" x="10" y="11" width="134" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amperage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLL-i4-ERP">
+                                            <rect key="frame" x="180" y="12" width="79.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Install Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpk-WK-aZj">
+                                            <rect key="frame" x="279.5" y="12" width="85.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="tLL-i4-ERP" firstAttribute="centerY" secondItem="X8S-da-4Ur" secondAttribute="centerY" id="0tP-g8-0h1"/>
+                                        <constraint firstItem="mpx-Z3-QzC" firstAttribute="leading" secondItem="X8S-da-4Ur" secondAttribute="leading" constant="10" id="2YJ-uT-Ni8"/>
+                                        <constraint firstItem="cpk-WK-aZj" firstAttribute="centerY" secondItem="X8S-da-4Ur" secondAttribute="centerY" id="6N0-eb-fKJ"/>
+                                        <constraint firstItem="cpk-WK-aZj" firstAttribute="leading" secondItem="tLL-i4-ERP" secondAttribute="trailing" constant="20" id="HQt-LY-TP0"/>
+                                        <constraint firstItem="mpx-Z3-QzC" firstAttribute="centerY" secondItem="X8S-da-4Ur" secondAttribute="centerY" id="VhN-T7-NIR"/>
+                                        <constraint firstAttribute="trailing" secondItem="cpk-WK-aZj" secondAttribute="trailing" constant="10" id="iWH-Dt-fNm"/>
+                                        <constraint firstItem="tLL-i4-ERP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mpx-Z3-QzC" secondAttribute="trailing" constant="10" id="pjG-Wx-uME"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="amperageLabel" destination="tLL-i4-ERP" id="kd6-sc-DJF"/>
+                                    <outlet property="installDateLabel" destination="cpk-WK-aZj" id="fsA-4k-a8u"/>
+                                    <outlet property="panelDescriptionLabel" destination="mpx-Z3-QzC" id="iLB-zq-FiT"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="electricalPanelDefaultCell" textLabel="3YY-Rb-h7o" style="IBUITableViewCellStyleDefault" id="lZa-JO-y4f" customClass="ElectricalPanelTableViewCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lZa-JO-y4f" id="fTe-Py-1mz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Add your panels!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3YY-Rb-h7o">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -161,7 +213,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHc-cJ-F7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2879" y="-1785"/>
+            <point key="canvasLocation" x="-2879.1999999999998" y="-1785.6071964017992"/>
         </scene>
         <!--PlumbingNavigation-->
         <scene sceneID="sJb-U5-NKZ">
@@ -948,7 +1000,7 @@
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="BtB-ed-YNE" customClass="EditPaintingSurfaceViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F0b-DB-R4N">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -1091,8 +1143,8 @@
         <image name="ic_action_pages" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Rx-Ig-gy5"/>
-        <segue reference="jyb-JC-SRW"/>
+        <segue reference="c1D-iW-PT6"/>
+        <segue reference="XcI-Le-B8Y"/>
         <segue reference="jFv-8g-0vH"/>
     </inferredMetricsTieBreakers>
 </document>

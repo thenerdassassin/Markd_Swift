@@ -241,6 +241,12 @@ public class TempCustomerData {
     }
     
     //Mark:- ElectricalPage
+    public func getPanels() -> [Panel]? {
+        return getCustomer()?.getPanels()
+    }
+    public func removeElectricalPanel(at index:Int) {
+        updateCustomer(to: getCustomer()?.deletePanel(index))
+    }
     public func getElectricalServices() -> [ContractorService]? {
         return getCustomer()?.getElectricalServices()
     }

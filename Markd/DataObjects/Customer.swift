@@ -40,7 +40,7 @@ public class Customer:CustomStringConvertible {
     private var hvacServices: [ContractorService]?
     
     //For Electrical Page
-    //TODO: private List<Panel> panels
+    private var panels: [Panel]?
     private var electricianReference: String
     private var electricalServices: [ContractorService]?
     
@@ -77,9 +77,9 @@ public class Customer:CustomStringConvertible {
             for service in plumbingArray {
                 if let serviceDictionary = service as? Dictionary<String, AnyObject> {
                     plumbingServices!.append(ContractorService(serviceDictionary))
-                    plumbingServices!.sort()
                 }
             }
+            plumbingServices!.sort()
         }
         
         if let airHandlerDictionary = dictionary["airHandler"] as? Dictionary<String, AnyObject> {
@@ -94,21 +94,29 @@ public class Customer:CustomStringConvertible {
             for service in hvacArray {
                 if let serviceDictionary = service as? Dictionary<String, AnyObject> {
                     hvacServices!.append(ContractorService(serviceDictionary))
-                    hvacServices!.sort()
                 }
             }
+            hvacServices!.sort()
         }
         
-        //TODO: panels
+        if let panelsArray = dictionary["panels"] as? NSArray {
+            panels = [Panel]()
+            for panel in panelsArray {
+                if let panelDictionary = panel as? Dictionary<String, AnyObject> {
+                    panels!.append(Panel(panelDictionary))
+                }
+            }
+            var TODO_Sort_Panels_😪:AnyObject?
+        }
         self.electricianReference = dictionary["electricianReference"] != nil ? dictionary["electricianReference"] as! String: ""
         if let electricalArray = dictionary["electricalServices"] as? NSArray {
             electricalServices = [ContractorService]()
             for service in electricalArray {
                 if let serviceDictionary = service as? Dictionary<String, AnyObject> {
                     electricalServices!.append(ContractorService(serviceDictionary))
-                    electricalServices!.sort()
                 }
             }
+            electricalServices!.sort()
         }
         
         if let interiorPaintArray = dictionary["interiorPaintSurfaces"] as? NSArray {
@@ -116,18 +124,18 @@ public class Customer:CustomStringConvertible {
             for surface in interiorPaintArray {
                 if let surfaceDictionary = surface as? Dictionary<String, AnyObject> {
                     interiorPaintSurfaces!.append(PaintSurface(surfaceDictionary))
-                    interiorPaintSurfaces!.sort()
                 }
             }
+            interiorPaintSurfaces!.sort()
         }
         if let exteriorPaintArray = dictionary["exteriorPaintSurfaces"] as? NSArray {
             exteriorPaintSurfaces = [PaintSurface]()
             for surface in exteriorPaintArray {
                 if let surfaceDictionary = surface as? Dictionary<String, AnyObject> {
                     exteriorPaintSurfaces!.append(PaintSurface(surfaceDictionary))
-                    exteriorPaintSurfaces!.sort()
                 }
             }
+            exteriorPaintSurfaces!.sort()
         }
         self.painterReference = dictionary["painterReference"] != nil ? dictionary["painterReference"] as! String: ""
     }
@@ -292,6 +300,16 @@ public class Customer:CustomStringConvertible {
     }
     
     //Mark:- Electrical
+    func getPanels() -> [Panel]? {
+        return panels
+    }
+    func deletePanel(_ index:Int) -> Customer {
+        guard self.panels != nil else {
+            return self
+        }
+        self.panels!.remove(at: index)
+        return self
+    }
     func getElectrician() -> String? {
         if(StringUtilities.isNilOrEmpty(electricianReference)) {
             return nil
@@ -403,7 +421,6 @@ public class Customer:CustomStringConvertible {
         }
         return self
     }
-    var TODO_Implement_All_Setters_And_Helpers🤬:AnyObject?
     
     func toDictionary() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
@@ -441,7 +458,14 @@ public class Customer:CustomStringConvertible {
             dictionary["hvacServices"] = hvacArray
         }
         
-        //TODO: panels
+        //TODO: sort panels
+        if let panels = panels {
+            var panelsArray = NSArray()
+            for panel in panels {
+                panelsArray = panelsArray.adding(panel.toDictionary()) as NSArray
+            }
+            dictionary["panels"] = panelsArray
+        }
         dictionary["electricianReference"] = self.electricianReference as AnyObject
         if let electricalServices = electricalServices?.sorted() {
             var electricalArray = NSArray()

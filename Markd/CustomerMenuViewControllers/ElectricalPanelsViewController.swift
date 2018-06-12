@@ -12,11 +12,11 @@ class ElectricalPanelsViewController: UITableViewController {
     public var customerData:TempCustomerData? {
         didSet {
             if let customerData = customerData {
-                //panels = customerData.getPanels()
+                panels = customerData.getPanels()
             }
         }
     }
-    private var panels:[AnyObject]? {
+    private var panels:[Panel]? {
         didSet {
             if let tableView = self.tableView {
                 tableView.reloadSections([0], with: .fade)
@@ -53,34 +53,24 @@ class ElectricalPanelsViewController: UITableViewController {
         if panels != nil && panels!.count > 0 {
             return panels!.count
         }
-        return 0
+        return 1
     }
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
         return "Electrical Panels"
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let paintSurfaceCell = tableView.dequeueReusableCell(withIdentifier: "paintingSurfaceCell") as! PaintSurfaceTableViewCell
-         paintSurfaceCell.tag = indexPath.section
-         paintSurfaceCell.index = indexPath.row
+         let panelCell = tableView.dequeueReusableCell(withIdentifier: "electricalPanelCell") as! ElectricalPanelTableViewCell
+         panelCell.index = indexPath.row
      
-         var paintSurface:PaintSurface?
-         if indexPath.section == 0 {
-         paintSurface = interiorPaintSurfaces?[indexPath.row]
-         } else if indexPath.section == 1 {
-         paintSurface = exteriorPaintSurfaces?[indexPath.row]
+         let panel = panels?[indexPath.row]
+         if let panel = panel {
+            panelCell.panel = panel
          } else {
-         AlertControllerUtilities.somethingWentWrong(with: self)
+            return tableView.dequeueReusableCell(withIdentifier: "electricalPanelDefaultCell", for: indexPath)
          }
-         if let paintSurface = paintSurface {
-         paintSurfaceCell.paintSurface = paintSurface
-         } else {
-         return tableView.dequeueReusableCell(withIdentifier: "paintSurfaceDefaultCell", for: indexPath)
-         }
-         return paintSurfaceCell
+         return panelCell
     }
-    */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -94,24 +84,16 @@ class ElectricalPanelsViewController: UITableViewController {
         return false
     }
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
          if editingStyle == .delete {
-         guard let customerData = customerData else {
-         AlertControllerUtilities.somethingWentWrong(with: self)
-         return
-         }
-         if indexPath.section == 0 {
-         customerData.removePaintSurface(at: indexPath.row, fromInterior: true)
-         } else if indexPath.section == 1 {
-         customerData.removePaintSurface(at: indexPath.row, fromInterior: false)
-         } else {
-         AlertControllerUtilities.somethingWentWrong(with: self)
-         }
-         }
+            guard let customerData = customerData else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            customerData.removeElectricalPanel(at: indexPath.row)
+        }
     }
-    */
 
     /*
     // MARK: - Navigation
@@ -140,16 +122,18 @@ class ElectricalPanelsViewController: UITableViewController {
 
 class ElectricalPanelTableViewCell:UITableViewCell {
     var index:Int?
-    var panel:AnyObject? {
+    var panel:Panel? {
         didSet {
             if let panel = panel {
-                //StringUtilities.set(textOf: locationLabel, to: paintSurface.getLocation())
-                //brandLabel.text = paintSurface.getBrand()
-                //colorLabel.text = paintSurface.getColor()
-                //dateLabel.text = paintSurface.installDateAsString()
+                print(panel)
+                StringUtilities.set(textOf: panelDescriptionLabel, to: panel.getPanelDescription())
+                amperageLabel.text = panel.getAmperage()
+                installDateLabel.text = panel.getInstallDate()
             }
         }
     }
-    //@IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var panelDescriptionLabel: UILabel!
+    @IBOutlet weak var amperageLabel: UILabel!
+    @IBOutlet weak var installDateLabel: UILabel!
     
 }

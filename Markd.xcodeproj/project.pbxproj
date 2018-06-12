@@ -12,7 +12,6 @@
 		4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */; };
 		47133A5F1DF632B000D86E07 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47133A5E1DF632B000D86E07 /* DataObjects.swift */; };
 		4746A0A01E1F315F00FB76E3 /* ManufacturerPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4746A09F1E1F315F00FB76E3 /* ManufacturerPickerController.swift */; };
-		47500AC51E0794400099B0EE /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47500AC41E0794400099B0EE /* WebController.swift */; };
 		476295BD1E1DE02D008CDBFC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476295BC1E1DE02D008CDBFC /* DetailViewController.swift */; };
 		476295BF1E1DF198008CDBFC /* EditPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476295BE1E1DF198008CDBFC /* EditPanelViewController.swift */; };
 		4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4772086D1DFF6AB1006FBB5C /* BreakerTypePickerController.swift */; };
@@ -79,7 +78,6 @@
 		4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		47133A5E1DF632B000D86E07 /* DataObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		4746A09F1E1F315F00FB76E3 /* ManufacturerPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManufacturerPickerController.swift; sourceTree = "<group>"; };
-		47500AC41E0794400099B0EE /* WebController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
 		476295BC1E1DE02D008CDBFC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		476295BE1E1DF198008CDBFC /* EditPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPanelViewController.swift; sourceTree = "<group>"; };
 		4772086D1DFF6AB1006FBB5C /* BreakerTypePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakerTypePickerController.swift; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 				476295BE1E1DF198008CDBFC /* EditPanelViewController.swift */,
 				FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */,
 				47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */,
-				47500AC41E0794400099B0EE /* WebController.swift */,
 				47E0EA481DF3865C001F417F /* Assets.xcassets */,
 				47E0EA4D1DF3865C001F417F /* Info.plist */,
 				47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */,
@@ -511,7 +508,6 @@
 				FF6BF1EB2094EC67001D55EF /* ContractorService.swift in Sources */,
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
 				FF5D7A6B20AF822C008A05FC /* PaintingViewController.swift in Sources */,
-				47500AC51E0794400099B0EE /* WebController.swift in Sources */,
 				FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */,
 				FF6BF1F320950CE1001D55EF /* ContractorServiceTableViewController.swift in Sources */,
 				FFF27C96204CB8B500A9392E /* PlumbingViewController.swift in Sources */,
