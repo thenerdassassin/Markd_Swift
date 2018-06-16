@@ -48,14 +48,14 @@ class PanelViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "panelHeaderCell") as! PanelHeaderCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "panelHeaderCell", for: indexPath) as! PanelHeaderCell
             if let panel = panel {
                 cell.panel = panel
             }
             return cell
         } else {
             let index = (indexPath.row-1)*2
-            let cell = tableView.dequeueReusableCell(withIdentifier: "breakerCell") as! BreakerTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "breakerCell", for: indexPath) as! BreakerTableCell
             let breakers = panel!.breakerList!
             if(index+1 >= breakers.count) {
                 cell.setUp(leftNumber: breakers[index].number, leftTitle: breakers[index].breakerDescription, leftBreakerType: breakers[index].breakerType, rightNumber: -1, rightTitle: "", rightBreakerType: "Single-Pole")
@@ -71,7 +71,8 @@ class PanelViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editPanelSegue" {
             self.navigationItem.title = "Back"
-            print(panel!.getPanelTitle())
+            let destination = segue.destination as! EditPanelViewController
+            destination.panel = panel
         }
     }
 }

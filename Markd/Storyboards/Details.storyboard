@@ -1017,7 +1017,7 @@
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -1042,7 +1042,7 @@
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -1067,7 +1067,7 @@
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -1513,20 +1513,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="panelDescriptionTableCell" id="8zb-xo-8Og">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="panelDescriptionTableCell" id="8zb-xo-8Og" customClass="PanelDescriptionTableViewCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8zb-xo-8Og" id="MCY-bD-UNw">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Panel Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-bb-Zrm">
+                                            <rect key="frame" x="20" y="10" width="335" height="23.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="F4D-bb-Zrm" firstAttribute="leading" secondItem="MCY-bD-UNw" secondAttribute="leading" constant="20" id="6da-GJ-Kg9"/>
+                                        <constraint firstItem="F4D-bb-Zrm" firstAttribute="centerY" secondItem="MCY-bD-UNw" secondAttribute="centerY" id="G5m-s6-Gal"/>
+                                        <constraint firstItem="F4D-bb-Zrm" firstAttribute="height" secondItem="MCY-bD-UNw" secondAttribute="height" constant="-20" id="cV4-I6-Wru"/>
+                                        <constraint firstAttribute="trailing" secondItem="F4D-bb-Zrm" secondAttribute="trailing" constant="20" id="v5T-kc-uIN"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="panelDescriptionTextField" destination="F4D-bb-Zrm" id="zey-qK-fUM"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="breakerNumberTableCell" id="Kog-Ew-Msc">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="breakerNumberTableCell" id="Kog-Ew-Msc" customClass="NumberOfBreakersTableViewCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kog-Ew-Msc" id="spB-qN-mEB">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X Breakers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJv-h8-tti">
+                                            <rect key="frame" x="20" y="10" width="335" height="23.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RJv-h8-tti" firstAttribute="centerY" secondItem="spB-qN-mEB" secondAttribute="centerY" id="03H-nu-NXP"/>
+                                        <constraint firstItem="RJv-h8-tti" firstAttribute="height" secondItem="spB-qN-mEB" secondAttribute="height" constant="-20" id="1lf-M8-me0"/>
+                                        <constraint firstItem="RJv-h8-tti" firstAttribute="leading" secondItem="spB-qN-mEB" secondAttribute="leading" constant="20" id="LHq-A9-hfU"/>
+                                        <constraint firstAttribute="trailing" secondItem="RJv-h8-tti" secondAttribute="trailing" constant="20" id="mtn-g0-2eR"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="isMainPanelTableCell" id="4m2-Gv-KLh">
