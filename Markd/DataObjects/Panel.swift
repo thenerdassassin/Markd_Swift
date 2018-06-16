@@ -101,15 +101,6 @@ public class Panel:CustomStringConvertible, Comparable {
         }
         return self
     }
-    /*
-    TODO
-     public List<Breaker> getBreakerList() {
-        return breakerList;
-     }
-     public void setBreakerList(List<Breaker> breakerList) {
-        this.breakerList = breakerList;
-     }
-    */
     public func getNumberOfBreakers() -> Int {
         return self.numberOfBreakers
     }

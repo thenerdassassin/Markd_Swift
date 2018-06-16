@@ -17,6 +17,15 @@ class PanelViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView() //Removes seperators after list
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureView()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         configureView()
     }
     private func configureView() {
@@ -24,6 +33,7 @@ class PanelViewController: UITableViewController {
             self.navigationItem.title = panel.panelDescription
         }
     }
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -36,7 +46,6 @@ class PanelViewController: UITableViewController {
         }
         return 1
     }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "panelHeaderCell") as! PanelHeaderCell
@@ -56,32 +65,36 @@ class PanelViewController: UITableViewController {
             return cell
         }
     }
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "editPanelSegue" {
+            self.navigationItem.title = "Back"
+            print(panel!.getPanelTitle())
+        }
     }
-    */
-
 }
+
+//Mark:- UITableViewCells
 class PanelHeaderCell:UITableViewCell {
     @IBOutlet weak var panelLabel: UIView!
     @IBOutlet weak var panelTitle: UILabel!
     var panel: Panel? {
         didSet {
-            panelLabel.layer.cornerRadius = 5
-            panelLabel.layer.masksToBounds = true
-            panelLabel.layer.borderWidth = 1
-            panelLabel.layer.borderColor = UIColor.black.cgColor
+            setUpPanelLabel()
             panelTitle.text = panel!.getPanelTitle()
         }
     }
+    
+    private func setUpPanelLabel() {
+        panelLabel.layer.cornerRadius = 5
+        panelLabel.layer.masksToBounds = true
+        panelLabel.layer.borderWidth = 1
+        panelLabel.layer.borderColor = UIColor.black.cgColor
+    }
+    
 }
-
 class BreakerTableCell: UITableViewCell {
     @IBOutlet weak var leftNumber: UILabel!
     @IBOutlet weak var leftTitle: UILabel!
@@ -98,9 +111,13 @@ class BreakerTableCell: UITableViewCell {
     
     func setUp(leftNumber: Int, leftTitle: String, leftBreakerType:String, rightNumber:Int, rightTitle:String, rightBreakerType:String) {
         leftBreaker.layer.cornerRadius = 5
-        rightBreaker.layer.cornerRadius = 5
         leftBreaker.layer.masksToBounds = true
+        leftBreaker.layer.borderWidth = 1
+        leftBreaker.layer.borderColor = UIColor.black.cgColor
+        rightBreaker.layer.cornerRadius = 5
         rightBreaker.layer.masksToBounds = true
+        rightBreaker.layer.borderWidth = 1
+        rightBreaker.layer.borderColor = UIColor.black.cgColor
         
         //Set Up Left Breaker
         self.leftNumber.text = "\(leftNumber)"
@@ -132,6 +149,7 @@ class BreakerTableCell: UITableViewCell {
             self.rightNumber.text = "\(rightNumber)"
             rightBreaker.backgroundColor = UIColor.white
         } else {
+            rightBreaker.layer.borderColor = UIColor.clear.cgColor
             rightBreaker.backgroundColor = UIColor.clear
             self.rightNumber.text = ""
             hideAllConnectors()

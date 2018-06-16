@@ -13,7 +13,7 @@
 		47133A5F1DF632B000D86E07 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47133A5E1DF632B000D86E07 /* DataObjects.swift */; };
 		4746A0A01E1F315F00FB76E3 /* ManufacturerPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4746A09F1E1F315F00FB76E3 /* ManufacturerPickerController.swift */; };
 		476295BD1E1DE02D008CDBFC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476295BC1E1DE02D008CDBFC /* DetailViewController.swift */; };
-		476295BF1E1DF198008CDBFC /* EditPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476295BE1E1DF198008CDBFC /* EditPanelViewController.swift */; };
+		476295BF1E1DF198008CDBFC /* EditPanelViewController-Old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476295BE1E1DF198008CDBFC /* EditPanelViewController-Old.swift */; };
 		4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4772086D1DFF6AB1006FBB5C /* BreakerTypePickerController.swift */; };
 		479734E31E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479734E21E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift */; };
 		479937681E1D806F00ADCD35 /* EditBreakerTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479937671E1D806F00ADCD35 /* EditBreakerTextFieldController.swift */; };
@@ -32,6 +32,7 @@
 		FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */; };
 		FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32A20D1D26900A181F1 /* Breaker.swift */; };
 		FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */; };
+		FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */; };
 		FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */; };
@@ -81,7 +82,7 @@
 		47133A5E1DF632B000D86E07 /* DataObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		4746A09F1E1F315F00FB76E3 /* ManufacturerPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManufacturerPickerController.swift; sourceTree = "<group>"; };
 		476295BC1E1DE02D008CDBFC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		476295BE1E1DF198008CDBFC /* EditPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPanelViewController.swift; sourceTree = "<group>"; };
+		476295BE1E1DF198008CDBFC /* EditPanelViewController-Old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditPanelViewController-Old.swift"; sourceTree = "<group>"; };
 		4772086D1DFF6AB1006FBB5C /* BreakerTypePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakerTypePickerController.swift; sourceTree = "<group>"; };
 		479734E21E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelAmperagePickerController.swift; sourceTree = "<group>"; };
 		479937671E1D806F00ADCD35 /* EditBreakerTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBreakerTextFieldController.swift; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsUtilities.swift; sourceTree = "<group>"; };
 		FF2CC32A20D1D26900A181F1 /* Breaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breaker.swift; sourceTree = "<group>"; };
 		FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
+		FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPanelViewController.swift; sourceTree = "<group>"; };
 		FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpanPickerView.swift; sourceTree = "<group>"; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPaintingSurfaceViewController.swift; sourceTree = "<group>"; };
@@ -200,7 +202,7 @@
 				47E0EA431DF3865C001F417F /* ViewController.swift */,
 				476295BC1E1DE02D008CDBFC /* DetailViewController.swift */,
 				47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */,
-				476295BE1E1DF198008CDBFC /* EditPanelViewController.swift */,
+				476295BE1E1DF198008CDBFC /* EditPanelViewController-Old.swift */,
 				FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */,
 				47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */,
 				47E0EA481DF3865C001F417F /* Assets.xcassets */,
@@ -267,6 +269,7 @@
 				FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */,
 				FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */,
 				FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */,
+				FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
 			sourceTree = "<group>";
@@ -494,7 +497,8 @@
 				47000A6F1DFDEA2E00D85548 /* NewPanelSetupViewController.swift in Sources */,
 				47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */,
 				4746A0A01E1F315F00FB76E3 /* ManufacturerPickerController.swift in Sources */,
-				476295BF1E1DF198008CDBFC /* EditPanelViewController.swift in Sources */,
+				476295BF1E1DF198008CDBFC /* EditPanelViewController-Old.swift in Sources */,
+				FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */,
 				47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */,
 				FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */,
 				FFA1E86D207D864E009D2FD3 /* EditApplianceFieldViewController.swift in Sources */,
