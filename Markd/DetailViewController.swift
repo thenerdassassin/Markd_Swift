@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 class DetailViewController: UIViewController, BreakerEdit {
     @IBOutlet weak var breakerDescriptionLabel: UILabel!
     @IBOutlet weak var amperageLabel: UILabel!
@@ -68,3 +68,4 @@ class DetailViewController: UIViewController, BreakerEdit {
         return
     }
 }
+*/

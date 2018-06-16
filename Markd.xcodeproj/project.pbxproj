@@ -30,6 +30,8 @@
 		FF0CA3B520C321F800630B16 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */; };
 		FF0CA3B720C326D500630B16 /* CustomerNotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */; };
 		FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */; };
+		FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32A20D1D26900A181F1 /* Breaker.swift */; };
+		FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */; };
 		FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */; };
@@ -100,6 +102,8 @@
 		FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationMessage.swift; sourceTree = "<group>"; };
 		FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsUtilities.swift; sourceTree = "<group>"; };
+		FF2CC32A20D1D26900A181F1 /* Breaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breaker.swift; sourceTree = "<group>"; };
+		FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpanPickerView.swift; sourceTree = "<group>"; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPaintingSurfaceViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 				FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */,
 				FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */,
 				FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */,
+				FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				FF5D7A6C20B0AEAD008A05FC /* PaintSurface.swift */,
 				FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */,
 				FF63004520C768C6006C0208 /* Panel.swift */,
+				FF2CC32A20D1D26900A181F1 /* Breaker.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -463,6 +469,7 @@
 				FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */,
 				FFDE253620588868009D1790 /* SendEmail.swift in Sources */,
 				FF0CA3B520C321F800630B16 /* NotificationsViewController.swift in Sources */,
+				FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */,
 				FF5D7A6D20B0AEAD008A05FC /* PaintSurface.swift in Sources */,
 				FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */,
 				FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */,
@@ -494,6 +501,7 @@
 				FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */,
 				FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */,
 				FF63004420C74E22006C0208 /* ElectricalViewController.swift in Sources */,
+				FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */,
 				4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */,
 				FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */,
 				FF5D7A6920AF79CA008A05FC /* PaintingSurfacesViewController.swift in Sources */,

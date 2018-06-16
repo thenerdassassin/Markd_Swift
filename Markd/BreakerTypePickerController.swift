@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 class BreakerTypePicker: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     var selectedType = BreakerType.singlePole
     var viewController:UIViewController?
@@ -39,5 +39,5 @@ class BreakerTypePicker: UIPickerView, UIPickerViewDataSource, UIPickerViewDeleg
         return BreakerType(rawValue: row)?.description
     }
 }
-
+*/
 

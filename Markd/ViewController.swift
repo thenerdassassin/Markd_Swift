@@ -355,26 +355,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         panels[panelNumber] = newPanel
         breakerTable.reloadData()
     }
-    
-    //Mark:- Electrician Box
-    @IBAction func numberPressed(_ sender: UIButton) {
-        //Does not work on simulator
-        self.callNumber("\(electrician.phoneNumber)")
-    }
-    
-    @IBAction func openWebsite(_ sender: UIButton) {
-        print(electrician.url)
-    }
-    
-    // Mark:- Helper Function
-       //From: http://stackoverflow.com/questions/24251259/how-to-use-openurl-for-making-a-phone-call-in-swift
-    fileprivate func callNumber(_ phoneNumber:String) {
-        if let phoneCallURL:URL = URL(string:"tel:\(phoneNumber)") {
-            let application:UIApplication = UIApplication.shared
-            if (application.canOpenURL(phoneCallURL)) {
-                application.openURL(phoneCallURL);
-            }
-        }
-    }
 }
 */

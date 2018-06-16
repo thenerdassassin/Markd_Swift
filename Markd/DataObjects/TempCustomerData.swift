@@ -322,13 +322,5 @@ public class TempCustomerData {
             print("Appliance type does not match")
         }
     }
-    
-    func NEED_TO_ADD_ANDROID_METHODS😤() {
-        var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
-        //TODO: addContractorListener, attachListener, getUid
-        //TODO: electricalPage
-        //TODO: settingsPage
-        //TODO: makeCustomer
-    }
 }
 

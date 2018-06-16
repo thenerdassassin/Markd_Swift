@@ -117,12 +117,6 @@ class ElectricalViewController: UIViewController, OnGetDataListener {
         if let controller = electricalPanelsViewController {
             controller.customerData = customerData
         }
-        /*
-        customerData!.getPainter(painterListener: painterFooterViewController)
-        if let controller = paintingSurfacesViewController {
-            controller.customerData = customerData
-        }
-         */
     }
     
     public func onFailure(_ error: Error) {

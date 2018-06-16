@@ -165,7 +165,7 @@ class Electrician {
         return "(\(areaCode)) \(threeDigit)-\(fourDigit)"
     }
 }
-
+/*
 class Breaker: Equatable {
     var number:Int
     var breakerDescription:String
@@ -206,3 +206,4 @@ func ==(lhs: Breaker, rhs: Breaker) -> Bool {
     
     return true
 }
+*/

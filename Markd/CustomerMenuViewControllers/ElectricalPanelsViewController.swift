@@ -53,13 +53,13 @@ class ElectricalPanelsViewController: UITableViewController {
         if panels != nil && panels!.count > 0 {
             return panels!.count
         }
-        return 1
+        return 0
     }
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
         return "Electrical Panels"
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {    
          let panelCell = tableView.dequeueReusableCell(withIdentifier: "electricalPanelCell") as! ElectricalPanelTableViewCell
          panelCell.index = indexPath.row
      
@@ -95,29 +95,20 @@ class ElectricalPanelsViewController: UITableViewController {
         }
     }
 
-    /*
     // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-         if segue.identifier == "showPaintingSurfaceSegue" {
-         let sender = sender as! PaintSurfaceTableViewCell
-         let destination = segue.destination as! EditPaintingSurfaceViewController
-         guard let customerData = customerData, let paintSurface = sender.paintSurface else {
-         AlertControllerUtilities.somethingWentWrong(with: self)
-         return
-         }
-         customerData.removeListeners()
-         destination.customerData = customerData
-         if sender.tag == 0 {
-         destination.isInterior = true
-         }
-         destination.paintSurfaceIndex = sender.index
-         destination.paintSurface = paintSurface
+         if segue.identifier == "showPanelSegue" {
+            let sender = sender as! ElectricalPanelTableViewCell
+            let destination = segue.destination as! PanelViewController
+            guard let customerData = customerData, let panel = sender.panel else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            customerData.removeListeners()
+            destination.panelIndex = sender.index
+            destination.panel = panel
          }
     }
-    */
 }
 
 class ElectricalPanelTableViewCell:UITableViewCell {
@@ -126,14 +117,13 @@ class ElectricalPanelTableViewCell:UITableViewCell {
         didSet {
             if let panel = panel {
                 print(panel)
-                StringUtilities.set(textOf: panelDescriptionLabel, to: panel.getPanelDescription())
-                amperageLabel.text = panel.getAmperage()
-                installDateLabel.text = panel.getInstallDate()
+                StringUtilities.set(textOf: panelDescriptionLabel, to: panel.panelDescription)
+                amperageLabel.text = panel.amperage
+                installDateLabel.text = panel.installDate
             }
         }
     }
     @IBOutlet weak var panelDescriptionLabel: UILabel!
     @IBOutlet weak var amperageLabel: UILabel!
     @IBOutlet weak var installDateLabel: UILabel!
-    
 }

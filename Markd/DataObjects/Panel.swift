@@ -9,37 +9,14 @@
 import Foundation
 
 public class Panel:CustomStringConvertible, Comparable {
-    public static func < (lhs: Panel, rhs: Panel) -> Bool {
-        let lhsComponents = StringUtilities.getComponentsFrom(dotFormmattedString: lhs.installDate)
-        let rhsComponents = StringUtilities.getComponentsFrom(dotFormmattedString: rhs.installDate)
-        
-        //Year
-        if lhsComponents[2]! != rhsComponents[2]! {
-            return lhsComponents[2]! > rhsComponents[2]!
-        }
-        //Month
-        if lhsComponents[0]! != rhsComponents[0]! {
-            return lhsComponents[0]! > rhsComponents[0]!
-        }
-        //Day
-        if lhsComponents[1]! != rhsComponents[1]! {
-            return lhsComponents[1]! > rhsComponents[1]!
-        }
-        return lhs.panelDescription < rhs.panelDescription
-    }
-    
-    public static func == (lhs: Panel, rhs: Panel) -> Bool {
-        return false
-    }
-    
     var TODO_BreakerList_Implementation_🤬:AnyObject?
-    private var isMainPanel:Bool
-    private var amperage:String //PanelAmperage?
-    private var panelDescription:String
-    private var installDate:String
-    //private var breakerList:[Breaker]
-    private var numberOfBreakers:Int
-    private var manufacturer:String //PanelManufacturer?
+    public var isMainPanel:Bool
+    public var amperage:String //PanelAmperage?
+    public var panelDescription:String
+    public var installDate:String
+    public var breakerList:[Breaker]?
+    public var numberOfBreakers:Int
+    public var manufacturer:String //PanelManufacturer?
     
     //Mark:- Constructors
     public init(_ dictionary: Dictionary<String, AnyObject>) {
@@ -47,7 +24,14 @@ public class Panel:CustomStringConvertible, Comparable {
         self.amperage = dictionary["amperage"] != nil ? dictionary["amperage"] as! String: ""
         self.panelDescription = dictionary["panelDescription"] != nil ? dictionary["panelDescription"] as! String: ""
         self.installDate = dictionary["installDate"] != nil ? dictionary["installDate"] as! String: ""
-        //BreakerList
+        if let breakersArray = dictionary["breakerList"] as? NSArray {
+            breakerList = [Breaker]()
+            for breaker in breakersArray {
+                if let breakerDictionary = breaker as? Dictionary<String, AnyObject> {
+                    breakerList!.append(Breaker(breakerDictionary))
+                }
+            }
+        }
         self.numberOfBreakers = dictionary["numberOfBreakers"] != nil ? dictionary["numberOfBreakers"] as! Int: 0
         self.manufacturer = dictionary["manufacturer"] != nil ? dictionary["manufacturer"] as! String: ""
     }
@@ -97,41 +81,19 @@ public class Panel:CustomStringConvertible, Comparable {
         dictionary["amperage"] = self.amperage as AnyObject
         dictionary["panelDescription"] = self.panelDescription as AnyObject
         dictionary["installDate"] = self.installDate as AnyObject
-        //BreakerList
+        if let breakerList = breakerList {
+            var breakerArray = NSArray()
+            for breaker in breakerList {
+                breakerArray = breakerArray.adding(breaker.toDictionary()) as NSArray
+            }
+            dictionary["breakerList"] = breakerArray
+        }
         dictionary["manufacturer"] = self.manufacturer as AnyObject
         dictionary["numberOfBreakers"] = self.numberOfBreakers as AnyObject
         return dictionary
     }
     
     //Mark:- Getters/Setters
-    public func isMain() -> Bool {
-        return self.isMainPanel
-    }
-    public func setIsMain(_ isMainPanel:Bool) -> Panel {
-        self.isMainPanel = isMainPanel
-        return self
-    }
-    public func getAmperage() -> String {
-        return self.amperage
-    }
-    public func setAmperage(_ amperage:String) -> Panel {
-        self.amperage = amperage
-        return self
-    }
-    public func getPanelDescription() -> String {
-        return self.panelDescription
-    }
-    public func setPanelDescription(_ panelDescription:String) -> Panel {
-        self.panelDescription = panelDescription
-        return self
-    }
-    public func getInstallDate() -> String {
-        return self.installDate
-    }
-    public func setInstallDate(_ installDate:String) -> Panel {
-        self.installDate = installDate
-        return self
-    }
     public func setInstallDate(month:Int, day:Int, year:Int) -> Panel {
         let newDate = StringUtilities.getDateString(withMonth: month, withDay: day, withYear: year)
         if let newDate = newDate {
@@ -168,13 +130,6 @@ public class Panel:CustomStringConvertible, Comparable {
         */
         return self
     }
-    public func getManufacturer() -> String {
-        return manufacturer
-    }
-    public func setManufacturer(_ manufacturer:String) -> Panel {
-        self.manufacturer = manufacturer
-        return self
-    }
     public func getPanelTitle() -> String {
         var panelTitle:String
         if isMainPanel {
@@ -183,6 +138,30 @@ public class Panel:CustomStringConvertible, Comparable {
             panelTitle = "Sub Panel \(self.amperage)"
         }
         return panelTitle
+    }
+    
+    //Mark: Comparable
+    public static func < (lhs: Panel, rhs: Panel) -> Bool {
+        let lhsComponents = StringUtilities.getComponentsFrom(dotFormmattedString: lhs.installDate)
+        let rhsComponents = StringUtilities.getComponentsFrom(dotFormmattedString: rhs.installDate)
+        
+        //Year
+        if lhsComponents[2]! != rhsComponents[2]! {
+            return lhsComponents[2]! > rhsComponents[2]!
+        }
+        //Month
+        if lhsComponents[0]! != rhsComponents[0]! {
+            return lhsComponents[0]! > rhsComponents[0]!
+        }
+        //Day
+        if lhsComponents[1]! != rhsComponents[1]! {
+            return lhsComponents[1]! > rhsComponents[1]!
+        }
+        return lhs.panelDescription < rhs.panelDescription
+    }
+    
+    public static func == (lhs: Panel, rhs: Panel) -> Bool {
+        return false
     }
 }
 
