@@ -30,6 +30,7 @@
 		FF0CA3B520C321F800630B16 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */; };
 		FF0CA3B720C326D500630B16 /* CustomerNotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */; };
 		FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */; };
+		FF13E48620D9D59F00B5100B /* PanelAmerage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13E48520D9D59F00B5100B /* PanelAmerage.swift */; };
 		FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32A20D1D26900A181F1 /* Breaker.swift */; };
 		FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */; };
 		FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */; };
@@ -103,6 +104,7 @@
 		FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationMessage.swift; sourceTree = "<group>"; };
 		FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsUtilities.swift; sourceTree = "<group>"; };
+		FF13E48520D9D59F00B5100B /* PanelAmerage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelAmerage.swift; sourceTree = "<group>"; };
 		FF2CC32A20D1D26900A181F1 /* Breaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breaker.swift; sourceTree = "<group>"; };
 		FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPanelViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */,
 				FF63004520C768C6006C0208 /* Panel.swift */,
 				FF2CC32A20D1D26900A181F1 /* Breaker.swift */,
+				FF13E48520D9D59F00B5100B /* PanelAmerage.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */,
 				FFDE253620588868009D1790 /* SendEmail.swift in Sources */,
 				FF0CA3B520C321F800630B16 /* NotificationsViewController.swift in Sources */,
+				FF13E48620D9D59F00B5100B /* PanelAmerage.swift in Sources */,
 				FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */,
 				FF5D7A6D20B0AEAD008A05FC /* PaintSurface.swift in Sources */,
 				FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */,

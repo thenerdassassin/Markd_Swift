@@ -142,8 +142,6 @@ class EditPaintingSurfaceViewController: UITableViewController {
     }
 }
 
-
-
 //Mark:- TableViewCells
 public class LocationTableViewCell: UITableViewCell, UITextFieldDelegate {
     var surfaceViewController:EditPaintingSurfaceViewController?

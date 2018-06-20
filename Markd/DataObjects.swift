@@ -9,47 +9,7 @@
 import UIKit
 
 //From: http://stackoverflow.com/questions/30025481/take-data-from-enum-to-show-on-uipickerview-swift
-enum MainPanelAmperage: Int, CustomStringConvertible, PanelAmperage {
-    case oneHundred = 0
-    case twoHundred = 1
-    case fourHundred = 2
-    case sixHundred = 3
-    case eightHundred = 4
-    case oneThousand = 5
-    case oneThousandTwoHundred = 6
-    
-    static var count: Int { return MainPanelAmperage.oneThousandTwoHundred.hashValue + 1 }
-    
-    var description: String {
-        switch self {
-        case .oneHundred: return "100A"
-        case .twoHundred: return "200A"
-        case .fourHundred: return "400A"
-        case .sixHundred: return "600A"
-        case .eightHundred: return "800A"
-        case .oneThousand: return "1000A"
-        case .oneThousandTwoHundred: return "1200A"
-        }
-    }
-}
 
-enum SubPanelAmperage: Int, CustomStringConvertible, PanelAmperage {
-    case oneHundred = 0
-    case oneHundredTwentyFive = 1
-    case oneHundredFifty = 2
-    case twoHundred = 3
-    
-    static var count: Int { return SubPanelAmperage.twoHundred.hashValue + 1 }
-    
-    var description: String {
-        switch self {
-        case .oneHundred: return "100A"
-        case .oneHundredTwentyFive: return "125A"
-        case .oneHundredFifty: return "150A"
-        case .twoHundred: return "200A"
-        }
-    }
-}
 
 enum PanelManufacturer: Int, CustomStringConvertible {
     case bryant = 0
