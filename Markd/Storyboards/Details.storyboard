@@ -1668,13 +1668,86 @@
                                     <outlet property="manufacturerLabel" destination="hlt-kd-D8Y" id="mYr-Wg-QLy"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="installDateTableCell" id="pNm-Nq-GDh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="manufacturerPickerTableCell" id="pNm-Nq-GDh" customClass="ManufacturerPickerTableViewCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="248" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pNm-Nq-GDh" id="cP9-0C-KRj">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9j-dd-Sff" customClass="ManufacturerPickerView" customModule="Markd" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </pickerView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="D9j-dd-Sff" firstAttribute="leading" secondItem="cP9-0C-KRj" secondAttribute="leading" id="Efu-Y3-txn"/>
+                                        <constraint firstItem="D9j-dd-Sff" firstAttribute="top" secondItem="cP9-0C-KRj" secondAttribute="top" id="O4x-OD-3a6"/>
+                                        <constraint firstAttribute="bottom" secondItem="D9j-dd-Sff" secondAttribute="bottom" id="Qdh-S3-Pec"/>
+                                        <constraint firstAttribute="trailing" secondItem="D9j-dd-Sff" secondAttribute="trailing" id="wpj-cg-dF4"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="manufacturerPicker" destination="D9j-dd-Sff" id="DoG-ri-Vkw"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="panelInstallDateTableCell" id="mcI-gt-tPJ" customClass="PanelInstallDateTableViewCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="292" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mcI-gt-tPJ" id="f5c-Xu-Un5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Install Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbG-ic-5c8">
+                                            <rect key="frame" x="20" y="10" width="335" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="nbG-ic-5c8" secondAttribute="trailing" constant="20" id="9WF-Ei-BZ7"/>
+                                        <constraint firstItem="nbG-ic-5c8" firstAttribute="centerY" secondItem="f5c-Xu-Un5" secondAttribute="centerY" id="Uqm-AX-Puv"/>
+                                        <constraint firstItem="nbG-ic-5c8" firstAttribute="leading" secondItem="f5c-Xu-Un5" secondAttribute="leading" constant="20" id="b1S-Js-yfs"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="installDateLabel" destination="nbG-ic-5c8" id="ADf-2B-dy8"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="panelInstallDatePickerTableCell" id="JjL-w3-BFA" customClass="PanelDatePickerTableViewCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="336" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JjL-w3-BFA" id="C8X-Ws-2aX">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="nfk-va-uUG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <date key="date" timeIntervalSinceReferenceDate="551839916.72579098">
+                                                <!--2018-06-28 00:51:56 +0000-->
+                                            </date>
+                                            <connections>
+                                                <action selector="installDatePickerValueChanged:" destination="JjL-w3-BFA" eventType="valueChanged" id="sV4-a3-MdK"/>
+                                            </connections>
+                                        </datePicker>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="nfk-va-uUG" secondAttribute="trailing" id="KXf-0C-hYn"/>
+                                        <constraint firstAttribute="bottom" secondItem="nfk-va-uUG" secondAttribute="bottom" id="LNm-2D-KUY"/>
+                                        <constraint firstItem="nfk-va-uUG" firstAttribute="top" secondItem="C8X-Ws-2aX" secondAttribute="top" id="oDV-dS-oIm"/>
+                                        <constraint firstItem="nfk-va-uUG" firstAttribute="leading" secondItem="C8X-Ws-2aX" secondAttribute="leading" id="yJ7-GF-1NN"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="installDatePicker" destination="nfk-va-uUG" id="1UY-Ne-Lzg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

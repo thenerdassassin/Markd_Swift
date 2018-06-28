@@ -14,6 +14,9 @@ class EditPanelViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    var isEditingManufacturer:Bool = false
+    var isEditingInstallDate:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Edit Panel"
@@ -24,15 +27,36 @@ class EditPanelViewController: UITableViewController {
         super.viewDidAppear(animated)
         self.tableView.reloadData()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.endEditing(true)
+        /*
+        if let customerData = customerData, let number = paintSurfaceIndex, let paintSurface = paintSurface {
+            if number < 0 {
+                print("Add PaintSurface: \(paintSurface)")
+                customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
+            } else {
+                print("Number: \(number) changes to###\n\(paintSurface)")
+                customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
+            }
+        } else {
+            AlertControllerUtilities.somethingWentWrong(with: self)
+        }
+         */
+    }
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if isEditingManufacturer || isEditingInstallDate {
+            return 7
+        } else {
+            return 6
+        }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "panelDescriptionTableCell", for: indexPath) as! PanelDescriptionTableViewCell
             cell.editPanelViewController = self
@@ -59,25 +83,94 @@ class EditPanelViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "manufacturerTableCell", for: indexPath) as! ManufacturerTableViewCell
             cell.manufacturer = panel?.manufacturer
             return cell
+        } else if indexPath.row == 5 && isEditingManufacturer {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "manufacturerPickerTableCell", for: indexPath) as! ManufacturerPickerTableViewCell
+            cell.editPanelViewController = self
+            return cell
+        } else if isInstallDateRow(for: indexPath.row) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "panelInstallDateTableCell", for: indexPath) as! PanelInstallDateTableViewCell
+            cell.installDate = panel?.installDate
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "panelInstallDatePickerTableCell", for: indexPath) as! PanelDatePickerTableViewCell
+            cell.installDate = panel?.installDate
+            cell.editPanelViewController = self
+            return cell
         }
-        return UITableViewCell()
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row < 4 {
+            hideEditCells()
+        } else if indexPath.row == 4 {
+            hideEditInstallDatePicker()
+            toggleEditManufacturer()
+        } else if isInstallDateRow(for: indexPath.row) {
+            hideEditManufacturerPicker()
+            toggleEditInstallDate()
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func isInstallDateRow(for row:Int) -> Bool {
+        if row == 5 && !isEditingManufacturer {
+            return true
+        } else if row == 6 && isEditingManufacturer {
+            return true
+        }
+        return false
     }
-    */
     
     //Mark:- Helpers
+    func toggleEditManufacturer() {
+        self.view.endEditing(true)
+        if(isEditingManufacturer) {
+            hideEditManufacturerPicker()
+        } else {
+            showEditManufacturerPicker()
+        }
+    }
+    func toggleEditInstallDate() {
+        self.view.endEditing(true)
+        if(isEditingInstallDate) {
+            hideEditInstallDatePicker()
+        } else {
+            showEditInstallDatePicker()
+        }
+    }
+    func showEditManufacturerPicker() {
+        if(!isEditingManufacturer) {
+            tableView.beginUpdates()
+            isEditingManufacturer = true
+            tableView.insertRows(at: [IndexPath(row: 5, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.endUpdates()
+        }
+    }
+    func hideEditManufacturerPicker() {
+        if(isEditingManufacturer) {
+            tableView.beginUpdates()
+            isEditingManufacturer = false
+            tableView.deleteRows(at: [IndexPath(row: 5, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.endUpdates()
+        }
+    }
+    func showEditInstallDatePicker() {
+        if(!isEditingInstallDate) {
+            tableView.beginUpdates()
+            isEditingInstallDate = true
+            tableView.insertRows(at: [IndexPath(row: 6, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.endUpdates()
+        }
+    }
+    func hideEditInstallDatePicker() {
+        if(isEditingInstallDate) {
+            tableView.beginUpdates()
+            isEditingInstallDate = false
+            tableView.deleteRows(at: [IndexPath(row: 6, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.endUpdates()
+        }
+    }
     func hideEditCells() {
+        hideEditManufacturerPicker()
+        hideEditInstallDatePicker()
     }
 }
 
@@ -187,6 +280,66 @@ class ManufacturerTableViewCell: UITableViewCell {
             manufacturerLabel.text = manufacturer
         }
     }
+}
+
+class ManufacturerPickerTableViewCell: UITableViewCell, ManufacturerViewProtocol {
+    var editPanelViewController:EditPanelViewController?
+    var manufacturer: String? {
+        didSet {
+            editPanelViewController!.panel!.manufacturer = manufacturer!
+            editPanelViewController!.tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .none)
+        }
+    }
+    
+    @IBOutlet weak var manufacturerPicker: ManufacturerPickerView! {
+        didSet {
+            manufacturerPicker.delegate = manufacturerPicker
+            manufacturerPicker.dataSource = manufacturerPicker
+            manufacturerPicker.manufacturerViewController = self
+        }
+    }
+}
+
+class PanelInstallDateTableViewCell: UITableViewCell {
+    @IBOutlet weak var installDateLabel: UILabel!
+    
+    var installDate:String? {
+        didSet {
+            installDateLabel.text = installDate
+        }
+    }
+}
+
+class PanelDatePickerTableViewCell: UITableViewCell {
+    var editPanelViewController:EditPanelViewController?
+    
+    @IBOutlet weak var installDatePicker: UIDatePicker! {
+        didSet {
+            installDatePicker.maximumDate = Date()
+            set(to: installDate)
+        }
+    }
+    public var installDate:String? {
+        didSet {
+            set(to: installDate)
+        }
+    }
+    func set(to date: String?) {
+        if let date = installDate {
+            StringUtilities.set(installDatePicker, to: date)
+        }
+    }
+    
+    @IBAction func installDatePickerValueChanged(_ sender: UIDatePicker) {
+        let calendar = Calendar.current
+        let panelToUpdate = editPanelViewController!.panel!
+        
+        editPanelViewController!.panel = panelToUpdate.setInstallDate(
+            month: calendar.component(Calendar.Component.month, from: sender.date),
+            day: calendar.component(Calendar.Component.day, from: sender.date),
+            year: calendar.component(Calendar.Component.year, from: sender.date))
+    }
+    
 }
 
 

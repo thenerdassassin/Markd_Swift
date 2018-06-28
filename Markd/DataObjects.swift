@@ -11,33 +11,7 @@ import UIKit
 //From: http://stackoverflow.com/questions/30025481/take-data-from-enum-to-show-on-uipickerview-swift
 
 
-enum PanelManufacturer: Int, CustomStringConvertible {
-    case bryant = 0
-    case generalElectric = 1
-    case murry = 2
-    case squareDHomline = 3
-    case squareDQOSeries = 4
-    case siemensITE = 5
-    case wadsworth = 6
-    case westinghouse = 7
-    case unknown = 8
-    
-    static var count: Int { return PanelManufacturer.unknown.hashValue + 1 }
-    
-    var description: String {
-        switch self {
-        case .bryant: return "Bryant"
-        case .generalElectric: return "General Electric"
-        case .murry: return "Murry"
-        case .squareDHomline: return "Square D Homline"
-        case .squareDQOSeries: return "Square D QO"
-        case .siemensITE: return "Siemens ITE"
-        case .wadsworth: return "Wadsworth"
-        case .westinghouse: return "Westinghouse"
-        case .unknown: return "Unknown"
-        }
-    }
-}
+
 
 enum BreakerAmperage: Int, CustomStringConvertible {
     case fifteen = 0

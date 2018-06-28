@@ -11,13 +11,10 @@
 		47000A6F1DFDEA2E00D85548 /* NewPanelSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */; };
 		4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */; };
 		47133A5F1DF632B000D86E07 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47133A5E1DF632B000D86E07 /* DataObjects.swift */; };
-		4746A0A01E1F315F00FB76E3 /* ManufacturerPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4746A09F1E1F315F00FB76E3 /* ManufacturerPickerController.swift */; };
 		476295BD1E1DE02D008CDBFC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476295BC1E1DE02D008CDBFC /* DetailViewController.swift */; };
 		476295BF1E1DF198008CDBFC /* EditPanelViewController-Old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476295BE1E1DF198008CDBFC /* EditPanelViewController-Old.swift */; };
 		4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4772086D1DFF6AB1006FBB5C /* BreakerTypePickerController.swift */; };
-		479734E31E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479734E21E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift */; };
 		479937681E1D806F00ADCD35 /* EditBreakerTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479937671E1D806F00ADCD35 /* EditBreakerTextFieldController.swift */; };
-		47A89F851E1C5C2C00381967 /* BreakerAmperagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A89F841E1C5C2C00381967 /* BreakerAmperagePickerController.swift */; };
 		47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C4E88E1E2477A2007A0A1D /* NewPanelTextFieldController.swift */; };
 		47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA411DF3865C001F417F /* AppDelegate.swift */; };
 		47E0EA441DF3865C001F417F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA431DF3865C001F417F /* ViewController.swift */; };
@@ -31,6 +28,7 @@
 		FF0CA3B720C326D500630B16 /* CustomerNotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */; };
 		FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */; };
 		FF13E48620D9D59F00B5100B /* PanelAmerage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13E48520D9D59F00B5100B /* PanelAmerage.swift */; };
+		FF13E48820E4550700B5100B /* ManufacturerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13E48720E4550700B5100B /* ManufacturerPickerView.swift */; };
 		FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32A20D1D26900A181F1 /* Breaker.swift */; };
 		FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */; };
 		FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */; };
@@ -81,13 +79,10 @@
 		47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPanelSetupViewController.swift; sourceTree = "<group>"; };
 		4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		47133A5E1DF632B000D86E07 /* DataObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
-		4746A09F1E1F315F00FB76E3 /* ManufacturerPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManufacturerPickerController.swift; sourceTree = "<group>"; };
 		476295BC1E1DE02D008CDBFC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		476295BE1E1DF198008CDBFC /* EditPanelViewController-Old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditPanelViewController-Old.swift"; sourceTree = "<group>"; };
 		4772086D1DFF6AB1006FBB5C /* BreakerTypePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakerTypePickerController.swift; sourceTree = "<group>"; };
-		479734E21E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelAmperagePickerController.swift; sourceTree = "<group>"; };
 		479937671E1D806F00ADCD35 /* EditBreakerTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBreakerTextFieldController.swift; sourceTree = "<group>"; };
-		47A89F841E1C5C2C00381967 /* BreakerAmperagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakerAmperagePickerController.swift; sourceTree = "<group>"; };
 		47C4E88E1E2477A2007A0A1D /* NewPanelTextFieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPanelTextFieldController.swift; sourceTree = "<group>"; };
 		47E0EA3E1DF3865C001F417F /* Markd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Markd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E0EA411DF3865C001F417F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +100,7 @@
 		FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationMessage.swift; sourceTree = "<group>"; };
 		FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsUtilities.swift; sourceTree = "<group>"; };
 		FF13E48520D9D59F00B5100B /* PanelAmerage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelAmerage.swift; sourceTree = "<group>"; };
+		FF13E48720E4550700B5100B /* ManufacturerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerPickerView.swift; sourceTree = "<group>"; };
 		FF2CC32A20D1D26900A181F1 /* Breaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breaker.swift; sourceTree = "<group>"; };
 		FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPanelViewController.swift; sourceTree = "<group>"; };
@@ -213,9 +209,6 @@
 				479937671E1D806F00ADCD35 /* EditBreakerTextFieldController.swift */,
 				47C4E88E1E2477A2007A0A1D /* NewPanelTextFieldController.swift */,
 				4772086D1DFF6AB1006FBB5C /* BreakerTypePickerController.swift */,
-				479734E21E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift */,
-				4746A09F1E1F315F00FB76E3 /* ManufacturerPickerController.swift */,
-				47A89F841E1C5C2C00381967 /* BreakerAmperagePickerController.swift */,
 			);
 			path = Markd;
 			sourceTree = "<group>";
@@ -233,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */,
+				FF13E48720E4550700B5100B /* ManufacturerPickerView.swift */,
 			);
 			path = PickerViewControllers;
 			sourceTree = "<group>";
@@ -481,7 +475,6 @@
 				FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */,
 				FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */,
 				FF63004620C768C6006C0208 /* Panel.swift in Sources */,
-				479734E31E1EC3CB00D9AF75 /* PanelAmperagePickerController.swift in Sources */,
 				FF592F7320683E090031DA92 /* Boiler.swift in Sources */,
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
 				FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */,
@@ -500,7 +493,6 @@
 				FFF27C92204203E500A9392E /* Address.swift in Sources */,
 				47000A6F1DFDEA2E00D85548 /* NewPanelSetupViewController.swift in Sources */,
 				47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */,
-				4746A0A01E1F315F00FB76E3 /* ManufacturerPickerController.swift in Sources */,
 				476295BF1E1DF198008CDBFC /* EditPanelViewController-Old.swift in Sources */,
 				FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */,
 				47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */,
@@ -516,6 +508,7 @@
 				47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */,
 				FF9A5B42208AA484007E9669 /* ContractorFooterViewController.swift in Sources */,
 				FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */,
+				FF13E48820E4550700B5100B /* ManufacturerPickerView.swift in Sources */,
 				47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */,
 				FF9A5B3C2086C69F007E9669 /* ContractorDetails.swift in Sources */,
 				FFF27C902041F76E00A9392E /* StringUtilities.swift in Sources */,
@@ -527,7 +520,6 @@
 				FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */,
 				FF6BF1F320950CE1001D55EF /* ContractorServiceTableViewController.swift in Sources */,
 				FFF27C96204CB8B500A9392E /* PlumbingViewController.swift in Sources */,
-				47A89F851E1C5C2C00381967 /* BreakerAmperagePickerController.swift in Sources */,
 				FF63004220C74E05006C0208 /* ElectricalPanelsViewController.swift in Sources */,
 				FFFD3F15205B25A9005B7325 /* AlertControllerUtilities.swift in Sources */,
 			);

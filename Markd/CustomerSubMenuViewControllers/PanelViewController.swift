@@ -66,8 +66,6 @@ class PanelViewController: UITableViewController {
         }
     }
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editPanelSegue" {
             self.navigationItem.title = "Back"
