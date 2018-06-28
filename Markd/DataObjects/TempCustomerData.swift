@@ -244,6 +244,9 @@ public class TempCustomerData {
     public func getPanels() -> [Panel]? {
         return getCustomer()?.getPanels()
     }
+    public func updatePanel(at index: Int, to updatedPanel:Panel) {
+       updateCustomer(to: getCustomer()?.updatePanel(updatedPanel, index))
+    }
     public func removeElectricalPanel(at index:Int) {
         updateCustomer(to: getCustomer()?.deletePanel(index))
     }

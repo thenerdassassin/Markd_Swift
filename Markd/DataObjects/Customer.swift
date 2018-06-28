@@ -303,6 +303,20 @@ public class Customer:CustomStringConvertible {
     func getPanels() -> [Panel]? {
         return panels
     }
+    func updatePanel(_ panel:Panel, _  number:Int) -> Customer {
+        if let _ = panels {
+            if(number == -1) {
+                //self.interiorPaintSurfaces!.append(surface)
+            } else {
+                self.panels![number] = panel
+            }
+            return self
+        } else {
+            self.panels = [Panel]()
+            self.panels!.append(panel)
+            return self
+        }
+    }
     func deletePanel(_ index:Int) -> Customer {
         guard self.panels != nil else {
             return self

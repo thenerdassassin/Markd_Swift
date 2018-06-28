@@ -8,7 +8,10 @@
 
 import UIKit
 
-class EditPanelViewController: UITableViewController {
+class EditPanelViewController: UITableViewController, OnGetDataListener {
+    private let authentication = FirebaseAuthentication.sharedInstance
+    var customerData:TempCustomerData?
+    var panelIndex:Int?
     var panel:Panel? {
         didSet {
             self.tableView.reloadData()
@@ -25,24 +28,32 @@ class EditPanelViewController: UITableViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if(authentication.checkLogin(self)) {
+            customerData = TempCustomerData(self)
+        }
         self.tableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         self.view.endEditing(true)
-        /*
-        if let customerData = customerData, let number = paintSurfaceIndex, let paintSurface = paintSurface {
+        
+        if let customerData = customerData, let number = panelIndex, let panel = panel {
+            super.viewWillDisappear(animated)
             if number < 0 {
-                print("Add PaintSurface: \(paintSurface)")
-                customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
+                print("Add Panel: \(panel)")
+                //customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
             } else {
-                print("Number: \(number) changes to###\n\(paintSurface)")
-                customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
+                print("Number: \(number) changes to###\n\(panel)")
+                customerData.updatePanel(at:number, to: panel)
             }
-        } else {
-            AlertControllerUtilities.somethingWentWrong(with: self)
         }
-         */
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        FirebaseAuthentication.sharedInstance.removeStateListener()
+        if let customerData = customerData {
+            customerData.removeListeners()
+        }
     }
     
     // MARK: - Table view data source
@@ -171,6 +182,20 @@ class EditPanelViewController: UITableViewController {
     func hideEditCells() {
         hideEditManufacturerPicker()
         hideEditInstallDatePicker()
+    }
+    
+    //Mark: OnGetDataListener
+    public func onStart() {
+        print("Getting Customer Data")
+    }
+    
+    public func onSuccess() {
+        print("EditPanelViewController:- Got Customer Data")
+    }
+    
+    public func onFailure(_ error: Error) {
+        debugPrint(error)
+        AlertControllerUtilities.somethingWentWrong(with: self)
     }
 }
 
@@ -339,7 +364,6 @@ class PanelDatePickerTableViewCell: UITableViewCell {
             day: calendar.component(Calendar.Component.day, from: sender.date),
             year: calendar.component(Calendar.Component.year, from: sender.date))
     }
-    
 }
 
 

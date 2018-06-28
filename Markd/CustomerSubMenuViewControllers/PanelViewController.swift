@@ -71,6 +71,7 @@ class PanelViewController: UITableViewController {
             self.navigationItem.title = "Back"
             let destination = segue.destination as! EditPanelViewController
             destination.panel = panel
+            destination.panelIndex = panelIndex
         }
     }
 }

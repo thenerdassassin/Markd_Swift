@@ -37,8 +37,6 @@ class EditPaintingSurfaceViewController: UITableViewController {
                 print("Number: \(number) changes to###\n\(paintSurface)")
                 customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
             }
-        } else {
-            AlertControllerUtilities.somethingWentWrong(with: self)
         }
     }
     
