@@ -92,6 +92,8 @@ class ElectricalPanelsViewController: UITableViewController {
                 return
             }
             customerData.removeElectricalPanel(at: indexPath.row)
+            tableView.endEditing(false)
+            tableView.reloadData()
         }
     }
 

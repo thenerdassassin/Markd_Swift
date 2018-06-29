@@ -54,21 +54,16 @@ class ElectricalViewController: UIViewController, OnGetDataListener {
             self.electricalFooterViewController = destination
             return
         }
-        if segue.identifier == "addPaintingSurfaceSegue" {
-            let sender = sender as! UIAlertAction
-            let destination = segue.destination as! EditPaintingSurfaceViewController
+        if segue.identifier == "addPanelSegue" {
+            let destination = segue.destination as! EditPanelViewController
             guard let customerData = customerData else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
                 return
             }
             customerData.removeListeners()
             destination.customerData = customerData
-            if sender.title == "Interior" {
-                destination.isInterior = true
-            }
-            destination.paintSurfaceIndex = -1
-            let newPaintSurface = PaintSurface()
-            destination.paintSurface = newPaintSurface
+            destination.panel = Panel()
+            destination.panelIndex = -1
             return
         }
     }

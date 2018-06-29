@@ -306,7 +306,7 @@ public class Customer:CustomStringConvertible {
     func updatePanel(_ panel:Panel, _  number:Int) -> Customer {
         if let _ = panels {
             if(number == -1) {
-                //self.interiorPaintSurfaces!.append(surface)
+                self.panels!.append(panel)
             } else {
                 self.panels![number] = panel
             }

@@ -40,9 +40,9 @@ enum PanelManufacturer: Int, CustomStringConvertible {
     case siemensITE = 5
     case wadsworth = 6
     case westinghouse = 7
-    case unknown = 8
+    case other = 8
     
-    static var count: Int { return PanelManufacturer.unknown.hashValue + 1 }
+    static var count: Int { return PanelManufacturer.other.hashValue + 1 }
     
     var description: String {
         switch self {
@@ -54,7 +54,7 @@ enum PanelManufacturer: Int, CustomStringConvertible {
         case .siemensITE: return "Siemens ITE"
         case .wadsworth: return "Wadsworth"
         case .westinghouse: return "Westinghouse"
-        case .unknown: return "Unknown"
+        case .other: return "Other"
         }
     }
 }

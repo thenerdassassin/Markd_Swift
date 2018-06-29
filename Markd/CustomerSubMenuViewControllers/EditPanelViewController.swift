@@ -11,7 +11,15 @@ import UIKit
 class EditPanelViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     var customerData:TempCustomerData?
-    var panelIndex:Int?
+    var panelIndex:Int? {
+        didSet {
+            if panelIndex == nil || panelIndex! < 0 {
+                self.title = "Add Panel"
+            } else {
+                self.title = "Edit Panel"
+            }
+        }
+    }
     var numberOfBreakers:Int?
     var panel:Panel? {
         didSet {
@@ -42,11 +50,10 @@ class EditPanelViewController: UITableViewController, OnGetDataListener {
             super.viewWillDisappear(animated)
             if number < 0 {
                 print("Add Panel: \(panel)")
-                //customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
+                customerData.updatePanel(at:number, to: panel.setNumberOfBreakers(numberOfBreakers!))
             } else {
                 print("Number: \(number) changes to###\n\(panel)")
-                panel.setNumberOfBreakers(numberOfBreakers!)
-                customerData.updatePanel(at:number, to: panel)
+                customerData.updatePanel(at:number, to: panel.setNumberOfBreakers(numberOfBreakers!))
             }
         }
     }
@@ -362,6 +369,9 @@ class PanelDatePickerTableViewCell: UITableViewCell {
         let calendar = Calendar.current
         let panelToUpdate = editPanelViewController!.panel!
         
+        if let numberOfBreakers = editPanelViewController?.numberOfBreakers {
+            panelToUpdate.numberOfBreakers = numberOfBreakers
+        }
         editPanelViewController!.panel = panelToUpdate.setInstallDate(
             month: calendar.component(Calendar.Component.month, from: sender.date),
             day: calendar.component(Calendar.Component.day, from: sender.date),

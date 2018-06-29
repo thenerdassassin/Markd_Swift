@@ -10,7 +10,6 @@
 		4067C6E07EFE63BA165B7ECB /* Pods_Markd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5098B1444AC29248521536 /* Pods_Markd.framework */; };
 		47000A6F1DFDEA2E00D85548 /* NewPanelSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */; };
 		4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */; };
-		47133A5F1DF632B000D86E07 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47133A5E1DF632B000D86E07 /* DataObjects.swift */; };
 		476295BD1E1DE02D008CDBFC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476295BC1E1DE02D008CDBFC /* DetailViewController.swift */; };
 		476295BF1E1DF198008CDBFC /* EditPanelViewController-Old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476295BE1E1DF198008CDBFC /* EditPanelViewController-Old.swift */; };
 		4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4772086D1DFF6AB1006FBB5C /* BreakerTypePickerController.swift */; };
@@ -78,7 +77,6 @@
 		0DFBB433CDDC1835F81D6E42 /* Pods-Markd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.debug.xcconfig"; sourceTree = "<group>"; };
 		47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPanelSetupViewController.swift; sourceTree = "<group>"; };
 		4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
-		47133A5E1DF632B000D86E07 /* DataObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		476295BC1E1DE02D008CDBFC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		476295BE1E1DF198008CDBFC /* EditPanelViewController-Old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditPanelViewController-Old.swift"; sourceTree = "<group>"; };
 		4772086D1DFF6AB1006FBB5C /* BreakerTypePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakerTypePickerController.swift; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 				FF6C030A203895E00058259F /* CustomerMenuViewControllers */,
 				FF6C0309203895B60058259F /* UserAuthentication */,
 				47E0EA411DF3865C001F417F /* AppDelegate.swift */,
-				47133A5E1DF632B000D86E07 /* DataObjects.swift */,
 				4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */,
 				47E0EA431DF3865C001F417F /* ViewController.swift */,
 				476295BC1E1DE02D008CDBFC /* DetailViewController.swift */,
@@ -488,7 +485,6 @@
 				FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */,
 				FFB56592207AA8F500F6E8F1 /* Appliance.swift in Sources */,
 				479937681E1D806F00ADCD35 /* EditBreakerTextFieldController.swift in Sources */,
-				47133A5F1DF632B000D86E07 /* DataObjects.swift in Sources */,
 				476295BD1E1DE02D008CDBFC /* DetailViewController.swift in Sources */,
 				FFF27C92204203E500A9392E /* Address.swift in Sources */,
 				47000A6F1DFDEA2E00D85548 /* NewPanelSetupViewController.swift in Sources */,

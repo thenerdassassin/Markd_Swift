@@ -35,45 +35,14 @@ public class Panel:CustomStringConvertible, Comparable {
         self.numberOfBreakers = dictionary["numberOfBreakers"] != nil ? dictionary["numberOfBreakers"] as! Int: 0
         self.manufacturer = dictionary["manufacturer"] != nil ? dictionary["manufacturer"] as! String: ""
     }
-    public init(isMainPanel:Bool, amperage:String, manufacturer:String) {
-        //TODO: add List<Breaker> breakerList to input variables
-        self.isMainPanel = isMainPanel
-        self.amperage = amperage
-        self.panelDescription = ""
-        //set breaker list
-        self.installDate = StringUtilities.getCurrentDateString()
-        self.manufacturer = manufacturer
-        self.numberOfBreakers = 0
-    }
-    public init(isMainPanel:Bool, amperage:String) {
-        //TODO: add List<Breaker> breakerList to input variables
-        self.isMainPanel = isMainPanel
-        self.amperage = amperage
-        self.panelDescription = ""
-        //set breaker list
-        self.installDate = StringUtilities.getCurrentDateString()
-        self.manufacturer = ""
-        self.numberOfBreakers = 0
-    }
-    public init(amperage:String) {
-        //TODO: add List<Breaker> breakerList to input variables
-        self.isMainPanel = true
-        self.amperage = amperage
-        self.panelDescription = ""
-        //set breaker list
-        self.installDate = StringUtilities.getCurrentDateString()
-        self.manufacturer = ""
-        self.numberOfBreakers = 0
-    }
     public init() {
-        //TODO: add List<Breaker> breakerList to input variables
         self.isMainPanel = true
         self.amperage = "1000A"
         self.panelDescription = ""
-        //set breaker list
+        self.breakerList = [Breaker]()
         self.installDate = StringUtilities.getCurrentDateString()
-        self.manufacturer = ""
-        self.numberOfBreakers = 0
+        self.manufacturer = PanelManufacturer.other.description
+        self.numberOfBreakers = 1
     }
     public func toDictionary() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
@@ -110,8 +79,9 @@ public class Panel:CustomStringConvertible, Comparable {
             breakerList = [Breaker]();
          }
          while(breakerList!.count < numberOfBreakers) {
+            print("Adding Breaker")
             let breakerToAdd = Breaker(breakerList!.count+1)
-            breakerList!.append(breakerToAdd)
+            self.breakerList!.append(breakerToAdd)
          }
          
          while(breakerList!.count > numberOfBreakers) {
