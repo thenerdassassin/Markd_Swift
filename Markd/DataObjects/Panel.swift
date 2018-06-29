@@ -142,13 +142,10 @@ public class Panel:CustomStringConvertible, Comparable {
         let breakerToDelete = breakerList[breakerIndex];
     
         if(breakerToDelete.breakerType == BreakerType.doublePoleBottom.description) {
-            let previousBreaker = breakerList[breakerIndex-2];
-            previousBreaker.breakerType = BreakerType.singlePole.description;
-        }
-        else if(breakerToDelete.breakerType == BreakerType.doublePole.description) {
+            self.breakerList![breakerIndex-2].breakerType = BreakerType.singlePole.description;
+        } else if(breakerToDelete.breakerType == BreakerType.doublePole.description) {
             breakerToDelete.breakerType = BreakerType.singlePole.description;
-            let nextBreaker = breakerList[breakerIndex+2];
-            nextBreaker.breakerType = BreakerType.singlePole.description;
+            self.breakerList![breakerIndex+2].breakerType = BreakerType.singlePole.description;
         }
         if(breakerToDelete.number ==  lastBreaker.number) {
             self.breakerList!.remove(at: breakerIndex);
@@ -157,6 +154,7 @@ public class Panel:CustomStringConvertible, Comparable {
             breakerToDelete.breakerDescription = "";
             breakerToDelete.breakerType = BreakerType.singlePole.description;
             breakerToDelete.amperage = BreakerAmperage.twenty.description;
+            self.breakerList![breakerIndex] = breakerToDelete
         }
         return self;
     }

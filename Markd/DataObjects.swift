@@ -62,7 +62,7 @@ enum BreakerType: Int, CustomStringConvertible {
         switch self {
         case .singlePole: return "Single-Pole"
         case .doublePole: return "Double-Pole"
-        case .doublePoleBottom: return "Double-Pole"
+        case .doublePoleBottom: return "Double-Pole Bottom"
         }
     }
 }
