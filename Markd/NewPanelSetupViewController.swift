@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 class NewPanelSetupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate {
     //var breakers:[Breaker] = []
     var newPanel:Panel?
@@ -132,3 +132,4 @@ class NewPanelSetupViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.endEditing(true)
     }
 }
+*/

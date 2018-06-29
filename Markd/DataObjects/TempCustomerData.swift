@@ -241,8 +241,35 @@ public class TempCustomerData {
     }
     
     //Mark:- ElectricalPage
+    public func getPanels() -> [Panel]? {
+        return getCustomer()?.getPanels()
+    }
+    public func updatePanel(at index: Int, to updatedPanel:Panel) {
+       updateCustomer(to: getCustomer()?.updatePanel(updatedPanel, index))
+    }
+    public func removeElectricalPanel(at index:Int) {
+        updateCustomer(to: getCustomer()?.deletePanel(index))
+    }
     public func getElectricalServices() -> [ContractorService]? {
         return getCustomer()?.getElectricalServices()
+    }
+    public func getElectrician(electricianListener: OnGetContractorListener?) {
+        guard let listener = electricianListener else {
+            return
+        }
+        guard let customer = customer, let electrician = customer.getElectrician() else {
+            print("There is no electrician")
+            listener.onFinished(contractor: nil, at: nil)
+            return
+        }
+        let electricianReference:DatabaseReference = TempCustomerData.database.child(electrician)
+        electricianReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                listener.onFinished(contractor: Contractor(dictionary), at:electrician)
+            }
+        }) { (error) in
+            listener.onFailure(error)
+        }
     }
     
     //Mark:- PaintingPage
@@ -297,14 +324,6 @@ public class TempCustomerData {
         } else {
             print("Appliance type does not match")
         }
-    }
-    
-    func NEED_TO_ADD_ANDROID_METHODS😤() {
-        var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
-        //TODO: addContractorListener, attachListener, getUid
-        //TODO: electricalPage
-        //TODO: settingsPage
-        //TODO: makeCustomer
     }
 }
 

@@ -37,8 +37,6 @@ class EditPaintingSurfaceViewController: UITableViewController {
                 print("Number: \(number) changes to###\n\(paintSurface)")
                 customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
             }
-        } else {
-            AlertControllerUtilities.somethingWentWrong(with: self)
         }
     }
     
@@ -142,8 +140,6 @@ class EditPaintingSurfaceViewController: UITableViewController {
     }
 }
 
-
-
 //Mark:- TableViewCells
 public class LocationTableViewCell: UITableViewCell, UITextFieldDelegate {
     var surfaceViewController:EditPaintingSurfaceViewController?
@@ -165,7 +161,7 @@ public class LocationTableViewCell: UITableViewCell, UITextFieldDelegate {
         surfaceViewController!.paintSurface!.setLocation(to: textField.text!)
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        surfaceViewController!.resignFirstResponder()
+        textField.resignFirstResponder()
         return true;
     }
 }
@@ -189,7 +185,7 @@ public class BrandTableViewCell: UITableViewCell, UITextFieldDelegate {
         surfaceViewController!.paintSurface!.setBrand(to: textField.text!)
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        surfaceViewController!.resignFirstResponder()
+        textField.resignFirstResponder()
         return true;
     }
 }
@@ -213,7 +209,7 @@ public class ColorTableViewCell: UITableViewCell, UITextFieldDelegate {
         surfaceViewController!.paintSurface!.setColor(to: textField.text!)
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        surfaceViewController!.resignFirstResponder()
+        textField.resignFirstResponder()
         return true;
     }
 }

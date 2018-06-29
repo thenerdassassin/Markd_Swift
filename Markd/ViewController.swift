@@ -5,31 +5,8 @@
 //  Created by Joshua Daniel Schmidt on 12/3/16.
 //  Copyright © 2016 Joshua Daniel Schmidt. All rights reserved.
 //
-
+/*
 import UIKit
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
 
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BreakerEdit, PanelEdit {
@@ -355,26 +332,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         panels[panelNumber] = newPanel
         breakerTable.reloadData()
     }
-    
-    //Mark:- Electrician Box
-    @IBAction func numberPressed(_ sender: UIButton) {
-        //Does not work on simulator
-        self.callNumber("\(electrician.phoneNumber)")
-    }
-    
-    @IBAction func openWebsite(_ sender: UIButton) {
-        print(electrician.url)
-    }
-    
-    // Mark:- Helper Function
-       //From: http://stackoverflow.com/questions/24251259/how-to-use-openurl-for-making-a-phone-call-in-swift
-    fileprivate func callNumber(_ phoneNumber:String) {
-        if let phoneCallURL:URL = URL(string:"tel:\(phoneNumber)") {
-            let application:UIApplication = UIApplication.shared
-            if (application.canOpenURL(phoneCallURL)) {
-                application.openURL(phoneCallURL);
-            }
-        }
-    }
 }
-
+*/

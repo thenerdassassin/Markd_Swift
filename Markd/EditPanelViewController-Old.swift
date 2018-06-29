@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 class EditPanelViewController: UIViewController {
     
     @IBOutlet weak var navigationBar: UINavigationItem!
@@ -62,3 +62,4 @@ class EditPanelViewController: UIViewController {
         panelAmperagePickerController.isMainPanel = sender.isOn
     }
 }
+*/
