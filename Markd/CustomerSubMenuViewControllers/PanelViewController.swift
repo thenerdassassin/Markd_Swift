@@ -31,6 +31,7 @@ class PanelViewController: UITableViewController {
     private func configureView() {
         if let panel = panel {
             self.navigationItem.title = panel.panelDescription
+            self.tableView.reloadData()
         }
     }
     

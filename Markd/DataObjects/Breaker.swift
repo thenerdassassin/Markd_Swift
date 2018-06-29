@@ -21,6 +21,12 @@ public class Breaker:CustomStringConvertible {
         self.amperage = dictionary["amperage"] != nil ? dictionary["amperage"] as! String: ""
         self.breakerType = dictionary["breakerType"] != nil ? dictionary["breakerType"] as! String: ""
     }
+    public init(_ number:Int) {
+        self.number = number
+        self.breakerDescription = ""
+        self.amperage = BreakerAmperage.fifteen.description
+        self.breakerType = BreakerType.singlePole.description
+    }
     public func toDictionary() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         dictionary["number"] = self.number as AnyObject

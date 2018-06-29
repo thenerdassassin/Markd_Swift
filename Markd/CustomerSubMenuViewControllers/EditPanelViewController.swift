@@ -12,8 +12,10 @@ class EditPanelViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     var customerData:TempCustomerData?
     var panelIndex:Int?
+    var numberOfBreakers:Int?
     var panel:Panel? {
         didSet {
+            numberOfBreakers = panel!.numberOfBreakers
             self.tableView.reloadData()
         }
     }
@@ -43,6 +45,7 @@ class EditPanelViewController: UITableViewController, OnGetDataListener {
                 //customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
             } else {
                 print("Number: \(number) changes to###\n\(panel)")
+                panel.setNumberOfBreakers(numberOfBreakers!)
                 customerData.updatePanel(at:number, to: panel)
             }
         }
@@ -231,7 +234,7 @@ class NumberOfBreakersTableViewCell: UITableViewCell {
     
     @IBAction func onBreakerStepperValueChanged(_ sender: UIStepper) {
         numberOfBreakers = Int(sender.value)
-        editPanelViewController!.panel!.setNumberOfBreakers(numberOfBreakers!)
+        editPanelViewController!.numberOfBreakers = numberOfBreakers
     }
     var editPanelViewController:EditPanelViewController?
     var numberOfBreakers:Int? {

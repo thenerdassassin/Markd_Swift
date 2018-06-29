@@ -106,19 +106,17 @@ public class Panel:CustomStringConvertible, Comparable {
     }
     public func setNumberOfBreakers(_ numberOfBreakers:Int) -> Panel {
         self.numberOfBreakers = numberOfBreakers
-        /*
-         TODO:
-         if(breakerList == null) {
-            breakerList = new ArrayList<>();
+         if(breakerList == nil) {
+            breakerList = [Breaker]();
          }
-         while(breakerList.size() < numberOfBreakers) {
-            breakerList.add(new Breaker(breakerList.size()+1, ""));
+         while(breakerList!.count < numberOfBreakers) {
+            let breakerToAdd = Breaker(breakerList!.count+1)
+            breakerList!.append(breakerToAdd)
          }
          
-         while(breakerList.size() > numberOfBreakers) {
-            deleteBreaker(breakerList.size());
+         while(breakerList!.count > numberOfBreakers) {
+            self.deleteBreaker(breakerList!.count)
          }
-        */
         return self
     }
     public func getPanelTitle() -> String {
@@ -129,6 +127,38 @@ public class Panel:CustomStringConvertible, Comparable {
             panelTitle = "Sub Panel \(self.amperage)"
         }
         return panelTitle
+    }
+    public func deleteBreaker(_ breakerNumber:Int) -> Panel {
+        let breakerIndex = breakerNumber - 1;
+        
+        //Error check
+        guard let breakerList = breakerList else {
+            return self;
+        }
+        if(breakerNumber > breakerList.count) {
+            return self;
+        }
+        let lastBreaker = breakerList[breakerList.count - 1];
+        let breakerToDelete = breakerList[breakerIndex];
+    
+        if(breakerToDelete.breakerType == BreakerType.doublePoleBottom.description) {
+            let previousBreaker = breakerList[breakerIndex-2];
+            previousBreaker.breakerType = BreakerType.singlePole.description;
+        }
+        else if(breakerToDelete.breakerType == BreakerType.doublePole.description) {
+            breakerToDelete.breakerType = BreakerType.singlePole.description;
+            let nextBreaker = breakerList[breakerIndex+2];
+            nextBreaker.breakerType = BreakerType.singlePole.description;
+        }
+        if(breakerToDelete.number ==  lastBreaker.number) {
+            self.breakerList!.remove(at: breakerIndex);
+        } else {
+            //Reset to default values
+            breakerToDelete.breakerDescription = "";
+            breakerToDelete.breakerType = BreakerType.singlePole.description;
+            breakerToDelete.amperage = BreakerAmperage.twenty.description;
+        }
+        return self;
     }
     
     //Mark: Comparable
@@ -159,35 +189,6 @@ public class Panel:CustomStringConvertible, Comparable {
 /*
  
  //Helper functions
- public Panel deleteBreaker(int breakerNumber) {
-    int breakerIndex = breakerNumber-1;
- 
-    //Error check
-    if(breakerNumber > breakerList.size()) {
-        return this;
-    }
-    Breaker lastBreaker = breakerList.get(breakerList.size()-1);
-    Breaker breakerToDelete = breakerList.get(breakerIndex);
- 
-    if(breakerToDelete.getBreakerType().equals(Breaker.DoublePoleBottom)) {
-        Breaker previousBreaker = breakerList.get(breakerIndex-2);
-        previousBreaker.setBreakerType(Breaker.SinglePole);
-    }
-    else if(breakerToDelete.getBreakerType().equals(Breaker.DoublePole)) {
-        breakerToDelete.setBreakerType(Breaker.SinglePole);
-        Breaker nextBreaker = breakerList.get(breakerIndex+2);
-        nextBreaker.setBreakerType(Breaker.SinglePole);
-    }
-    if(breakerToDelete.equals(lastBreaker)) {
-        breakerList.remove(breakerToDelete);
-    } else {
-        //Reset to default values
-        breakerToDelete.setBreakerDescription("");
-        breakerToDelete.setBreakerType(Breaker.SinglePole);
-        breakerToDelete.setAmperage(Breaker.TWENTY_AMP);
-    }
-    return this;
- }
  public Panel editBreaker(int breakerNumber, Breaker updatedBreaker) {
     Log.d(TAG, "BreakerNumber:" + breakerNumber);
     int breakerIndex = breakerNumber-1;
@@ -253,15 +254,6 @@ public class Panel:CustomStringConvertible, Comparable {
  this.breakerList.add(new Breaker(this.breakerCount()+1, newBreaker.getBreakerDescription(), newBreaker.getAmperage(), Breaker.DoublePoleBottom));
  numberOfBreakers++;
  }
- return this;
- }
- public Panel updatePanel(String panelDescription, int numberOfBreakers, boolean isMainPanel, String panelInstallDate, @PanelAmperage String amperage, @PanelManufacturer String manufacturer) {
- this.panelDescription = panelDescription;
- this.setNumberOfBreakers(numberOfBreakers);
- this.isMainPanel = isMainPanel;
- this.installDate = panelInstallDate;
- this.amperage = amperage;
- this.manufacturer = manufacturer;
  return this;
  }
  
