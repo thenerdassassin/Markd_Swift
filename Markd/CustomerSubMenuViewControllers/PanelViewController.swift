@@ -59,20 +59,38 @@ class PanelViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "breakerCell", for: indexPath) as! BreakerTableCell
             let breakers = panel!.breakerList!
             if(index+1 >= breakers.count) {
-                cell.setUp(leftNumber: breakers[index].number, leftTitle: breakers[index].breakerDescription, leftBreakerType: breakers[index].breakerType, rightNumber: -1, rightTitle: "", rightBreakerType: "Single-Pole")
+                cell.setUp(self, leftNumber: breakers[index].number, leftTitle: breakers[index].breakerDescription, leftBreakerType: breakers[index].breakerType, rightNumber: -1, rightTitle: "", rightBreakerType: "Single-Pole")
             } else {
-                cell.setUp(leftNumber: breakers[index].number, leftTitle: breakers[index].breakerDescription, leftBreakerType: breakers[index].breakerType, rightNumber: breakers[index+1].number, rightTitle: breakers[index+1].breakerDescription, rightBreakerType: breakers[index+1].breakerType)
+                cell.setUp(self, leftNumber: breakers[index].number, leftTitle: breakers[index].breakerDescription, leftBreakerType: breakers[index].breakerType, rightNumber: breakers[index+1].number, rightTitle: breakers[index+1].breakerDescription, rightBreakerType: breakers[index+1].breakerType)
             }
             return cell
         }
     }
-    // MARK: - Navigation
+    // MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editPanelSegue" {
             self.navigationItem.title = "Back"
             let destination = segue.destination as! EditPanelViewController
             destination.panel = panel
             destination.panelIndex = panelIndex
+        }
+        if segue.identifier == "leftBreakerSegue" {
+            print("Left Breaker Clicked")
+            let sender = sender as! BreakerTableCell
+            let destination = segue.destination as! EditBreakerViewController
+            if let breakerNumber = Int(sender.leftNumber.text!) {
+                destination.breaker = self.panel!.breakerList![breakerNumber - 1]
+                destination.breakerIndex = breakerNumber - 1
+            }
+        }
+        if segue.identifier == "rightBreakerSegue" {
+            print("Right Breaker Clicked")
+            let sender = sender as! BreakerTableCell
+            let destination = segue.destination as! EditBreakerViewController
+            if let breakerNumber = Int(sender.rightNumber.text!) {
+                destination.breaker = self.panel!.breakerList![breakerNumber - 1]
+                destination.breakerIndex = breakerNumber - 1
+            }
         }
     }
 }
@@ -97,12 +115,23 @@ class PanelHeaderCell:UITableViewCell {
     
 }
 class BreakerTableCell: UITableViewCell {
+    var viewController: UIViewController?
     @IBOutlet weak var leftNumber: UILabel!
     @IBOutlet weak var leftTitle: UILabel!
     @IBOutlet weak var rightTitle: UILabel!
     @IBOutlet weak var rightNumber: UILabel!
-    @IBOutlet weak var leftBreaker: UIView!
-    @IBOutlet weak var rightBreaker: UIView!
+    @IBOutlet weak var leftBreaker: UIView! {
+        didSet {
+            let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BreakerTableCell.leftBreakerTap))
+            leftBreaker.addGestureRecognizer(tapRecognizer)
+        }
+    }
+    @IBOutlet weak var rightBreaker: UIView! {
+        didSet {
+            let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BreakerTableCell.rightBreakerTap))
+            rightBreaker.addGestureRecognizer(tapRecognizer)
+        }
+    }
     
     //Double Pole Connectors
     @IBOutlet var leftTopConnectors: [UIView]!
@@ -110,7 +139,8 @@ class BreakerTableCell: UITableViewCell {
     @IBOutlet var rightTopConnectors: [UIView]!
     @IBOutlet var rightBottomConnectors: [UIView]!
     
-    func setUp(leftNumber: Int, leftTitle: String, leftBreakerType:String, rightNumber:Int, rightTitle:String, rightBreakerType:String) {
+    func setUp(_ viewController: UIViewController, leftNumber: Int, leftTitle: String, leftBreakerType:String, rightNumber:Int, rightTitle:String, rightBreakerType:String) {
+        self.viewController = viewController
         leftBreaker.layer.cornerRadius = 5
         leftBreaker.layer.masksToBounds = true
         leftBreaker.layer.borderWidth = 1
@@ -149,10 +179,12 @@ class BreakerTableCell: UITableViewCell {
         if(rightNumber > 0) {
             self.rightNumber.text = "\(rightNumber)"
             rightBreaker.backgroundColor = UIColor.white
+            rightBreaker.isUserInteractionEnabled = true
         } else {
             rightBreaker.layer.borderColor = UIColor.clear.cgColor
             rightBreaker.backgroundColor = UIColor.clear
             self.rightNumber.text = ""
+            rightBreaker.isUserInteractionEnabled = false
             hideAllConnectors()
         }
         self.rightTitle.text = rightTitle
@@ -176,6 +208,16 @@ class BreakerTableCell: UITableViewCell {
                 connector.backgroundColor = UIColor.clear
             }
         }
+    }
+    
+    @objc
+    func leftBreakerTap(sender:UITapGestureRecognizer) {
+        viewController?.performSegue(withIdentifier: "leftBreakerSegue", sender: self)
+    }
+    
+    @objc
+    func rightBreakerTap(sender:UITapGestureRecognizer) {
+        viewController?.performSegue(withIdentifier: "rightBreakerSegue", sender: self)
     }
     
     fileprivate func hideAllConnectors() {

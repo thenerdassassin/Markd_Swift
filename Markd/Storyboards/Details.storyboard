@@ -1260,6 +1260,7 @@
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="rHT-86-tX1" firstAttribute="height" secondItem="5w2-By-11s" secondAttribute="height" id="PD3-UH-b6M"/>
                                                 <constraint firstItem="wac-bz-Bnp" firstAttribute="height" secondItem="5w2-By-11s" secondAttribute="height" id="QX3-mO-0fr"/>
@@ -1318,6 +1319,7 @@
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="s98-r9-hC4" firstAttribute="centerY" secondItem="4OK-OX-ZaS" secondAttribute="centerY" id="8zT-Jl-KI1"/>
                                                 <constraint firstItem="s98-r9-hC4" firstAttribute="height" secondItem="4OK-OX-ZaS" secondAttribute="height" id="RsA-v3-52D"/>
@@ -1388,6 +1390,10 @@
                             <outlet property="delegate" destination="QQU-rJ-j4E" id="xdv-7U-J0t"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="d61-Z3-esf" kind="show" identifier="leftBreakerSegue" id="feR-gR-wLN"/>
+                        <segue destination="d61-Z3-esf" kind="show" identifier="rightBreakerSegue" id="Fc9-td-hO8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isA-cX-dCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="o8C-vj-kQd">
@@ -1398,12 +1404,41 @@
             </objects>
             <point key="canvasLocation" x="-1898" y="-1595"/>
         </scene>
+        <!--Edit Breaker View Controller-->
+        <scene sceneID="N0o-ED-6Il">
+            <objects>
+                <tableViewController id="d61-Z3-esf" customClass="EditBreakerViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="v2W-lh-vpW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eTu-TP-Edi">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eTu-TP-Edi" id="2VQ-zN-Pzm">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="d61-Z3-esf" id="5T6-cw-h1w"/>
+                            <outlet property="delegate" destination="d61-Z3-esf" id="W2H-AZ-rER"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u5c-Ff-3X4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1026" y="-1539"/>
+        </scene>
         <!--Edit Panel View Controller-->
         <scene sceneID="3Ey-Of-Zq9">
             <objects>
                 <tableViewController id="wn8-IO-D5u" customClass="EditPanelViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dZj-vD-URx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1660,7 +1695,8 @@
         <image name="ic_action_pages" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bsT-Fw-W8S"/>
+        <segue reference="HyN-YB-4pC"/>
+        <segue reference="feR-gR-wLN"/>
         <segue reference="0Rx-Ig-gy5"/>
         <segue reference="jyb-JC-SRW"/>
         <segue reference="jFv-8g-0vH"/>
