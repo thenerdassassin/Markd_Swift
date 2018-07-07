@@ -30,6 +30,7 @@ class PanelViewController: UITableViewController {
     }
     private func configureView() {
         if let panel = panel {
+            print("Configuring View: \(panel)")
             self.navigationItem.title = panel.panelDescription
             self.tableView.reloadData()
         }
@@ -81,6 +82,8 @@ class PanelViewController: UITableViewController {
             if let breakerNumber = Int(sender.leftNumber.text!) {
                 destination.breaker = self.panel!.breakerList![breakerNumber - 1]
                 destination.breakerIndex = breakerNumber - 1
+                destination.panelIndex = panelIndex
+                destination.delegate = self
             }
         }
         if segue.identifier == "rightBreakerSegue" {
@@ -90,6 +93,8 @@ class PanelViewController: UITableViewController {
             if let breakerNumber = Int(sender.rightNumber.text!) {
                 destination.breaker = self.panel!.breakerList![breakerNumber - 1]
                 destination.breakerIndex = breakerNumber - 1
+                destination.panelIndex = panelIndex
+                destination.delegate = self
             }
         }
     }

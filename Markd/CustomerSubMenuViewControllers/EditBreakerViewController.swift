@@ -11,6 +11,8 @@ import UIKit
 class EditBreakerViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     var customerData:TempCustomerData?
+    var delegate:PanelViewController?
+    var panelIndex:Int?
     var breakerIndex:Int? {
         didSet {
             if breakerIndex == nil || breakerIndex! < 0 {
@@ -22,10 +24,13 @@ class EditBreakerViewController: UITableViewController, OnGetDataListener {
     }
     var breaker:Breaker? {
         didSet {
-            print("Got Breaker to edit")
+            if originalBreakerType == nil {
+                originalBreakerType = breaker!.breakerType
+            }
             self.tableView.reloadData()
         }
     }
+    var originalBreakerType:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,18 +47,15 @@ class EditBreakerViewController: UITableViewController, OnGetDataListener {
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.view.endEditing(true)
-        /*
-        if let customerData = customerData, let number = panelIndex, let panel = panel {
+        if let customerData = customerData, let panels = customerData.getPanels(), let panelNumber = panelIndex, let number = breakerIndex, let breaker = breaker {
             super.viewWillDisappear(animated)
-            if number < 0 {
-                print("Add Panel: \(panel)")
-                customerData.updatePanel(at:number, to: panel.setNumberOfBreakers(numberOfBreakers!))
-            } else {
-                print("Number: \(number) changes to###\n\(panel)")
-                customerData.updatePanel(at:number, to: panel.setNumberOfBreakers(numberOfBreakers!))
+            if number >= 0 {
+                customerData.updatePanel(at: panelNumber, to: panels[panelNumber].editBreaker(index: number, to: breaker))
+                if let delegate = delegate {
+                    delegate.panel = panels[panelNumber]
+                }
             }
         }
- */
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -70,42 +72,31 @@ class EditBreakerViewController: UITableViewController, OnGetDataListener {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 3
     }
-
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "breakerDescriptionTableCell", for: indexPath) as! BreakerDescriptionTableCell
+            cell.breakerDescription = breaker?.breakerDescription
+            cell.editBreakerViewController = self
+            return cell
+        } else if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "breakerAmperageTableCell", for: indexPath) as! BreakerAmperageTableCell
+            cell.editBreakerViewController = self
+            cell.breakerAmperage = breaker?.amperage
+            return cell
+        } else if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "isDoublePoleTableCell", for: indexPath) as! IsDoublePoleTableViewCell
+            cell.editBreakerViewController = self
+            cell.isSinglePole = (breaker?.breakerType == BreakerType.singlePole.description)
+            cell.originalBreakerType = originalBreakerType
+            return cell
+        }
+        return UITableViewCell()
     }
-     */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        /*
-        if indexPath.row < 4 {
-            hideEditCells()
-        } else if indexPath.row == 4 {
-            hideEditInstallDatePicker()
-            toggleEditManufacturer()
-        } else if isInstallDateRow(for: indexPath.row) {
-            hideEditManufacturerPicker()
-            toggleEditInstallDate()
-        }
-         */
     }
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     //Mark: OnGetDataListener
     public func onStart() {
         print("Getting Customer Data")
@@ -118,5 +109,81 @@ class EditBreakerViewController: UITableViewController, OnGetDataListener {
     public func onFailure(_ error: Error) {
         debugPrint(error)
         AlertControllerUtilities.somethingWentWrong(with: self)
+    }
+}
+
+class BreakerDescriptionTableCell: UITableViewCell, UITextFieldDelegate {
+    var editBreakerViewController:EditBreakerViewController?
+    @IBOutlet weak var breakerTextField: UITextField! {
+        didSet {
+            breakerTextField.delegate = self
+        }
+    }
+    var breakerDescription:String? {
+        didSet {
+            breakerTextField.text = breakerDescription
+        }
+    }
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        //editBreakerViewController!.hideEditCells()
+        return true
+    }
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        editBreakerViewController!.breaker!.breakerDescription = textField.text!
+    }
+}
+
+class BreakerAmperageTableCell: UITableViewCell {
+    var editBreakerViewController:EditBreakerViewController?
+    
+    @IBOutlet weak var breakerAmperageStepper: UIStepper!
+    @IBOutlet weak var breakerAmperageLabel: UILabel!
+    
+    var breakerAmperage:String? {
+        didSet {
+            breakerAmperageLabel.text = breakerAmperage
+            breakerAmperageStepper.minimumValue = 0
+            breakerAmperageStepper.maximumValue = Double(BreakerAmperage.count - 1)
+            breakerAmperageStepper.value = Double(BreakerAmperage.getRawValue(from: breakerAmperage).rawValue)
+        }
+    }
+    @IBAction func onBreakerAmperageStepperValueChanged(_ sender: UIStepper) {
+        breakerAmperage = BreakerAmperage(rawValue: Int(sender.value))?.description
+        editBreakerViewController!.breaker!.amperage = breakerAmperage!
+    }
+}
+
+class IsDoublePoleTableViewCell: UITableViewCell {
+    var editBreakerViewController:EditBreakerViewController?
+    var originalBreakerType:String?
+    
+    @IBOutlet weak var isDoublePoleSwitch: UISwitch!
+    @IBAction func onSwitchValueChanged(_ sender: UISwitch) {
+        isSinglePole = !sender.isOn
+        if isSinglePole == true {
+            editBreakerViewController!.breaker!.breakerType = BreakerType.singlePole.description
+        } else {
+            if let originalBreakerType = originalBreakerType {
+                if originalBreakerType == "Double-Pole Bottom" {
+                    editBreakerViewController!.breaker!.breakerType = originalBreakerType
+                } else {
+                    editBreakerViewController!.breaker!.breakerType = BreakerType.doublePole.description
+                }
+            }
+        }
+    }
+    
+    var isSinglePole:Bool? {
+        didSet {
+            if isSinglePole! {
+                isDoublePoleSwitch.isOn = false
+            } else {
+                isDoublePoleSwitch.isOn = true
+            }
+        }
     }
 }

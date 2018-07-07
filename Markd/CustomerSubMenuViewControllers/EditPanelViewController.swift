@@ -49,10 +49,8 @@ class EditPanelViewController: UITableViewController, OnGetDataListener {
         if let customerData = customerData, let number = panelIndex, let panel = panel {
             super.viewWillDisappear(animated)
             if number < 0 {
-                print("Add Panel: \(panel)")
                 customerData.updatePanel(at:number, to: panel.setNumberOfBreakers(numberOfBreakers!))
             } else {
-                print("Number: \(number) changes to###\n\(panel)")
                 customerData.updatePanel(at:number, to: panel.setNumberOfBreakers(numberOfBreakers!))
             }
         }
