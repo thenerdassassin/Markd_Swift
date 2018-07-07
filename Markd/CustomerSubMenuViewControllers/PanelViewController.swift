@@ -30,6 +30,7 @@ class PanelViewController: UITableViewController {
     }
     private func configureView() {
         if let panel = panel {
+            print("Updating View")
             self.navigationItem.title = panel.panelDescription
             self.tableView.reloadData()
         }

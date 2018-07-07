@@ -116,7 +116,7 @@ public class Panel:CustomStringConvertible, Comparable {
             breakerToDelete.breakerType = BreakerType.singlePole.description;
             self.breakerList![breakerIndex+2].breakerType = BreakerType.singlePole.description;
         }
-        if(breakerToDelete.number ==  lastBreaker.number) {
+        if(breakerToDelete.number == lastBreaker.number) {
             self.breakerList!.remove(at: breakerIndex);
         } else {
             //Reset to default values

@@ -97,6 +97,20 @@ class EditBreakerViewController: UITableViewController, OnGetDataListener {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    @IBAction func deleteBreaker(_ sender: UIBarButtonItem) {
+        self.view.endEditing(true)
+        if let customerData = customerData, let panels = customerData.getPanels(), let panelNumber = panelIndex, let breakerIndex = breakerIndex {
+            self.breaker = nil
+            if breakerIndex >= 0 {
+                let updatedPanel = panels[panelNumber].deleteBreaker(breakerIndex + 1)
+                customerData.updatePanel(at: panelNumber, to: updatedPanel)
+                if let delegate = delegate {
+                    delegate.panel = updatedPanel
+                }
+                self.navigationController!.popViewController(animated: true)
+            }
+        }
+    }
     //Mark: OnGetDataListener
     public func onStart() {
         print("Getting Customer Data")

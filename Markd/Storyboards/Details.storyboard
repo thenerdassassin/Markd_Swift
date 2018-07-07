@@ -1516,6 +1516,13 @@
                             <outlet property="delegate" destination="d61-Z3-esf" id="W2H-AZ-rER"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="KQ3-bY-j63">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="hCU-7N-1az">
+                            <connections>
+                                <action selector="deleteBreaker:" destination="d61-Z3-esf" id="fvP-e4-6pP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u5c-Ff-3X4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
