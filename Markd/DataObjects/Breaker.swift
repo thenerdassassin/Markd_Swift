@@ -89,4 +89,21 @@ enum BreakerAmperage: Int, CustomStringConvertible {
         case .twoHundred: return "200A"
         }
     }
+    static func getRawValue(from amperage:String?) -> BreakerAmperage {
+        switch amperage {
+        case "15A": return .fifteen
+        case "20A": return .twenty
+        case "30A": return .thirty
+        case "40A": return .fourty
+        case "50A": return .fifty
+        case "60A": return .sixty
+        case "70A": return .seventy
+        case "80A": return .eighty
+        case "100A": return .oneHundred
+        case "125A": return .oneHundredTwentyFive
+        case "150A": return .oneHundredFifty
+        case "200A": return .twoHundred
+        default: return .fifteen
+        }
+    }
 }

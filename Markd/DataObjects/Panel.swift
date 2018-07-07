@@ -9,14 +9,14 @@
 import Foundation
 
 public class Panel:CustomStringConvertible, Comparable {
-    var TODO_BreakerList_Implementation_🤬:AnyObject?
+    private let doublePoleBottom = "Double-Pole Bottom"
     public var isMainPanel:Bool
-    public var amperage:String //PanelAmperage?
+    public var amperage:String
     public var panelDescription:String
     public var installDate:String
     public var breakerList:[Breaker]?
     public var numberOfBreakers:Int
-    public var manufacturer:String //PanelManufacturer?
+    public var manufacturer:String
     
     //Mark:- Constructors
     public init(_ dictionary: Dictionary<String, AnyObject>) {
@@ -79,7 +79,6 @@ public class Panel:CustomStringConvertible, Comparable {
             breakerList = [Breaker]();
          }
          while(breakerList!.count < numberOfBreakers) {
-            print("Adding Breaker")
             let breakerToAdd = Breaker(breakerList!.count+1)
             self.breakerList!.append(breakerToAdd)
          }
@@ -117,7 +116,7 @@ public class Panel:CustomStringConvertible, Comparable {
             breakerToDelete.breakerType = BreakerType.singlePole.description;
             self.breakerList![breakerIndex+2].breakerType = BreakerType.singlePole.description;
         }
-        if(breakerToDelete.number ==  lastBreaker.number) {
+        if(breakerToDelete.number == lastBreaker.number) {
             self.breakerList!.remove(at: breakerIndex);
         } else {
             //Reset to default values
@@ -152,105 +151,57 @@ public class Panel:CustomStringConvertible, Comparable {
     public static func == (lhs: Panel, rhs: Panel) -> Bool {
         return false
     }
-}
-
-/*
- 
- //Helper functions
- public Panel editBreaker(int breakerNumber, Breaker updatedBreaker) {
-    Log.d(TAG, "BreakerNumber:" + breakerNumber);
-    int breakerIndex = breakerNumber-1;
-    this.breakerList.set(breakerIndex, updatedBreaker);
-     // Updated Breaker is top of Double-Pole
-     if(updatedBreaker.getBreakerType().equals(Breaker.DoublePole)) {
-        Log.d(TAG, "Updated Breaker is top of Double Pole");
-        // Add Breakers to Panel if needed
-        if(breakerIndex+2  >= this.breakerCount()) {
-            Log.d(TAG, "Need to add breakers to panel");
-            while(breakerIndex+2 > this.breakerCount()) {
-                Log.d(TAG, "Breaker added at:" + (breakerCount()+1));
-                this.breakerList.add(this.breakerCount(), new Breaker(this.breakerCount()+1, ""));
-                numberOfBreakers++;
+    public func editBreaker(index breakerIndex: Int, to updatedBreaker: Breaker) -> Panel {
+        self.breakerList![breakerIndex] = updatedBreaker
+        
+        // Updated Breaker is top of Double-Pole
+        if(updatedBreaker.breakerType == BreakerType.doublePole.description) {
+            // Need to Add Breakers to Panel
+            if(breakerIndex + 2 >= breakerList!.count) {
+                while(breakerIndex + 2 > breakerList!.count) {
+                    let breakerToAdd = Breaker(breakerList!.count + 1)
+                    self.breakerList!.append(breakerToAdd)
+                    numberOfBreakers = numberOfBreakers + 1
+                }
+                let breakerToAdd = Breaker(breakerList!.count + 1)
+                breakerToAdd.breakerDescription = updatedBreaker.breakerDescription
+                breakerToAdd.amperage = updatedBreaker.amperage
+                breakerToAdd.breakerType = doublePoleBottom
+                numberOfBreakers = numberOfBreakers + 1
+                self.breakerList!.append(breakerToAdd)
             }
-            Log.d(TAG, "Adding breaker at:" + (breakerCount()+1));
-            this.breakerList.add(this.breakerCount(), new Breaker(this.breakerCount()+1, updatedBreaker.getBreakerDescription(), updatedBreaker.getAmperage(), Breaker.DoublePoleBottom));
-            numberOfBreakers++;
+            // Simply update the bottom of Double Pole
+            else {
+                self.breakerList![breakerIndex+2].breakerType = doublePoleBottom
+                self.breakerList![breakerIndex+2].breakerDescription = updatedBreaker.breakerDescription
+                self.breakerList![breakerIndex+2].amperage = updatedBreaker.amperage
+            }
         }
-        // Simply update the bottom of Double Pole
+        // Updated Breaker is bottom of Double-Pole
+        else if(updatedBreaker.breakerType == doublePoleBottom) {
+            //Copy Changes to Upper Part of Double-Pole
+            self.breakerList![breakerIndex-2].breakerDescription = updatedBreaker.breakerDescription
+            self.breakerList![breakerIndex-2].amperage = updatedBreaker.amperage
+        }
+        // Updated Breaker is Single-Pole
         else {
-         Breaker bottomDoublePole = this.breakerList.get(breakerIndex+2);
-         bottomDoublePole.setBreakerType(Breaker.DoublePoleBottom);
-         bottomDoublePole.setBreakerDescription(updatedBreaker.getBreakerDescription());
-         bottomDoublePole.setAmperage(updatedBreaker.getAmperage());
+            //Set above breaker to single pole
+            if breakerIndex > 1 {
+                let aboveBreaker = breakerList![breakerIndex-2]
+                if aboveBreaker.breakerType == BreakerType.doublePole.description {
+                    aboveBreaker.breakerType = BreakerType.singlePole.description
+                    self.breakerList![breakerIndex-2] = aboveBreaker
+                }
+            }
+            //Set below breaker to single pole
+            if breakerIndex + 2 < self.breakerList!.count {
+                let belowBreaker = breakerList![breakerIndex+2]
+                if belowBreaker.breakerType == doublePoleBottom {
+                    belowBreaker.breakerType = BreakerType.singlePole.description
+                    self.breakerList![breakerIndex+2] = belowBreaker
+                }
+            }
         }
+        return self
     }
- // Updated Breaker is bottom of Double-Pole
- else if(updatedBreaker.getBreakerType().equals(Breaker.DoublePoleBottom)) {
- Log.d(TAG, "Updated Breaker is bottom of Double Pole");
- //Copy Changes to Upper Part of Double-Pole
- Breaker topDoublePole = this.breakerList.get(breakerIndex-2);
- topDoublePole.setBreakerDescription(updatedBreaker.getBreakerDescription());
- topDoublePole.setAmperage(updatedBreaker.getAmperage());
- }
- // Updated Breaker is Single-Pole
- else {
- Log.d(TAG, "Updated Breaker is top of Single Pole");
- //Set above breaker to single pole
- if(breakerIndex > 1) {
- Breaker aboveBreaker = this.getBreakerList().get(breakerIndex-2);
- if(aboveBreaker.getBreakerType().equals(Breaker.DoublePole)) {
- aboveBreaker.setBreakerType(Breaker.SinglePole);
- }
- }
- //Set below breaker to single pole
- if(breakerIndex+2 < this.breakerCount()) {
- Breaker belowBreaker = this.getBreakerList().get(breakerIndex+2);
- if(belowBreaker.getBreakerType().equals(Breaker.DoublePoleBottom)) {
- belowBreaker.setBreakerType(Breaker.SinglePole);
- }
- }
- }
- return this;
- }
- public Panel addBreaker(Breaker newBreaker) {
- this.breakerList.add(newBreaker);
- numberOfBreakers++;
- 
- if(newBreaker.getBreakerType().equals(Breaker.DoublePole)) {
- this.breakerList.add(new Breaker(this.breakerCount()+1, ""));
- numberOfBreakers++;
- this.breakerList.add(new Breaker(this.breakerCount()+1, newBreaker.getBreakerDescription(), newBreaker.getAmperage(), Breaker.DoublePoleBottom));
- numberOfBreakers++;
- }
- return this;
- }
- 
- //MARK:- StringDefs
- //PanelAmperageConstants
- public static final String OneHundred = "100A";
- public static final String TwoHundred = "200A";
- 
- //MainPanelAmperage Constants
- public static final String FourHundred = "400A";
- public static final String SixHundred = "600A";
- public static final String EightHundred = "800A";
- public static final String OneThousand = "1000A";
- public static final String OneThousandTwoHundred = "1200A";
- 
- //SubPanelAmperageConstants
- public static final String OneHundredTwentyFive = "125A";
- public static final String OneHundredFifty = "150A";
-
- 
- //PanelManufacturer Constants
- public static final String BRYANT = "Bryant";
- public static final String GENERAL_ELECTRIC = "General Electric";
- public static final String MURRY = "Murry";
- public static final String SQUARE_D_HOMELINE = "Square D Homeline";
- public static final String SQUARE_D_QO_SERIES = "Square D QO";
- public static final String SIEMENS_ITE = "Siemens ITE";
- public static final String WADSWORTH = "Wadsworth";
- public static final String WESTINGHOUSE = "Westinghouse";
- public static final String OTHER = "Other";
- }
- */
+}

@@ -21,13 +21,14 @@
 		47E0EA491DF3865C001F417F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47E0EA481DF3865C001F417F /* Assets.xcassets */; };
 		47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E0EA4A1DF3865C001F417F /* LaunchScreen.storyboard */; };
 		47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */; };
-		47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */; };
+		47E0EA561DF3A8CD001F417F /* EditBreakerViewController-Old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA551DF3A8CD001F417F /* EditBreakerViewController-Old.swift */; };
 		FF0CA3B320C31FBD00630B16 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0CA3B220C31B9A00630B16 /* Notifications.storyboard */; };
 		FF0CA3B520C321F800630B16 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */; };
 		FF0CA3B720C326D500630B16 /* CustomerNotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */; };
 		FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */; };
 		FF13E48620D9D59F00B5100B /* PanelAmerage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13E48520D9D59F00B5100B /* PanelAmerage.swift */; };
 		FF13E48820E4550700B5100B /* ManufacturerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13E48720E4550700B5100B /* ManufacturerPickerView.swift */; };
+		FF13E48A20E855CB00B5100B /* EditBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13E48920E855CB00B5100B /* EditBreakerViewController.swift */; };
 		FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32A20D1D26900A181F1 /* Breaker.swift */; };
 		FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */; };
 		FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */; };
@@ -90,7 +91,7 @@
 		47E0EA4B1DF3865C001F417F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47E0EA4D1DF3865C001F417F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCells.swift; sourceTree = "<group>"; };
-		47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBreakerViewController.swift; sourceTree = "<group>"; };
+		47E0EA551DF3A8CD001F417F /* EditBreakerViewController-Old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditBreakerViewController-Old.swift"; sourceTree = "<group>"; };
 		5F8AAE28D9CA323AB69658E5 /* Pods-Markd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.release.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.release.xcconfig"; sourceTree = "<group>"; };
 		7C5098B1444AC29248521536 /* Pods_Markd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Markd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0CA3B220C31B9A00630B16 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Notifications.storyboard; path = /Users/joshua.schmidtibm.com/Documents/Markd/Markd_Swift/Markd/Storyboards/Notifications.storyboard; sourceTree = "<absolute>"; };
@@ -99,6 +100,7 @@
 		FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsUtilities.swift; sourceTree = "<group>"; };
 		FF13E48520D9D59F00B5100B /* PanelAmerage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelAmerage.swift; sourceTree = "<group>"; };
 		FF13E48720E4550700B5100B /* ManufacturerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerPickerView.swift; sourceTree = "<group>"; };
+		FF13E48920E855CB00B5100B /* EditBreakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBreakerViewController.swift; sourceTree = "<group>"; };
 		FF2CC32A20D1D26900A181F1 /* Breaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breaker.swift; sourceTree = "<group>"; };
 		FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPanelViewController.swift; sourceTree = "<group>"; };
@@ -196,7 +198,7 @@
 				4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */,
 				47E0EA431DF3865C001F417F /* ViewController.swift */,
 				476295BC1E1DE02D008CDBFC /* DetailViewController.swift */,
-				47E0EA551DF3A8CD001F417F /* EditBreakerViewController.swift */,
+				47E0EA551DF3A8CD001F417F /* EditBreakerViewController-Old.swift */,
 				476295BE1E1DF198008CDBFC /* EditPanelViewController-Old.swift */,
 				FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */,
 				47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */,
@@ -263,6 +265,7 @@
 				FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */,
 				FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */,
 				FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */,
+				FF13E48920E855CB00B5100B /* EditBreakerViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				47000A6F1DFDEA2E00D85548 /* NewPanelSetupViewController.swift in Sources */,
 				47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */,
 				476295BF1E1DF198008CDBFC /* EditPanelViewController-Old.swift in Sources */,
+				FF13E48A20E855CB00B5100B /* EditBreakerViewController.swift in Sources */,
 				FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */,
 				47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */,
 				FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */,
@@ -505,7 +509,7 @@
 				FF9A5B42208AA484007E9669 /* ContractorFooterViewController.swift in Sources */,
 				FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */,
 				FF13E48820E4550700B5100B /* ManufacturerPickerView.swift in Sources */,
-				47E0EA561DF3A8CD001F417F /* EditBreakerViewController.swift in Sources */,
+				47E0EA561DF3A8CD001F417F /* EditBreakerViewController-Old.swift in Sources */,
 				FF9A5B3C2086C69F007E9669 /* ContractorDetails.swift in Sources */,
 				FFF27C902041F76E00A9392E /* StringUtilities.swift in Sources */,
 				FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */,

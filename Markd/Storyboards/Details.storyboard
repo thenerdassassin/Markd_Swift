@@ -1260,6 +1260,7 @@
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="rHT-86-tX1" firstAttribute="height" secondItem="5w2-By-11s" secondAttribute="height" id="PD3-UH-b6M"/>
                                                 <constraint firstItem="wac-bz-Bnp" firstAttribute="height" secondItem="5w2-By-11s" secondAttribute="height" id="QX3-mO-0fr"/>
@@ -1318,6 +1319,7 @@
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="s98-r9-hC4" firstAttribute="centerY" secondItem="4OK-OX-ZaS" secondAttribute="centerY" id="8zT-Jl-KI1"/>
                                                 <constraint firstItem="s98-r9-hC4" firstAttribute="height" secondItem="4OK-OX-ZaS" secondAttribute="height" id="RsA-v3-52D"/>
@@ -1388,6 +1390,10 @@
                             <outlet property="delegate" destination="QQU-rJ-j4E" id="xdv-7U-J0t"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="d61-Z3-esf" kind="show" identifier="leftBreakerSegue" id="feR-gR-wLN"/>
+                        <segue destination="d61-Z3-esf" kind="show" identifier="rightBreakerSegue" id="Fc9-td-hO8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isA-cX-dCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="o8C-vj-kQd">
@@ -1398,12 +1404,136 @@
             </objects>
             <point key="canvasLocation" x="-1898" y="-1595"/>
         </scene>
+        <!--Edit Breaker View Controller-->
+        <scene sceneID="N0o-ED-6Il">
+            <objects>
+                <tableViewController id="d61-Z3-esf" customClass="EditBreakerViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="v2W-lh-vpW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="breakerDescriptionTableCell" id="eTu-TP-Edi" customClass="BreakerDescriptionTableCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eTu-TP-Edi" id="2VQ-zN-Pzm">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Breaker Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pwQ-h8-cIq">
+                                            <rect key="frame" x="20" y="10" width="335" height="23.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="pwQ-h8-cIq" firstAttribute="leading" secondItem="2VQ-zN-Pzm" secondAttribute="leading" constant="20" id="4HX-AZ-ySu"/>
+                                        <constraint firstItem="pwQ-h8-cIq" firstAttribute="height" secondItem="2VQ-zN-Pzm" secondAttribute="height" constant="-20" id="TXA-SB-iP5"/>
+                                        <constraint firstItem="pwQ-h8-cIq" firstAttribute="centerY" secondItem="2VQ-zN-Pzm" secondAttribute="centerY" id="dTN-KY-DMY"/>
+                                        <constraint firstAttribute="trailing" secondItem="pwQ-h8-cIq" secondAttribute="trailing" constant="20" id="fTQ-To-hat"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="breakerTextField" destination="pwQ-h8-cIq" id="Lgy-24-mM0"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="breakerAmperageTableCell" id="7b9-go-zU4" customClass="BreakerAmperageTableCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7b9-go-zU4" id="Qub-0D-MCB">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amperage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKY-cf-s42">
+                                            <rect key="frame" x="20" y="9" width="91" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="dsV-Jh-0qH">
+                                            <rect key="frame" x="261" y="7" width="94" height="29"/>
+                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="onBreakerAmperageStepperValueChanged:" destination="7b9-go-zU4" eventType="valueChanged" id="nfS-5m-Yg9"/>
+                                            </connections>
+                                        </stepper>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="dsV-Jh-0qH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tKY-cf-s42" secondAttribute="trailing" constant="10" id="BE6-Kx-B8E"/>
+                                        <constraint firstItem="tKY-cf-s42" firstAttribute="centerY" secondItem="Qub-0D-MCB" secondAttribute="centerY" id="L5F-Qn-29K"/>
+                                        <constraint firstItem="tKY-cf-s42" firstAttribute="leading" secondItem="Qub-0D-MCB" secondAttribute="leading" constant="20" id="L8b-7v-ghv"/>
+                                        <constraint firstAttribute="trailing" secondItem="dsV-Jh-0qH" secondAttribute="trailing" constant="20" id="TO1-rh-4w0"/>
+                                        <constraint firstItem="dsV-Jh-0qH" firstAttribute="centerY" secondItem="Qub-0D-MCB" secondAttribute="centerY" id="VZT-oe-qaV"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="breakerAmperageLabel" destination="tKY-cf-s42" id="HPW-zS-SRz"/>
+                                    <outlet property="breakerAmperageStepper" destination="dsV-Jh-0qH" id="h5M-36-C8N"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="isDoublePoleTableCell" id="Yoa-1W-Beo" customClass="IsDoublePoleTableViewCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yoa-1W-Beo" id="QyD-KZ-eQP">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Double Pole?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CL-En-g2E">
+                                            <rect key="frame" x="20" y="10" width="133.5" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n5J-EN-dXr">
+                                            <rect key="frame" x="306" y="7" width="51" height="31"/>
+                                            <color key="onTintColor" red="0.20556968449999999" green="0.46900236610000001" blue="0.96475535629999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <connections>
+                                                <action selector="onSwitchValueChanged:" destination="Yoa-1W-Beo" eventType="valueChanged" id="9HR-cb-mH4"/>
+                                            </connections>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="9CL-En-g2E" firstAttribute="leading" secondItem="QyD-KZ-eQP" secondAttribute="leading" constant="20" id="AIt-rG-rOy"/>
+                                        <constraint firstItem="9CL-En-g2E" firstAttribute="centerY" secondItem="QyD-KZ-eQP" secondAttribute="centerY" id="Qr4-tb-Nz6"/>
+                                        <constraint firstAttribute="trailing" secondItem="n5J-EN-dXr" secondAttribute="trailing" constant="20" id="c9E-GF-cex"/>
+                                        <constraint firstItem="n5J-EN-dXr" firstAttribute="centerY" secondItem="QyD-KZ-eQP" secondAttribute="centerY" id="cgq-i4-E7T"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="isDoublePoleSwitch" destination="n5J-EN-dXr" id="bf8-0j-Zhs"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="d61-Z3-esf" id="5T6-cw-h1w"/>
+                            <outlet property="delegate" destination="d61-Z3-esf" id="W2H-AZ-rER"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="KQ3-bY-j63">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="hCU-7N-1az">
+                            <connections>
+                                <action selector="deleteBreaker:" destination="d61-Z3-esf" id="fvP-e4-6pP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u5c-Ff-3X4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1026" y="-1539"/>
+        </scene>
         <!--Edit Panel View Controller-->
         <scene sceneID="3Ey-Of-Zq9">
             <objects>
                 <tableViewController id="wn8-IO-D5u" customClass="EditPanelViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dZj-vD-URx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1660,7 +1790,8 @@
         <image name="ic_action_pages" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bsT-Fw-W8S"/>
+        <segue reference="HyN-YB-4pC"/>
+        <segue reference="feR-gR-wLN"/>
         <segue reference="0Rx-Ig-gy5"/>
         <segue reference="jyb-JC-SRW"/>
         <segue reference="jFv-8g-0vH"/>
