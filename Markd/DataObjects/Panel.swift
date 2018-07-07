@@ -79,7 +79,6 @@ public class Panel:CustomStringConvertible, Comparable {
             breakerList = [Breaker]();
          }
          while(breakerList!.count < numberOfBreakers) {
-            print("Adding Breaker")
             let breakerToAdd = Breaker(breakerList!.count+1)
             self.breakerList!.append(breakerToAdd)
          }
@@ -153,8 +152,6 @@ public class Panel:CustomStringConvertible, Comparable {
         return false
     }
     public func editBreaker(index breakerIndex: Int, to updatedBreaker: Breaker) -> Panel {
-        print("Edit Breaker: \(breakerIndex)")
-        print("Edit Breaker: \(updatedBreaker)")
         self.breakerList![breakerIndex] = updatedBreaker
         
         // Updated Breaker is top of Double-Pole
@@ -200,10 +197,8 @@ public class Panel:CustomStringConvertible, Comparable {
             if breakerIndex + 2 < self.breakerList!.count {
                 let belowBreaker = breakerList![breakerIndex+2]
                 if belowBreaker.breakerType == doublePoleBottom {
-                    print("Changing \(breakerIndex+2) to Single Pole")
                     belowBreaker.breakerType = BreakerType.singlePole.description
                     self.breakerList![breakerIndex+2] = belowBreaker
-                    print("New Breaker:\(self.breakerList![breakerIndex+2])")
                 }
             }
         }

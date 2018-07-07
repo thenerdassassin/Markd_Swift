@@ -30,7 +30,6 @@ class PanelViewController: UITableViewController {
     }
     private func configureView() {
         if let panel = panel {
-            print("Configuring View: \(panel)")
             self.navigationItem.title = panel.panelDescription
             self.tableView.reloadData()
         }
@@ -76,7 +75,6 @@ class PanelViewController: UITableViewController {
             destination.panelIndex = panelIndex
         }
         if segue.identifier == "leftBreakerSegue" {
-            print("Left Breaker Clicked")
             let sender = sender as! BreakerTableCell
             let destination = segue.destination as! EditBreakerViewController
             if let breakerNumber = Int(sender.leftNumber.text!) {
@@ -87,7 +85,6 @@ class PanelViewController: UITableViewController {
             }
         }
         if segue.identifier == "rightBreakerSegue" {
-            print("Right Breaker Clicked")
             let sender = sender as! BreakerTableCell
             let destination = segue.destination as! EditBreakerViewController
             if let breakerNumber = Int(sender.rightNumber.text!) {
