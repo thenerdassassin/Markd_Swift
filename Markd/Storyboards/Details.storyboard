@@ -248,30 +248,104 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="editApplianceCell" id="Hqu-m1-ML2" customClass="EditApplianceTableViewCell" customModule="Markd" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="editManufacturerCell" id="Hqu-m1-ML2" customClass="EditManufacturerCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="375" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hqu-m1-ML2" id="WEb-h2-sta">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Placeholder" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="WVF-JR-IeH">
-                                            <rect key="frame" x="30" y="5" width="132" height="29.5"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Manufacturer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WVF-JR-IeH">
+                                            <rect key="frame" x="30" y="5" width="325" height="29.5"/>
                                             <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="WVF-JR-IeH" secondAttribute="bottom" constant="5" id="7Gs-4H-baJ"/>
                                         <constraint firstItem="WVF-JR-IeH" firstAttribute="top" secondItem="WEb-h2-sta" secondAttribute="top" constant="5" id="HBj-Fz-j9c"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WVF-JR-IeH" secondAttribute="trailing" id="k3E-ep-J0B"/>
+                                        <constraint firstAttribute="trailing" secondItem="WVF-JR-IeH" secondAttribute="trailing" constant="20" id="k3E-ep-J0B"/>
                                         <constraint firstItem="WVF-JR-IeH" firstAttribute="leading" secondItem="WEb-h2-sta" secondAttribute="leading" constant="30" id="zJe-I8-9Tp"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textField" destination="WVF-JR-IeH" id="lG6-x6-a4Y"/>
-                                    <segue destination="ZXL-lV-Yil" kind="show" identifier="editApplianceFieldSegue" id="VEO-GX-zuh"/>
+                                    <outlet property="manufacturerTextField" destination="WVF-JR-IeH" id="ctt-pA-ORu"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="editModelCell" id="4d3-lh-Cjo" customClass="EditModelCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="90" width="375" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4d3-lh-Cjo" id="zCh-sJ-PuO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Model" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E4X-Uu-X3e">
+                                            <rect key="frame" x="30" y="5" width="325" height="29.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="E4X-Uu-X3e" secondAttribute="bottom" constant="5" id="UDR-cb-tWn"/>
+                                        <constraint firstItem="E4X-Uu-X3e" firstAttribute="leading" secondItem="zCh-sJ-PuO" secondAttribute="leading" constant="30" id="W8E-zg-XIs"/>
+                                        <constraint firstAttribute="trailing" secondItem="E4X-Uu-X3e" secondAttribute="trailing" constant="20" id="XCW-Mk-2BI"/>
+                                        <constraint firstItem="E4X-Uu-X3e" firstAttribute="top" secondItem="zCh-sJ-PuO" secondAttribute="top" constant="5" id="f0P-ei-80j"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="modelTextField" destination="E4X-Uu-X3e" id="l5Z-E9-tNu"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="applianceInstallDateCell" id="4mY-hh-CAB" customClass="ApplianceInstallDateCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="130" width="375" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4mY-hh-CAB" id="bYi-Ka-CEz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Install Date" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="6RZ-fN-qXW">
+                                            <rect key="frame" x="30" y="5" width="100.5" height="29.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6RZ-fN-qXW" firstAttribute="top" secondItem="bYi-Ka-CEz" secondAttribute="top" constant="5" id="12V-wv-jNQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="6RZ-fN-qXW" secondAttribute="bottom" constant="5" id="2w2-7z-kH0"/>
+                                        <constraint firstItem="6RZ-fN-qXW" firstAttribute="leading" secondItem="bYi-Ka-CEz" secondAttribute="leading" constant="30" id="fff-eW-Trl"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6RZ-fN-qXW" secondAttribute="trailing" id="mm2-Qu-Fu1"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="installDateTextField" destination="6RZ-fN-qXW" id="zUv-Q7-7Lg"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lifeSpanCell" id="aFe-mG-RN9" customClass="ApplianceLifeSpanCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="170" width="375" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aFe-mG-RN9" id="te1-VK-wpK">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Life Span" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Qhz-eY-AjM">
+                                            <rect key="frame" x="30" y="5" width="85.5" height="29.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Qhz-eY-AjM" firstAttribute="leading" secondItem="te1-VK-wpK" secondAttribute="leading" constant="30" id="jyH-O8-iXN"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qhz-eY-AjM" secondAttribute="trailing" id="lFm-lb-4cR"/>
+                                        <constraint firstAttribute="bottom" secondItem="Qhz-eY-AjM" secondAttribute="bottom" constant="5" id="vU4-OW-3Eq"/>
+                                        <constraint firstItem="Qhz-eY-AjM" firstAttribute="top" secondItem="te1-VK-wpK" secondAttribute="top" constant="5" id="xba-qh-N1Y"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lifeSpanTextField" destination="Qhz-eY-AjM" id="sMa-mZ-GCJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -284,7 +358,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J26-p3-MXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1591" y="-599"/>
+            <point key="canvasLocation" x="-1484" y="-600"/>
         </scene>
         <!--Edit Appliance Field-->
         <scene sceneID="ef8-OZ-QP2">
@@ -299,13 +373,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Manufacturer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hzi-ez-0et">
-                                <rect key="frame" x="40" y="104" width="295" height="30"/>
+                                <rect key="frame" x="40" y="60" width="295" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="bOX-gc-SdP">
-                                <rect key="frame" x="0.0" y="184" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="545421305.99561799">
                                     <!--2018-04-14 17:55:05 +0000-->
                                 </date>
@@ -317,7 +391,7 @@
                                 </connections>
                             </datePicker>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zi1-9c-X6F" customClass="LifeSpanPickerView" customModule="Markd" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="184" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="216"/>
                             </pickerView>
                         </subviews>
                         <constraints>
@@ -351,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vYa-Lw-Rk7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-793" y="-600"/>
+            <point key="canvasLocation" x="-609" y="-600"/>
         </scene>
         <!--Plumbing View Controller-->
         <scene sceneID="te8-FF-z3b">
