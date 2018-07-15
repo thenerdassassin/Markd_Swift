@@ -53,7 +53,6 @@
 		FF9A5B40208AA429007E9669 /* ContractorFooter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9A5B3E208AA428007E9669 /* ContractorFooter.storyboard */; };
 		FF9A5B42208AA484007E9669 /* ContractorFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9A5B41208AA484007E9669 /* ContractorFooterViewController.swift */; };
 		FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */; };
-		FFA1E86D207D864E009D2FD3 /* EditApplianceFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */; };
 		FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB565892079274400F6E8F1 /* HvacViewController.swift */; };
 		FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658B2079335100F6E8F1 /* AirHandler.swift */; };
 		FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658D2079335B00F6E8F1 /* Compressor.swift */; };
@@ -125,7 +124,6 @@
 		FF9A5B3F208AA428007E9669 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Markd/Base.lproj/ContractorFooter.storyboard; sourceTree = SOURCE_ROOT; };
 		FF9A5B41208AA484007E9669 /* ContractorFooterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorFooterViewController.swift; sourceTree = "<group>"; };
 		FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditApplianceTableViewController.swift; sourceTree = "<group>"; };
-		FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditApplianceFieldViewController.swift; sourceTree = "<group>"; };
 		FFB565892079274400F6E8F1 /* HvacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HvacViewController.swift; sourceTree = "<group>"; };
 		FFB5658B2079335100F6E8F1 /* AirHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirHandler.swift; sourceTree = "<group>"; };
 		FFB5658D2079335B00F6E8F1 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */,
-				FFA1E86C207D864E009D2FD3 /* EditApplianceFieldViewController.swift */,
 				FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */,
 				FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */,
 				FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */,
@@ -497,7 +494,6 @@
 				FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */,
 				47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */,
 				FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */,
-				FFA1E86D207D864E009D2FD3 /* EditApplianceFieldViewController.swift in Sources */,
 				FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */,
 				FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */,
 				FF63004420C74E22006C0208 /* ElectricalViewController.swift in Sources */,

@@ -76,14 +76,17 @@ class EditApplianceTableViewController: UITableViewController {
             cell.tag = indexPath.section
             return cell
         } else if indexPath.row == 3 {
-            let cell = UITableViewCell()
-            cell.backgroundColor = UIColor.blue
+            //Install Date Picker installDatePickerCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "installDatePickerCell", for: indexPath) as! ApplianceInstallDatePickerCell
+            cell.viewController = self
+            cell.tag = indexPath.section
+            cell.installDate = appliance.installDateAsString()
             return cell
-            //Install Date Picker
         } else if indexPath.row == 4 {
-            //Life Span Picker
-            let cell = UITableViewCell()
-            cell.backgroundColor = UIColor.green
+            let cell = tableView.dequeueReusableCell(withIdentifier: "editLifeSpanCell", for: indexPath) as! ApplianceEditLifeSpanCell
+            cell.viewController = self
+            cell.tag = indexPath.section
+            cell.lifeSpan = appliance.lifeSpanAsString()
             return cell
         } else {
             fatalError("No case for: \(indexPath.row)")
@@ -193,33 +196,16 @@ class EditApplianceTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "editApplianceFieldSegue") {
-            guard let destination = segue.destination as? EditApplianceFieldViewController else {
-                fatalError("Destination not instance of EditApplianceFieldViewController")
-            }
-            /*
-            guard let sender = sender as? EditApplianceTableViewCell else {
-                fatalError("The sender is not an instance of EditApplianceTableViewCell.")
-            }
- 
-            destination.applianceIndex = sender.tag
-            destination.originalValue = sender.textField.text
-            destination.fieldEditing = sender.textField.placeholder
-            destination.delegate = self
-                */
-        }
-    }
-    
-    public func change(_ field: String, at index:Int, to updatedValue: String) {
+    public func change(_ field: String, at index:Int, to updatedValue: String, shouldReloadTable: Bool = false) {
         print("Changing \(field) at \(index) to \(updatedValue)")
         let updatedAppliance = appliances[index]
         updatedAppliance.set(field, to: updatedValue)
         print(updatedAppliance)
         if let customerData = customerData {
             customerData.setAppliance(to: updatedAppliance)
-            self.tableView.reloadData()
+            if shouldReloadTable {
+                self.tableView.reloadData()
+            }
         } else {
             print("TempCustomerData is nil")
             AlertControllerUtilities.somethingWentWrong(with: self)
@@ -255,11 +241,11 @@ public class EditManufacturerCell: UITableViewCell, UITextFieldDelegate {
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        //viewController!.hideEditCells()
+        viewController!.hideEditCells()
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        //editPanelViewController!.panel!.panelDescription = textField.text!
+        viewController!.change("Manufacturer", at: self.tag, to: textField.text!)
     }
 }
 
@@ -280,11 +266,11 @@ public class EditModelCell: UITableViewCell, UITextFieldDelegate {
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        //viewController!.hideEditCells()
+        viewController!.hideEditCells()
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        //editPanelViewController!.panel!.panelDescription = textField.text!
+        viewController!.change("Model", at: self.tag, to: textField.text!)
     }
 }
 
@@ -303,5 +289,118 @@ public class ApplianceLifeSpanCell: UITableViewCell {
         didSet {
             lifeSpanTextField.text = lifeSpan
         }
+    }
+}
+
+public class ApplianceInstallDatePickerCell: UITableViewCell {
+    var viewController:EditApplianceTableViewController?
+    
+    @IBOutlet weak var installDatePicker: UIDatePicker! {
+        didSet {
+            installDatePicker.maximumDate = Date()
+            set(to: installDate)
+        }
+    }
+    public var installDate:String? {
+        didSet {
+            set(to: installDate)
+        }
+    }
+    func set(to date: String?) {
+        if let date = installDate {
+            StringUtilities.set(installDatePicker, to: date)
+        }
+    }
+    
+    @IBAction func installDatePickerValueChanged(_ sender: UIDatePicker) {
+        let calendar = Calendar.current
+        let newDate = StringUtilities.getDateString(
+            withMonth: calendar.component(Calendar.Component.month, from: sender.date),
+            withDay: calendar.component(Calendar.Component.day, from: sender.date),
+            withYear: calendar.component(Calendar.Component.year, from: sender.date))
+        viewController!.change("Install Date", at: self.tag, to: newDate!, shouldReloadTable: true)
+    }
+}
+
+public class ApplianceEditLifeSpanCell: UITableViewCell {
+    var viewController:EditApplianceTableViewController?
+    @IBOutlet weak var unitsSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var lifeSpanSlider: UISlider!
+    
+    var units = ["days", "months", "years"]
+    
+    var lifeSpan: String? {
+        didSet {
+            setLifeSpan(lifeSpan)
+        }
+    }
+    func setLifeSpan(_ lifeSpan: String?) {
+        guard !StringUtilities.isNilOrEmpty(lifeSpan) else {
+            print("Life Span was null or empty")
+            return
+        }
+        
+        guard let lifeSpanCompenents = lifeSpan?.split(separator: " ") else {
+            print("Not able to get lifeSpanComponents")
+            return
+        }
+        
+        guard lifeSpanCompenents.count == 2 else {
+            print("Number of Components was \(lifeSpanCompenents.count)")
+            return
+        }
+        
+        guard let lifeSpanValue = Float("\(lifeSpanCompenents[0])") else {
+            print("LifeSpanValue not able to be initialized")
+            return
+        }
+        
+        switch lifeSpanCompenents[1] {
+        case "days":
+            unitsSegmentedControl.selectedSegmentIndex = 0
+            lifeSpanSlider.minimumValue = 1
+            lifeSpanSlider.maximumValue = 365
+            lifeSpanSlider.value = lifeSpanValue
+            break
+        case "months":
+            unitsSegmentedControl.selectedSegmentIndex = 1
+            lifeSpanSlider.minimumValue = 1
+            lifeSpanSlider.maximumValue = 12
+            lifeSpanSlider.value = lifeSpanValue
+            break
+        default:
+            unitsSegmentedControl.selectedSegmentIndex = 2
+            lifeSpanSlider.minimumValue = 1
+            lifeSpanSlider.maximumValue = 50
+            lifeSpanSlider.value = lifeSpanValue
+            break
+        }
+    }
+    @IBAction func onUnitsValueChanged(_ sender: UISegmentedControl) {
+        let unitsSelected = units[sender.selectedSegmentIndex]
+        switch unitsSelected {
+        case "days":
+            lifeSpanSlider.minimumValue = 1
+            lifeSpanSlider.maximumValue = 365
+            lifeSpanSlider.setValue(100, animated: true)
+            break
+        case "months":
+            lifeSpanSlider.minimumValue = 1
+            lifeSpanSlider.maximumValue = 12
+            lifeSpanSlider.setValue(6, animated: true)
+            break
+        default:
+            lifeSpanSlider.minimumValue = 1
+            lifeSpanSlider.maximumValue = 50
+            lifeSpanSlider.setValue(10, animated: true)
+            break
+        }
+        self.onLifeSpanValueChanged(lifeSpanSlider)
+    }
+    
+    @IBAction func onLifeSpanValueChanged(_ slider: UISlider) {
+        let updatedLifeSpan = "\(Int(round(slider.value))) \(units[unitsSegmentedControl.selectedSegmentIndex])"
+        viewController!.change("Projected Life Span", at: self.tag, to: updatedLifeSpan)
+        viewController!.tableView.reloadRows(at: [IndexPath(row: 3, section: self.tag)], with: UITableViewRowAnimation.none)
     }
 }
