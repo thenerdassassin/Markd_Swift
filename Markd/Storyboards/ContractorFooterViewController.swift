@@ -18,6 +18,20 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
     @IBOutlet weak var websiteLabel: UIButton!
     @IBOutlet weak var companyLogoImageView: UIImageView!
     
+    private var noContractorText = "Find a Contractor"
+    private func configureView() {
+        if let companyLabel = companyLabel, let phoneNumberLabel = phoneNumberLabel, let websiteLabel = websiteLabel {
+            companyLabel.isHidden = true
+            
+            //phoneNumberLabel.setTitleColor(UIColor.blue, for: .normal)
+            phoneNumberLabel.isUserInteractionEnabled = true
+            phoneNumberLabel.setAttributedTitle(NSAttributedString(string: noContractorText, attributes: [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue, .foregroundColor: UIColor.blue]), for: .normal)
+            
+            websiteLabel.isUserInteractionEnabled = false
+            websiteLabel.isHidden = true
+            companyLogoImageView.isUserInteractionEnabled = false
+        }
+    }
     private func configureView(with contractor: Contractor, at reference: String?) {
         print(contractor)
         if let companyLabel = companyLabel, let phoneNumberLabel = phoneNumberLabel, let websiteLabel = websiteLabel {
@@ -43,6 +57,9 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
                 } else {
                     phoneNumberLabel.isUserInteractionEnabled = false
                 }
+            } else {
+                websiteLabel.isUserInteractionEnabled = false
+                phoneNumberLabel.isUserInteractionEnabled = false
             }
         }
         if let companyLogo = companyLogoImageView {
@@ -61,6 +78,10 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
     
     //Mark:- OnClick
     @IBAction func onPhoneNumberTouchUp(_ sender: UIButton) {
+        if sender.titleLabel?.text == noContractorText {
+            print("Going to find a contractor view controller")
+            return
+        }
         let phoneNumber = StringUtilities.removeNonNumeric(from: sender.titleLabel!.text!)
         
         if let url = URL(string: "tel://\(phoneNumber)") {
@@ -78,6 +99,7 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
         guard let url = getWebsiteUrl(from: sender.titleLabel!.text!) else {
             return
         }
+        print(url)
         if #available(iOS 10.0, *) {
             UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                 print("Open url : \(success)")
@@ -110,6 +132,8 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
         print("ContractorGetDataListener:- Got Contractor Data")
         if let contractor = contractor {
             configureView(with: contractor, at: reference)
+        } else {
+            configureView()
         }
     }
     
