@@ -21,12 +21,12 @@ class NotificationsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ViewControllerUtilities.insertMarkdLogo(into: self)
         tableView.tableFooterView = UIView() //Removes seperators after list
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        insertMarkdLogo()
         if(authentication.checkLogin(self)) {
             guard let userId = authentication.getCurrentUser()?.uid else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
@@ -40,14 +40,6 @@ class NotificationsViewController: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()
-    }
-    private func insertMarkdLogo() {
-        let image : UIImage = UIImage(named: "whiteTransparentLogo")!
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = image
-        self.navigationItem.titleView = imageView
-        self.navigationController!.navigationBar.setTitleVerticalPositionAdjustment(-3.0, for: .defaultPrompt)
     }
     private func configureView(notifications snapshot:DataSnapshot) {
         print(snapshot)
