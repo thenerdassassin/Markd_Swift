@@ -93,8 +93,12 @@ class FindContractorViewController:UITableViewController, OnGetDataListener {
                 andMessage: "Your new \(selectedContractorType) is \(cell.companyLabel.text!)?",
                 withOptions: [
                     UIAlertAction(title: "Confirm", style: .default, handler: { _ in
-                        print("Selected: \(cell.reference!)")
-                        self.navigationController?.popToRootViewController(animated: true)
+                        if let reference = cell.reference {
+                            self.customerData!.updateContractor(of: self.selectedContractorType, to: reference)
+                            self.navigationController?.popToRootViewController(animated: true)
+                        } else {
+                            AlertControllerUtilities.somethingWentWrong(with: self)
+                        }
                     }),
                     UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                 ],

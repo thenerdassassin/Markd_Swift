@@ -39,11 +39,14 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
                     NSAttributedStringKey.foregroundColor : UIColor.white,
                     NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue
                 ]
+                companyLabel.isHidden = false
                 companyLabel.text = contractorDetails.getCompanyName()
                 let websiteUrl = contractorDetails.getWebsiteUrl()
                 if StringUtilities.isNilOrEmpty(websiteUrl) {
                     websiteLabel.isUserInteractionEnabled = false
                 } else {
+                    websiteLabel.isUserInteractionEnabled = true
+                    websiteLabel.isHidden = false
                     websiteLabel.setAttributedTitle(NSAttributedString(string: websiteUrl, attributes: attrs), for: .normal)
                 }
                 if let phoneNumber = contractorDetails.getTelephoneNumber() {

@@ -230,6 +230,10 @@ public class Customer:CustomStringConvertible {
     func getPlumbingServices() -> [ContractorService]? {
         return plumbingServices
     }
+    func setPlumber(to reference: String) -> Customer {
+        self.plumberReference = reference
+        return self
+    }
     func updatePlumbingService(_ service:ContractorService, _  number:Int) -> Customer {
         if self.plumbingServices != nil {
             if(number == -1) {
@@ -273,6 +277,10 @@ public class Customer:CustomStringConvertible {
             return nil
         }
         return hvactechnicianReference
+    }
+    func setHvacTechnician(to reference: String) -> Customer {
+        self.hvactechnicianReference = reference
+        return self
     }
     func getHvacServices() -> [ContractorService]? {
         return hvacServices
@@ -330,7 +338,10 @@ public class Customer:CustomStringConvertible {
         }
         return electricianReference
     }
-        
+    func setElectrician(to reference: String) -> Customer {
+        self.electricianReference = reference
+        return self
+    }
     func getElectricalServices() -> [ContractorService]? {
         return electricalServices
     }
@@ -368,6 +379,10 @@ public class Customer:CustomStringConvertible {
             return nil
         }
         return painterReference
+    }
+    func setPainter(to reference: String) -> Customer {
+        self.painterReference = reference
+        return self
     }
     func updatePaintSurface(_ surface:PaintSurface, _  number:Int, isInterior:Bool) -> Customer {
         if(isInterior) {
