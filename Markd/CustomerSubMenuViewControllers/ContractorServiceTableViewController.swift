@@ -85,7 +85,7 @@ class ContractorServiceTableViewController: UITableViewController {
         if(indexPath.section == 0) {
             switch indexPath.row {
             case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "contractorTableCell", for: indexPath) as! ContractorTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "contractorTableCell", for: indexPath) as! ServiceContractorTableViewCell
                 if let service = service {
                     cell.serviceViewController = self
                     cell.contractor = service.getContractor()
@@ -169,7 +169,7 @@ class ContractorServiceTableViewController: UITableViewController {
 }
 
 //Mark:- TableViewCells
-public class ContractorTableViewCell: UITableViewCell, UITextFieldDelegate {
+public class ServiceContractorTableViewCell: UITableViewCell, UITextFieldDelegate {
     var serviceViewController:ContractorServiceTableViewController?
     public var contractor:String? {
         didSet {

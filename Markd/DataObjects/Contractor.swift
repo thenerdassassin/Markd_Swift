@@ -10,6 +10,7 @@ import Foundation
 
 public class Contractor:CustomStringConvertible {
     public final let userType = "contractor"
+    public static let contractorTypes = ["Plumber", "Hvac", "Electrician", "Painter"]
     
     private var namePrefix:String
     private var firstName:String

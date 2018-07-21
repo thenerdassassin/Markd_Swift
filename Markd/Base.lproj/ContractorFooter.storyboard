@@ -64,19 +64,19 @@
                         <constraints>
                             <constraint firstItem="gBX-5q-j2G" firstAttribute="leading" secondItem="BrL-p5-7Ic" secondAttribute="trailing" constant="30" id="210-74-7fl"/>
                             <constraint firstItem="LnM-qN-JYy" firstAttribute="height" secondItem="gBX-5q-j2G" secondAttribute="height" id="4Es-MG-av8"/>
-                            <constraint firstItem="gYC-0z-vFf" firstAttribute="top" secondItem="BrL-p5-7Ic" secondAttribute="bottom" constant="10" id="4ab-dF-Qji"/>
                             <constraint firstItem="gBX-5q-j2G" firstAttribute="leading" secondItem="LnM-qN-JYy" secondAttribute="leading" id="5P6-WB-L7L"/>
                             <constraint firstAttribute="trailing" secondItem="gBX-5q-j2G" secondAttribute="trailing" constant="5" id="Dxz-sO-hNN"/>
                             <constraint firstItem="BrL-p5-7Ic" firstAttribute="leading" secondItem="CKf-HG-Hda" secondAttribute="leading" constant="10" id="Nb5-Gm-teQ"/>
                             <constraint firstAttribute="trailing" secondItem="XdX-g0-Gd0" secondAttribute="trailing" constant="5" id="Ww7-uM-zC0"/>
-                            <constraint firstItem="BrL-p5-7Ic" firstAttribute="top" secondItem="lza-YM-n2c" secondAttribute="bottom" constant="10" id="f26-Ob-a1j"/>
+                            <constraint firstItem="gYC-0z-vFf" firstAttribute="top" secondItem="LnM-qN-JYy" secondAttribute="bottom" constant="10" id="Y9B-zv-cHg"/>
+                            <constraint firstItem="gBX-5q-j2G" firstAttribute="top" secondItem="lza-YM-n2c" secondAttribute="bottom" constant="10" id="YrC-KE-SV2"/>
                             <constraint firstItem="gBX-5q-j2G" firstAttribute="height" secondItem="CKf-HG-Hda" secondAttribute="height" multiplier="1:3" constant="-7" id="itY-fd-DHt"/>
                             <constraint firstItem="XdX-g0-Gd0" firstAttribute="height" secondItem="gBX-5q-j2G" secondAttribute="height" id="pnX-C1-QDp"/>
-                            <constraint firstItem="gBX-5q-j2G" firstAttribute="top" secondItem="lza-YM-n2c" secondAttribute="bottom" constant="10" id="qAS-kt-C23"/>
                             <constraint firstItem="gBX-5q-j2G" firstAttribute="leading" secondItem="XdX-g0-Gd0" secondAttribute="leading" id="rBW-Rk-v28"/>
-                            <constraint firstItem="gYC-0z-vFf" firstAttribute="top" secondItem="LnM-qN-JYy" secondAttribute="bottom" constant="10" id="tTQ-xM-47n"/>
                             <constraint firstAttribute="trailing" secondItem="LnM-qN-JYy" secondAttribute="trailing" constant="5" id="tcb-M5-IIa"/>
                             <constraint firstItem="XdX-g0-Gd0" firstAttribute="centerY" secondItem="CKf-HG-Hda" secondAttribute="centerY" id="xPc-gm-mw4"/>
+                            <constraint firstItem="gYC-0z-vFf" firstAttribute="top" secondItem="BrL-p5-7Ic" secondAttribute="bottom" constant="10" id="xyw-Eb-bNi"/>
+                            <constraint firstItem="BrL-p5-7Ic" firstAttribute="top" secondItem="lza-YM-n2c" secondAttribute="bottom" constant="10" id="yaP-Bk-d8q"/>
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>

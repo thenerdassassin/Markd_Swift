@@ -23,9 +23,8 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
         if let companyLabel = companyLabel, let phoneNumberLabel = phoneNumberLabel, let websiteLabel = websiteLabel {
             companyLabel.isHidden = true
             
-            //phoneNumberLabel.setTitleColor(UIColor.blue, for: .normal)
             phoneNumberLabel.isUserInteractionEnabled = true
-            phoneNumberLabel.setAttributedTitle(NSAttributedString(string: noContractorText, attributes: [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue, .foregroundColor: UIColor.blue]), for: .normal)
+            phoneNumberLabel.setAttributedTitle(NSAttributedString(string: noContractorText, attributes: [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue, .foregroundColor: UIColor.white]), for: .normal)
             
             websiteLabel.isUserInteractionEnabled = false
             websiteLabel.isHidden = true
@@ -33,7 +32,6 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
         }
     }
     private func configureView(with contractor: Contractor, at reference: String?) {
-        print(contractor)
         if let companyLabel = companyLabel, let phoneNumberLabel = phoneNumberLabel, let websiteLabel = websiteLabel {
             if let contractorDetails = contractor.getContractorDetails() {
                 let attrs: [NSAttributedStringKey: Any] = [
@@ -80,6 +78,8 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
     @IBAction func onPhoneNumberTouchUp(_ sender: UIButton) {
         if sender.titleLabel?.text == noContractorText {
             print("Going to find a contractor view controller")
+            let findContractorViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "FindContractor")
+            self.navigationController?.pushViewController(findContractorViewController, animated: true)
             return
         }
         let phoneNumber = StringUtilities.removeNonNumeric(from: sender.titleLabel!.text!)
