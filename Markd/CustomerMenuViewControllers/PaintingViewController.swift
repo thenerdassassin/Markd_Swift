@@ -18,10 +18,11 @@ class PaintingViewController:UIViewController, OnGetDataListener {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ViewControllerUtilities.insertMarkdLogo(into: self)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        insertMarkdLogo()
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
         }
@@ -32,14 +33,6 @@ class PaintingViewController:UIViewController, OnGetDataListener {
         if let customerData = customerData {
             customerData.removeListeners()
         }
-    }
-    private func insertMarkdLogo() {
-        let image : UIImage = UIImage(named: "whiteTransparentLogo")!
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = image
-        self.navigationItem.titleView = imageView
-        self.navigationController!.navigationBar.setTitleVerticalPositionAdjustment(-3.0, for: .defaultPrompt)
     }
 
     //Mark:- Segue

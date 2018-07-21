@@ -20,12 +20,12 @@ public class MainViewController: UIViewController, OnGetDataListener {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        ViewControllerUtilities.insertMarkdLogo(into: self)
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("MainViewController:- viewWillAppear")
-        self.navigationController?.isNavigationBarHidden = true;
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
             var TODO_SetUpActionBar_🤪: AnyObject?

@@ -18,8 +18,20 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
     @IBOutlet weak var websiteLabel: UIButton!
     @IBOutlet weak var companyLogoImageView: UIImageView!
     
+    private var noContractorText = "Find a Contractor"
+    private func configureView() {
+        if let companyLabel = companyLabel, let phoneNumberLabel = phoneNumberLabel, let websiteLabel = websiteLabel {
+            companyLabel.isHidden = true
+            
+            phoneNumberLabel.isUserInteractionEnabled = true
+            phoneNumberLabel.setAttributedTitle(NSAttributedString(string: noContractorText, attributes: [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue, .foregroundColor: UIColor.white]), for: .normal)
+            
+            websiteLabel.isUserInteractionEnabled = false
+            websiteLabel.isHidden = true
+            companyLogoImageView.isUserInteractionEnabled = false
+        }
+    }
     private func configureView(with contractor: Contractor, at reference: String?) {
-        print(contractor)
         if let companyLabel = companyLabel, let phoneNumberLabel = phoneNumberLabel, let websiteLabel = websiteLabel {
             if let contractorDetails = contractor.getContractorDetails() {
                 let attrs: [NSAttributedStringKey: Any] = [
@@ -27,11 +39,14 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
                     NSAttributedStringKey.foregroundColor : UIColor.white,
                     NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue
                 ]
+                companyLabel.isHidden = false
                 companyLabel.text = contractorDetails.getCompanyName()
                 let websiteUrl = contractorDetails.getWebsiteUrl()
                 if StringUtilities.isNilOrEmpty(websiteUrl) {
                     websiteLabel.isUserInteractionEnabled = false
                 } else {
+                    websiteLabel.isUserInteractionEnabled = true
+                    websiteLabel.isHidden = false
                     websiteLabel.setAttributedTitle(NSAttributedString(string: websiteUrl, attributes: attrs), for: .normal)
                 }
                 if let phoneNumber = contractorDetails.getTelephoneNumber() {
@@ -43,6 +58,9 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
                 } else {
                     phoneNumberLabel.isUserInteractionEnabled = false
                 }
+            } else {
+                websiteLabel.isUserInteractionEnabled = false
+                phoneNumberLabel.isUserInteractionEnabled = false
             }
         }
         if let companyLogo = companyLogoImageView {
@@ -61,6 +79,12 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
     
     //Mark:- OnClick
     @IBAction func onPhoneNumberTouchUp(_ sender: UIButton) {
+        if sender.titleLabel?.text == noContractorText {
+            print("Going to find a contractor view controller")
+            let findContractorViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "FindContractor")
+            self.navigationController?.pushViewController(findContractorViewController, animated: true)
+            return
+        }
         let phoneNumber = StringUtilities.removeNonNumeric(from: sender.titleLabel!.text!)
         
         if let url = URL(string: "tel://\(phoneNumber)") {
@@ -78,6 +102,7 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
         guard let url = getWebsiteUrl(from: sender.titleLabel!.text!) else {
             return
         }
+        print(url)
         if #available(iOS 10.0, *) {
             UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
                 print("Open url : \(success)")
@@ -110,6 +135,8 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
         print("ContractorGetDataListener:- Got Contractor Data")
         if let contractor = contractor {
             configureView(with: contractor, at: reference)
+        } else {
+            configureView()
         }
     }
     

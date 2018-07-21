@@ -29,10 +29,13 @@
 		FF13E48620D9D59F00B5100B /* PanelAmerage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13E48520D9D59F00B5100B /* PanelAmerage.swift */; };
 		FF13E48820E4550700B5100B /* ManufacturerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13E48720E4550700B5100B /* ManufacturerPickerView.swift */; };
 		FF13E48A20E855CB00B5100B /* EditBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF13E48920E855CB00B5100B /* EditBreakerViewController.swift */; };
+		FF1C3543210008610062CBA2 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */; };
+		FF1C35452102A9AD0062CBA2 /* FindContractorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C35442102A9AD0062CBA2 /* FindContractorViewController.swift */; };
+		FF1C354721039FA50062CBA2 /* ZipCodeUtitilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C354621039FA50062CBA2 /* ZipCodeUtitilities.swift */; };
+		FF226D58210000820082215B /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF226D57210000820082215B /* Settings.storyboard */; };
 		FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32A20D1D26900A181F1 /* Breaker.swift */; };
 		FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */; };
 		FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */; };
-		FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */; };
 		FF592F7320683E090031DA92 /* Boiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF592F7220683E090031DA92 /* Boiler.swift */; };
@@ -60,6 +63,7 @@
 		FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE8003205D8C8200A7D9FE /* HotWater.swift */; };
 		FFC5316B2093D2A00010D9AC /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC5316A2093D2A00010D9AC /* Services.storyboard */; };
 		FFDE253620588868009D1790 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE253520588868009D1790 /* SendEmail.swift */; };
+		FFF2239920FFEADE00F823D6 /* ViewControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF2239820FFEADE00F823D6 /* ViewControllerUtilities.swift */; };
 		FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C892041D3B500A9392E /* MainViewController.swift */; };
 		FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */; };
 		FFF27C8E2041E18600A9392E /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C8D2041E18600A9392E /* Customer.swift */; };
@@ -100,10 +104,13 @@
 		FF13E48520D9D59F00B5100B /* PanelAmerage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelAmerage.swift; sourceTree = "<group>"; };
 		FF13E48720E4550700B5100B /* ManufacturerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerPickerView.swift; sourceTree = "<group>"; };
 		FF13E48920E855CB00B5100B /* EditBreakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBreakerViewController.swift; sourceTree = "<group>"; };
+		FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
+		FF1C35442102A9AD0062CBA2 /* FindContractorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindContractorViewController.swift; sourceTree = "<group>"; };
+		FF1C354621039FA50062CBA2 /* ZipCodeUtitilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeUtitilities.swift; sourceTree = "<group>"; };
+		FF226D57210000820082215B /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		FF2CC32A20D1D26900A181F1 /* Breaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breaker.swift; sourceTree = "<group>"; };
 		FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPanelViewController.swift; sourceTree = "<group>"; };
-		FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeSpanPickerView.swift; sourceTree = "<group>"; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPaintingSurfaceViewController.swift; sourceTree = "<group>"; };
 		FF592F7220683E090031DA92 /* Boiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boiler.swift; sourceTree = "<group>"; };
@@ -131,6 +138,7 @@
 		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
 		FFC5316A2093D2A00010D9AC /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
 		FFDE253520588868009D1790 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
+		FFF2239820FFEADE00F823D6 /* ViewControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtilities.swift; sourceTree = "<group>"; };
 		FFF27C892041D3B500A9392E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCustomerData.swift; sourceTree = "<group>"; };
 		FFF27C8D2041E18600A9392E /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -222,7 +230,6 @@
 		FF40718B20827E980008883A /* PickerViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FF40718C20827EFC0008883A /* LifeSpanPickerView.swift */,
 				FF13E48720E4550700B5100B /* ManufacturerPickerView.swift */,
 			);
 			path = PickerViewControllers;
@@ -263,6 +270,8 @@
 				FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */,
 				FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */,
 				FF13E48920E855CB00B5100B /* EditBreakerViewController.swift */,
+				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
+				FF1C35442102A9AD0062CBA2 /* FindContractorViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
 			sourceTree = "<group>";
@@ -301,6 +310,7 @@
 				FF9A5B41208AA484007E9669 /* ContractorFooterViewController.swift */,
 				FFC5316A2093D2A00010D9AC /* Services.storyboard */,
 				FF5D7A6620AF7565008A05FC /* Details.storyboard */,
+				FF226D57210000820082215B /* Settings.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -314,6 +324,8 @@
 				FFDE253520588868009D1790 /* SendEmail.swift */,
 				FFFD3F14205B25A9005B7325 /* AlertControllerUtilities.swift */,
 				FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */,
+				FFF2239820FFEADE00F823D6 /* ViewControllerUtilities.swift */,
+				FF1C354621039FA50062CBA2 /* ZipCodeUtitilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -387,6 +399,7 @@
 				FFF45D802038C3C200EC732B /* GoogleService-Info.plist in Resources */,
 				47E0EA491DF3865C001F417F /* Assets.xcassets in Resources */,
 				FF9A5B40208AA429007E9669 /* ContractorFooter.storyboard in Resources */,
+				FF226D58210000820082215B /* Settings.storyboard in Resources */,
 				FFC5316B2093D2A00010D9AC /* Services.storyboard in Resources */,
 				47E0EA471DF3865C001F417F /* Main.storyboard in Resources */,
 			);
@@ -475,6 +488,7 @@
 				FF592F7320683E090031DA92 /* Boiler.swift in Sources */,
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
 				FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */,
+				FF1C3543210008610062CBA2 /* SettingsMenuViewController.swift in Sources */,
 				FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */,
 				FFF27C8E2041E18600A9392E /* Customer.swift in Sources */,
 				FF6BF1E92093DF64001D55EF /* ServiceHistoryViewController.swift in Sources */,
@@ -484,6 +498,7 @@
 				FFF27C94204619A700A9392E /* Home.swift in Sources */,
 				FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */,
 				FFB56592207AA8F500F6E8F1 /* Appliance.swift in Sources */,
+				FF1C35452102A9AD0062CBA2 /* FindContractorViewController.swift in Sources */,
 				479937681E1D806F00ADCD35 /* EditBreakerTextFieldController.swift in Sources */,
 				476295BD1E1DE02D008CDBFC /* DetailViewController.swift in Sources */,
 				FFF27C92204203E500A9392E /* Address.swift in Sources */,
@@ -493,11 +508,11 @@
 				FF13E48A20E855CB00B5100B /* EditBreakerViewController.swift in Sources */,
 				FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */,
 				47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */,
-				FF40718D20827EFC0008883A /* LifeSpanPickerView.swift in Sources */,
 				FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */,
 				FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */,
 				FF63004420C74E22006C0208 /* ElectricalViewController.swift in Sources */,
 				FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */,
+				FFF2239920FFEADE00F823D6 /* ViewControllerUtilities.swift in Sources */,
 				4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */,
 				FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */,
 				FF5D7A6920AF79CA008A05FC /* PaintingSurfacesViewController.swift in Sources */,
@@ -511,6 +526,7 @@
 				FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */,
 				FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */,
 				FF6BF1EB2094EC67001D55EF /* ContractorService.swift in Sources */,
+				FF1C354721039FA50062CBA2 /* ZipCodeUtitilities.swift in Sources */,
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
 				FF5D7A6B20AF822C008A05FC /* PaintingViewController.swift in Sources */,
 				FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */,

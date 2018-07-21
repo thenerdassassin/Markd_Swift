@@ -47,7 +47,6 @@ public class TempCustomerData {
             userReference.removeObserver(withHandle: handle)
         }
     }
-    
     private func customerSuccessListener(_ snapshot:DataSnapshot) {
         if let dictionary = snapshot.value as? [String : AnyObject] {
             customer = Customer(dictionary)
@@ -60,7 +59,6 @@ public class TempCustomerData {
             }
         }
     }
-    
     private func customerCancelListener(_ error: Error) {
         print("got error", error)
         if let listener = self.listener {
@@ -71,7 +69,6 @@ public class TempCustomerData {
     private func getCustomer() -> Customer? {
         return customer
     }
-    
     private func updateCustomer(to customer: Customer?) {
         if let userReference = userReference, let customer = customer {
             userReference.setValue(customer.toDictionary())
@@ -81,6 +78,7 @@ public class TempCustomerData {
             }
         }
     }
+    public static func getUserDatabase() -> DatabaseReference { return database }
     
     //Mark:- Home Page
     public func getName() -> String {
@@ -200,6 +198,21 @@ public class TempCustomerData {
     }
     public func getPlumbingServices() -> [ContractorService]? {
         return getCustomer()?.getPlumbingServices()
+    }
+    public func updateContractor(of type: String, to reference: String) {
+        switch type {
+        case "Plumber":
+            updateCustomer(to: getCustomer()?.setPlumber(to: reference))
+        case "Hvac":
+            updateCustomer(to: getCustomer()?.setHvacTechnician(to: reference))
+        case "Electrician":
+            updateCustomer(to: getCustomer()?.setElectrician(to: reference))
+        case "Painter":
+            updateCustomer(to: getCustomer()?.setPainter(to: reference))
+        default:
+            print("No \(type) of contractor")
+        }
+        
     }
     
     //Mark:- HvacPage
