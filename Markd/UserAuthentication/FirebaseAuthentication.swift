@@ -54,14 +54,14 @@ public class FirebaseAuthentication {
         FirebaseAuthentication.authStateDidChangeHandle = FirebaseAuthentication.auth.addStateDidChangeListener { (auth, user) in
             if user == nil {
                 if !(sender is LoginViewController) {
-                    sender.performSegue(withIdentifier:"goToLoginViewController", sender:sender)
+                    sender.performSegue(withIdentifier:"unwindToLoginSegue", sender:sender)
                 }
             }
         }
         let isLoggedIn:Bool = getCurrentUser() != nil
         if(!isLoggedIn) {
             if !(sender is LoginViewController) {
-                sender.performSegue(withIdentifier:"goToLoginViewController", sender:sender)
+                sender.performSegue(withIdentifier:"unwindToLoginSegue", sender:sender)
             }
         }
         return isLoggedIn

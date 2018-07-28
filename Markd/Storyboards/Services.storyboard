@@ -104,9 +104,11 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="zzN-K0-BnN" kind="show" identifier="addContractorServiceSegue" id="cho-ZN-Vm6"/>
+                        <segue destination="bio-8j-xVa" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="SZ3-bF-XFM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdh-d5-DWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="bio-8j-xVa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-102" y="-58"/>
         </scene>

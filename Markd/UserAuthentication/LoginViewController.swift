@@ -21,6 +21,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
         configureView()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        if let email = email, let password = password {
+            email.text = ""
+            password.text = ""
+        }
+    }
     
     func configureView() {
         KeyboardUtilities.addKeyboardDismissal(self.view)
@@ -40,10 +46,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     }
 
     //MARK:- IBAction Methods
-    @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue) {
-        
-    }
-    
     @IBAction func passwordEditingDidEnd(_ sender: Any) {
         signIn()
     }
@@ -93,6 +95,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         }
         return true;
     }
+    @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue) {
+        
+    }
     
     //MARK:- Helper Methods
     func signIn() {
@@ -109,4 +114,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
+    
 }
