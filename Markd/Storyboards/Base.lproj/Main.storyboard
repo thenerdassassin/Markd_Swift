@@ -14,7 +14,7 @@
         <!--Login View Controller-->
         <scene sceneID="4RF-bE-YIR">
             <objects>
-                <viewController id="OfV-hV-Mku" customClass="LoginViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="OfV-hV-Mku" customClass="LoginViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aAZ-Fc-L0K"/>
                         <viewControllerLayoutGuide type="bottom" id="J0z-Vp-yE9"/>

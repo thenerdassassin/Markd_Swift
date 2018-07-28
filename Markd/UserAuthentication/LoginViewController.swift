@@ -22,6 +22,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         configureView()
     }
     override func viewWillAppear(_ animated: Bool) {
+        if authenticator.checkLogin(self) {
+            print("User is Logged In")
+            performSegue(withIdentifier: "Login", sender: self)
+        } else {
+            print("Not Logged In")
+        }
         if let email = email, let password = password {
             email.text = ""
             password.text = ""

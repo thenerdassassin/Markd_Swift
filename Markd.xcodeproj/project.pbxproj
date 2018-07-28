@@ -138,6 +138,7 @@
 		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
 		FFC5316A2093D2A00010D9AC /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
 		FFD93B0C210CFE9C00B1E07A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FFD93B0E210D074300B1E07A /* Markd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Markd.entitlements; sourceTree = "<group>"; };
 		FFDE253520588868009D1790 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
 		FFF2239820FFEADE00F823D6 /* ViewControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtilities.swift; sourceTree = "<group>"; };
 		FFF27C892041D3B500A9392E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +194,7 @@
 		47E0EA401DF3865C001F417F /* Markd */ = {
 			isa = PBXGroup;
 			children = (
+				FFD93B0E210D074300B1E07A /* Markd.entitlements */,
 				FF9A5B3D208AA405007E9669 /* Storyboards */,
 				FF40718B20827E980008883A /* PickerViewControllers */,
 				FFF45D81203CE57200EC732B /* Utilities */,
@@ -365,8 +367,14 @@
 				TargetAttributes = {
 					47E0EA3D1DF3865C001F417F = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = SZ3DXFSCH3;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -677,8 +685,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0DFBB433CDDC1835F81D6E42 /* Pods-Markd.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Markd/Markd.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SZ3DXFSCH3;
 				INFOPLIST_FILE = Markd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.schmidthappens.markd;
@@ -692,8 +703,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F8AAE28D9CA323AB69658E5 /* Pods-Markd.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Markd/Markd.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SZ3DXFSCH3;
 				INFOPLIST_FILE = Markd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.schmidthappens.markd;
