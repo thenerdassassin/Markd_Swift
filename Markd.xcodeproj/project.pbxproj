@@ -62,6 +62,7 @@
 		FFB56592207AA8F500F6E8F1 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB56591207AA8F500F6E8F1 /* Appliance.swift */; };
 		FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE8003205D8C8200A7D9FE /* HotWater.swift */; };
 		FFC5316B2093D2A00010D9AC /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC5316A2093D2A00010D9AC /* Services.storyboard */; };
+		FFD93B0D210CFE9D00B1E07A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFD93B0C210CFE9C00B1E07A /* GoogleService-Info.plist */; };
 		FFDE253620588868009D1790 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE253520588868009D1790 /* SendEmail.swift */; };
 		FFF2239920FFEADE00F823D6 /* ViewControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF2239820FFEADE00F823D6 /* ViewControllerUtilities.swift */; };
 		FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C892041D3B500A9392E /* MainViewController.swift */; };
@@ -71,7 +72,6 @@
 		FFF27C92204203E500A9392E /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C91204203E500A9392E /* Address.swift */; };
 		FFF27C94204619A700A9392E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C93204619A700A9392E /* Home.swift */; };
 		FFF27C96204CB8B500A9392E /* PlumbingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C95204CB8B500A9392E /* PlumbingViewController.swift */; };
-		FFF45D802038C3C200EC732B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */; };
 		FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */; };
 		FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D84203CE77200EC732B /* ToastUtilities.swift */; };
 		FFFD3F15205B25A9005B7325 /* AlertControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD3F14205B25A9005B7325 /* AlertControllerUtilities.swift */; };
@@ -137,6 +137,7 @@
 		FFB56591207AA8F500F6E8F1 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
 		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
 		FFC5316A2093D2A00010D9AC /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
+		FFD93B0C210CFE9C00B1E07A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFDE253520588868009D1790 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
 		FFF2239820FFEADE00F823D6 /* ViewControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtilities.swift; sourceTree = "<group>"; };
 		FFF27C892041D3B500A9392E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +147,6 @@
 		FFF27C91204203E500A9392E /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		FFF27C93204619A700A9392E /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		FFF27C95204CB8B500A9392E /* PlumbingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlumbingViewController.swift; sourceTree = "<group>"; };
-		FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUtilities.swift; sourceTree = "<group>"; };
 		FFF45D84203CE77200EC732B /* ToastUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUtilities.swift; sourceTree = "<group>"; };
 		FFFD3F14205B25A9005B7325 /* AlertControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerUtilities.swift; sourceTree = "<group>"; };
@@ -205,8 +205,8 @@
 				47E0EA431DF3865C001F417F /* ViewController.swift */,
 				476295BC1E1DE02D008CDBFC /* DetailViewController.swift */,
 				47E0EA551DF3A8CD001F417F /* EditBreakerViewController-Old.swift */,
+				FFD93B0C210CFE9C00B1E07A /* GoogleService-Info.plist */,
 				476295BE1E1DF198008CDBFC /* EditPanelViewController-Old.swift */,
-				FFF45D7F2038C3C200EC732B /* GoogleService-Info.plist */,
 				47000A6E1DFDEA2E00D85548 /* NewPanelSetupViewController.swift */,
 				47E0EA481DF3865C001F417F /* Assets.xcassets */,
 				47E0EA4D1DF3865C001F417F /* Info.plist */,
@@ -396,10 +396,10 @@
 				47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */,
 				FF0CA3B320C31FBD00630B16 /* Notifications.storyboard in Resources */,
 				FF5D7A6720AF7565008A05FC /* Details.storyboard in Resources */,
-				FFF45D802038C3C200EC732B /* GoogleService-Info.plist in Resources */,
 				47E0EA491DF3865C001F417F /* Assets.xcassets in Resources */,
 				FF9A5B40208AA429007E9669 /* ContractorFooter.storyboard in Resources */,
 				FF226D58210000820082215B /* Settings.storyboard in Resources */,
+				FFD93B0D210CFE9D00B1E07A /* GoogleService-Info.plist in Resources */,
 				FFC5316B2093D2A00010D9AC /* Services.storyboard in Resources */,
 				47E0EA471DF3865C001F417F /* Main.storyboard in Resources */,
 			);
