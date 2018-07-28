@@ -43,9 +43,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="WIH-rE-VmC" kind="show" id="ah5-uD-WcT"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -54,6 +51,9 @@
                         </connections>
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <segue destination="WIH-rE-VmC" kind="show" identifier="findContractorSegue" id="yFT-8f-z1K"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1WC-8y-g69" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
