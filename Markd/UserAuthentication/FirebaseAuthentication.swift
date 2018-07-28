@@ -39,7 +39,7 @@ public class FirebaseAuthentication {
         do {
             try FirebaseAuthentication.auth.signOut()
             if !(sender is LoginViewController) {
-                sender.performSegue(withIdentifier:"goToLoginViewController", sender:sender)
+                sender.performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
             }
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)

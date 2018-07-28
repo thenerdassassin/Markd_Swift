@@ -48,7 +48,7 @@ class SettingsMenuViewController: UITableViewController {
             performSegue(withIdentifier: "findContractorSegue", sender: self)
         } else if indexPath.row == 1 {
             print("Signing out")
-            performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
+            FirebaseAuthentication.sharedInstance.signOut(self)
         }
     }
 }
