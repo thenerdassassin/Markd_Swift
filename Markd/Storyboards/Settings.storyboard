@@ -43,9 +43,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="WIH-rE-VmC" kind="show" id="ah5-uD-WcT"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -54,8 +51,13 @@
                         </connections>
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <segue destination="WIH-rE-VmC" kind="show" identifier="findContractorSegue" id="yFT-8f-z1K"/>
+                        <segue destination="KEV-hY-sFc" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="wm6-sW-wMN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1WC-8y-g69" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KEV-hY-sFc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1026" y="549"/>
         </scene>
@@ -186,8 +188,12 @@
                             <outlet property="delegate" destination="WIH-rE-VmC" id="5gS-l5-ghi"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="D8b-1Q-PDL" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="fue-9Z-3FK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7Y-Jp-XGV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="D8b-1Q-PDL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-279" y="554"/>
         </scene>

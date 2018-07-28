@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,14 +29,14 @@
         <!--Notifications View Controller-->
         <scene sceneID="HdY-ev-5ct">
             <objects>
-                <tableViewController id="OG6-fa-GBJ" customClass="NotificationsViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="OG6-fa-GBJ" customClass="NotificationsViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4mf-m6-DIo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationCell" id="GQO-Pw-FEW" customClass="NotificationCell" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationCell" id="GQO-Pw-FEW" customClass="NotificationCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GQO-Pw-FEW" id="kLK-7u-JbI">
@@ -85,7 +86,7 @@
                                     <outlet property="messageLabel" destination="Yuz-bp-A57" id="Tac-tt-IkZ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationDefaultCell" textLabel="ElO-qI-qxW" style="IBUITableViewCellStyleDefault" id="Z6B-rH-dRN" customClass="NotificationCell" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationDefaultCell" textLabel="ElO-qI-qxW" style="IBUITableViewCellStyleDefault" id="Z6B-rH-dRN" customClass="NotificationCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z6B-rH-dRN" id="eew-O2-g9y">
@@ -111,8 +112,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="qUh-go-rZr"/>
+                    <connections>
+                        <segue destination="OXv-xa-VJM" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="PcN-wz-jhR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bs-8o-MKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="OXv-xa-VJM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-4687.1999999999998" y="866.71664167916049"/>
         </scene>

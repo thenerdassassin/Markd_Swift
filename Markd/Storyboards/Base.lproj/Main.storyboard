@@ -14,7 +14,7 @@
         <!--Login View Controller-->
         <scene sceneID="4RF-bE-YIR">
             <objects>
-                <viewController id="OfV-hV-Mku" customClass="LoginViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="OfV-hV-Mku" customClass="LoginViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aAZ-Fc-L0K"/>
                         <viewControllerLayoutGuide type="bottom" id="J0z-Vp-yE9"/>
@@ -264,7 +264,7 @@
                         <outlet property="homeInformationLabel" destination="4Fa-Cd-RE3" id="2L0-1Y-W59"/>
                         <outlet property="preparedForLabel" destination="zzX-Rc-ULx" id="ok5-RB-PB5"/>
                         <outlet property="streetAddressLabel" destination="Zuj-aG-sqH" id="aDn-Si-6RU"/>
-                        <segue destination="26d-QB-MQu" kind="unwind" identifier="unwindToLoginViewController" unwindAction="unwindToLoginViewControllerWithSegue:" id="TQA-Xm-g5o"/>
+                        <segue destination="26d-QB-MQu" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="EQu-DS-7o6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zp1-xK-31C" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -372,9 +372,11 @@ The Markd Support Team</string>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="messageTextView" destination="9uE-X2-xKT" id="UwS-Vi-aOn"/>
+                        <segue destination="D5K-Ma-WQo" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="qYS-EQ-nyu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6R-pX-qGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="D5K-Ma-WQo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-5142" y="-24"/>
         </scene>

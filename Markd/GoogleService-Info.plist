@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>302940232325-4acbhum7o2imfcm45os36nlpghhmva97.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.302940232325-4acbhum7o2imfcm45os36nlpghhmva97</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDDhJ_0jQr5-p3WJ6uLUiQ_73QOVBGfHUw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>302940232325</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.schmidthappens.markd</string>
+	<key>PROJECT_ID</key>
+	<string>markd-schmidt-happens</string>
+	<key>STORAGE_BUCKET</key>
+	<string>markd-schmidt-happens.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:302940232325:ios:9cdf23137b54e7dd</string>
+	<key>DATABASE_URL</key>
+	<string>https://markd-schmidt-happens.firebaseio.com</string>
+</dict>
+</plist>
