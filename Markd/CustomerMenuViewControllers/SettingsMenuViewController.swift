@@ -11,6 +11,7 @@ import UIKit
 class SettingsMenuViewController: UITableViewController {
     let options = [("Find Contractors", "Set your personal contractors.", "findContractorSegue"),
                     ("Edit Home", "Change address, bedrooms, square footage, etc.", "editHomeSegue"),
+                    ("Edit Profile", "Change email or name on account.", "editProfileSegue"),
                     ("Contact Us.", "Ask for help or tell us what you would like added.", "helpSegue"),
                     ("Sign Out.", "Log out of this account.", nil)
                   ]
@@ -31,8 +32,8 @@ class SettingsMenuViewController: UITableViewController {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var TODO_AddRows:AnyObject? //Edit Profile, Reset Password
-        return 4
+        var TODO_AddRows:AnyObject? // Reset Password
+        return 5
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)

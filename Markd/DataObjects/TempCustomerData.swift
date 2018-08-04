@@ -326,11 +326,34 @@ public class TempCustomerData {
     }
     
     //Mark:- Settings
+    public func getTitle() -> String?{
+        return getCustomer()?.getNamePrefix()
+    }
+    public func getFirstName() -> String? {
+        return getCustomer()?.getFirstName()
+    }
+    public func getLastName() -> String? {
+        return getCustomer()?.getLastName()
+    }
+    public func getMaritalStatus() -> String? {
+        return getCustomer()?.getMaritalStatus()
+    }
     public func updateHome(to updatedHome: Home) {
         updateCustomer(to: getCustomer()?.setHome(updatedHome))
     }
     public func updateAddress(to updateAddress: Address) {
         updateCustomer(to: getCustomer()?.setAddress(updateAddress))
+    }
+    public func updateName(title prefix: String, with updatedFirstName: String, and updatedLastName: String) {
+        if let customer = getCustomer() {
+            customer.setNamePrefix(prefix)
+            customer.setFirstName(updatedFirstName)
+            customer.setLastName(updatedLastName)
+            updateCustomer(to: customer)
+        }
+    }
+    public func updateMaritalStatus(to newMaritalStatus:String) {
+        updateCustomer(to: getCustomer()?.setMaritalStatus(newMaritalStatus))
     }
     
     
