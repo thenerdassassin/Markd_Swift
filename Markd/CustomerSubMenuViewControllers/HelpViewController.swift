@@ -17,6 +17,14 @@ public class HelpViewController: UIViewController, OnGetDataListener {
     @IBOutlet weak var messageTextView: UITextView!
     let sendingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+        ViewControllerUtilities.insertMarkdLogo(into: self)
+        var TODO_look_into_background_fill_🤪: AnyObject?
+        configureView()
+    }
+    
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(authentication.checkLogin(self)) {
@@ -25,13 +33,6 @@ public class HelpViewController: UIViewController, OnGetDataListener {
         if let messageTextView = messageTextView {
             messageTextView.text = ""
         }
-    }
-    
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
-        var TODO_look_into_background_fill_🤪: AnyObject?
-        configureView()
     }
     
     override public func viewWillDisappear(_ animated: Bool) {

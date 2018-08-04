@@ -251,11 +251,11 @@
 			children = (
 				FFF27C892041D3B500A9392E /* MainViewController.swift */,
 				FFF27C95204CB8B500A9392E /* PlumbingViewController.swift */,
-				FF82F315205439BA00E33304 /* HelpViewController.swift */,
 				FFB565892079274400F6E8F1 /* HvacViewController.swift */,
 				FF6BF1E82093DF64001D55EF /* ServiceHistoryViewController.swift */,
 				FF5D7A6820AF79CA008A05FC /* PaintingSurfacesViewController.swift */,
 				FF5D7A6A20AF822C008A05FC /* PaintingViewController.swift */,
+				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
 				FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */,
 				FF63004120C74E05006C0208 /* ElectricalPanelsViewController.swift */,
 				FF63004320C74E22006C0208 /* ElectricalViewController.swift */,
@@ -272,7 +272,7 @@
 				FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */,
 				FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */,
 				FF13E48920E855CB00B5100B /* EditBreakerViewController.swift */,
-				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
+				FF82F315205439BA00E33304 /* HelpViewController.swift */,
 				FF1C35442102A9AD0062CBA2 /* FindContractorViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
