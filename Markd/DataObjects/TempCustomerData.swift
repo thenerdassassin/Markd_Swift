@@ -344,6 +344,17 @@ public class TempCustomerData {
     public func updateAddress(to updateAddress: Address) {
         updateCustomer(to: getCustomer()?.setAddress(updateAddress))
     }
+    public func updateName(title prefix: String, with updatedFirstName: String, and updatedLastName: String) {
+        if let customer = getCustomer() {
+            customer.setNamePrefix(prefix)
+            customer.setFirstName(updatedFirstName)
+            customer.setLastName(updatedLastName)
+            updateCustomer(to: customer)
+        }
+    }
+    public func updateMaritalStatus(to newMaritalStatus:String) {
+        updateCustomer(to: getCustomer()?.setMaritalStatus(newMaritalStatus))
+    }
     
     
     public func setAppliance(to newAppliance: Appliance) {

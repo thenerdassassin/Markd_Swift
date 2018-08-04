@@ -142,28 +142,29 @@ public class Customer:CustomStringConvertible {
     
     //:- Home Page
     func getNamePrefix() -> String {
-        return namePrefix;
+        return namePrefix
     }
     func setNamePrefix(_ namePrefix: String) {
-        self.namePrefix = namePrefix;
+        self.namePrefix = namePrefix
     }
     func getFirstName() -> String {
         return firstName;
     }
     func setFirstName(_ firstName: String) {
-        self.firstName = firstName;
+        self.firstName = firstName
     }
     func getLastName() -> String {
-        return lastName;
+        return lastName
     }
     func setLastName(_ lastName: String) {
-        self.lastName = lastName;
+        self.lastName = lastName
     }
     func getMaritalStatus() -> String{
-        return maritalStatus;
+        return maritalStatus
     }
-    func setMaritalStatus(_ maritalStatus: String) {
-        self.maritalStatus = maritalStatus;
+    func setMaritalStatus(_ maritalStatus: String) -> Customer {
+        self.maritalStatus = maritalStatus
+        return self
     }
     func getName() -> String {
         return StringUtilities.getFormattedName(withPrefix: namePrefix, withFirstName: firstName, withLastName: lastName, withMaritalStatus: maritalStatus)

@@ -93,7 +93,7 @@ public class FirebaseAuthentication {
                 alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
                 viewController.present(alert, animated: true)
             case .wrongPassword:
-                let alert = UIAlertController(title: "Wrong username/password", message: "This user and password do not match. Please try again or click 'Forgot Password' to change it.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Wrong username/password", message: "This user and password do not match. Please try again or recover password.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
                 viewController.present(alert, animated: true)
             case .networkError:

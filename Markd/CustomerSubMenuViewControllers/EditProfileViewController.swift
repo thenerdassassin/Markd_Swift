@@ -12,6 +12,13 @@ import UIKit
 class EditProfileViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     var customerData: TempCustomerData?
+    var originalEmail:String?
+    var newEmail:String?
+    var password:String?
+    var selectedTitle:String?
+    var firstName:String?
+    var lastName:String?
+    var maritalStatus:String?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +53,12 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "emailCell", for: indexPath) as! EmailCell
+            originalEmail = authentication.getCurrentUser()?.email
+            if newEmail == nil {
+                newEmail = originalEmail
+            }
             cell.viewController = self
-            cell.email = authentication.getCurrentUser()?.email
+            cell.email = newEmail
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "passwordConfirmationCell", for: indexPath) as! ConfirmPasswordCell
@@ -55,24 +66,36 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
-            if let title = customerData?.getTitle() {
-                cell.textLabel?.text = title
+            if selectedTitle == nil && customerData?.getTitle() != nil {
+                selectedTitle = customerData!.getTitle()
+            }
+            if selectedTitle != nil {
+                cell.textLabel?.text = selectedTitle
             }
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "firstNameCell", for: indexPath) as! FirstNameCell
             cell.viewController = self
-            cell.firstName = customerData?.getFirstName()
+            if firstName == nil && customerData?.getFirstName() != nil {
+                firstName = customerData!.getFirstName()
+            }
+            cell.firstName = firstName
             return cell
         } else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "lastNameCell", for: indexPath) as! LastNameCell
             cell.viewController = self
-            cell.lastName = customerData?.getLastName()
+            if lastName == nil && customerData?.getLastName() != nil {
+                lastName = customerData!.getLastName()
+            }
+            cell.lastName = lastName
             return cell
         } else if indexPath.row == 5 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "maritalStatusCell", for: indexPath)
-            if let status = customerData?.getMaritalStatus() {
-                cell.textLabel?.text = status
+            if maritalStatus == nil && customerData?.getMaritalStatus() != nil {
+                maritalStatus = customerData!.getMaritalStatus()
+            }
+            if maritalStatus != nil {
+                cell.textLabel?.text = maritalStatus
             }
             return cell
         }
@@ -82,22 +105,64 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 2 {
             AlertControllerUtilities.showActionSheet(withTitle: "Which title do you prefer?", andMessage: nil, withOptions: [
-                    UIAlertAction(title: "Mr.", style: .default, handler: nil),
-                    UIAlertAction(title: "Mrs.", style: .default, handler: nil),
-                    UIAlertAction(title: "Ms.", style: .default, handler: nil),
-                    UIAlertAction(title: "Dr.", style: .default, handler: nil),
-                    UIAlertAction(title: "Rev.", style: .default, handler: nil),
+                    UIAlertAction(title: "Mr.", style: .default, handler: titleSelectionHandler),
+                    UIAlertAction(title: "Mrs.", style: .default, handler: titleSelectionHandler),
+                    UIAlertAction(title: "Ms.", style: .default, handler: titleSelectionHandler),
+                    UIAlertAction(title: "Dr.", style: .default, handler: titleSelectionHandler),
+                    UIAlertAction(title: "Rev.", style: .default, handler: titleSelectionHandler),
                     UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                 ],
                in: self)
         } else if indexPath.row == 5 {
             AlertControllerUtilities.showActionSheet(withTitle: "Current Marital Status", andMessage: nil, withOptions: [
-                UIAlertAction(title: "Single", style: .default, handler: nil),
-                UIAlertAction(title: "Married", style: .default, handler: nil),
+                UIAlertAction(title: "Single", style: .default, handler: maritalStatusSelectionHandler),
+                UIAlertAction(title: "Married", style: .default, handler: maritalStatusSelectionHandler),
                 UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                 ],
                  in: self)
         }
+    }
+    
+    //Mark:- Action Handlers
+    func titleSelectionHandler(alert: UIAlertAction!) {
+        if let title = alert.title {
+            selectedTitle = title
+            self.tableView.reloadData()
+        }
+    }
+    func maritalStatusSelectionHandler(alert: UIAlertAction!) {
+        if let title = alert.title {
+            maritalStatus = title
+            self.tableView.reloadData()
+        }
+    }
+    @IBAction func onConfirmAction(_ sender: UIBarButtonItem) {
+        print("EditProfileViewController:- Save Changes")
+        self.view.endEditing(true)
+        let email = originalEmail != nil ? originalEmail!:""
+        let password = self.password != nil ? self.password!:""
+        let credential = authentication.getAuthCredential(withEmail: email, andPassword: password)
+        authentication.getCurrentUser()?.reauthenticate(with: credential, completion: { (error) in
+            if let error = error {
+                self.authentication.errorHandler(self, forError: error)
+            } else {
+                print("Using correct password")
+                if let newEmail = self.newEmail {
+                    self.authentication.getCurrentUser()?.updateEmail(to: newEmail) { (error) in
+                        if let error = error {
+                            self.authentication.errorHandler(self, forError: error)
+                        }
+                    }
+                }
+                let selectedTitle = self.selectedTitle != nil ? self.selectedTitle!:"Mr."
+                let firstName = self.firstName != nil ? self.firstName!:""
+                let lastName = self.lastName != nil ? self.lastName!:""
+                self.customerData?.updateName(title: selectedTitle, with: firstName, and: lastName)
+                let maritalStatus = self.maritalStatus != nil ? self.maritalStatus!:"Single"
+                self.customerData?.updateMaritalStatus(to: maritalStatus)
+                self.navigationController!.popViewController(animated: true)
+            }
+        })
     }
     
     //Mark:- OnGetDataListener
@@ -136,14 +201,14 @@ class EmailCell:UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        //viewController!.address.setStreet(textField.text!)
+        viewController!.newEmail = textField.text
     }
 }
 class ConfirmPasswordCell:UITableViewCell, UITextFieldDelegate {
     var viewController: EditProfileViewController?
     @IBOutlet weak var confirmPasswordTextField: UITextField! {
         didSet {
-            //confirmPasswordTextField.delegate = self
+            confirmPasswordTextField.delegate = self
         }
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -154,7 +219,7 @@ class ConfirmPasswordCell:UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        //viewController!.address.setStreet(textField.text!)
+        viewController!.password = textField.text
     }
 }
 class FirstNameCell:UITableViewCell, UITextFieldDelegate {
@@ -177,7 +242,7 @@ class FirstNameCell:UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        //viewController!.address.setStreet(textField.text!)
+        viewController!.firstName = textField.text!
     }
 }
 class LastNameCell:UITableViewCell, UITextFieldDelegate {
@@ -200,6 +265,6 @@ class LastNameCell:UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        //viewController!.address.setStreet(textField.text!)
+        viewController!.lastName = textField.text!
     }
 }

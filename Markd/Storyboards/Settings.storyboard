@@ -220,7 +220,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I5N-Hs-U4O">
-                                            <rect key="frame" x="10" y="11.5" width="355" height="21"/>
+                                            <rect key="frame" x="15" y="11.5" width="350" height="21"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="email"/>
@@ -229,7 +229,7 @@
                                     <constraints>
                                         <constraint firstItem="I5N-Hs-U4O" firstAttribute="centerY" secondItem="hSU-7h-Shl" secondAttribute="centerY" id="XZs-Wm-33d"/>
                                         <constraint firstAttribute="trailing" secondItem="I5N-Hs-U4O" secondAttribute="trailing" constant="10" id="cB5-nQ-HrK"/>
-                                        <constraint firstItem="I5N-Hs-U4O" firstAttribute="leading" secondItem="hSU-7h-Shl" secondAttribute="leading" constant="10" id="jEo-TZ-HZR"/>
+                                        <constraint firstItem="I5N-Hs-U4O" firstAttribute="leading" secondItem="hSU-7h-Shl" secondAttribute="leading" constant="15" id="jEo-TZ-HZR"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -244,7 +244,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r9P-kA-pfW">
-                                            <rect key="frame" x="10" y="10" width="355" height="23.5"/>
+                                            <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES" textContentType="password"/>
@@ -254,7 +254,7 @@
                                         <constraint firstItem="r9P-kA-pfW" firstAttribute="top" secondItem="Z2T-1e-G0o" secondAttribute="top" constant="10" id="7Cf-as-v9c"/>
                                         <constraint firstAttribute="trailing" secondItem="r9P-kA-pfW" secondAttribute="trailing" constant="10" id="AXN-Fn-a7L"/>
                                         <constraint firstAttribute="bottom" secondItem="r9P-kA-pfW" secondAttribute="bottom" constant="10" id="Cru-gz-4dT"/>
-                                        <constraint firstItem="r9P-kA-pfW" firstAttribute="leading" secondItem="Z2T-1e-G0o" secondAttribute="leading" constant="10" id="Mj5-K5-dj3"/>
+                                        <constraint firstItem="r9P-kA-pfW" firstAttribute="leading" secondItem="Z2T-1e-G0o" secondAttribute="leading" constant="15" id="Mj5-K5-dj3"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -286,14 +286,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jCR-0Z-oAh">
-                                            <rect key="frame" x="10" y="10" width="355" height="23"/>
+                                            <rect key="frame" x="15" y="10" width="350" height="23"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" textContentType="given-name"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="jCR-0Z-oAh" firstAttribute="leading" secondItem="dX6-an-sqK" secondAttribute="leading" constant="10" id="LQA-pp-EYB"/>
+                                        <constraint firstItem="jCR-0Z-oAh" firstAttribute="leading" secondItem="dX6-an-sqK" secondAttribute="leading" constant="15" id="LQA-pp-EYB"/>
                                         <constraint firstAttribute="trailing" secondItem="jCR-0Z-oAh" secondAttribute="trailing" constant="10" id="kmw-0G-aAS"/>
                                         <constraint firstAttribute="bottom" secondItem="jCR-0Z-oAh" secondAttribute="bottom" constant="10" id="zF9-q0-f4w"/>
                                         <constraint firstItem="jCR-0Z-oAh" firstAttribute="top" secondItem="dX6-an-sqK" secondAttribute="top" constant="10" id="zPF-do-Brt"/>
@@ -311,14 +311,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6Y-iD-6oy">
-                                            <rect key="frame" x="10" y="10" width="355" height="23.5"/>
+                                            <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" textContentType="family-name"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="v6Y-iD-6oy" firstAttribute="leading" secondItem="suU-dW-KVJ" secondAttribute="leading" constant="10" id="SnC-v3-hWX"/>
+                                        <constraint firstItem="v6Y-iD-6oy" firstAttribute="leading" secondItem="suU-dW-KVJ" secondAttribute="leading" constant="15" id="SnC-v3-hWX"/>
                                         <constraint firstItem="v6Y-iD-6oy" firstAttribute="top" secondItem="suU-dW-KVJ" secondAttribute="top" constant="10" id="UqM-dx-Zlm"/>
                                         <constraint firstAttribute="bottom" secondItem="v6Y-iD-6oy" secondAttribute="bottom" constant="10" id="WqA-eV-4y5"/>
                                         <constraint firstAttribute="trailing" secondItem="v6Y-iD-6oy" secondAttribute="trailing" constant="10" id="tIr-n6-7Qm"/>
@@ -351,10 +351,19 @@
                             <outlet property="delegate" destination="a8b-O5-Icn" id="kPr-m9-V0r"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Edit Profile" id="DXs-I6-NA9">
+                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="Kaf-7f-OaL">
+                            <connections>
+                                <action selector="onConfirmAction:" destination="a8b-O5-Icn" id="PxA-Ie-60f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGC-Iq-MpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-822" y="1307"/>
+            <point key="canvasLocation" x="-823.20000000000005" y="1306.5967016491754"/>
         </scene>
         <!--Contact Us-->
         <scene sceneID="UVv-pC-GRn">
