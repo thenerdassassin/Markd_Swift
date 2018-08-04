@@ -14,10 +14,12 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
     var customerData: TempCustomerData?
     var state: String? {
         didSet {
-            print("Set state to \(state!)")
             tableView.reloadData()
         }
     }
+    var bedrooms: String?
+    var bathrooms: String?
+    var squareFootage: String?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +45,7 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4 //TODO: change to 7
+        return 7
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -59,7 +61,6 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "stateAddressCell", for: indexPath) as! EditStateAddressCell
             if state == nil && customerData?.getState() != nil {
-                print("Resetting state")
                 state = customerData?.getState()
             }
             cell.state = state
@@ -69,8 +70,40 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
             cell.zipcode = customerData?.getZipcode()
             cell.viewController = self
             return cell
+        } else if indexPath.row == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "bedroomNumberCell", for: indexPath) as! EditBedroomNumberCell
+            cell.viewController = self
+            if bedrooms == nil && !StringUtilities.isNilOrEmpty(customerData?.getBedrooms()) {
+                bedrooms = customerData?.getBedrooms()
+            }
+            if let bedrooms = bedrooms, let bedroomValue = Double(bedrooms) {
+                cell.bedroomStepper.value = bedroomValue
+                cell.onBedroomValueChanged(cell.bedroomStepper)
+            }
+            return cell
+        } else if indexPath.row == 5 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "bathroomNumberCell", for: indexPath) as! EditBathroomNumberCell
+            cell.viewController = self
+            if bathrooms == nil && !StringUtilities.isNilOrEmpty(customerData?.getBathrooms()) {
+                bathrooms = customerData?.getBathrooms()
+            }
+            if let bathrooms = bathrooms, let bathroomValue = Double(bathrooms) {
+                cell.bathroomStepper.value = bathroomValue
+                cell.onBathroomValueChanged(cell.bathroomStepper)
+            }
+            return cell
+        } else if indexPath.row == 6 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "squareFootageCell", for: indexPath) as! EditSquareFootageCell
+            cell.viewController = self
+            if squareFootage == nil && !StringUtilities.isNilOrEmpty(customerData?.getSquareFootage()) {
+                squareFootage = customerData?.getSquareFootage()
+            }
+            if let squareFootage = squareFootage, let squareFootageValue = Double(squareFootage) {
+                cell.squareFootageStepper.value = squareFootageValue
+                cell.onSquareFootageValueChanged(cell.squareFootageStepper)
+            }
+            return cell
         }
-        //TODO add 2, 4, 5, 6
         return UITableViewCell()
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -150,11 +183,6 @@ class EditCityAddressCell: UITableViewCell, UITextFieldDelegate {
 class EditStateAddressCell: UITableViewCell {
     var state:String? {
         didSet {
-            if state != nil {
-                print("Table Cell setting state to \(state!)")
-            } else {
-                print("State is nil")
-            }
             StringUtilities.set(textOf: stateLabel, to: state)
         }
     }
@@ -185,11 +213,43 @@ class EditZipAddressCell: UITableViewCell, UITextFieldDelegate {
     }
 }
 class EditBedroomNumberCell: UITableViewCell {
+    var viewController: EditHomeViewController?
+    @IBOutlet weak var bedroomsLabel: UILabel!
+    @IBOutlet weak var bedroomStepper: UIStepper!
     
+    @IBAction func onBedroomValueChanged(_ sender: UIStepper) {
+        let bedrooms = sender.value
+        viewController!.bedrooms = "\(bedrooms)"
+        if bedrooms > 1 {
+            bedroomsLabel.text = "\(bedrooms) bedrooms"
+        } else {
+            bedroomsLabel.text = "\(bedrooms) bedroom"
+        }
+    }
 }
 class EditBathroomNumberCell: UITableViewCell {
+    var viewController: EditHomeViewController?
+    @IBOutlet weak var bathroomsLabel: UILabel!
+    @IBOutlet weak var bathroomStepper: UIStepper!
     
+    @IBAction func onBathroomValueChanged(_ sender: UIStepper) {
+        let bathrooms = sender.value
+        viewController!.bathrooms = "\(bathrooms)"
+        if bathrooms == 1 {
+            bathroomsLabel.text = "\(bathrooms) bathrooms"
+        } else {
+            bathroomsLabel.text = "\(bathrooms) bathroom"
+        }
+    }
 }
 class EditSquareFootageCell: UITableViewCell {
+    var viewController: EditHomeViewController?
+    @IBOutlet weak var squareFootageLabel: UILabel!
+    @IBOutlet weak var squareFootageStepper: UIStepper!
     
+    @IBAction func onSquareFootageValueChanged(_ sender: UIStepper) {
+        let squareFootage = Int(round(sender.value))
+        viewController!.squareFootage = "\(squareFootage)"
+        squareFootageLabel.text = "\(squareFootage) sq ft"
+    }
 }

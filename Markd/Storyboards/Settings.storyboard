@@ -268,7 +268,7 @@ The Markd Support Team</string>
         <!--Edit Home-->
         <scene sceneID="moW-eH-Rsc">
             <objects>
-                <tableViewController title="Edit Home" id="tH0-nI-46A" customClass="EditHomeViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Edit Home" hidesBottomBarWhenPushed="YES" id="tH0-nI-46A" customClass="EditHomeViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="krK-6Q-K34">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -375,29 +375,107 @@ The Markd Support Team</string>
                                     <outlet property="zipAddressTextField" destination="miO-0B-8wx" id="PbE-S2-ZN6"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bedroomNumberCell" id="Z6f-OI-jAh" customClass="EditStateAddressCell" customModule="Markd" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bedroomNumberCell" id="Z6f-OI-jAh" customClass="EditBedroomNumberCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="204" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z6f-OI-jAh" id="mOF-BY-7zH">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 bedroom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8t-qY-s13">
+                                            <rect key="frame" x="10" y="10" width="81" height="23.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="20" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8Ku-yj-YH3">
+                                            <rect key="frame" x="271" y="7" width="94" height="29"/>
+                                            <connections>
+                                                <action selector="onBedroomValueChanged:" destination="Z6f-OI-jAh" eventType="valueChanged" id="R4b-Hf-jPw"/>
+                                            </connections>
+                                        </stepper>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="T8t-qY-s13" secondAttribute="bottom" constant="10" id="Ket-pd-ahK"/>
+                                        <constraint firstItem="8Ku-yj-YH3" firstAttribute="centerY" secondItem="mOF-BY-7zH" secondAttribute="centerY" id="Mss-hQ-3hS"/>
+                                        <constraint firstItem="T8t-qY-s13" firstAttribute="top" secondItem="mOF-BY-7zH" secondAttribute="top" constant="10" id="bvg-Yj-t2I"/>
+                                        <constraint firstItem="8Ku-yj-YH3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T8t-qY-s13" secondAttribute="trailing" constant="10" id="fEi-Sx-jRa"/>
+                                        <constraint firstItem="T8t-qY-s13" firstAttribute="leading" secondItem="mOF-BY-7zH" secondAttribute="leading" constant="10" id="qE9-Aq-a8w"/>
+                                        <constraint firstAttribute="trailing" secondItem="8Ku-yj-YH3" secondAttribute="trailing" constant="10" id="zwF-oo-vp5"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bedroomStepper" destination="8Ku-yj-YH3" id="JbE-Ih-d3b"/>
+                                    <outlet property="bedroomsLabel" destination="T8t-qY-s13" id="gXc-uL-yAq"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bathroomNumberCell" id="aYD-bx-Urg" customClass="EditStateAddressCell" customModule="Markd" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bathroomNumberCell" id="aYD-bx-Urg" customClass="EditBathroomNumberCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="248" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aYD-bx-Urg" id="etC-9b-luN">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 bathroom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fid-Sy-XBg">
+                                            <rect key="frame" x="10" y="10" width="86.5" height="23.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="20" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BBb-2h-qq1">
+                                            <rect key="frame" x="271" y="7" width="94" height="29"/>
+                                            <connections>
+                                                <action selector="onBathroomValueChanged:" destination="aYD-bx-Urg" eventType="valueChanged" id="pMA-0e-pY3"/>
+                                            </connections>
+                                        </stepper>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Fid-Sy-XBg" firstAttribute="top" secondItem="etC-9b-luN" secondAttribute="top" constant="10" id="VBg-wf-ZgO"/>
+                                        <constraint firstAttribute="bottom" secondItem="Fid-Sy-XBg" secondAttribute="bottom" constant="10" id="b9e-hN-HmP"/>
+                                        <constraint firstAttribute="trailing" secondItem="BBb-2h-qq1" secondAttribute="trailing" constant="10" id="hgu-Ym-oCc"/>
+                                        <constraint firstItem="Fid-Sy-XBg" firstAttribute="leading" secondItem="etC-9b-luN" secondAttribute="leading" constant="10" id="mai-yO-faT"/>
+                                        <constraint firstItem="BBb-2h-qq1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fid-Sy-XBg" secondAttribute="trailing" constant="10" id="t02-IR-Dvi"/>
+                                        <constraint firstItem="BBb-2h-qq1" firstAttribute="centerY" secondItem="etC-9b-luN" secondAttribute="centerY" id="yiP-2k-4pK"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bathroomStepper" destination="BBb-2h-qq1" id="Fyl-LQ-p3I"/>
+                                    <outlet property="bathroomsLabel" destination="Fid-Sy-XBg" id="SM7-z4-Doc"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="squareFootageCell" id="3UD-Qz-uhx" customClass="EditStateAddressCell" customModule="Markd" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="squareFootageCell" id="3UD-Qz-uhx" customClass="EditSquareFootageCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="292" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3UD-Qz-uhx" id="8yI-xZ-AtV">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1250 sq ft" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nq-cK-rJq">
+                                            <rect key="frame" x="10" y="10" width="77" height="23.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1250" minimumValue="1250" maximumValue="40000" stepValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="qBX-w9-9HL">
+                                            <rect key="frame" x="271" y="7" width="94" height="29"/>
+                                            <connections>
+                                                <action selector="onSquareFootageValueChanged:" destination="3UD-Qz-uhx" eventType="valueChanged" id="jR6-UY-9JV"/>
+                                            </connections>
+                                        </stepper>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="qBX-w9-9HL" secondAttribute="trailing" constant="10" id="EPX-Ux-6xi"/>
+                                        <constraint firstItem="qBX-w9-9HL" firstAttribute="centerY" secondItem="8yI-xZ-AtV" secondAttribute="centerY" id="LQY-z1-BX3"/>
+                                        <constraint firstItem="9nq-cK-rJq" firstAttribute="top" secondItem="8yI-xZ-AtV" secondAttribute="top" constant="10" id="P7o-bf-QYf"/>
+                                        <constraint firstAttribute="bottom" secondItem="9nq-cK-rJq" secondAttribute="bottom" constant="10" id="cYe-O7-dJq"/>
+                                        <constraint firstItem="qBX-w9-9HL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9nq-cK-rJq" secondAttribute="trailing" constant="10" id="eFC-Vw-l2t"/>
+                                        <constraint firstItem="9nq-cK-rJq" firstAttribute="leading" secondItem="8yI-xZ-AtV" secondAttribute="leading" constant="10" id="yXY-9e-mT0"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="squareFootageLabel" destination="9nq-cK-rJq" id="xws-g6-hBi"/>
+                                    <outlet property="squareFootageStepper" destination="qBX-w9-9HL" id="pYQ-pJ-FbW"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
