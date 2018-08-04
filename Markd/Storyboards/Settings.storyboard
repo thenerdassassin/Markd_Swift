@@ -58,6 +58,7 @@
                         <segue destination="WIH-rE-VmC" kind="show" identifier="findContractorSegue" id="yFT-8f-z1K"/>
                         <segue destination="KEV-hY-sFc" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="wm6-sW-wMN"/>
                         <segue destination="oQO-7W-wVc" kind="show" identifier="helpSegue" id="Mcu-HQ-mzH"/>
+                        <segue destination="tH0-nI-46A" kind="show" identifier="editHomeSegue" id="p9L-uK-09q"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1WC-8y-g69" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -263,6 +264,188 @@ The Markd Support Team</string>
                 <exit id="V4B-ST-HIi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-87" y="1307"/>
+        </scene>
+        <!--Edit Home-->
+        <scene sceneID="moW-eH-Rsc">
+            <objects>
+                <tableViewController title="Edit Home" id="tH0-nI-46A" customClass="EditHomeViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="krK-6Q-K34">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="streetAddressCell" id="ELl-iu-ULl" customClass="EditStreetAddressCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ELl-iu-ULl" id="ODz-pR-SYW">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cXx-nj-MUe">
+                                            <rect key="frame" x="10" y="10" width="355" height="23.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="address-line1"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="cXx-nj-MUe" secondAttribute="bottom" constant="10" id="MdE-Qn-9H3"/>
+                                        <constraint firstAttribute="trailing" secondItem="cXx-nj-MUe" secondAttribute="trailing" constant="10" id="Nwz-C6-ZXm"/>
+                                        <constraint firstItem="cXx-nj-MUe" firstAttribute="leading" secondItem="ODz-pR-SYW" secondAttribute="leading" constant="10" id="Vtn-Oz-xQw"/>
+                                        <constraint firstItem="cXx-nj-MUe" firstAttribute="top" secondItem="ODz-pR-SYW" secondAttribute="top" constant="10" id="umH-uF-80Y"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="streetAddressTextField" destination="cXx-nj-MUe" id="8r4-B6-DMU"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cityAddressCell" id="lPr-5V-g6c" customClass="EditCityAddressCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lPr-5V-g6c" id="OlT-F1-31N">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="y8x-Pr-tS1">
+                                            <rect key="frame" x="10" y="10" width="355" height="23.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="address-level2"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="y8x-Pr-tS1" firstAttribute="leading" secondItem="OlT-F1-31N" secondAttribute="leading" constant="10" id="Ut2-yF-kFf"/>
+                                        <constraint firstAttribute="bottom" secondItem="y8x-Pr-tS1" secondAttribute="bottom" constant="10" id="XWH-Ct-Aa1"/>
+                                        <constraint firstItem="y8x-Pr-tS1" firstAttribute="top" secondItem="OlT-F1-31N" secondAttribute="top" constant="10" id="bql-vC-6af"/>
+                                        <constraint firstAttribute="trailing" secondItem="y8x-Pr-tS1" secondAttribute="trailing" constant="10" id="h0e-rS-hwO"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cityAddressTextField" destination="y8x-Pr-tS1" id="XgW-vf-vHk"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="stateAddressCell" id="KA6-GC-0ZZ" customClass="EditStateAddressCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KA6-GC-0ZZ" id="GJx-xQ-Otc">
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1c-Uw-IIi">
+                                            <rect key="frame" x="10" y="10" width="40.5" height="23.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="A1c-Uw-IIi" firstAttribute="leading" secondItem="GJx-xQ-Otc" secondAttribute="leading" constant="10" id="3mE-7A-znW"/>
+                                        <constraint firstItem="A1c-Uw-IIi" firstAttribute="height" secondItem="GJx-xQ-Otc" secondAttribute="height" constant="-20" id="SUf-IC-8tM"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="A1c-Uw-IIi" secondAttribute="trailing" constant="20" id="a2a-wC-9ze"/>
+                                        <constraint firstItem="A1c-Uw-IIi" firstAttribute="centerY" secondItem="GJx-xQ-Otc" secondAttribute="centerY" id="qAr-Y8-Rln"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="stateLabel" destination="A1c-Uw-IIi" id="W0Y-S6-cbp"/>
+                                    <segue destination="FUo-l5-Ogo" kind="show" identifier="selectStateSegue" id="6oV-Lx-gUd"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="zipAddressCell" id="9e9-SN-Jq5" customClass="EditZipAddressCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="160" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9e9-SN-Jq5" id="FES-oO-4MY">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="miO-0B-8wx" userLabel="Zip Text Field">
+                                            <rect key="frame" x="10" y="10" width="355" height="23.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="miO-0B-8wx" secondAttribute="bottom" constant="10" id="Rw2-sq-bGR"/>
+                                        <constraint firstAttribute="trailing" secondItem="miO-0B-8wx" secondAttribute="trailing" constant="10" id="hb3-zV-fwV"/>
+                                        <constraint firstItem="miO-0B-8wx" firstAttribute="leading" secondItem="FES-oO-4MY" secondAttribute="leading" constant="10" id="nsn-1S-WGW"/>
+                                        <constraint firstItem="miO-0B-8wx" firstAttribute="top" secondItem="FES-oO-4MY" secondAttribute="top" constant="10" id="qBj-Rs-Haq"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="zipAddressTextField" destination="miO-0B-8wx" id="PbE-S2-ZN6"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bedroomNumberCell" id="Z6f-OI-jAh" customClass="EditStateAddressCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="204" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z6f-OI-jAh" id="mOF-BY-7zH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bathroomNumberCell" id="aYD-bx-Urg" customClass="EditStateAddressCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="248" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aYD-bx-Urg" id="etC-9b-luN">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="squareFootageCell" id="3UD-Qz-uhx" customClass="EditStateAddressCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="292" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3UD-Qz-uhx" id="8yI-xZ-AtV">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tH0-nI-46A" id="aqE-lN-wZo"/>
+                            <outlet property="delegate" destination="tH0-nI-46A" id="1vV-s4-gpL"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fYT-xq-RBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="660" y="1307"/>
+        </scene>
+        <!--Select State-->
+        <scene sceneID="FMT-Uu-uiJ">
+            <objects>
+                <tableViewController title="Select State" id="FUo-l5-Ogo" customClass="SelectStateViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="O7i-b0-ZUh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="stateCell" textLabel="7MR-q1-685" style="IBUITableViewCellStyleDefault" id="Vrt-Gp-aaH">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vrt-Gp-aaH" id="Lo1-H8-8Rs">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7MR-q1-685">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FUo-l5-Ogo" id="uTx-D0-gqs"/>
+                            <outlet property="delegate" destination="FUo-l5-Ogo" id="J8p-Jl-OAR"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YkW-eJ-PJ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1434" y="1307"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Zcx-cI-KKN">
