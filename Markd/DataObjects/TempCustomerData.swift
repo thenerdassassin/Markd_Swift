@@ -326,6 +326,18 @@ public class TempCustomerData {
     }
     
     //Mark:- Settings
+    public func getTitle() -> String?{
+        return getCustomer()?.getNamePrefix()
+    }
+    public func getFirstName() -> String? {
+        return getCustomer()?.getFirstName()
+    }
+    public func getLastName() -> String? {
+        return getCustomer()?.getLastName()
+    }
+    public func getMaritalStatus() -> String? {
+        return getCustomer()?.getMaritalStatus()
+    }
     public func updateHome(to updatedHome: Home) {
         updateCustomer(to: getCustomer()?.setHome(updatedHome))
     }

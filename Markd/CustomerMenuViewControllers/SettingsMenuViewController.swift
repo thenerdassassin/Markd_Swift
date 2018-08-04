@@ -11,6 +11,7 @@ import UIKit
 class SettingsMenuViewController: UITableViewController {
     let options = [("Find Contractors", "Set your personal contractors.", "findContractorSegue"),
                     ("Edit Home", "Change address, bedrooms, square footage, etc.", "editHomeSegue"),
+                    ("Edit Profile", "Change email, name, password, etc.", "editProfileSegue"),
                     ("Contact Us.", "Ask for help or tell us what you would like added.", "helpSegue"),
                     ("Sign Out.", "Log out of this account.", nil)
                   ]
