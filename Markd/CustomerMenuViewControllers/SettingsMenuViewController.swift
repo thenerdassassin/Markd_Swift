@@ -9,6 +9,11 @@
 import UIKit
 
 class SettingsMenuViewController: UITableViewController {
+    let options = [("Find Contractors", "Set your personal contractors.", "findContractorSegue"),
+                    ("Edit Home", "Change address, bedrooms, square footage, etc.", ""),
+                    ("Contact Us.", "Ask for help or tell us what you would like added.", "helpSegue"),
+                    ("Sign Out.", "Log out of this account.", nil)
+                  ]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
@@ -26,37 +31,22 @@ class SettingsMenuViewController: UITableViewController {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var TODO_AddRows:AnyObject? //Edit Profile, Edit Home, Find Contractor, Reset Password
-        return 3
+        var TODO_AddRows:AnyObject? //Edit Profile, Reset Password
+        return 4
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
-            cell.textLabel?.text = "Find Contractors"
-            cell.detailTextLabel?.text = "Set your personal contractors."
-            return cell
-        } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
-            cell.textLabel?.text = "Contact Us"
-            cell.detailTextLabel?.text = "Ask for help or tell us what you would like added."
-            return cell
-        } else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
-            cell.textLabel?.text = "Sign Out"
-            cell.detailTextLabel?.text = "Log out of the current account."
-            return cell
-        }
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
+        cell.textLabel?.text = options[indexPath.row].0
+        cell.detailTextLabel?.text = options[indexPath.row].1
+        return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 0 {
-            performSegue(withIdentifier: "findContractorSegue", sender: self)
-        } else if indexPath.row == 1 {
-            performSegue(withIdentifier: "helpSegue", sender: self)
-        } else if indexPath.row == 2 {
+        guard let segue = options[indexPath.row].2 else {
             print("Signing out")
             FirebaseAuthentication.sharedInstance.signOut(self)
+            return
         }
+        performSegue(withIdentifier: segue, sender: self)
     }
 }
