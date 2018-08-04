@@ -18,6 +18,11 @@ public class Home:CustomStringConvertible {
         self.squareFootage = dictionary["squareFootage"] != nil ? dictionary["squareFootage"] as! Int: 0
         self.bathrooms = dictionary["bathrooms"] != nil ? dictionary["bathrooms"] as! Double: 0.0
     }
+    public init() {
+        self.bedrooms = 1.0
+        self.squareFootage = 1250
+        self.bathrooms = 1.0
+    }
     
     public func toDictionary() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()

@@ -17,6 +17,7 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
             tableView.reloadData()
         }
     }
+    var address = Address()
     var bedrooms: String?
     var bathrooms: String?
     var squareFootage: String?
@@ -31,6 +32,12 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
         }
+    }
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.endEditing(true)
+        updateHome()
+        updateAddress()
     }
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -51,23 +58,36 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "streetAddressCell", for: indexPath) as! EditStreetAddressCell
             cell.street = customerData?.getStreet()
+            if let street = customerData?.getStreet() {
+                address.setStreet(street)
+            }
             cell.viewController = self
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cityAddressCell", for: indexPath) as! EditCityAddressCell
             cell.city = customerData?.getCity()
+            if let city = customerData?.getCity() {
+                address.setCity(city)
+            }
             cell.viewController = self
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "stateAddressCell", for: indexPath) as! EditStateAddressCell
+            cell.viewController = self
             if state == nil && customerData?.getState() != nil {
                 state = customerData?.getState()
+            }
+            if let state = state {
+                address.setState(state)
             }
             cell.state = state
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "zipAddressCell", for: indexPath) as! EditZipAddressCell
             cell.zipcode = customerData?.getZipcode()
+            if let zipcode = customerData?.getZipcode() {
+                address.setZipCode(zipcode)
+            }
             cell.viewController = self
             return cell
         } else if indexPath.row == 4 {
@@ -110,10 +130,33 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    //Mark:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectStateSegue" {
             let destination = segue.destination as! SelectStateViewController
             destination.delegate = self
+        }
+    }
+    
+    //Mark:- Helper
+    private func updateHome() {
+        let updatedHome = Home()
+        if let bedrooms = bedrooms {
+            updatedHome.setBedrooms(Double(bedrooms)!)
+        }
+        if let bathrooms = bathrooms {
+            updatedHome.setBathrooms(Double(bathrooms)!)
+        }
+        if let squareFootage = squareFootage {
+            updatedHome.setSquareFootage(Int(squareFootage)!)
+        }
+        if let customerData = customerData {
+            customerData.updateHome(to: updatedHome)
+        }
+    }
+    private func updateAddress() {
+        if let customerData = customerData {
+            customerData.updateAddress(to: address)
         }
     }
     //Mark:- OnGetDataListener
@@ -149,11 +192,10 @@ class EditStreetAddressCell: UITableViewCell, UITextFieldDelegate {
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        //viewController!.hideEditCells()
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        //viewController!.change("Manufacturer", at: self.tag, to: textField.text!)
+        viewController!.address.setStreet(textField.text!)
     }
 }
 class EditCityAddressCell: UITableViewCell, UITextFieldDelegate {
@@ -173,17 +215,20 @@ class EditCityAddressCell: UITableViewCell, UITextFieldDelegate {
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        //viewController!.hideEditCells()
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        //viewController!.change("Manufacturer", at: self.tag, to: textField.text!)
+        viewController!.address.setCity(textField.text!)
     }
 }
 class EditStateAddressCell: UITableViewCell {
+    var viewController: EditHomeViewController?
     var state:String? {
         didSet {
             StringUtilities.set(textOf: stateLabel, to: state)
+            if let state = state {
+                viewController!.address.setState(state)
+            }
         }
     }
     @IBOutlet weak var stateLabel: UILabel!
@@ -205,11 +250,10 @@ class EditZipAddressCell: UITableViewCell, UITextFieldDelegate {
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        //viewController!.hideEditCells()
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        //viewController!.change("Manufacturer", at: self.tag, to: textField.text!)
+        viewController!.address.setZipCode(textField.text!)
     }
 }
 class EditBedroomNumberCell: UITableViewCell {
@@ -235,7 +279,7 @@ class EditBathroomNumberCell: UITableViewCell {
     @IBAction func onBathroomValueChanged(_ sender: UIStepper) {
         let bathrooms = sender.value
         viewController!.bathrooms = "\(bathrooms)"
-        if bathrooms == 1 {
+        if bathrooms > 1 {
             bathroomsLabel.text = "\(bathrooms) bathrooms"
         } else {
             bathroomsLabel.text = "\(bathrooms) bathroom"

@@ -325,6 +325,15 @@ public class TempCustomerData {
         updateCustomer(to: getCustomer()?.deleteService(number, of:type))
     }
     
+    //Mark:- Settings
+    public func updateHome(to updatedHome: Home) {
+        updateCustomer(to: getCustomer()?.setHome(updatedHome))
+    }
+    public func updateAddress(to updateAddress: Address) {
+        updateCustomer(to: getCustomer()?.setAddress(updateAddress))
+    }
+    
+    
     public func setAppliance(to newAppliance: Appliance) {
         if let hotWater = newAppliance as? HotWater {
             self.updateHotWater(to: hotWater)
