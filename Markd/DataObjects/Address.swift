@@ -20,7 +20,6 @@ public class Address:CustomStringConvertible {
         self.state = dictionary["state"] != nil ? dictionary["state"] as! String: ""
         self.zipCode = dictionary["zipCode"] != nil ? dictionary["zipCode"] as! String: ""
     }
-    
     public func toDictionary() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
         dictionary["street"] = self.street as AnyObject
@@ -28,6 +27,12 @@ public class Address:CustomStringConvertible {
         dictionary["state"] = self.state as AnyObject
         dictionary["zipCode"] = self.zipCode as AnyObject
         return dictionary
+    }
+    public init() {
+        self.street = ""
+        self.city = ""
+        self.state = ""
+        self.zipCode = ""
     }
     
     func getStreet() -> String {

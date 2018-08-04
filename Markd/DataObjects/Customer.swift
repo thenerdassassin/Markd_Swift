@@ -171,14 +171,16 @@ public class Customer:CustomStringConvertible {
     func getHome() -> Home? {
         return home;
     }
-    func setHome(_ home: Home?) {
+    func setHome(_ home: Home?) -> Customer {
         self.home = home;
+        return self
     }
     func getAddress() -> Address? {
         return address;
     }
-    func setAddress(_ address: Address?) {
+    func setAddress(_ address: Address?) -> Customer{
         self.address = address;
+        return self
     }
     func getArchitectReference() -> String {
         return architectReference;

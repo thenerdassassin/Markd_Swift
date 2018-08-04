@@ -72,6 +72,9 @@
 		FFF27C92204203E500A9392E /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C91204203E500A9392E /* Address.swift */; };
 		FFF27C94204619A700A9392E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C93204619A700A9392E /* Home.swift */; };
 		FFF27C96204CB8B500A9392E /* PlumbingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C95204CB8B500A9392E /* PlumbingViewController.swift */; };
+		FFF351AD2115ED0800234D99 /* EditHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF351AC2115ED0800234D99 /* EditHomeViewController.swift */; };
+		FFF351AF2115FD0C00234D99 /* StatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF351AE2115FD0C00234D99 /* StatePickerView.swift */; };
+		FFF351B1211600D100234D99 /* SelectStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF351B0211600D100234D99 /* SelectStateViewController.swift */; };
 		FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */; };
 		FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF45D84203CE77200EC732B /* ToastUtilities.swift */; };
 		FFFD3F15205B25A9005B7325 /* AlertControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFD3F14205B25A9005B7325 /* AlertControllerUtilities.swift */; };
@@ -148,6 +151,9 @@
 		FFF27C91204203E500A9392E /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		FFF27C93204619A700A9392E /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		FFF27C95204CB8B500A9392E /* PlumbingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlumbingViewController.swift; sourceTree = "<group>"; };
+		FFF351AC2115ED0800234D99 /* EditHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHomeViewController.swift; sourceTree = "<group>"; };
+		FFF351AE2115FD0C00234D99 /* StatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatePickerView.swift; sourceTree = "<group>"; };
+		FFF351B0211600D100234D99 /* SelectStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStateViewController.swift; sourceTree = "<group>"; };
 		FFF45D82203CE58B00EC732B /* KeyboardUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUtilities.swift; sourceTree = "<group>"; };
 		FFF45D84203CE77200EC732B /* ToastUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastUtilities.swift; sourceTree = "<group>"; };
 		FFFD3F14205B25A9005B7325 /* AlertControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerUtilities.swift; sourceTree = "<group>"; };
@@ -233,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				FF13E48720E4550700B5100B /* ManufacturerPickerView.swift */,
+				FFF351AE2115FD0C00234D99 /* StatePickerView.swift */,
 			);
 			path = PickerViewControllers;
 			sourceTree = "<group>";
@@ -251,11 +258,11 @@
 			children = (
 				FFF27C892041D3B500A9392E /* MainViewController.swift */,
 				FFF27C95204CB8B500A9392E /* PlumbingViewController.swift */,
-				FF82F315205439BA00E33304 /* HelpViewController.swift */,
 				FFB565892079274400F6E8F1 /* HvacViewController.swift */,
 				FF6BF1E82093DF64001D55EF /* ServiceHistoryViewController.swift */,
 				FF5D7A6820AF79CA008A05FC /* PaintingSurfacesViewController.swift */,
 				FF5D7A6A20AF822C008A05FC /* PaintingViewController.swift */,
+				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
 				FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */,
 				FF63004120C74E05006C0208 /* ElectricalPanelsViewController.swift */,
 				FF63004320C74E22006C0208 /* ElectricalViewController.swift */,
@@ -272,8 +279,10 @@
 				FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */,
 				FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */,
 				FF13E48920E855CB00B5100B /* EditBreakerViewController.swift */,
-				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
+				FF82F315205439BA00E33304 /* HelpViewController.swift */,
 				FF1C35442102A9AD0062CBA2 /* FindContractorViewController.swift */,
+				FFF351AC2115ED0800234D99 /* EditHomeViewController.swift */,
+				FFF351B0211600D100234D99 /* SelectStateViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
 			sourceTree = "<group>";
@@ -486,6 +495,7 @@
 			files = (
 				FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */,
 				FFDE253620588868009D1790 /* SendEmail.swift in Sources */,
+				FFF351AF2115FD0C00234D99 /* StatePickerView.swift in Sources */,
 				FF0CA3B520C321F800630B16 /* NotificationsViewController.swift in Sources */,
 				FF13E48620D9D59F00B5100B /* PanelAmerage.swift in Sources */,
 				FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */,
@@ -504,6 +514,7 @@
 				FF0CA3B720C326D500630B16 /* CustomerNotificationMessage.swift in Sources */,
 				FF9A5B3A2086C2D3007E9669 /* Contractor.swift in Sources */,
 				FFF27C94204619A700A9392E /* Home.swift in Sources */,
+				FFF351AD2115ED0800234D99 /* EditHomeViewController.swift in Sources */,
 				FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */,
 				FFB56592207AA8F500F6E8F1 /* Appliance.swift in Sources */,
 				FF1C35452102A9AD0062CBA2 /* FindContractorViewController.swift in Sources */,
@@ -536,6 +547,7 @@
 				FF6BF1EB2094EC67001D55EF /* ContractorService.swift in Sources */,
 				FF1C354721039FA50062CBA2 /* ZipCodeUtitilities.swift in Sources */,
 				4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */,
+				FFF351B1211600D100234D99 /* SelectStateViewController.swift in Sources */,
 				FF5D7A6B20AF822C008A05FC /* PaintingViewController.swift in Sources */,
 				FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */,
 				FF6BF1F320950CE1001D55EF /* ContractorServiceTableViewController.swift in Sources */,
