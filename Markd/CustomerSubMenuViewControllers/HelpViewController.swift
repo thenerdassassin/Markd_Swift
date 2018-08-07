@@ -21,7 +21,6 @@ public class HelpViewController: UIViewController, OnGetDataListener {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
         ViewControllerUtilities.insertMarkdLogo(into: self)
-        var TODO_look_into_background_fill_🤪: AnyObject?
         configureView()
     }
     
@@ -84,7 +83,7 @@ public class HelpViewController: UIViewController, OnGetDataListener {
     }
     private func emailSuccessAlertHandler(action:UIAlertAction) {
         print("emailSuccessAlertHandler")
-        self.tabBarController?.selectedIndex = 0
+        navigationController?.popViewController(animated: true)
     }
     private func sendError(_ error:Error) {
         OperationQueue.main.addOperation {

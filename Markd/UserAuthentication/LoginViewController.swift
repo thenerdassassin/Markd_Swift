@@ -65,7 +65,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     }
     @IBAction func onForgotPassword(_ sender: Any) {
         //From: https://stackoverflow.com/questions/26567413/get-input-value-from-textfield-in-ios-alert-in-swift
-        let alert = UIAlertController(title: "Send Password Recovery Email", message: "Enter your email address and we will send an email to reset your password.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Recovery Email", message: "Enter your email address and we will send an email to reset your password.", preferredStyle: .alert)
         
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
@@ -79,6 +79,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
                 self.authenticator.forgotPassword(self, withEmail: email)
             }
         }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
@@ -101,9 +102,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         }
         return true;
     }
-    @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue) {}
     
     //MARK:- Helper Methods
     func signIn() {

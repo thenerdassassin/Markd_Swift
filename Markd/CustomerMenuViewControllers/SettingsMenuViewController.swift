@@ -13,6 +13,7 @@ class SettingsMenuViewController: UITableViewController {
                     ("Edit Home", "Change address, bedrooms, square footage, etc.", "editHomeSegue"),
                     ("Edit Profile", "Change email or name on account.", "editProfileSegue"),
                     ("Contact Us.", "Ask for help or tell us what you would like added.", "helpSegue"),
+                    ("Reset Password", "An email will be sent to change password.", nil),
                     ("Sign Out.", "Log out of this account.", nil)
                   ]
     override func viewDidLoad() {
@@ -32,8 +33,7 @@ class SettingsMenuViewController: UITableViewController {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var TODO_AddRows:AnyObject? // Reset Password
-        return 5
+        return options.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
@@ -44,9 +44,15 @@ class SettingsMenuViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let segue = options[indexPath.row].2 else {
-            print("Signing out")
-            FirebaseAuthentication.sharedInstance.signOut(self)
-            return
+            if indexPath.row == options.count-1 {
+                print("Signing out")
+                FirebaseAuthentication.sharedInstance.signOut(self)
+                return
+            } else {
+                print("Send password reset email")
+                FirebaseAuthentication.sharedInstance.forgotPassword(self, withEmail: FirebaseAuthentication.sharedInstance.getCurrentUser()!.email!)
+                return
+            }
         }
         performSegue(withIdentifier: segue, sender: self)
     }
