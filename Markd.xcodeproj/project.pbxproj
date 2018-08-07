@@ -259,15 +259,15 @@
 			isa = PBXGroup;
 			children = (
 				FFF27C892041D3B500A9392E /* MainViewController.swift */,
+				FF6BF1E82093DF64001D55EF /* ServiceHistoryViewController.swift */,
 				FFF27C95204CB8B500A9392E /* PlumbingViewController.swift */,
 				FFB565892079274400F6E8F1 /* HvacViewController.swift */,
-				FF6BF1E82093DF64001D55EF /* ServiceHistoryViewController.swift */,
-				FF5D7A6820AF79CA008A05FC /* PaintingSurfacesViewController.swift */,
-				FF5D7A6A20AF822C008A05FC /* PaintingViewController.swift */,
-				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
-				FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */,
-				FF63004120C74E05006C0208 /* ElectricalPanelsViewController.swift */,
 				FF63004320C74E22006C0208 /* ElectricalViewController.swift */,
+				FF63004120C74E05006C0208 /* ElectricalPanelsViewController.swift */,
+				FF5D7A6A20AF822C008A05FC /* PaintingViewController.swift */,
+				FF5D7A6820AF79CA008A05FC /* PaintingSurfacesViewController.swift */,
+				FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */,
+				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
 			);
 			path = CustomerMenuViewControllers;
 			sourceTree = "<group>";

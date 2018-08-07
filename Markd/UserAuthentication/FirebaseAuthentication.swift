@@ -77,10 +77,14 @@ public class FirebaseAuthentication {
         return EmailAuthProvider.credential(withEmail: email, password: password)
     }
     
-    func forgotPassword(_ errorHandler:LoginHandler, withEmail email:String) {
+    func forgotPassword(_ viewController: UIViewController, withEmail email:String) {
         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
             if let error = error {
-                errorHandler.loginFailureHandler(error)
+                self.errorHandler(viewController, forError: error)
+            } else {
+                AlertControllerUtilities.showAlert(withTitle: "Email Sent 😎", andMessage: "\(email) will receive a reset password email.",
+                    withOptions: [UIAlertAction(title: "Ok", style: .default, handler: nil)],
+                    in: viewController)
             }
         }
     }
