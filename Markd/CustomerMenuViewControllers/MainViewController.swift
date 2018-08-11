@@ -25,7 +25,6 @@ public class MainViewController: UIViewController, OnGetDataListener {
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("MainViewController:- viewWillAppear")
         if authentication.checkLogin(self) {
             customerData = TempCustomerData(self)
             var TODO_SetUpActionBar_🤪: AnyObject?
@@ -34,6 +33,12 @@ public class MainViewController: UIViewController, OnGetDataListener {
             var TODO_LoadImage_🤪: AnyObject?
             var TODO_RealtorBuilderAndArchitect_🤪: AnyObject?
             var TODO_ContactRealtorEtcAlertAction_🤪: AnyObject?
+        }
+    }
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !authentication.checkLogin(self) {
+            performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
         }
         configureView()
     }
@@ -62,13 +67,17 @@ public class MainViewController: UIViewController, OnGetDataListener {
                 streetAddressLabel.text = "\(streetAddress)"
                 homeInformationLabel.text = "\(roomInformation) \n\(squareFootage)"
             } else {
-                var TODO_GoToHomeEditViewController_🤪: AnyObject?
+                AlertControllerUtilities.showAlert(withTitle: "Welcome to Markd 😃", andMessage: "First, let's get some info about your home.", withOptions: [UIAlertAction(title: "Ok", style: .default, handler: addHomeInformation)], in: self)
                 streetAddressLabel.text = "Loading...."
                 homeInformationLabel.text = "-- bathrooms -- bedrooms \n -- square feet"
             }
         }
     }
     
+    private func addHomeInformation(_ action:UIAlertAction) {
+        print("Go to EditHomeVC")
+        performSegue(withIdentifier: "addHomeInformationSegue", sender: self)
+    }
     //Mark:- OnGetDataListener Implementation
     public func onStart() {
         print("Getting Customer Data")
