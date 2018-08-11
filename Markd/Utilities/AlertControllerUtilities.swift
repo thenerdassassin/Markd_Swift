@@ -16,7 +16,7 @@ public class AlertControllerUtilities {
         viewController.present(alert, animated: true)
     }
     
-    public static func showAlert(withTitle title: String, andMessage message: String, withOptions actions:[UIAlertAction], in viewController: UIViewController) {
+    public static func showAlert(withTitle title: String, andMessage message: String?, withOptions actions:[UIAlertAction], in viewController: UIViewController) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         for action in actions {
             alert.addAction(action)

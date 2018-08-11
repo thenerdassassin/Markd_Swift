@@ -23,8 +23,14 @@ class PaintingViewController:UIViewController, OnGetDataListener {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if(authentication.checkLogin(self)) {
+        if authentication.checkLogin(self) {
             customerData = TempCustomerData(self)
+        }
+    }
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !authentication.checkLogin(self) {
+            performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
         }
     }
     override func viewDidDisappear(_ animated: Bool) {

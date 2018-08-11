@@ -28,6 +28,12 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
             customerData = TempCustomerData(self)
         }
     }
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !authentication.checkLogin(self) {
+            performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
+        }
+    }
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()

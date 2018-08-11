@@ -26,7 +26,7 @@ public class MainViewController: UIViewController, OnGetDataListener {
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("MainViewController:- viewWillAppear")
-        if(authentication.checkLogin(self)) {
+        if authentication.checkLogin(self) {
             customerData = TempCustomerData(self)
             var TODO_SetUpActionBar_🤪: AnyObject?
             var TODO_CameraHomeImageCapture_🤪: AnyObject?
@@ -36,6 +36,12 @@ public class MainViewController: UIViewController, OnGetDataListener {
             var TODO_ContactRealtorEtcAlertAction_🤪: AnyObject?
         }
         configureView()
+    }
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !authentication.checkLogin(self) {
+            performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
+        }
     }
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

@@ -18,7 +18,6 @@ class ContractorServiceTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: nil)
@@ -26,7 +25,6 @@ class ContractorServiceTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         self.tableView.reloadData()
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)

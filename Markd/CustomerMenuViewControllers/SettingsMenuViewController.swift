@@ -12,9 +12,9 @@ class SettingsMenuViewController: UITableViewController {
     let options = [("Find Contractors", "Set your personal contractors.", "findContractorSegue"),
                     ("Edit Home", "Change address, bedrooms, square footage, etc.", "editHomeSegue"),
                     ("Edit Profile", "Change email or name on account.", "editProfileSegue"),
-                    ("Contact Us.", "Ask for help or tell us what you would like added.", "helpSegue"),
+                    ("Contact Us", "Ask for help or tell us what you would like added.", "helpSegue"),
                     ("Reset Password", "An email will be sent to change password.", nil),
-                    ("Sign Out.", "Log out of this account.", nil)
+                    ("Sign Out", "Log out of this account.", nil)
                   ]
     override func viewDidLoad() {
         super.viewDidLoad()

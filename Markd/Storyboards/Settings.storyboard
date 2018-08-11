@@ -206,7 +206,7 @@
         <!--Edit Profile-->
         <scene sceneID="oqM-Ga-uoW">
             <objects>
-                <tableViewController title="Edit Profile" hidesBottomBarWhenPushed="YES" id="a8b-O5-Icn" customClass="EditProfileViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditProfileViewController" title="Edit Profile" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a8b-O5-Icn" customClass="EditProfileViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Qse-Uq-MnC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -360,8 +360,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="wKC-Qk-3NQ" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="THT-XC-Dqd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGC-Iq-MpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wKC-Qk-3NQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-823.20000000000005" y="1306.5967016491754"/>
         </scene>

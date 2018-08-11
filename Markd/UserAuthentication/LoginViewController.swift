@@ -18,19 +18,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     @IBOutlet weak var forgotPassword: UIButton!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
         configureView()
     }
     override func viewWillAppear(_ animated: Bool) {
-        if authenticator.checkLogin(self) {
-            print("User is Logged In")
-            performSegue(withIdentifier: "Login", sender: self)
-        } else {
-            print("Not Logged In")
-        }
+        super.viewWillAppear(animated)
         if let email = email, let password = password {
             email.text = ""
             password.text = ""
+        }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if authenticator.checkLogin(self) {
+            print("User is Logged In")
+            performSegue(withIdentifier: "Login", sender: self)
         }
     }
     
@@ -59,10 +61,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     @IBAction func onLogin(_ sender: UIButton) {
         signIn()
     }
-    
-    @IBAction func onCreateAccount(_ sender:UIButton) {
-        displayErrorMessage()
-    }
     @IBAction func onForgotPassword(_ sender: Any) {
         //From: https://stackoverflow.com/questions/26567413/get-input-value-from-textfield-in-ios-alert-in-swift
         let alert = UIAlertController(title: "Recovery Email", message: "Enter your email address and we will send an email to reset your password.", preferredStyle: .alert)
@@ -85,6 +83,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         self.present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func onCreateAccount(_ sender: UIButton) {
+        AlertControllerUtilities.showActionSheet(
+            withTitle: "Account Type",
+            andMessage: "Are you a home owner or contractor?",
+            withOptions: [
+                UIAlertAction(title: "Home Owner", style: .default, handler: {_ in self.performSegue(withIdentifier: "createCustomerSegue", sender: sender)}),
+                UIAlertAction(title: "Contractor", style: .default, handler: {_ in self.performSegue(withIdentifier: "createContractorSegue", sender: sender)}),
+                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            ], in: self)
+    }
     //MARK:- Login Handlers
     func loginSuccessHandler(_ user: User) {
         self.performSegue(withIdentifier: "Login", sender: self)
@@ -96,11 +104,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     }
     
     //MARK:- Segue Methods
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if(identifier == "Login") {
-            //TODO: send userId with segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "createCustomerSegue" {
+            
         }
-        return true;
     }
     @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue) {}
     
@@ -115,7 +122,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     }
     
     private func displayErrorMessage() {
-        let alert = UIAlertController(title: "Something went wrong", message: "Something went wrong. Please try again.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Something went wrong", message: "Please try again.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
