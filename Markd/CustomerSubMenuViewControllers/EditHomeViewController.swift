@@ -32,6 +32,7 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
         if(authentication.checkLogin(self)) {
             customerData = TempCustomerData(self)
         }
+        navigationItem.hidesBackButton = true
     }
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -42,8 +43,15 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
-        updateHome()
-        updateAddress()
+        if let _ = self.navigationController?.viewControllers[0] as? MainViewController {
+            if isValidInput() {
+                updateHome()
+                updateAddress()
+            }
+        } else {
+            updateHome()
+            updateAddress()
+        }
     }
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -63,17 +71,27 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "streetAddressCell", for: indexPath) as! EditStreetAddressCell
-            cell.street = customerData?.getStreet()
-            if let street = customerData?.getStreet() {
-                address.setStreet(street)
+            if !StringUtilities.isNilOrEmpty(address.getStreet()) {
+                cell.street = address.getStreet()
+            } else {
+                cell.street = customerData?.getStreet()
+                if let street = customerData?.getStreet() {
+                    address.setStreet(street)
+                    navigationItem.hidesBackButton = !isValidInput()
+                }
             }
             cell.viewController = self
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cityAddressCell", for: indexPath) as! EditCityAddressCell
-            cell.city = customerData?.getCity()
-            if let city = customerData?.getCity() {
-                address.setCity(city)
+            if !StringUtilities.isNilOrEmpty(address.getCity()) {
+                cell.city = address.getCity()
+            } else {
+                cell.city = customerData?.getCity()
+                if let city = customerData?.getCity() {
+                    address.setCity(city)
+                    navigationItem.hidesBackButton = !isValidInput()
+                }
             }
             cell.viewController = self
             return cell
@@ -85,14 +103,20 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
             }
             if let state = state {
                 address.setState(state)
+                navigationItem.hidesBackButton = !isValidInput()
             }
             cell.state = state
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "zipAddressCell", for: indexPath) as! EditZipAddressCell
-            cell.zipcode = customerData?.getZipcode()
-            if let zipcode = customerData?.getZipcode() {
-                address.setZipCode(zipcode)
+            if !StringUtilities.isNilOrEmpty(address.getZipCode()) {
+                cell.zipcode = address.getZipCode()
+            } else {
+                cell.zipcode = customerData?.getZipcode()
+                if let zipcode = customerData?.getZipcode() {
+                    address.setZipCode(zipcode)
+                    navigationItem.hidesBackButton = !isValidInput()
+                }
             }
             cell.viewController = self
             return cell
@@ -137,6 +161,9 @@ class EditHomeViewController: UITableViewController, OnGetDataListener, StatePic
     }
     
     //Mark:- Navigation
+    func isValidInput() -> Bool {
+        return !StringUtilities.isNilOrEmpty(address.getCity()) && !StringUtilities.isNilOrEmpty(address.getStreet()) && !StringUtilities.isNilOrEmpty(address.getState()) && !StringUtilities.isNilOrEmpty(address.getZipCode()) && address.getZipCode().count == 5
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectStateSegue" {
             let destination = segue.destination as! SelectStateViewController
@@ -202,6 +229,7 @@ class EditStreetAddressCell: UITableViewCell, UITextFieldDelegate {
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
         viewController!.address.setStreet(textField.text!)
+        viewController!.navigationItem.hidesBackButton = !viewController!.isValidInput()
     }
 }
 class EditCityAddressCell: UITableViewCell, UITextFieldDelegate {
@@ -225,6 +253,7 @@ class EditCityAddressCell: UITableViewCell, UITextFieldDelegate {
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
         viewController!.address.setCity(textField.text!)
+        viewController!.navigationItem.hidesBackButton = !viewController!.isValidInput()
     }
 }
 class EditStateAddressCell: UITableViewCell {
@@ -234,6 +263,7 @@ class EditStateAddressCell: UITableViewCell {
             StringUtilities.set(textOf: stateLabel, to: state)
             if let state = state {
                 viewController!.address.setState(state)
+                viewController!.navigationItem.hidesBackButton = !viewController!.isValidInput()
             }
         }
     }
@@ -260,6 +290,7 @@ class EditZipAddressCell: UITableViewCell, UITextFieldDelegate {
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
         viewController!.address.setZipCode(textField.text!)
+        viewController!.navigationItem.hidesBackButton = !viewController!.isValidInput()
     }
 }
 class EditBedroomNumberCell: UITableViewCell {
