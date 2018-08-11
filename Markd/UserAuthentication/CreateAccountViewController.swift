@@ -21,13 +21,19 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     var maritalStatus:String?
     var badField:Int? {
         willSet {
-            if let row = badField {
-                tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHighlighted = false
+            if let row = badField, let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) {
+                let backgroundView = UIView()
+                backgroundView.backgroundColor = UIColor.white
+                cell.selectedBackgroundView = backgroundView
+                cell.isHighlighted = false
             }
         }
         didSet {
-            if let row = badField {
-                tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHighlighted = true
+            if let row = badField, let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) {
+                let backgroundView = UIView()
+                backgroundView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2)
+                cell.selectedBackgroundView = backgroundView
+                cell.isHighlighted = true
             }
         }
     }
@@ -35,7 +41,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     override public func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView() //Removes seperators after list
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -60,25 +66,17 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             let cell = tableView.dequeueReusableCell(withIdentifier: "emailCell", for: indexPath) as! CreateEmailCell
             cell.viewController = self
             cell.email = email
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2)
-            cell.selectedBackgroundView = backgroundView
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "passwordCell", for: indexPath) as! CreatePasswordCell
             cell.viewController = self
             cell.password = password
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2)
-            cell.selectedBackgroundView = backgroundView
+            
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "passwordConfirmationCell", for: indexPath) as! PasswordConfirmationCell
             cell.viewController = self
             cell.password = confirmedPassword
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2)
-            cell.selectedBackgroundView = backgroundView
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
@@ -87,25 +85,16 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             } else {
                 cell.textLabel?.text = "Title"
             }
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2)
-            cell.selectedBackgroundView = backgroundView
             return cell
         } else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "firstNameCell", for: indexPath) as! CreateFirstNameCell
             cell.viewController = self
             cell.firstName = firstName
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2)
-            cell.selectedBackgroundView = backgroundView
             return cell
         } else if indexPath.row == 5 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "lastNameCell", for: indexPath) as! CreateLastNameCell
             cell.viewController = self
             cell.lastName = lastName
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2)
-            cell.selectedBackgroundView = backgroundView
             return cell
         } else if indexPath.row == 6 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "maritalStatusCell", for: indexPath)
@@ -114,17 +103,15 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             } else {
                 cell.textLabel?.text = "Marital Status"
             }
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2)
-            cell.selectedBackgroundView = backgroundView
             return cell
         }
         return UITableViewCell()
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        tableView.cellForRow(at: IndexPath(row: indexPath.row, section: 0))?.backgroundColor = UIColor.white
-        tableView.cellForRow(at: IndexPath(row: indexPath.row, section: 0))?.contentView.backgroundColor = UIColor.white
+        if indexPath.row == badField {
+            badField = nil
+        }
         if indexPath.row == 3 {
             AlertControllerUtilities.showActionSheet(withTitle: "Which title do you prefer?", andMessage: nil, withOptions: [
                 UIAlertAction(title: "Mr.", style: .default, handler: titleSelectionHandler),
@@ -158,7 +145,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             self.tableView.reloadData()
         }
     }
-    @IBAction func onNextAction(_ sender: UIBarButtonItem) {
+    @IBAction func onDoneAction(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
         guard isValidInput() else {
             return
@@ -206,6 +193,12 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     //Mark:- LoginHandler
     func loginSuccessHandler(_ user: User) {
         print("Created Account")
+        var data:Dictionary<String, AnyObject> = [:]
+        if let namePrefix = selectedTitle as? AnyObject, let firstName = firstName as? AnyObject, let lastName = lastName as? AnyObject, let maritalStatus = maritalStatus as? AnyObject {
+            data = ["namePrefix":namePrefix, "firstName":firstName, "lastName":lastName, "maritalStatus":maritalStatus]
+        }
+        let customer = Customer(data)
+        customerData = TempCustomerData(self, create: customer, at: user.uid)
     }
     
     func loginFailureHandler(_ error: Error) {
@@ -219,6 +212,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     
     func onSuccess() {
         print("CreateAccountViewController:- Got Customer")
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     func onFailure(_ error: Error) {

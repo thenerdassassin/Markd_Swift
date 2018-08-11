@@ -27,9 +27,15 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if(authentication.checkLogin(self)) {
+        if authentication.checkLogin(self) {
             print("Is Logged in at EditProfile")
             customerData = TempCustomerData(self)
+        }
+    }
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !authentication.checkLogin(self) {
+            performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
         }
     }
     override public func viewWillDisappear(_ animated: Bool) {

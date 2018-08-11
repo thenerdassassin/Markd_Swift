@@ -41,6 +41,14 @@ public class TempCustomerData {
             }
         }
     }
+    public init(_ getDataListener: OnGetDataListener?, create customer:Customer, at id: String) {
+        TempCustomerData.database.keepSynced(true)
+        self.customerId = id
+        self.listener = getDataListener
+        userReference = TempCustomerData.database.child(customerId!)
+        updateCustomer(to: customer)
+        handle = userReference!.observe(DataEventType.value, with: customerSuccessListener, withCancel: customerCancelListener)
+    }
     
     public func removeListeners() {
         if let userReference = userReference, let handle = handle {

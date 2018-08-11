@@ -18,19 +18,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     @IBOutlet weak var forgotPassword: UIButton!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
         configureView()
     }
     override func viewWillAppear(_ animated: Bool) {
-        if authenticator.checkLogin(self) {
-            print("User is Logged In")
-            performSegue(withIdentifier: "Login", sender: self)
-        } else {
-            print("Not Logged In")
-        }
+        super.viewWillAppear(animated)
         if let email = email, let password = password {
             email.text = ""
             password.text = ""
+        }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if authenticator.checkLogin(self) {
+            print("User is Logged In")
+            performSegue(withIdentifier: "Login", sender: self)
         }
     }
     
