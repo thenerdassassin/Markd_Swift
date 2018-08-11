@@ -435,7 +435,7 @@ The Markd Support Team</string>
         <!--Edit Home-->
         <scene sceneID="moW-eH-Rsc">
             <objects>
-                <tableViewController storyboardIdentifier="EditHomeViewController" title="Edit Home" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tH0-nI-46A" customClass="EditHomeViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Edit Home" hidesBottomBarWhenPushed="YES" id="tH0-nI-46A" customClass="EditHomeViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="krK-6Q-K34">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
