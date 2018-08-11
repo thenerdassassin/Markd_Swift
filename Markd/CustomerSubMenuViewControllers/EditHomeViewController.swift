@@ -299,6 +299,7 @@ class EditBedroomNumberCell: UITableViewCell {
     @IBOutlet weak var bedroomStepper: UIStepper!
     
     @IBAction func onBedroomValueChanged(_ sender: UIStepper) {
+        viewController?.view.endEditing(true)
         let bedrooms = sender.value
         viewController!.bedrooms = "\(bedrooms)"
         if bedrooms > 1 {
@@ -314,6 +315,7 @@ class EditBathroomNumberCell: UITableViewCell {
     @IBOutlet weak var bathroomStepper: UIStepper!
     
     @IBAction func onBathroomValueChanged(_ sender: UIStepper) {
+        viewController?.view.endEditing(true)
         let bathrooms = sender.value
         viewController!.bathrooms = "\(bathrooms)"
         if bathrooms > 1 {
@@ -329,6 +331,7 @@ class EditSquareFootageCell: UITableViewCell {
     @IBOutlet weak var squareFootageStepper: UIStepper!
     
     @IBAction func onSquareFootageValueChanged(_ sender: UIStepper) {
+        viewController?.view.endEditing(true)
         let squareFootage = Int(round(sender.value))
         viewController!.squareFootage = "\(squareFootage)"
         squareFootageLabel.text = "\(squareFootage) sq ft"

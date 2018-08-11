@@ -25,6 +25,7 @@ public class MainViewController: UIViewController, OnGetDataListener {
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("MainViewController:- viewWillAppear")
         if authentication.checkLogin(self) {
             customerData = TempCustomerData(self)
             var TODO_SetUpActionBar_🤪: AnyObject?

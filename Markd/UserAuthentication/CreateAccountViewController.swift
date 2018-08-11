@@ -151,7 +151,6 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             return
         }
         FirebaseAuthentication.sharedInstance.createUser(self, withEmail: email!, andPassword: password!)
-        print("Created Profile:- {email: \(email), password: \(password), confirmPassword: \(confirmedPassword), title: \(selectedTitle), firstName: \(firstName), lastName: \(lastName), maritalStatus: \(maritalStatus)}")
     }
     private func isValidInput() -> Bool {
         if StringUtilities.isNilOrEmpty(email) {
