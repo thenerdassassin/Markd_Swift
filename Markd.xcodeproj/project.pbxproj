@@ -33,6 +33,7 @@
 		FF1C35452102A9AD0062CBA2 /* FindContractorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C35442102A9AD0062CBA2 /* FindContractorViewController.swift */; };
 		FF1C354721039FA50062CBA2 /* ZipCodeUtitilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1C354621039FA50062CBA2 /* ZipCodeUtitilities.swift */; };
 		FF226D58210000820082215B /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF226D57210000820082215B /* Settings.storyboard */; };
+		FF22D1A3211E735500A491AA /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF22D1A2211E735500A491AA /* CreateAccountViewController.swift */; };
 		FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32A20D1D26900A181F1 /* Breaker.swift */; };
 		FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */; };
 		FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */; };
@@ -112,6 +113,7 @@
 		FF1C35442102A9AD0062CBA2 /* FindContractorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindContractorViewController.swift; sourceTree = "<group>"; };
 		FF1C354621039FA50062CBA2 /* ZipCodeUtitilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeUtitilities.swift; sourceTree = "<group>"; };
 		FF226D57210000820082215B /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		FF22D1A2211E735500A491AA /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		FF2CC32A20D1D26900A181F1 /* Breaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breaker.swift; sourceTree = "<group>"; };
 		FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPanelViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			children = (
 				FF45F4D620388F2A008B2007 /* LoginViewController.swift */,
 				FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */,
+				FF22D1A2211E735500A491AA /* CreateAccountViewController.swift */,
 			);
 			path = UserAuthentication;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				FFF2239920FFEADE00F823D6 /* ViewControllerUtilities.swift in Sources */,
 				4772086E1DFF6AB1006FBB5C /* BreakerTypePickerController.swift in Sources */,
 				FFF45D83203CE58B00EC732B /* KeyboardUtilities.swift in Sources */,
+				FF22D1A3211E735500A491AA /* CreateAccountViewController.swift in Sources */,
 				FF5D7A6920AF79CA008A05FC /* PaintingSurfacesViewController.swift in Sources */,
 				47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */,
 				FF9A5B42208AA484007E9669 /* ContractorFooterViewController.swift in Sources */,

@@ -88,6 +88,18 @@ public class FirebaseAuthentication {
             }
         }
     }
+    func createUser(_ sender: LoginHandler, withEmail email: String, andPassword password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) {  (user, error) in
+            if let error = error {
+                print("Error: ", error)
+                sender.loginFailureHandler(error)
+            }
+            if let user = user {
+                print("User:" , user)
+                sender.loginSuccessHandler(user)
+            }
+        }
+    }
     
     func errorHandler(_ viewController: UIViewController, forError error: Error) {
         if let errCode = AuthErrorCode(rawValue: error._code) {

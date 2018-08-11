@@ -28,6 +28,7 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(authentication.checkLogin(self)) {
+            print("Is Logged in at EditProfile")
             customerData = TempCustomerData(self)
         }
     }
