@@ -120,6 +120,10 @@ public class FirebaseAuthentication {
                 let alert = UIAlertController(title: "Create Account", message: "This account does not yet exist. Please create an account.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
                 viewController.present(alert, animated: true)
+            case .emailAlreadyInUse:
+                let alert = UIAlertController(title: "Invalid Email", message: "The email address is already in use by another account.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
+                viewController.present(alert, animated: true)
             default:
                 let alert = UIAlertController(title: "Something went wrong", message: "Something went wrong. Please try again.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))

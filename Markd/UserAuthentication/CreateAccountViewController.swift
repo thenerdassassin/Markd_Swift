@@ -201,7 +201,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     }
     
     func loginFailureHandler(_ error: Error) {
-        AlertControllerUtilities.somethingWentWrong(with: self)
+        FirebaseAuthentication.sharedInstance.errorHandler(self, forError: error)
     }
     
     //Mark:- OnGetDataListener
