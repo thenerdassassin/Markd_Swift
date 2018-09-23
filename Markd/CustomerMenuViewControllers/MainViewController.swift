@@ -183,7 +183,6 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
-            //TODO:- Catch upload errors
             let homeImageRef = storage.reference().child("images").child(customerData!.setHomeImageFileName()!)
             let uploadImage = homeImageRef.putData(UIImagePNGRepresentation(pickedImage)!, metadata: metadata) { (metadata, error) in
                 homeImageRef.downloadURL { (url, error) in
@@ -207,6 +206,19 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     private func observeUploadError(_ snapshot:StorageTaskSnapshot) {
         activityIndicator.stopAnimating()
         homeImage.isHidden = false
+        if let error = snapshot.error as NSError? {
+            switch (StorageErrorCode(rawValue: error.code)!) {
+                case .retryLimitExceeded:
+                        AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Time limit exceeded",
+                                                           withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
+                default:
+                    AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Something went wrong",
+                                                       withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
+                    break
+            }
+        }
+
+
     }
     
     private func addHomeInformation(_ action:UIAlertAction) {
