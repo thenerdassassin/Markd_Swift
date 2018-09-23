@@ -72,6 +72,10 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
             if let fileName = customerData.getHomeImageFileName() {
                  storage.reference(withPath: "images/\(fileName)").downloadURL { url,error in
                     guard error == nil else {
+                        //self.homeImageExists = false
+                        //self.homeImage.backgroundColor = UIColor.lightGray
+                        //self.homeImage.contentMode = .center
+                        self.homeImage.kf.setImage(with: nil, placeholder: self.placeholderImage)
                         return
                     }
                     guard let url = url else {
@@ -90,8 +94,12 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func setHomeImage(with url: URL?) {
-        self.homeImage.kf.setImage(with:url, placeholder: placeholderImage, completionHandler: {
+        homeImage.isHidden = true
+        activityIndicator.startAnimating()
+        self.homeImage.kf.setImage(with:url, completionHandler: {
             (image, error, cacheType, imageUrl) in
+            self.activityIndicator.stopAnimating()
+            self.homeImage.isHidden = false
                 if(image != nil) {
                     self.homeImageExists = true
                     self.homeImage.backgroundColor = UIColor.clear
@@ -179,26 +187,11 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
             let homeImageRef = storage.reference().child("images").child(customerData!.setHomeImageFileName()!)
             let uploadImage = homeImageRef.putData(UIImagePNGRepresentation(pickedImage)!, metadata: metadata) { (metadata, error) in
                 homeImageRef.downloadURL { (url, error) in
-                    guard let downloadURL = url else {
-                        AlertControllerUtilities.somethingWentWrong(with: self)
-                        return
-                    }
-                    self.homeImage.kf.setImage(with:downloadURL, completionHandler: {
-                        (image, error, cacheType, imageUrl) in
-                        if(image != nil) {
-                            self.homeImageExists = true
-                            self.homeImage.backgroundColor = UIColor.clear
-                            self.homeImage.contentMode = .scaleAspectFit
-                        } else {
-                            self.homeImageExists = false
-                            self.homeImage.backgroundColor = UIColor.lightGray
-                            self.homeImage.contentMode = .center
-                        }
-                    })
+                    self.setHomeImage(with:url)
                 }
             }
             uploadImage.observe(.progress, handler: observeUploadProgress)
-            uploadImage.observe(.success, handler: observeUploadSuccess)
+            uploadImage.observe(.failure, handler: observeUploadError)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -211,7 +204,7 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
         activityIndicator.startAnimating()
         homeImage.isHidden = true
     }
-    private func observeUploadSuccess(_ snapshot:StorageTaskSnapshot) {
+    private func observeUploadError(_ snapshot:StorageTaskSnapshot) {
         activityIndicator.stopAnimating()
         homeImage.isHidden = false
     }
