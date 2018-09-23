@@ -194,12 +194,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action_camera" translatesAutoresizingMaskIntoConstraints="NO" id="4OC-Pn-mMy">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action_camera" translatesAutoresizingMaskIntoConstraints="NO" id="4OC-Pn-mMy">
                                 <rect key="frame" x="75" y="99" width="225" height="169"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4OC-Pn-mMy" secondAttribute="height" multiplier="4:3" id="Y1O-Bn-NaI"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qrq-VT-3N6" appends="YES" id="noT-QW-Gi0"/>
+                                    <outletCollection property="gestureRecognizers" destination="LqI-HI-oi4" appends="YES" id="0SJ-OR-oJx"/>
+                                </connections>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAZ-96-L9T" userLabel="Top Seperator">
                                 <rect key="frame" x="20" y="360" width="335" height="1"/>
@@ -256,6 +261,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="WFy-YY-SmV"/>
                     <connections>
+                        <outlet property="homeImage" destination="4OC-Pn-mMy" id="iU4-mS-aqM"/>
                         <outlet property="homeInformationLabel" destination="4Fa-Cd-RE3" id="2L0-1Y-W59"/>
                         <outlet property="preparedForLabel" destination="zzX-Rc-ULx" id="ok5-RB-PB5"/>
                         <outlet property="streetAddressLabel" destination="Zuj-aG-sqH" id="aDn-Si-6RU"/>
@@ -265,6 +271,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zp1-xK-31C" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="26d-QB-MQu" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="qrq-VT-3N6">
+                    <connections>
+                        <action selector="homeImageTapped:" destination="pQz-gG-xKX" id="rK0-X6-g2h"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="LqI-HI-oi4">
+                    <connections>
+                        <action selector="homeImageLongPressed:" destination="pQz-gG-xKX" id="bVo-fW-VmK"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3902" y="72"/>
         </scene>
