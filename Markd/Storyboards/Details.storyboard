@@ -222,8 +222,12 @@
                             <outlet property="delegate" destination="gUs-QN-adi" id="E7G-QF-Wc9"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="Yci-vh-fny" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="Zfx-uV-ZS8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHc-cJ-F7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Yci-vh-fny" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2798" y="-1584"/>
         </scene>
@@ -239,9 +243,11 @@
                     </navigationBar>
                     <connections>
                         <segue destination="Qth-DH-Tc5" kind="relationship" relationship="rootViewController" id="8Uu-xM-GXN"/>
+                        <segue destination="O2P-mo-wKm" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="NRZ-v9-i2W"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBT-ZR-xoU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="O2P-mo-wKm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-3966" y="-985"/>
         </scene>
@@ -640,9 +646,11 @@
                         <outlet property="hotWaterLifeSpan" destination="iyX-cm-sqH" id="5Jh-Br-v2O"/>
                         <outlet property="hotWaterManufacturer" destination="lAt-ZN-hjW" id="00g-n9-8H4"/>
                         <outlet property="hotWaterModel" destination="n83-gt-LFZ" id="BD5-db-rY4"/>
+                        <segue destination="Gol-pB-4uW" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="seE-f6-dYd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geH-T8-x2u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Gol-pB-4uW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2129" y="-1063"/>
         </scene>
@@ -867,8 +875,12 @@
                             <outlet property="delegate" destination="9Yc-7D-iCJ" id="ike-lt-zda"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="68a-gO-O9Y" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="MJf-5P-z4n"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qte-xu-bHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="68a-gO-O9Y" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-4585" y="396"/>
         </scene>
@@ -1094,7 +1106,7 @@
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="BtB-ed-YNE" customClass="EditPaintingSurfaceViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F0b-DB-R4N">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -1625,7 +1637,7 @@
             <objects>
                 <tableViewController id="wn8-IO-D5u" customClass="EditPanelViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dZj-vD-URx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1886,9 +1898,9 @@
         <image name="ic_action_pages" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bsT-Fw-W8S"/>
+        <segue reference="HyN-YB-4pC"/>
         <segue reference="feR-gR-wLN"/>
-        <segue reference="0Rx-Ig-gy5"/>
+        <segue reference="c1D-iW-PT6"/>
         <segue reference="0lT-xg-Ick"/>
         <segue reference="jFv-8g-0vH"/>
     </inferredMetricsTieBreakers>
