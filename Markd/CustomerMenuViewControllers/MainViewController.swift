@@ -15,19 +15,20 @@ import Firebase
 public class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     private var customerData: TempCustomerData?
-    private let imagePicker = UIImagePickerController()
+    private var homeImageExists = false
     
     let storage = Storage.storage()
     @IBOutlet weak var homeImage: UIImageView!
     let placeholderImage = UIImage(named: "ic_action_camera")!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var preparedForLabel: UILabel!
     @IBOutlet weak var streetAddressLabel: UILabel!
     @IBOutlet weak var homeInformationLabel: UILabel!
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        imagePicker.delegate = self
+        print("Bucket: \(storage.reference().bucket)")
         ViewControllerUtilities.insertMarkdLogo(into: self)
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
     }
@@ -70,21 +71,33 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
             }
             if let fileName = customerData.getHomeImageFileName() {
                  storage.reference(withPath: "images/\(fileName)").downloadURL { url,error in
+                    guard error == nil else {
+                        return
+                    }
+                    guard let url = url else {
+                        self.homeImageExists = false
+                        self.homeImage.kf.setImage(with: nil, placeholder: self.placeholderImage)
+                        return
+                    }
+                    self.homeImageExists = true
                     self.setHomeImage(with:url)
                  }
              } else {
-                homeImage.kf.setImage(with: nil, placeholder: self.placeholderImage)
+                self.homeImageExists = false
+                homeImage.kf.setImage(with: nil, placeholder: placeholderImage)
              }
         }
     }
     
     func setHomeImage(with url: URL?) {
-        self.homeImage.kf.setImage(with:url, placeholder:self.placeholderImage, completionHandler: {
+        self.homeImage.kf.setImage(with:url, placeholder: placeholderImage, completionHandler: {
             (image, error, cacheType, imageUrl) in
-                if(error == nil && image != nil) {
+                if(image != nil) {
+                    self.homeImageExists = true
                     self.homeImage.backgroundColor = UIColor.clear
                     self.homeImage.contentMode = .scaleAspectFit
                 } else {
+                    self.homeImageExists = false
                     self.homeImage.backgroundColor = UIColor.lightGray
                     self.homeImage.contentMode = .center
                 }
@@ -93,22 +106,24 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     
     //Mark:- UIImagePickerController
     @IBAction func homeImageTapped(_ sender: UITapGestureRecognizer) {
+        if(!homeImageExists) {
+            getNewHomeImage()
+        }
+    }
+    
+    @IBAction func homeImageLongPressed(_ sender: UILongPressGestureRecognizer) {
+        getNewHomeImage()
+    }
+    private func getNewHomeImage() {
         if(UIImagePickerController.isSourceTypeAvailable(.camera)) {
             AlertControllerUtilities.showActionSheet(withTitle: "Picture of your Home", andMessage: nil,
                                                      withOptions: [
                                                         UIAlertAction(title: "Take Photo", style: .default, handler: checkCameraAuthorizationStatus),
-                                                        UIAlertAction(title:"Select Photo", style: .default, handler: checkPhotLibraryAuthorizationStatus),
+                                                        UIAlertAction(title:"Select Photo", style: .default, handler: checkPhotoLibraryAuthorizationStatus),
                                                         UIAlertAction(title:"Cancel", style: .cancel, handler: nil)],
                                                      in: self)
         } else {
-            checkPhotLibraryAuthorizationStatus()
-        }
-        
-    }
-    
-    @IBAction func homeImageLongPressed(_ sender: UILongPressGestureRecognizer) {
-        if(sender.state == .began) {
-            AlertControllerUtilities.showAlert(withTitle: "Image Long Pressed", andMessage: "Still got you! 😎", withOptions: [UIAlertAction(title: "Ok", style: .cancel, handler:nil)], in: self)
+            checkPhotoLibraryAuthorizationStatus()
         }
     }
     private func checkCameraAuthorizationStatus(alert: UIAlertAction!) {
@@ -129,7 +144,7 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
                 return
         }
     }
-    private func checkPhotLibraryAuthorizationStatus(alert:UIAlertAction? = nil) {
+    private func checkPhotoLibraryAuthorizationStatus(alert:UIAlertAction? = nil) {
         switch PHPhotoLibrary.authorizationStatus() {
             case .authorized: // The user has previously granted access to the camera.
                 self.setupImagePicker(with: .photoLibrary)
@@ -150,36 +165,55 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     private func setupImagePicker(with sourceType:UIImagePickerControllerSourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
         imagePicker.allowsEditing = false
         imagePicker.sourceType = sourceType
         present(imagePicker, animated: true, completion: nil)
     }
-    //UIImagePickerController.InfoKey -> https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("Returned from PickerController")
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            print("Got pickedImage")
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
-            //TODO:- Get new file name
-            //TODO:- Monitor update progess and display indicator until upload done
             //TODO:- Catch upload errors
-            //TODO:- Create CloudFunction to delete old image when home image filename changes
-            let homeImageRef = storage.reference().child("images").child(customerData!.getHomeImageFileName()!)
-            homeImageRef.putData(UIImagePNGRepresentation(pickedImage)!, metadata: metadata) { (metadata, error) in
+            let homeImageRef = storage.reference().child("images").child(customerData!.setHomeImageFileName()!)
+            let uploadImage = homeImageRef.putData(UIImagePNGRepresentation(pickedImage)!, metadata: metadata) { (metadata, error) in
                 homeImageRef.downloadURL { (url, error) in
                     guard let downloadURL = url else {
                         AlertControllerUtilities.somethingWentWrong(with: self)
                         return
                     }
-                    self.setHomeImage(with: downloadURL)
+                    self.homeImage.kf.setImage(with:downloadURL, completionHandler: {
+                        (image, error, cacheType, imageUrl) in
+                        if(image != nil) {
+                            self.homeImageExists = true
+                            self.homeImage.backgroundColor = UIColor.clear
+                            self.homeImage.contentMode = .scaleAspectFit
+                        } else {
+                            self.homeImageExists = false
+                            self.homeImage.backgroundColor = UIColor.lightGray
+                            self.homeImage.contentMode = .center
+                        }
+                    })
                 }
             }
+            uploadImage.observe(.progress, handler: observeUploadProgress)
+            uploadImage.observe(.success, handler: observeUploadSuccess)
         }
         dismiss(animated: true, completion: nil)
     }
     private func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    //Mark:- Upload Image Observers
+    private func observeUploadProgress(_ snapshot:StorageTaskSnapshot) {
+        activityIndicator.startAnimating()
+        homeImage.isHidden = true
+    }
+    private func observeUploadSuccess(_ snapshot:StorageTaskSnapshot) {
+        activityIndicator.stopAnimating()
+        homeImage.isHidden = false
     }
     
     private func addHomeInformation(_ action:UIAlertAction) {

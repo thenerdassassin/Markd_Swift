@@ -232,6 +232,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cOJ-eO-JO4">
+                                <rect key="frame" x="75" y="99" width="225" height="169"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -242,6 +245,9 @@
                             <constraint firstItem="M8y-ox-ek9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hUr-wA-DSh" secondAttribute="bottom" constant="5" id="936-nY-VRm"/>
                             <constraint firstItem="o9F-uJ-cHH" firstAttribute="leading" secondItem="pUn-uv-Xjp" secondAttribute="leading" constant="20" id="9Ls-eq-gOf"/>
                             <constraint firstItem="hUr-wA-DSh" firstAttribute="width" secondItem="o9F-uJ-cHH" secondAttribute="width" id="Cav-9G-hIV"/>
+                            <constraint firstItem="cOJ-eO-JO4" firstAttribute="width" secondItem="4OC-Pn-mMy" secondAttribute="width" id="I2X-Sa-7Ex"/>
+                            <constraint firstItem="4OC-Pn-mMy" firstAttribute="leading" secondItem="cOJ-eO-JO4" secondAttribute="leading" id="MG8-aG-zqo"/>
+                            <constraint firstItem="4OC-Pn-mMy" firstAttribute="top" secondItem="cOJ-eO-JO4" secondAttribute="top" id="UbF-5K-s2R"/>
                             <constraint firstItem="4Fa-Cd-RE3" firstAttribute="top" secondItem="vAZ-96-L9T" secondAttribute="bottom" constant="10" id="V2U-rp-gmV"/>
                             <constraint firstItem="vAZ-96-L9T" firstAttribute="centerX" secondItem="pUn-uv-Xjp" secondAttribute="centerX" id="XAn-Uo-4Qy"/>
                             <constraint firstItem="4OC-Pn-mMy" firstAttribute="width" secondItem="pUn-uv-Xjp" secondAttribute="width" multiplier="0.6" id="XFs-pp-St0"/>
@@ -249,6 +255,7 @@
                             <constraint firstItem="Zuj-aG-sqH" firstAttribute="top" secondItem="zzX-Rc-ULx" secondAttribute="bottom" constant="15" id="Z1X-p3-mGy"/>
                             <constraint firstItem="4Fa-Cd-RE3" firstAttribute="leading" secondItem="pUn-uv-Xjp" secondAttribute="leading" constant="20" id="Zzc-xo-z3M"/>
                             <constraint firstItem="hUr-wA-DSh" firstAttribute="centerX" secondItem="pUn-uv-Xjp" secondAttribute="centerX" id="dbR-GO-x0o"/>
+                            <constraint firstItem="cOJ-eO-JO4" firstAttribute="height" secondItem="4OC-Pn-mMy" secondAttribute="height" id="emv-PB-MAt"/>
                             <constraint firstAttribute="trailing" secondItem="zzX-Rc-ULx" secondAttribute="trailing" constant="20" id="fAc-we-rwE"/>
                             <constraint firstAttribute="trailing" secondItem="4Fa-Cd-RE3" secondAttribute="trailing" constant="20" id="g5z-Bz-6QH"/>
                             <constraint firstItem="hUr-wA-DSh" firstAttribute="top" secondItem="o9F-uJ-cHH" secondAttribute="bottom" constant="20" id="gGR-7i-MuD"/>
@@ -261,6 +268,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="WFy-YY-SmV"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="cOJ-eO-JO4" id="d3R-JV-KJ7"/>
                         <outlet property="homeImage" destination="4OC-Pn-mMy" id="iU4-mS-aqM"/>
                         <outlet property="homeInformationLabel" destination="4Fa-Cd-RE3" id="2L0-1Y-W59"/>
                         <outlet property="preparedForLabel" destination="zzX-Rc-ULx" id="ok5-RB-PB5"/>
