@@ -28,7 +28,6 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        print("Bucket: \(storage.reference().bucket)")
         ViewControllerUtilities.insertMarkdLogo(into: self)
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
     }
@@ -72,9 +71,6 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
             if let fileName = customerData.getHomeImageFileName() {
                  storage.reference(withPath: "images/\(fileName)").downloadURL { url,error in
                     guard error == nil else {
-                        //self.homeImageExists = false
-                        //self.homeImage.backgroundColor = UIColor.lightGray
-                        //self.homeImage.contentMode = .center
                         self.homeImage.kf.setImage(with: nil, placeholder: self.placeholderImage)
                         return
                     }

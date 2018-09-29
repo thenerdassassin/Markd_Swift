@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -239,6 +240,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="U8B-Lb-NeI" kind="show" identifier="showServiceFileSegue" id="j9R-Z5-Rdb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -252,6 +256,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRM-yt-Siy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="935" y="-58"/>
+        </scene>
+        <!--Servie File View Controller-->
+        <scene sceneID="QLi-AN-qHF">
+            <objects>
+                <viewController id="U8B-Lb-NeI" customClass="ServieFileViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Oj-df-wwl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yy4-G1-bdw">
+                                <rect key="frame" x="0.0" y="10" width="375" height="667"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="reh-uo-a3W">
+                                <rect key="frame" x="-0.5" y="10" width="375" height="667"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="reh-uo-a3W" firstAttribute="centerX" secondItem="yy4-G1-bdw" secondAttribute="centerX" id="4fm-uF-UyG"/>
+                            <constraint firstItem="yy4-G1-bdw" firstAttribute="centerX" secondItem="SNO-4c-Ut1" secondAttribute="centerX" id="4vm-aq-PLh"/>
+                            <constraint firstItem="reh-uo-a3W" firstAttribute="centerY" secondItem="yy4-G1-bdw" secondAttribute="centerY" id="5HS-xl-5Fn"/>
+                            <constraint firstItem="yy4-G1-bdw" firstAttribute="height" secondItem="8Oj-df-wwl" secondAttribute="height" id="DRB-ea-VW9"/>
+                            <constraint firstItem="yy4-G1-bdw" firstAttribute="centerY" secondItem="SNO-4c-Ut1" secondAttribute="centerY" id="XMZ-WJ-ARz"/>
+                            <constraint firstItem="reh-uo-a3W" firstAttribute="height" secondItem="yy4-G1-bdw" secondAttribute="height" id="fzF-2b-vbY"/>
+                            <constraint firstItem="yy4-G1-bdw" firstAttribute="width" secondItem="8Oj-df-wwl" secondAttribute="width" id="kKb-1v-gnm"/>
+                            <constraint firstItem="reh-uo-a3W" firstAttribute="width" secondItem="yy4-G1-bdw" secondAttribute="width" id="xUK-DG-NcQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SNO-4c-Ut1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cWs-Ev-hmd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Aw3-zY-86p"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activityIndicator" destination="reh-uo-a3W" id="kvh-da-Si0"/>
+                        <outlet property="fileImageView" destination="yy4-G1-bdw" id="zwW-oQ-WN1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3zX-bq-kD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1762" y="-58"/>
         </scene>
         <!--Services-->
         <scene sceneID="c2k-jb-Seg">
@@ -279,6 +323,6 @@
         <image name="ic_action_services" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cho-ZN-Vm6"/>
+        <segue reference="0pf-RH-dv6"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -53,13 +53,10 @@ class ContractorServiceTableViewController: UITableViewController {
                 return 3
             }
         } else if(section == 1) {
-            return 1
-            /*
-            guard let files = files else {
-                return 0
+            guard let files = service?.getFiles() else {
+                return 1
             }
-            return files.count
-            */
+            return files.count > 0 ? files.count:1
         }
         return 0
     }
@@ -110,9 +107,26 @@ class ContractorServiceTableViewController: UITableViewController {
                 }
                 return cell
             }
+        } else if(indexPath.section == 1) {
+            guard let files = service?.getFiles() else {
+                return noFilesCell(indexPath)
+            }
+            if files.count > 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "serviceFileTableCell", for: indexPath)
+                cell.textLabel?.text = files[indexPath.row].getFileName()
+                cell.tag = indexPath.row
+                return cell
+            }
+            return noFilesCell(indexPath)
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "serviceFileTableCell", for: indexPath)
         // Configure the cell...
+        return UITableViewCell()
+    }
+    
+    private func noFilesCell(_ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "serviceFileTableCell", for: indexPath)
+        cell.accessoryType = .none
+        cell.textLabel?.text = "No files yet!"
         return cell
     }
     
@@ -152,7 +166,7 @@ class ContractorServiceTableViewController: UITableViewController {
 
     // Mark:- Files
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return (indexPath.section == 1)
+        return (indexPath.section == -1) //TODO: change to delete file
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -160,9 +174,27 @@ class ContractorServiceTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if(identifier == "showServiceFileSegue") {
+            let sender = sender as! UITableViewCell
+            guard let files = service?.getFiles(), let _ = customerData?.getUid() else {
+                return false
+            }
+            if(sender.tag < 0 || sender.tag >= files.count) {
+                return false
+            }
+        }
+        return true
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Pass the selected file to the new view controller.
-        var TODO_Pass_File_Data:AnyObject?
+        if(segue.identifier == "showServiceFileSegue") {
+            let sender = sender as! UITableViewCell
+            let destination = segue.destination as! ServieFileViewController
+            destination.file = service!.getFiles()[sender.tag]
+            destination.uid = customerData!.getUid()
+            customerData?.removeListeners()
+        }
     }
 }
 

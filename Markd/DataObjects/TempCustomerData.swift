@@ -73,7 +73,10 @@ public class TempCustomerData {
             listener.onFailure(error)
         }
     }
-
+    
+    public func getUid() -> String? {
+        return self.customerId
+    }
     private func getCustomer() -> Customer? {
         return customer
     }

@@ -205,6 +205,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
         plumbingServices = customerData!.getPlumbingServices()
         hvacServices = customerData!.getHvacServices()
         electricalServices = customerData!.getElectricalServices()
+        print(plumbingServices)
         self.tableView.reloadData()
     }
     
