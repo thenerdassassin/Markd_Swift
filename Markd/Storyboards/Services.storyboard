@@ -267,6 +267,10 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yy4-G1-bdw">
                                 <rect key="frame" x="0.0" y="10" width="375" height="667"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="NYw-0c-k1p" appends="YES" id="P6g-qd-zAg"/>
+                                </connections>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="reh-uo-a3W">
                                 <rect key="frame" x="-0.5" y="10" width="375" height="667"/>
@@ -286,7 +290,11 @@
                         <viewLayoutGuide key="safeArea" id="SNO-4c-Ut1"/>
                     </view>
                     <navigationItem key="navigationItem" id="cWs-Ev-hmd">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Aw3-zY-86p"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Aw3-zY-86p">
+                            <connections>
+                                <action selector="editTitleAction:" destination="U8B-Lb-NeI" id="gUf-wl-Hr4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="reh-uo-a3W" id="kvh-da-Si0"/>
@@ -294,6 +302,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zX-bq-kD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="NYw-0c-k1p">
+                    <connections>
+                        <action selector="fileImageTapGesture:" destination="U8B-Lb-NeI" id="NJn-Or-aJP"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1762" y="-58"/>
         </scene>
