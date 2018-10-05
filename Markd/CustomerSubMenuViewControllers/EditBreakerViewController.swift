@@ -57,7 +57,6 @@ class EditBreakerViewController: UITableViewController, OnGetDataListener {
             }
         }
     }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()

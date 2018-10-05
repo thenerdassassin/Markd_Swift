@@ -9,8 +9,25 @@
 import UIKit
 import FirebaseStorage
 
-class ServieFileViewController: UIViewController {
-    var uid:String?
+class ServieFileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OnGetDataListener {
+    private let authentication = FirebaseAuthentication.sharedInstance
+    var customerData:TempCustomerData?
+    var serviceType:String?
+    var serviceIndex:Int?
+    var service:ContractorService? {
+        didSet {
+            if let index = fileIndex, let service = service {
+                self.file = service.getFiles()[index]
+            }
+        }
+    }
+    var fileIndex:Int? {
+        didSet {
+            if let index = fileIndex, let service = service {
+                self.file = service.getFiles()[index]
+            }
+        }
+    }
     var file:FirebaseFile? {
         didSet {
             if let _ = file {
@@ -22,32 +39,50 @@ class ServieFileViewController: UIViewController {
     @IBOutlet weak var fileImageView: UIImageView!
     let placeholderImage = UIImage(named: "ic_action_camera")!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if(authentication.checkLogin(self)) {
+            customerData = TempCustomerData(self)
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
         configureView()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        if let customerData = customerData, let type = serviceType, let index = serviceIndex, let service = service, let fileNumber = fileIndex, let updatedFile = file {
+            var files = service.getFiles()
+            files[fileNumber] = updatedFile
+            customerData.update(service.setFiles(files), index, of: type)
+        }
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        FirebaseAuthentication.sharedInstance.removeStateListener()
+        if let customerData = customerData {
+            customerData.removeListeners()
+        }
     }
 
     private func configureView() {
-        if let file = file, let uid = uid {
+        print("Calling Configure View")
+        if let file = file, let uid = authentication.getCurrentUser()?.uid, let fileImageView = fileImageView {
             self.navigationItem.title = file.getFileName()
             let storage = Storage.storage().reference(withPath: "images/services/\(uid)/\(file.getGuid())")
-            fileImageView.isHidden = true
-            activityIndicator.startAnimating()
             storage.downloadURL { url,error in
-                guard error == nil, let url = url else {
-                    self.activityIndicator.stopAnimating()
-                    self.fileImageView.isHidden = false
-                    self.fileImageView.backgroundColor = UIColor.lightGray
-                    self.fileImageView.contentMode = .center
+                guard error == nil else {
+                    self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
+                    return
+                }
+                guard let url = url else {
                     self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
                     return
                 }
                 self.setFileImage(with:url)
             }
+        } else if let fileImageView = fileImageView {
+            fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
         }
     }
     func setFileImage(with url: URL?) {
@@ -89,6 +124,65 @@ class ServieFileViewController: UIViewController {
     }
     
     @IBAction func fileImageTapGesture(_ sender: UITapGestureRecognizer) {
-        
+        PhotoUtilities(self).getImage()
+    }
+    
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let uid = authentication.getCurrentUser()?.uid {
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            let fileReference = Storage.storage().reference(withPath: "images/services/\(uid)/\(file!.setGuid(to: nil))")
+            //TODO: Create FirebaseFunction to delete old image
+            
+            let uploadImage = fileReference.putData(UIImagePNGRepresentation(pickedImage)!, metadata: metadata) { (metadata, error) in
+                fileReference.downloadURL { (url, error) in
+                    self.setFileImage(with:url)
+                }
+            }
+            uploadImage.observe(.progress, handler: observeUploadProgress)
+            uploadImage.observe(.failure, handler: observeUploadError)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    private func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //Mark:- Upload Image Observers
+    private func observeUploadProgress(_ snapshot:StorageTaskSnapshot) {
+        activityIndicator.startAnimating()
+        fileImageView.isHidden = true
+    }
+    private func observeUploadError(_ snapshot:StorageTaskSnapshot) {
+        print("Upload Error")
+        activityIndicator.stopAnimating()
+        fileImageView.isHidden = false
+        if let error = snapshot.error as NSError? {
+            switch (StorageErrorCode(rawValue: error.code)!) {
+            case .retryLimitExceeded:
+                AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Time limit exceeded",
+                                                   withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
+                break
+            default:
+                AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Something went wrong",
+                                                   withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
+                break
+            }
+        }
+    }
+    
+    //Mark: OnGetDataListener
+    public func onStart() {
+        print("Getting Customer Data")
+    }
+    
+    public func onSuccess() {
+        print("ServiceFileViewController:- Got Customer Data")
+    }
+    
+    public func onFailure(_ error: Error) {
+        debugPrint(error)
+        AlertControllerUtilities.somethingWentWrong(with: self)
     }
 }

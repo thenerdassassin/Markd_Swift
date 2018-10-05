@@ -111,7 +111,7 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     //Mark:- UIImagePickerController
     @IBAction func homeImageTapped(_ sender: UITapGestureRecognizer) {
         if(!homeImageExists) {
-            getNewHomeImage()
+             PhotoUtilities(self).getImage()
         }
     }
     
@@ -157,8 +157,6 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
                     break
             }
         }
-
-
     }
     
     private func addHomeInformation(_ action:UIAlertAction) {

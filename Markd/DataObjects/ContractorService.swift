@@ -136,9 +136,12 @@ public class ContractorService:CustomStringConvertible, Comparable {
     func getFiles() -> [FirebaseFile] {
         return self.files
     }
+    func setFiles(_ files:[FirebaseFile]) -> ContractorService {
+        self.files = files
+        return self
+    }
 
-    func update(contractor:String, comments:String) -> ContractorService{
-        var TODO_Contractor_Service_Files_Update😵:AnyObject?
+    func update(contractor:String, comments:String) -> ContractorService {
         self.contractor = contractor
         self.comments = comments
         return self

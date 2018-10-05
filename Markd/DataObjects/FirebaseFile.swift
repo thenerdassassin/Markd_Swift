@@ -34,11 +34,12 @@ public class FirebaseFile:CustomStringConvertible {
     public func getGuid() -> String {
         return guid
     }
-    public func setGuid(to guid:String?) {
+    public func setGuid(to guid:String?) -> String {
         if let guid = guid {
             self.guid = guid
         } else {
             self.guid = UUID.init().uuidString
         }
+        return self.guid
     }
 }

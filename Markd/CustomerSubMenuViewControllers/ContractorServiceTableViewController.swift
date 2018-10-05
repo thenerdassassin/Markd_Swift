@@ -23,6 +23,8 @@ class ContractorServiceTableViewController: UITableViewController {
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = addButton
         tableView.tableFooterView = UIView()
+    }
+    override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -191,8 +193,10 @@ class ContractorServiceTableViewController: UITableViewController {
         if(segue.identifier == "showServiceFileSegue") {
             let sender = sender as! UITableViewCell
             let destination = segue.destination as! ServieFileViewController
-            destination.file = service!.getFiles()[sender.tag]
-            destination.uid = customerData!.getUid()
+            destination.serviceType = serviceType
+            destination.serviceIndex = serviceIndex
+            destination.service = service
+            destination.fileIndex = sender.tag
             customerData?.removeListeners()
         }
     }
