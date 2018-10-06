@@ -369,6 +369,7 @@
 				47E0EA3C1DF3865C001F417F /* Resources */,
 				64F12FC7BA492C4A1188752B /* [CP] Embed Pods Frameworks */,
 				B2F9E70F6D89BD148F80F951 /* [CP] Copy Pods Resources */,
+				FF9CDB33216903AE00902C7F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -500,6 +501,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FF9CDB33216903AE00902C7F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -721,8 +735,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SZ3DXFSCH3;
 				INFOPLIST_FILE = Markd/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.schmidthappens.markd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -741,6 +757,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SZ3DXFSCH3;
 				INFOPLIST_FILE = Markd/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.schmidthappens.markd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
