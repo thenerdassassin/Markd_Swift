@@ -168,11 +168,24 @@ class ContractorServiceTableViewController: UITableViewController {
 
     // Mark:- Files
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return (indexPath.section == -1) //TODO: change to delete file
+        return (indexPath.section == 1)
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            guard let customerData = customerData else {
+                print("Customer Data not set")
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            guard let service = service, let index = serviceIndex, let type = serviceType else {
+                print("Missing service information")
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
             // Delete the row from the data source
+            var files = service.getFiles()
+            files.remove(at: indexPath.row)
+            customerData.update(service.setFiles(files), index, of: type)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
