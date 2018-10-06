@@ -68,6 +68,9 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
     private func configureView() {
         print("Calling Configure View")
         if let file = file, let uid = authentication.getCurrentUser()?.uid, let _ = fileImageView {
+            if(StringUtilities.isNilOrEmpty(file.getFileName())) {
+                file.setFileName(to: "File \(fileIndex != nil ? String(fileIndex! + 1) :"")")
+            }
             self.navigationItem.title = file.getFileName()
             let storage = Storage.storage().reference(withPath: "images/services/\(uid)/\(file.getGuid())")
             storage.downloadURL { url,error in

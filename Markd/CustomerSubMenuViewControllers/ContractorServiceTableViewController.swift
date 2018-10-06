@@ -20,8 +20,6 @@ class ContractorServiceTableViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem = addButton
         tableView.tableFooterView = UIView()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +32,9 @@ class ContractorServiceTableViewController: UITableViewController {
             if number < 0 {
                 print("Add Service number: \(number) to \(type)")
                 customerData.update(service!, number, of: type)
+                if let serviceCount = customerData.getServiceCount(of: type) {
+                    serviceIndex =  serviceCount - 1
+                }
             } else {
                 print("Number: \(number) changes to###\n\(service!)")
                 customerData.update(service!, number, of: type)
@@ -41,6 +42,10 @@ class ContractorServiceTableViewController: UITableViewController {
         } else {
             AlertControllerUtilities.somethingWentWrong(with: self)
         }
+    }
+    
+    @IBAction func onAddFileAction(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "showServiceFileSegue", sender: self)
     }
 
     // MARK: - Table view data source
@@ -190,26 +195,39 @@ class ContractorServiceTableViewController: UITableViewController {
         }
     }
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        print("shouldPerformSegue")
         if(identifier == "showServiceFileSegue") {
-            let sender = sender as! UITableViewCell
-            guard let files = service?.getFiles(), let _ = customerData?.getUid() else {
-                return false
-            }
-            if(sender.tag < 0 || sender.tag >= files.count) {
-                return false
+            if let sender = sender as? UITableViewCell {
+                guard let files = service?.getFiles(), let _ = customerData?.getUid() else {
+                    return false
+                }
+                if(sender.tag < 0 || sender.tag >= files.count) {
+                    return false
+                }
             }
         }
         return true
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepareSegue")
         // Pass the selected file to the new view controller.
         if(segue.identifier == "showServiceFileSegue") {
-            let sender = sender as! UITableViewCell
             let destination = segue.destination as! ServieFileViewController
             destination.serviceType = serviceType
             destination.serviceIndex = serviceIndex
-            destination.service = service
-            destination.fileIndex = sender.tag
+            if let sender = sender as? UITableViewCell {
+                destination.fileIndex = sender.tag
+                destination.service = service
+            } else {
+                if let service = service {
+                    var files = service.getFiles()
+                    files.append(FirebaseFile([:]))
+                    destination.fileIndex = files.count-1
+                    destination.service = service.setFiles(files)
+                } else {
+                    AlertControllerUtilities.somethingWentWrong(with: self)
+                }
+            }
             customerData?.removeListeners()
         }
     }

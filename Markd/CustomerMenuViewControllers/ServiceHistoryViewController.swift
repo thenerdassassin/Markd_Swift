@@ -127,6 +127,9 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
     }
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if(tableView.cellForRow(at: indexPath)?.reuseIdentifier == "serviceDefaultCell") {
+            return false
+        }
         return true
     }
     
@@ -141,12 +144,21 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
             if indexPath.section == 0 {
                 plumbingServices!.remove(at: indexPath.row)
                 customerData.removeService(indexPath.row, of: "Plumbing")
+                if(plumbingServices!.count == 0) {
+                    return
+                }
             } else if indexPath.section == 1 {
                 hvacServices!.remove(at: indexPath.row)
                 customerData.removeService(indexPath.row, of: "Hvac")
+                if(hvacServices!.count == 0) {
+                    return
+                }
             } else if indexPath.section == 2 {
                 electricalServices!.remove(at: indexPath.row)
                 customerData.removeService(indexPath.row, of: "Electrical")
+                if(electricalServices!.count == 0) {
+                    return
+                }
             } else {
                 AlertControllerUtilities.somethingWentWrong(with: self)
             }

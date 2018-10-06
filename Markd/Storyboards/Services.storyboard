@@ -251,6 +251,13 @@
                             <outlet property="delegate" destination="zzN-K0-BnN" id="v5L-eL-Jz7"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="02H-6v-dTu">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cw9-HO-4aI">
+                            <connections>
+                                <action selector="onAddFileAction:" destination="zzN-K0-BnN" id="k1F-ai-yhQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="700"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRM-yt-Siy" userLabel="First Responder" sceneMemberID="firstResponder"/>

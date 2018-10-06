@@ -329,6 +329,9 @@ public class TempCustomerData {
     }
     
     //Mark:- Services
+    public func getServiceCount(of type:String) -> Int? {
+        return getCustomer()?.countServices(of: type)
+    }
     public func update(_ service:ContractorService, _  number:Int, of type:String) {
         updateCustomer(to: getCustomer()?.update(service, number, of:type))
     }
