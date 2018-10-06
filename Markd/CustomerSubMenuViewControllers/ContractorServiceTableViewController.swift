@@ -183,9 +183,9 @@ class ContractorServiceTableViewController: UITableViewController {
                 return
             }
             // Delete the row from the data source
-            //var files = service.getFiles()
-            //files.remove(at: indexPath.row)
-            //customerData.update(service.setFiles(files), index, of: type)
+            var files = service.getFiles()
+            files.remove(at: indexPath.row)
+            customerData.update(service.setFiles(files), index, of: type)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

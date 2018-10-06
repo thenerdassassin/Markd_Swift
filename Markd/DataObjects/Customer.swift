@@ -10,9 +10,6 @@ import Foundation
 import Firebase
 
 public class Customer:CustomStringConvertible {
-    func NEED_TO_ADD_ANDROID_METHODS😤() {
-        var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
-    }
     public final let userType = "customer"
     
     //For Home Page
