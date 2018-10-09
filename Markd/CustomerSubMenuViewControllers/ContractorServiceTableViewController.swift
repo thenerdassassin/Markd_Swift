@@ -33,7 +33,7 @@ class ContractorServiceTableViewController: UITableViewController {
                 print("Add Service number: \(number) to \(type)")
                 customerData.update(service!, number, of: type)
                 if let serviceCount = customerData.getServiceCount(of: type) {
-                    serviceIndex =  serviceCount - 1
+                    serviceIndex = serviceCount - 1
                 }
             } else {
                 print("Number: \(number) changes to###\n\(service!)")

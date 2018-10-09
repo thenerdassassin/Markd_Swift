@@ -72,20 +72,49 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
                 file.setFileName(to: "File \(fileIndex != nil ? String(fileIndex! + 1) :"")")
             }
             self.navigationItem.title = file.getFileName()
-            let storage = Storage.storage().reference(withPath: "images/services/\(uid)/\(file.getGuid())")
-            storage.downloadURL { url,error in
-                guard error == nil else {
-                    self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
-                    return
-                }
-                guard let url = url else {
-                    self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
-                    return
-                }
-                self.setFileImage(with:url)
-            }
+            getMetaData(for: "images/services/\(uid)/\(file.getGuid())")
+            
         } else if let fileImageView = fileImageView {
             fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
+        }
+    }
+    func getMetaData(for filePath:String) {
+        let storage = Storage.storage().reference(withPath: filePath)
+        // Get metadata properties
+        storage.getMetadata { metadata, error in
+            guard error == nil else {
+                self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
+                return
+            }
+            guard let metadata = metadata else {
+                self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
+                return
+            }
+            if(metadata.contentType == "image/jpeg") {
+                self.loadImage(from: storage)
+                
+            } else if(metadata.contentType == "application/pdf") {
+                //TODO: load pdf
+                self.loadPDF(from: storage)
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self)
+            }
+        }
+    }
+    func loadImage(from storage: StorageReference) {
+        //TODO: hide pdf and show imageView
+        storage.downloadURL { url,error in
+            guard error == nil else {
+                self.fileImageView.isHidden = false
+                self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
+                return
+            }
+            guard let url = url else {
+                self.fileImageView.isHidden = false
+                self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
+                return
+            }
+            self.setFileImage(with:url)
         }
     }
     func setFileImage(with url: URL?) {
@@ -93,13 +122,15 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
             self.activityIndicator.stopAnimating()
             self.fileImageView.isHidden = false
             if(image != nil) {
-                self.fileImageView.backgroundColor = UIColor.clear
                 self.fileImageView.contentMode = .scaleAspectFit
             } else {
-                self.fileImageView.backgroundColor = UIColor.lightGray
                 self.fileImageView.contentMode = .center
             }
         })
+    }
+    func loadPDF(from storage: StorageReference) {
+        //TODO: hide image and show pdf
+        self.fileImageView.isHidden = true
     }
     
     @IBAction func editTitleAction(_ sender: UIBarButtonItem) {
@@ -136,8 +167,6 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
             metadata.contentType = "image/jpeg"
             
             let fileReference = Storage.storage().reference(withPath: "images/services/\(uid)/\(file!.setGuid(to: nil))")
-            //TODO: Create FirebaseFunction to delete old image
-            
             let uploadImage = fileReference.putData(UIImagePNGRepresentation(pickedImage)!, metadata: metadata) { (metadata, error) in
                 fileReference.downloadURL { (url, error) in
                     self.setFileImage(with:url)
