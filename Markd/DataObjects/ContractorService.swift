@@ -21,7 +21,7 @@ public class ContractorService:CustomStringConvertible, Comparable {
     private var year:Int
     private var contractor:String
     private var comments:String
-    //private var files:[FirebaseFile]?
+    private var files:[FirebaseFile]
     
     public init() {
         let date = Date()
@@ -32,6 +32,7 @@ public class ContractorService:CustomStringConvertible, Comparable {
         self.contractor = ""
         self.comments = ""
         self.guid = ""
+        self.files = []
     }
     public init(_ dictionary: Dictionary<String, AnyObject>) {
         self.guid = dictionary["guid"] != nil ? dictionary["guid"] as! String: ""
@@ -40,6 +41,16 @@ public class ContractorService:CustomStringConvertible, Comparable {
         self.year = dictionary["year"] != nil ? dictionary["year"] as! Int: -1
         self.contractor = dictionary["contractor"] != nil ? dictionary["contractor"] as! String: ""
         self.comments = dictionary["comments"] != nil ? dictionary["comments"] as! String: ""
+        if let filesArray = dictionary["files"] as? NSArray {
+            files = [FirebaseFile]()
+            for file in filesArray {
+                if let fileDictionary = file as? Dictionary<String, AnyObject> {
+                    files.append(FirebaseFile(fileDictionary))
+                }
+            }
+        } else {
+            files = []
+        }
     }
     
     public func toDictionary() -> Dictionary<String, AnyObject> {
@@ -56,6 +67,11 @@ public class ContractorService:CustomStringConvertible, Comparable {
         }
         dictionary["contractor"] = self.contractor as AnyObject
         dictionary["comments"] = self.comments as AnyObject
+        var filesArray = NSArray()
+        for file in files {
+            filesArray = filesArray.adding(file.toDictionary()) as NSArray
+        }
+        dictionary["files"] = filesArray
         return dictionary
     }
     
@@ -117,10 +133,15 @@ public class ContractorService:CustomStringConvertible, Comparable {
         return self
     }
     
-    var TODO_Contractor_Service_Files😵:AnyObject?
+    func getFiles() -> [FirebaseFile] {
+        return self.files
+    }
+    func setFiles(_ files:[FirebaseFile]) -> ContractorService {
+        self.files = files
+        return self
+    }
 
-    func update(contractor:String, comments:String) -> ContractorService{
-        var TODO_Contractor_Service_Files_Update😵:AnyObject?
+    func update(contractor:String, comments:String) -> ContractorService {
         self.contractor = contractor
         self.comments = comments
         return self

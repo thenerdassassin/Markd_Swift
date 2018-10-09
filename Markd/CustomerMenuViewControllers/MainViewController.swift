@@ -28,7 +28,6 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        print("Bucket: \(storage.reference().bucket)")
         ViewControllerUtilities.insertMarkdLogo(into: self)
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
     }
@@ -72,9 +71,6 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
             if let fileName = customerData.getHomeImageFileName() {
                  storage.reference(withPath: "images/\(fileName)").downloadURL { url,error in
                     guard error == nil else {
-                        //self.homeImageExists = false
-                        //self.homeImage.backgroundColor = UIColor.lightGray
-                        //self.homeImage.contentMode = .center
                         self.homeImage.kf.setImage(with: nil, placeholder: self.placeholderImage)
                         return
                     }
@@ -115,69 +111,12 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     //Mark:- UIImagePickerController
     @IBAction func homeImageTapped(_ sender: UITapGestureRecognizer) {
         if(!homeImageExists) {
-            getNewHomeImage()
+             PhotoUtilities(self).getImage()
         }
     }
     
     @IBAction func homeImageLongPressed(_ sender: UILongPressGestureRecognizer) {
-        getNewHomeImage()
-    }
-    private func getNewHomeImage() {
-        if(UIImagePickerController.isSourceTypeAvailable(.camera)) {
-            AlertControllerUtilities.showActionSheet(withTitle: "Picture of your Home", andMessage: nil,
-                                                     withOptions: [
-                                                        UIAlertAction(title: "Take Photo", style: .default, handler: checkCameraAuthorizationStatus),
-                                                        UIAlertAction(title:"Select Photo", style: .default, handler: checkPhotoLibraryAuthorizationStatus),
-                                                        UIAlertAction(title:"Cancel", style: .cancel, handler: nil)],
-                                                     in: self)
-        } else {
-            checkPhotoLibraryAuthorizationStatus()
-        }
-    }
-    private func checkCameraAuthorizationStatus(alert: UIAlertAction!) {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-            case .authorized: // The user has previously granted access to the camera.
-                self.setupImagePicker(with: .camera)
-            
-            case .notDetermined: // The user has not yet been asked for camera access.
-                AVCaptureDevice.requestAccess(for: .video) { granted in
-                    if granted {
-                        self.setupImagePicker(with: .camera)
-                    }
-                }
-            
-            case .denied: // The user has previously denied access.
-                return
-            case .restricted: // The user can't grant access due to restrictions.
-                return
-        }
-    }
-    private func checkPhotoLibraryAuthorizationStatus(alert:UIAlertAction? = nil) {
-        switch PHPhotoLibrary.authorizationStatus() {
-            case .authorized: // The user has previously granted access to the camera.
-                self.setupImagePicker(with: .photoLibrary)
-            
-            case .notDetermined: // The user has not yet been asked for camera access.
-                PHPhotoLibrary.requestAuthorization { status in
-                    if status == .authorized{
-                        self.setupImagePicker(with: .photoLibrary)
-                    } else {
-                        return
-                    }
-                }
-            case .denied: // The user has previously denied access.
-                return
-            case .restricted: // The user can't grant access due to restrictions.
-                return
-        }
-    }
-    
-    private func setupImagePicker(with sourceType:UIImagePickerControllerSourceType) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = sourceType
-        present(imagePicker, animated: true, completion: nil)
+        PhotoUtilities(self).getImage()
     }
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -209,16 +148,15 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
         if let error = snapshot.error as NSError? {
             switch (StorageErrorCode(rawValue: error.code)!) {
                 case .retryLimitExceeded:
-                        AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Time limit exceeded",
+                    AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Time limit exceeded",
                                                            withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
+                    break
                 default:
                     AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Something went wrong",
                                                        withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
                     break
             }
         }
-
-
     }
     
     private func addHomeInformation(_ action:UIAlertAction) {

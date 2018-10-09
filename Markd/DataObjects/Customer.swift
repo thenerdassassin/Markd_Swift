@@ -10,9 +10,6 @@ import Foundation
 import Firebase
 
 public class Customer:CustomStringConvertible {
-    func NEED_TO_ADD_ANDROID_METHODS😤() {
-        var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
-    }
     public final let userType = "customer"
     
     //For Home Page
@@ -433,6 +430,16 @@ public class Customer:CustomStringConvertible {
     }
     
     //Mark:- Services
+    public func countServices(of type:String) -> Int? {
+        if type == "Plumbing" {
+            return plumbingServices?.count
+        } else if type == "Hvac" {
+            return hvacServices?.count
+        } else if type == "Electrical" {
+            return electricalServices?.count
+        }
+        return nil
+    }
     public func update(_ service:ContractorService, _  number:Int, of type:String) -> Customer {
         if type == "Plumbing" {
             return updatePlumbingService(service, number)

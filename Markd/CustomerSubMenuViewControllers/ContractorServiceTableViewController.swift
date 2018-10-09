@@ -20,9 +20,9 @@ class ContractorServiceTableViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem = addButton
         tableView.tableFooterView = UIView()
+    }
+    override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -32,6 +32,9 @@ class ContractorServiceTableViewController: UITableViewController {
             if number < 0 {
                 print("Add Service number: \(number) to \(type)")
                 customerData.update(service!, number, of: type)
+                if let serviceCount = customerData.getServiceCount(of: type) {
+                    serviceIndex =  serviceCount - 1
+                }
             } else {
                 print("Number: \(number) changes to###\n\(service!)")
                 customerData.update(service!, number, of: type)
@@ -39,6 +42,10 @@ class ContractorServiceTableViewController: UITableViewController {
         } else {
             AlertControllerUtilities.somethingWentWrong(with: self)
         }
+    }
+    
+    @IBAction func onAddFileAction(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "showServiceFileSegue", sender: self)
     }
 
     // MARK: - Table view data source
@@ -53,13 +60,10 @@ class ContractorServiceTableViewController: UITableViewController {
                 return 3
             }
         } else if(section == 1) {
-            return 1
-            /*
-            guard let files = files else {
-                return 0
+            guard let files = service?.getFiles() else {
+                return 1
             }
-            return files.count
-            */
+            return files.count > 0 ? files.count:1
         }
         return 0
     }
@@ -110,9 +114,26 @@ class ContractorServiceTableViewController: UITableViewController {
                 }
                 return cell
             }
+        } else if(indexPath.section == 1) {
+            guard let files = service?.getFiles() else {
+                return noFilesCell(indexPath)
+            }
+            if files.count > 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "serviceFileTableCell", for: indexPath)
+                cell.textLabel?.text = files[indexPath.row].getFileName()
+                cell.tag = indexPath.row
+                return cell
+            }
+            return noFilesCell(indexPath)
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "serviceFileTableCell", for: indexPath)
         // Configure the cell...
+        return UITableViewCell()
+    }
+    
+    private func noFilesCell(_ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "serviceFileTableCell", for: indexPath)
+        cell.accessoryType = .none
+        cell.textLabel?.text = "No files yet!"
         return cell
     }
     
@@ -156,13 +177,59 @@ class ContractorServiceTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            guard let customerData = customerData else {
+                print("Customer Data not set")
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
+            guard let service = service, let index = serviceIndex, let type = serviceType else {
+                print("Missing service information")
+                AlertControllerUtilities.somethingWentWrong(with: self)
+                return
+            }
             // Delete the row from the data source
+            var files = service.getFiles()
+            files.remove(at: indexPath.row)
+            customerData.update(service.setFiles(files), index, of: type)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        print("shouldPerformSegue")
+        if(identifier == "showServiceFileSegue") {
+            if let sender = sender as? UITableViewCell {
+                guard let files = service?.getFiles(), let _ = customerData?.getUid() else {
+                    return false
+                }
+                if(sender.tag < 0 || sender.tag >= files.count) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepareSegue")
         // Pass the selected file to the new view controller.
-        var TODO_Pass_File_Data:AnyObject?
+        if(segue.identifier == "showServiceFileSegue") {
+            let destination = segue.destination as! ServieFileViewController
+            destination.serviceType = serviceType
+            destination.serviceIndex = serviceIndex
+            if let sender = sender as? UITableViewCell {
+                destination.fileIndex = sender.tag
+                destination.service = service
+            } else {
+                if let service = service {
+                    var files = service.getFiles()
+                    files.append(FirebaseFile([:]))
+                    destination.fileIndex = files.count-1
+                    destination.service = service.setFiles(files)
+                } else {
+                    AlertControllerUtilities.somethingWentWrong(with: self)
+                }
+            }
+            customerData?.removeListeners()
+        }
     }
 }
 
