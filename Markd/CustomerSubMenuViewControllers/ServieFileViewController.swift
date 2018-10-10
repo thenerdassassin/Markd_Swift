@@ -72,8 +72,9 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
                 file.setFileName(to: "File \(fileIndex != nil ? String(fileIndex! + 1) :"")")
             }
             self.navigationItem.title = file.getFileName()
-            getMetaData(for: "images/services/\(uid)/\(file.getGuid())")
             
+            animate()
+            getMetaData(for: "images/services/\(uid)/\(file.getGuid())")
         } else if let fileImageView = fileImageView {
             fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
         }
@@ -83,33 +84,39 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
         // Get metadata properties
         storage.getMetadata { metadata, error in
             guard error == nil else {
+                self.endAnimate()
+                self.fileImageView.isHidden = false
                 self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
                 return
             }
             guard let metadata = metadata else {
+                self.endAnimate()
+                self.fileImageView.isHidden = false
                 self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
                 return
             }
             if(metadata.contentType == "image/jpeg") {
                 self.loadImage(from: storage)
-                
             } else if(metadata.contentType == "application/pdf") {
                 //TODO: load pdf
                 self.loadPDF(from: storage)
             } else {
+                self.endAnimate()
+                self.fileImageView.isHidden = false
                 AlertControllerUtilities.somethingWentWrong(with: self)
             }
         }
     }
     func loadImage(from storage: StorageReference) {
-        //TODO: hide pdf and show imageView
         storage.downloadURL { url,error in
             guard error == nil else {
+                self.endAnimate()
                 self.fileImageView.isHidden = false
                 self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
                 return
             }
             guard let url = url else {
+                self.endAnimate()
                 self.fileImageView.isHidden = false
                 self.fileImageView.kf.setImage(with: nil, placeholder: self.placeholderImage)
                 return
@@ -119,7 +126,7 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
     }
     func setFileImage(with url: URL?) {
         self.fileImageView.kf.setImage(with:url, completionHandler: { (image, error, cacheType, imageUrl) in
-            self.activityIndicator.stopAnimating()
+            self.endAnimate()
             self.fileImageView.isHidden = false
             if(image != nil) {
                 self.fileImageView.contentMode = .scaleAspectFit
@@ -129,8 +136,8 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
         })
     }
     func loadPDF(from storage: StorageReference) {
-        //TODO: hide image and show pdf
-        self.fileImageView.isHidden = true
+        //TODO: show pdf
+        self.endAnimate()
     }
     
     @IBAction func editTitleAction(_ sender: UIBarButtonItem) {
@@ -183,12 +190,11 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
     
     //Mark:- Upload Image Observers
     private func observeUploadProgress(_ snapshot:StorageTaskSnapshot) {
-        activityIndicator.startAnimating()
-        fileImageView.isHidden = true
+        animate()
     }
     private func observeUploadError(_ snapshot:StorageTaskSnapshot) {
         print("Upload Error")
-        activityIndicator.stopAnimating()
+        endAnimate()
         fileImageView.isHidden = false
         if let error = snapshot.error as NSError? {
             switch (StorageErrorCode(rawValue: error.code)!) {
@@ -202,6 +208,14 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
                 break
             }
         }
+    }
+    private func animate() {
+        activityIndicator.startAnimating()
+        fileImageView.isHidden = true
+        //TODO: hide PDF
+    }
+    private func endAnimate() {
+        activityIndicator.stopAnimating()
     }
     
     //Mark: OnGetDataListener
