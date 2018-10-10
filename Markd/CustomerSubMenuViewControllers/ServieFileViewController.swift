@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PDFKit
 import FirebaseStorage
 
 class ServieFileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OnGetDataListener {
@@ -39,7 +40,8 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var fileImageView: UIImageView!
     let placeholderImage = UIImage(named: "ic_action_camera")!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    @IBOutlet weak var pdfView: UIView!
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if(authentication.checkLogin(self)) {
@@ -136,7 +138,7 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
         })
     }
     func loadPDF(from storage: StorageReference) {
-        //TODO: show pdf
+        pdfView.isHidden = false
         self.endAnimate()
     }
     
@@ -212,7 +214,7 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
     private func animate() {
         activityIndicator.startAnimating()
         fileImageView.isHidden = true
-        //TODO: hide PDF
+        pdfView.isHidden = true
     }
     private func endAnimate() {
         activityIndicator.stopAnimating()
