@@ -282,10 +282,6 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="reh-uo-a3W">
                                 <rect key="frame" x="-0.5" y="10" width="375" height="667"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUu-vE-YDT">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                                <color key="backgroundColor" red="0.97264713049999996" green="0.2115233262" blue="0.21593406060000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -293,13 +289,9 @@
                             <constraint firstItem="yy4-G1-bdw" firstAttribute="centerX" secondItem="SNO-4c-Ut1" secondAttribute="centerX" id="4vm-aq-PLh"/>
                             <constraint firstItem="reh-uo-a3W" firstAttribute="centerY" secondItem="yy4-G1-bdw" secondAttribute="centerY" id="5HS-xl-5Fn"/>
                             <constraint firstItem="yy4-G1-bdw" firstAttribute="height" secondItem="8Oj-df-wwl" secondAttribute="height" id="DRB-ea-VW9"/>
-                            <constraint firstItem="SNO-4c-Ut1" firstAttribute="top" secondItem="yUu-vE-YDT" secondAttribute="top" id="TV2-sW-q04"/>
-                            <constraint firstItem="SNO-4c-Ut1" firstAttribute="leading" secondItem="yUu-vE-YDT" secondAttribute="leading" id="W6Z-hN-fpr"/>
                             <constraint firstItem="yy4-G1-bdw" firstAttribute="centerY" secondItem="SNO-4c-Ut1" secondAttribute="centerY" id="XMZ-WJ-ARz"/>
-                            <constraint firstItem="SNO-4c-Ut1" firstAttribute="trailing" secondItem="yUu-vE-YDT" secondAttribute="trailing" id="dwc-IG-f1d"/>
                             <constraint firstItem="reh-uo-a3W" firstAttribute="height" secondItem="yy4-G1-bdw" secondAttribute="height" id="fzF-2b-vbY"/>
                             <constraint firstItem="yy4-G1-bdw" firstAttribute="width" secondItem="8Oj-df-wwl" secondAttribute="width" id="kKb-1v-gnm"/>
-                            <constraint firstItem="SNO-4c-Ut1" firstAttribute="bottom" secondItem="yUu-vE-YDT" secondAttribute="bottom" id="nhm-rz-w83"/>
                             <constraint firstItem="reh-uo-a3W" firstAttribute="width" secondItem="yy4-G1-bdw" secondAttribute="width" id="xUK-DG-NcQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SNO-4c-Ut1"/>
@@ -314,7 +306,6 @@
                     <connections>
                         <outlet property="activityIndicator" destination="reh-uo-a3W" id="kvh-da-Si0"/>
                         <outlet property="fileImageView" destination="yy4-G1-bdw" id="zwW-oQ-WN1"/>
-                        <outlet property="pdfView" destination="yUu-vE-YDT" id="7qu-uQ-3SL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zX-bq-kD6" userLabel="First Responder" sceneMemberID="firstResponder"/>

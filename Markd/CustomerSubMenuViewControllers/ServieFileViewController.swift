@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import PDFKit
 import FirebaseStorage
 
@@ -40,7 +41,6 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var fileImageView: UIImageView!
     let placeholderImage = UIImage(named: "ic_action_camera")!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var pdfView: UIView!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -138,8 +138,39 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
         })
     }
     func loadPDF(from storage: StorageReference) {
-        pdfView.isHidden = false
-        self.endAnimate()
+        print("Loading PDF")
+        if #available(iOS 11.0, *) {
+            let pdfView: PDFView = PDFView(frame: self.view.frame)
+            storage.downloadURL { (URL, error) -> Void in
+                guard let URL = URL else {
+                    // Handle any errors
+                    print("URL not there")
+                    return
+                }
+                guard error == nil else {
+                    // Handle any errors
+                    print("Error")
+                    return
+                }
+                print("Got PDF")
+                do {
+                    let data = try Data(contentsOf: URL)
+                    pdfView.document = PDFDocument(data: data)
+                    pdfView.displayMode = .singlePageContinuous
+                    pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                    pdfView.autoScales = true
+                    pdfView.displayDirection = .vertical
+                    self.fileImageView.isHidden = true
+                    self.view.addSubview(pdfView)
+                } catch let err {
+                    
+                }
+                self.endAnimate()
+            }
+        } else {
+            // Fallback on earlier versions
+            print("Older versions")
+        }
     }
     
     @IBAction func editTitleAction(_ sender: UIBarButtonItem) {
@@ -214,7 +245,7 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
     private func animate() {
         activityIndicator.startAnimating()
         fileImageView.isHidden = true
-        pdfView.isHidden = true
+        //pdfView.isHidden = true
     }
     private func endAnimate() {
         activityIndicator.stopAnimating()
