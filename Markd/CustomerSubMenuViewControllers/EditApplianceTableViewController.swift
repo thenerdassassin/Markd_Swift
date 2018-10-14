@@ -208,7 +208,7 @@ class EditApplianceTableViewController: UITableViewController {
             }
         } else {
             print("TempCustomerData is nil")
-            AlertControllerUtilities.somethingWentWrong(with: self)
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
         }
     }
     private func isEditing(in section:Int) -> Bool {

@@ -9,9 +9,11 @@
 import UIKit
 import Foundation
 import PDFKit
+import WebKit
 import FirebaseStorage
+import Crashlytics
 
-class ServieFileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OnGetDataListener {
+class ServieFileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WKNavigationDelegate, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     var customerData:TempCustomerData?
     var serviceType:String?
@@ -105,7 +107,7 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
             } else {
                 self.endAnimate()
                 self.fileImageView.isHidden = false
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnknownFileContentType)
             }
         }
     }
@@ -142,19 +144,13 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
         if #available(iOS 11.0, *) {
             let pdfView: PDFView = PDFView(frame: self.view.frame)
             storage.downloadURL { (URL, error) -> Void in
-                guard let URL = URL else {
-                    // Handle any errors
-                    print("URL not there")
-                    return
-                }
                 guard error == nil else {
                     // Handle any errors
-                    print("Error")
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: error!)
                     return
                 }
-                print("Got PDF")
                 do {
-                    let data = try Data(contentsOf: URL)
+                    let data = try Data(contentsOf: URL!)
                     pdfView.document = PDFDocument(data: data)
                     pdfView.displayMode = .singlePageContinuous
                     pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -162,14 +158,39 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
                     pdfView.displayDirection = .vertical
                     self.fileImageView.isHidden = true
                     self.view.addSubview(pdfView)
-                } catch let err {
-                    
+                } catch let error {
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: error)
                 }
                 self.endAnimate()
             }
         } else {
             // Fallback on earlier versions
             print("Older versions")
+            storage.downloadURL { (URL, error) -> Void in
+                guard error == nil else {
+                    // Handle any errors
+                    print(error!.localizedDescription)
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: error!)
+                    return
+                }
+                guard let URL = URL else {
+                    print("Didn't get URL")
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                    return
+                }
+                print("Loading WebView")
+                let request = NSURLRequest(url: URL)
+                let webView = WKWebView(frame: CGRect(x: 0, y: 0+self.topLayoutGuide.length, width: self.view.frame.width, height: self.view.frame.height-self.topLayoutGuide.length-self.bottomLayoutGuide.length))
+                webView.navigationDelegate = self
+                webView.load(request as URLRequest)
+                self.view.addSubview(webView)
+            }
+        }
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("loaded")
+        if(!webView.isLoading) {
+            self.endAnimate()
         }
     }
     
@@ -262,6 +283,6 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
-        AlertControllerUtilities.somethingWentWrong(with: self)
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
 }

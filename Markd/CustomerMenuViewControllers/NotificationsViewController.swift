@@ -29,11 +29,11 @@ class NotificationsViewController: UITableViewController {
         super.viewWillAppear(animated)
         if authentication.checkLogin(self) {
             guard let userId = authentication.getCurrentUser()?.uid else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             if !NotificationsUtilities.getNotifications(for: userId, with: { (snapshot) in self.configureView(notifications: snapshot) }) {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.NotificationError)
             }
         }
     }

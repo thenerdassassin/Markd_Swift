@@ -97,7 +97,7 @@ class PaintingSurfacesViewController:UITableViewController {
         } else if indexPath.section == 1 {
             paintSurface = exteriorPaintSurfaces?[indexPath.row]
         } else {
-            AlertControllerUtilities.somethingWentWrong(with: self)
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
         }
         if let paintSurface = paintSurface {
             paintSurfaceCell.paintSurface = paintSurface
@@ -118,7 +118,7 @@ class PaintingSurfacesViewController:UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let customerData = customerData else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             if indexPath.section == 0 {
@@ -126,7 +126,7 @@ class PaintingSurfacesViewController:UITableViewController {
             } else if indexPath.section == 1 {
                 customerData.removePaintSurface(at: indexPath.row, fromInterior: false)
             } else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
             }
         }
     }
@@ -136,7 +136,7 @@ class PaintingSurfacesViewController:UITableViewController {
             let sender = sender as! PaintSurfaceTableViewCell
             let destination = segue.destination as! EditPaintingSurfaceViewController
             guard let customerData = customerData, let paintSurface = sender.paintSurface else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             customerData.removeListeners()

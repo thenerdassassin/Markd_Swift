@@ -40,7 +40,7 @@ class ContractorServiceTableViewController: UITableViewController {
                 customerData.update(service!, number, of: type)
             }
         } else {
-            AlertControllerUtilities.somethingWentWrong(with: self)
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
         }
     }
     
@@ -179,12 +179,12 @@ class ContractorServiceTableViewController: UITableViewController {
         if editingStyle == .delete {
             guard let customerData = customerData else {
                 print("Customer Data not set")
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             guard let service = service, let index = serviceIndex, let type = serviceType else {
                 print("Missing service information")
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             // Delete the row from the data source
@@ -225,7 +225,7 @@ class ContractorServiceTableViewController: UITableViewController {
                     destination.fileIndex = files.count-1
                     destination.service = service.setFiles(files)
                 } else {
-                    AlertControllerUtilities.somethingWentWrong(with: self)
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 }
             }
             customerData?.removeListeners()
@@ -325,11 +325,11 @@ class DatePickerTableViewCell: UITableViewCell {
         let date = dateFormatter.string(from:sender.date)
         let dateComponents = StringUtilities.getComponentsFrom(dotFormmattedString: date)
         guard dateComponents.count == 3 else {
-            AlertControllerUtilities.somethingWentWrong(with: serviceViewController!)
+            AlertControllerUtilities.somethingWentWrong(with: serviceViewController!, because: MarkdError.UnsupportedConfiguration)
             return
         }
         guard let month = dateComponents[0], let day = dateComponents[1], let year = dateComponents[2] else {
-            AlertControllerUtilities.somethingWentWrong(with: serviceViewController!)
+            AlertControllerUtilities.somethingWentWrong(with: serviceViewController!, because: MarkdError.UnexpectedNil)
             return
         }
         var serviceToUpdate = serviceViewController!.service!

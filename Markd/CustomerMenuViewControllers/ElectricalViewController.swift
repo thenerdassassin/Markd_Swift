@@ -55,7 +55,7 @@ class ElectricalViewController: UIViewController, OnGetDataListener {
         if segue.identifier == "addPanelSegue" {
             let destination = segue.destination as! EditPanelViewController
             guard let customerData = customerData else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             customerData.removeListeners()
@@ -114,6 +114,6 @@ class ElectricalViewController: UIViewController, OnGetDataListener {
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
-        AlertControllerUtilities.somethingWentWrong(with: self)
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
 }

@@ -215,7 +215,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     }
     
     func onFailure(_ error: Error) {
-        AlertControllerUtilities.somethingWentWrong(with: self)
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
 }
 

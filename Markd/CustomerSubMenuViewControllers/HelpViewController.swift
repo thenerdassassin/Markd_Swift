@@ -80,7 +80,7 @@ public class HelpViewController: UIViewController, OnGetDataListener {
                     AlertControllerUtilities.showAlert(withTitle: "Thanks 😁", andMessage: "An email has been sent to the support team. We appreciate your feedback.",
                                                        withOptions: [UIAlertAction(title: "Ok", style: .default, handler: self.emailSuccessAlertHandler)], in: self)
                 } else {
-                    AlertControllerUtilities.somethingWentWrong(with: self)
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.HttpError)
                 }
             }
         }
@@ -93,7 +93,7 @@ public class HelpViewController: UIViewController, OnGetDataListener {
         OperationQueue.main.addOperation {
             debugPrint("error: \(error)")
             self.sendingIndicator.stopAnimating()
-            AlertControllerUtilities.somethingWentWrong(with: self)
+            AlertControllerUtilities.somethingWentWrong(with: self, because: error)
         }
     }
     
@@ -109,5 +109,6 @@ public class HelpViewController: UIViewController, OnGetDataListener {
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
 }
