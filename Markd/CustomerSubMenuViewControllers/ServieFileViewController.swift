@@ -183,15 +183,25 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
                 let webView = WKWebView(frame: CGRect(x: 0, y: 0+self.topLayoutGuide.length, width: self.view.frame.width, height: self.view.frame.height-self.topLayoutGuide.length-self.bottomLayoutGuide.length))
                 webView.navigationDelegate = self
                 webView.load(request as URLRequest)
+                webView.isHidden = true
                 self.view.addSubview(webView)
             }
         }
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("loaded")
-        if(!webView.isLoading) {
+        //if(!webView.isLoading) {
+            webView.isHidden = false
             self.endAnimate()
-        }
+        //}
+    }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print(error.localizedDescription)
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
+    }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        print(error.localizedDescription)
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
     
     @IBAction func editTitleAction(_ sender: UIBarButtonItem) {
