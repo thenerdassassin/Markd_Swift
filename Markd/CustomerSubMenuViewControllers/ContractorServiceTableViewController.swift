@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MobileCoreServices
 
-class ContractorServiceTableViewController: UITableViewController {
+class ContractorServiceTableViewController: UITableViewController, UIDocumentPickerDelegate {
     var datePickerVisible = false
     var customerData:TempCustomerData?
     var serviceIndex: Int?
@@ -45,7 +46,37 @@ class ContractorServiceTableViewController: UITableViewController {
     }
     
     @IBAction func onAddFileAction(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "showServiceFileSegue", sender: self)
+        //TODO: Allow for UIDocumentPickerViewController
+        AlertControllerUtilities.showActionSheet(withTitle: "File Type", andMessage: "Which type of file would you like to attach to this service?",
+                                                 withOptions: [UIAlertAction(title: "Photo", style: .default, handler: addFile),
+                                                               UIAlertAction(title: "PDF", style: .default, handler: addFile),
+                                                               UIAlertAction(title: "Cancel", style: .cancel, handler: nil)],
+                                                 in: self)
+        
+    }
+    
+    private func addFile(action:UIAlertAction) {
+        if(action.title == "Photo") {
+            performSegue(withIdentifier: "showServiceFileSegue", sender: self)
+        } else if(action.title == "PDF") {
+            getPdfFile()
+        } else {
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+        }
+    }
+    
+    private func getPdfFile() {
+        //TODO: Need to Join Apple Developer Program
+        //TODO: See this:- https://medium.com/@santhosh3386/ios-document-picker-eae1d37aefea
+        let documentPicker = UIDocumentPickerViewController(documentTypes: [String(kUTTypePDF)], in: .import)
+        documentPicker.delegate = self
+        present(documentPicker, animated: true)
+    }
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        print(urls)
+        AlertControllerUtilities.showAlert(withTitle: "PDF Urls", andMessage: "\(urls)",
+            withOptions: [UIAlertAction(title: "Ok", style: .default, handler: nil)], in: self)
     }
 
     // MARK: - Table view data source
