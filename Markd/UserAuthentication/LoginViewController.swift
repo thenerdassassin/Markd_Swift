@@ -115,7 +115,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         if(userType == "customer") {
             self.performSegue(withIdentifier: "CustomerLogin", sender: self)
         } else if (userType == "contractor") {
-            print("userType: \(snapShot.value!)")
             self.performSegue(withIdentifier: "ContractorLogin", sender: self)
         } else {
             authenticator.signOut(self)

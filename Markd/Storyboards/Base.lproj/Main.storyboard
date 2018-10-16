@@ -142,11 +142,12 @@
                         <outlet property="loginButton" destination="6S0-BM-ulr" id="jff-FQ-6M1"/>
                         <outlet property="password" destination="3xF-T2-8aK" id="rKm-Kz-czB"/>
                         <segue destination="J6I-FX-Qjq" kind="show" identifier="CustomerLogin" id="B5K-CJ-jwF"/>
+                        <segue destination="sS1-I9-amb" kind="show" identifier="ContractorLogin" id="o1R-DN-IxS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LWe-cU-h1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5865" y="-812"/>
+            <point key="canvasLocation" x="-5604" y="-829"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gve-kr-fH6">
@@ -169,6 +170,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oZi-C5-k1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4687" y="-814"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="2hg-Dq-n3e">
+            <objects>
+                <viewController id="dRo-j4-X59" customClass="ContractorMainViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cUC-xk-OaC"/>
+                        <viewControllerLayoutGuide type="bottom" id="eUc-PH-6r6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lfJ-4y-1gg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ca7-aH-S6I">
+                                <rect key="frame" x="160" y="318.5" width="55" height="30"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="onLogOut:" destination="dRo-j4-X59" eventType="touchUpInside" id="YTB-tR-icv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ca7-aH-S6I" firstAttribute="centerY" secondItem="lfJ-4y-1gg" secondAttribute="centerY" id="3fg-un-apJ"/>
+                            <constraint firstItem="ca7-aH-S6I" firstAttribute="centerX" secondItem="lfJ-4y-1gg" secondAttribute="centerX" id="Hvm-Ha-Q8z"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="ic_action_home" selectedImage="ic_action_home" id="UwW-rv-kNq"/>
+                    <connections>
+                        <segue destination="kkx-LB-bL6" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="fjk-Vj-o6x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3SF-F7-kKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="kkx-LB-bL6" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-3766" y="-1493"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="doZ-9Y-1BP">
+            <objects>
+                <tabBarController modalTransitionStyle="flipHorizontal" id="sS1-I9-amb" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dKY-As-jsJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="dRo-j4-X59" kind="relationship" relationship="viewControllers" id="9UR-cl-s62"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RNI-72-RoD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4687" y="-1492"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="1XI-Ku-A56">
