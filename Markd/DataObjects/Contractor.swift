@@ -33,7 +33,20 @@ public class Contractor:CustomStringConvertible {
         //TODO: Customers
         self.logoFileName = dictionary["logoFileName"] != nil ? dictionary["logoFileName"] as! String: ""
     }
-    var TODO_toDictionary_Implementations🤬:AnyObject?
+    func toDictionary() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        
+        dictionary["namePrefix"] = self.namePrefix as AnyObject
+        dictionary["firstName"] = self.firstName as AnyObject
+        dictionary["lastName"] = self.lastName as AnyObject
+        dictionary["type"] = self.type as AnyObject
+        dictionary["contractorDetails"] = self.contractorDetails?.toDictionary() as AnyObject
+        dictionary["logoFileName"] = self.logoFileName as AnyObject
+        //TODO: Customers
+        dictionary["userType"] = self.userType as AnyObject
+        
+        return dictionary
+    }
     
     //Mark:- Getters/Setters
     public func getNamePrefix() -> String {

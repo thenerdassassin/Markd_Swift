@@ -61,6 +61,7 @@
 		FF9CDB30216007AD00902C7F /* ServieFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB2F216007AD00902C7F /* ServieFileViewController.swift */; };
 		FF9CDB322161968B00902C7F /* PhotoUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB312161968B00902C7F /* PhotoUtilities.swift */; };
 		FF9CDB352174028100902C7F /* MarkdError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB342174028100902C7F /* MarkdError.swift */; };
+		FF9CDB3721768C5500902C7F /* TempContractorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB3621768C5500902C7F /* TempContractorData.swift */; };
 		FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */; };
 		FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB565892079274400F6E8F1 /* HvacViewController.swift */; };
 		FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658B2079335100F6E8F1 /* AirHandler.swift */; };
@@ -145,6 +146,7 @@
 		FF9CDB2F216007AD00902C7F /* ServieFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServieFileViewController.swift; sourceTree = "<group>"; };
 		FF9CDB312161968B00902C7F /* PhotoUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUtilities.swift; sourceTree = "<group>"; };
 		FF9CDB342174028100902C7F /* MarkdError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdError.swift; sourceTree = "<group>"; };
+		FF9CDB3621768C5500902C7F /* TempContractorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempContractorData.swift; sourceTree = "<group>"; };
 		FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditApplianceTableViewController.swift; sourceTree = "<group>"; };
 		FFB565892079274400F6E8F1 /* HvacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HvacViewController.swift; sourceTree = "<group>"; };
 		FFB5658B2079335100F6E8F1 /* AirHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirHandler.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				FF2CC32A20D1D26900A181F1 /* Breaker.swift */,
 				FF13E48520D9D59F00B5100B /* PanelAmerage.swift */,
 				FF9CDB2B215FEAF300902C7F /* FirebaseFile.swift */,
+				FF9CDB3621768C5500902C7F /* TempContractorData.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				FFF27C92204203E500A9392E /* Address.swift in Sources */,
 				47000A6F1DFDEA2E00D85548 /* NewPanelSetupViewController.swift in Sources */,
 				47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */,
+				FF9CDB3721768C5500902C7F /* TempContractorData.swift in Sources */,
 				476295BF1E1DF198008CDBFC /* EditPanelViewController-Old.swift in Sources */,
 				FF13E48A20E855CB00B5100B /* EditBreakerViewController.swift in Sources */,
 				FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */,

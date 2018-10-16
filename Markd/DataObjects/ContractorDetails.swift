@@ -20,8 +20,16 @@ public class ContractorDetails:CustomStringConvertible {
         self.websiteUrl = dictionary["websiteUrl"] != nil ? dictionary["websiteUrl"] as! String: ""
         self.zipCode = dictionary["zipCode"] != nil ? dictionary["zipCode"] as! String: ""
     }
-    
-    var TODO_toDictionary_Implementations🤬:AnyObject?
+    func toDictionary() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        
+        dictionary["companyName"] = self.companyName as AnyObject
+        dictionary["telephoneNumber"] = self.telephoneNumber as AnyObject
+        dictionary["websiteUrl"] = self.websiteUrl as AnyObject
+        dictionary["zipCode"] = self.zipCode as AnyObject
+        
+        return dictionary
+    }
     //Mark:- Getters/Setters
     public func getCompanyName() -> String {
         return self.companyName

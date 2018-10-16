@@ -141,7 +141,7 @@
                         <outlet property="forgotPassword" destination="7Yq-JS-HC8" id="AJA-3Q-OmT"/>
                         <outlet property="loginButton" destination="6S0-BM-ulr" id="jff-FQ-6M1"/>
                         <outlet property="password" destination="3xF-T2-8aK" id="rKm-Kz-czB"/>
-                        <segue destination="J6I-FX-Qjq" kind="show" identifier="Login" id="B5K-CJ-jwF"/>
+                        <segue destination="J6I-FX-Qjq" kind="show" identifier="CustomerLogin" id="B5K-CJ-jwF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LWe-cU-h1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
