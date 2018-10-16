@@ -92,7 +92,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
         } else if indexPath.section == 2 {
             service = electricalServices?[indexPath.row]
         } else {
-            AlertControllerUtilities.somethingWentWrong(with: self)
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
         }
         
         if let service = service {
@@ -137,7 +137,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let customerData = customerData else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             // Delete the row from the data source
@@ -160,7 +160,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
                     return
                 }
             } else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -172,7 +172,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
             let sender = sender as! ServiceTableViewCell
             let destination = segue.destination as! ContractorServiceTableViewController
             guard let customerData = customerData, let service = sender.service else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             customerData.removeListeners()
@@ -184,7 +184,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
             let sender = sender as! UIAlertAction
             let destination = segue.destination as! ContractorServiceTableViewController
             guard let customerData = customerData else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             customerData.removeListeners()
@@ -222,7 +222,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
-        AlertControllerUtilities.somethingWentWrong(with: self)
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
 }
 

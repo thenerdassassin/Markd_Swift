@@ -88,7 +88,7 @@ class ElectricalPanelsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
          if editingStyle == .delete {
             guard let customerData = customerData else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             customerData.removeElectricalPanel(at: indexPath.row)
@@ -103,7 +103,7 @@ class ElectricalPanelsViewController: UITableViewController {
             let sender = sender as! ElectricalPanelTableViewCell
             let destination = segue.destination as! PanelViewController
             guard let customerData = customerData, let panel = sender.panel else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             customerData.removeListeners()

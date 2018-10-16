@@ -60,6 +60,7 @@
 		FF9CDB2E215FF0A000902C7F /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9CDB2D215FF0A000902C7F /* Notifications.storyboard */; };
 		FF9CDB30216007AD00902C7F /* ServieFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB2F216007AD00902C7F /* ServieFileViewController.swift */; };
 		FF9CDB322161968B00902C7F /* PhotoUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB312161968B00902C7F /* PhotoUtilities.swift */; };
+		FF9CDB352174028100902C7F /* MarkdError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB342174028100902C7F /* MarkdError.swift */; };
 		FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */; };
 		FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB565892079274400F6E8F1 /* HvacViewController.swift */; };
 		FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5658B2079335100F6E8F1 /* AirHandler.swift */; };
@@ -143,6 +144,7 @@
 		FF9CDB2D215FF0A000902C7F /* Notifications.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		FF9CDB2F216007AD00902C7F /* ServieFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServieFileViewController.swift; sourceTree = "<group>"; };
 		FF9CDB312161968B00902C7F /* PhotoUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUtilities.swift; sourceTree = "<group>"; };
+		FF9CDB342174028100902C7F /* MarkdError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdError.swift; sourceTree = "<group>"; };
 		FFA1E86A207D7417009D2FD3 /* EditApplianceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditApplianceTableViewController.swift; sourceTree = "<group>"; };
 		FFB565892079274400F6E8F1 /* HvacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HvacViewController.swift; sourceTree = "<group>"; };
 		FFB5658B2079335100F6E8F1 /* AirHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirHandler.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				FFF2239820FFEADE00F823D6 /* ViewControllerUtilities.swift */,
 				FF1C354621039FA50062CBA2 /* ZipCodeUtitilities.swift */,
 				FF9CDB312161968B00902C7F /* PhotoUtilities.swift */,
+				FF9CDB342174028100902C7F /* MarkdError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
 				FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */,
 				FF9CDB2C215FEAF300902C7F /* FirebaseFile.swift in Sources */,
+				FF9CDB352174028100902C7F /* MarkdError.swift in Sources */,
 				FF1C3543210008610062CBA2 /* SettingsMenuViewController.swift in Sources */,
 				FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */,
 				FFF27C8E2041E18600A9392E /* Customer.swift in Sources */,

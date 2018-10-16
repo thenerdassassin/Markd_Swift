@@ -103,7 +103,7 @@ class FindContractorViewController:UITableViewController, OnGetDataListener {
                             self.customerData!.updateContractor(of: self.selectedContractorType, to: reference)
                             self.navigationController?.popToRootViewController(animated: true)
                         } else {
-                            AlertControllerUtilities.somethingWentWrong(with: self)
+                            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                         }
                     }),
                     UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -128,7 +128,7 @@ class FindContractorViewController:UITableViewController, OnGetDataListener {
 
     private func getContractors(from zipcodes: [String]) {
         if zipcodes.isEmpty {
-            AlertControllerUtilities.somethingWentWrong(with: self)
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
         }
         zipCodeDatabase.observeSingleEvent(of: .value, with: { (snapshot) in
             if let zipCodes = snapshot.value as? NSDictionary {
@@ -140,8 +140,7 @@ class FindContractorViewController:UITableViewController, OnGetDataListener {
                 self.tableView.reloadData()
             }
         }) { (error) in
-            print(error.localizedDescription)
-            AlertControllerUtilities.somethingWentWrong(with: self)
+            AlertControllerUtilities.somethingWentWrong(with: self, because: error)
         }
     }
     private func filterContractors(from dictionary: NSDictionary, with type: String) {
@@ -164,7 +163,7 @@ class FindContractorViewController:UITableViewController, OnGetDataListener {
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
-        AlertControllerUtilities.somethingWentWrong(with: self)
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
 }
 
@@ -191,13 +190,13 @@ class ContractorTableViewCell:UITableViewCell, OnGetContractorListener {
         if let contractor = contractor {
             configureView(with: contractor, at: reference)
         } else {
-            AlertControllerUtilities.somethingWentWrong(with: viewController!)
+            AlertControllerUtilities.somethingWentWrong(with: viewController!, because: MarkdError.UnexpectedNil)
         }
     }
     
     func onFailure(_ error: Error) {
         debugPrint(error)
-        AlertControllerUtilities.somethingWentWrong(with: viewController!)
+        AlertControllerUtilities.somethingWentWrong(with: viewController!, because: error)
     }
     
     var viewController: FindContractorViewController?

@@ -37,7 +37,7 @@ public class TempCustomerData {
             self.userReference = nil
             customer = nil
             if let currentView = UIApplication.shared.keyWindow?.rootViewController {
-                AlertControllerUtilities.somethingWentWrong(with: currentView)
+                AlertControllerUtilities.somethingWentWrong(with: currentView, because: MarkdError.UnexpectedNil)
             }
         }
     }
@@ -62,7 +62,7 @@ public class TempCustomerData {
                 listener.onSuccess()
             } else {
                 if let currentView = UIApplication.shared.keyWindow?.rootViewController {
-                    AlertControllerUtilities.somethingWentWrong(with: currentView)
+                    AlertControllerUtilities.somethingWentWrong(with: currentView, because: MarkdError.UnexpectedNil)
                 }
             }
         }
@@ -85,7 +85,7 @@ public class TempCustomerData {
             userReference.setValue(customer.toDictionary())
         } else {
             if let currentView = UIApplication.shared.keyWindow?.rootViewController {
-                AlertControllerUtilities.somethingWentWrong(with: currentView)
+                AlertControllerUtilities.somethingWentWrong(with: currentView, because: MarkdError.UnexpectedNil)
             }
         }
     }

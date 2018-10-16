@@ -58,7 +58,7 @@ class PaintingViewController:UIViewController, OnGetDataListener {
             let sender = sender as! UIAlertAction
             let destination = segue.destination as! EditPaintingSurfaceViewController
             guard let customerData = customerData else {
-                AlertControllerUtilities.somethingWentWrong(with: self)
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
             customerData.removeListeners()
@@ -133,6 +133,6 @@ class PaintingViewController:UIViewController, OnGetDataListener {
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
-        AlertControllerUtilities.somethingWentWrong(with: self)
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
 }

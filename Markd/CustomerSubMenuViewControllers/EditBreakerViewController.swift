@@ -121,7 +121,7 @@ class EditBreakerViewController: UITableViewController, OnGetDataListener {
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
-        AlertControllerUtilities.somethingWentWrong(with: self)
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
 }
 
