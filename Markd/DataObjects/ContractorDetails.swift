@@ -65,6 +65,17 @@ public class ContractorDetails:CustomStringConvertible {
         self.zipCode = zipCode
         return self
     }
+    
+    public var description:String {
+        var telephoneNumber = ""
+        if let formattedTelephoneNumber = getTelephoneNumber() {
+            telephoneNumber = formattedTelephoneNumber
+        }
+        return "Company: \(companyName)\n" +
+        "Telephone: \(telephoneNumber)\n" +
+        "Website: \(websiteUrl)\n" +
+        "Zipcode: \(zipCode)"
+    }
 }
 
 

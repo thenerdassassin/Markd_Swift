@@ -176,5 +176,4 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     public func onFailure(_ error: Error) {
         debugPrint(error)
     }
-    
 }

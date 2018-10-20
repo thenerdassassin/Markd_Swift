@@ -92,4 +92,7 @@ public class TempContractorData:CustomStringConvertible {
     }
     
     //Mark:- Getters/Setters
+    public func getContractorDetails() -> ContractorDetails? {
+        return getContractor()?.getContractorDetails()
+    }
 }
