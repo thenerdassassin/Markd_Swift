@@ -127,6 +127,29 @@ public class StringUtilities {
         return string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
     
+    public static func format(phoneNumber sourcePhoneNumber: String, isStrict:Bool) -> String? {
+        if isStrict {
+            return format(phoneNumber: sourcePhoneNumber)
+        }
+        
+        let numbersOnly = removeNonNumeric(from:sourcePhoneNumber)
+        var sourceIndex = numbersOnly.hasPrefix("1") ? 1 : 0
+        
+        let areaCodeLength = 3
+        guard let areaCodeSubstring = numbersOnly.substring(start: sourceIndex, offsetBy: areaCodeLength) else {
+            return "(" + numbersOnly
+        }
+        let formattedString = String(format: "(%@) ", areaCodeSubstring)
+        sourceIndex += areaCodeLength
+        
+        let prefixLength = 3
+        guard let prefix = numbersOnly.substring(start: sourceIndex, offsetBy: prefixLength) else {
+            return formattedString + numbersOnly.substring(start: sourceIndex, offsetBy: numbersOnly.count - sourceIndex)!
+        }
+        sourceIndex += prefixLength
+        return formattedString + prefix + "-" + numbersOnly.substring(start: sourceIndex, offsetBy: numbersOnly.count - sourceIndex)!
+    }
+    
     public static func format(phoneNumber sourcePhoneNumber: String) -> String? {
         let numbersOnly = removeNonNumeric(from:sourcePhoneNumber)
         let length = numbersOnly.count

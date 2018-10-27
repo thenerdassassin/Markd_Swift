@@ -60,6 +60,7 @@
                         <segue destination="oQO-7W-wVc" kind="show" identifier="helpSegue" id="Mcu-HQ-mzH"/>
                         <segue destination="tH0-nI-46A" kind="show" identifier="editHomeSegue" id="p9L-uK-09q"/>
                         <segue destination="a8b-O5-Icn" kind="show" identifier="editProfileSegue" id="PU1-kw-oXW"/>
+                        <segue destination="yWY-09-rMU" kind="show" identifier="editCompanySegue" id="m9j-8A-CrN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1WC-8y-g69" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -107,7 +108,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" maximumValue="50" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="QMR-hc-SLv">
-                                            <rect key="frame" x="486" y="7.5" width="94" height="29"/>
+                                            <rect key="frame" x="261" y="7.5" width="94" height="29"/>
                                             <connections>
                                                 <action selector="onRangeValueChanged:" destination="2GN-Qh-Hg2" eventType="valueChanged" id="i5F-4X-tc3"/>
                                             </connections>
@@ -203,6 +204,126 @@
             </objects>
             <point key="canvasLocation" x="660" y="553.67316341829087"/>
         </scene>
+        <!--Edit Company-->
+        <scene sceneID="wj5-uT-zLu">
+            <objects>
+                <tableViewController title="Edit Company" hidesBottomBarWhenPushed="YES" id="yWY-09-rMU" customClass="EditCompanyViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bzw-6g-iXd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="companyNameCell" id="vjr-eN-8lr" customClass="EditCompanyNameCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vjr-eN-8lr" id="4om-bF-jiL">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Euh-fd-qcF">
+                                            <rect key="frame" x="15" y="10.5" width="350" height="21"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done" textContentType="organization"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Euh-fd-qcF" firstAttribute="centerY" secondItem="4om-bF-jiL" secondAttribute="centerY" id="9hx-Kb-yXm"/>
+                                        <constraint firstAttribute="trailing" secondItem="Euh-fd-qcF" secondAttribute="trailing" constant="10" id="See-fN-1f1"/>
+                                        <constraint firstItem="Euh-fd-qcF" firstAttribute="leading" secondItem="4om-bF-jiL" secondAttribute="leading" constant="15" id="cmW-37-SMa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="companyNameTextField" destination="Euh-fd-qcF" id="PyN-ys-2nO"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="companyTelephoneCell" id="hwx-zR-qJl" customClass="EditCompanyTelephoneCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwx-zR-qJl" id="rpx-kb-o2g">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Telephone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dUJ-aV-IWW">
+                                            <rect key="frame" x="15" y="10.5" width="350" height="21"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done" textContentType="tel"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="dUJ-aV-IWW" secondAttribute="trailing" constant="10" id="P8i-J4-SaE"/>
+                                        <constraint firstItem="dUJ-aV-IWW" firstAttribute="centerY" secondItem="rpx-kb-o2g" secondAttribute="centerY" id="YaP-hx-Tb8"/>
+                                        <constraint firstItem="dUJ-aV-IWW" firstAttribute="leading" secondItem="rpx-kb-o2g" secondAttribute="leading" constant="15" id="Z67-8l-MYs"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="companyTelephoneTextField" destination="dUJ-aV-IWW" id="lwW-8A-6TY"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="companyWebsiteCell" id="Xpc-JD-HQ7" customClass="EditCompanyWebsiteCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xpc-JD-HQ7" id="ta2-Wc-cZO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FM9-Xq-yth">
+                                            <rect key="frame" x="15" y="10.5" width="350" height="21"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="done" textContentType="url"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="FM9-Xq-yth" firstAttribute="centerY" secondItem="ta2-Wc-cZO" secondAttribute="centerY" id="9BL-lV-8IT"/>
+                                        <constraint firstItem="FM9-Xq-yth" firstAttribute="leading" secondItem="ta2-Wc-cZO" secondAttribute="leading" constant="15" id="CqP-0r-2m6"/>
+                                        <constraint firstAttribute="trailing" secondItem="FM9-Xq-yth" secondAttribute="trailing" constant="10" id="uWv-Ec-2jH"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="companyWebsiteTextField" destination="FM9-Xq-yth" id="VOJ-kf-hdj"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="companyZipcodeCell" id="bXx-76-dbV" customClass="EditCompanyZipcodeCell" customModule="Markd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="160" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bXx-76-dbV" id="vtX-8y-yao">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zlL-yy-sEj">
+                                            <rect key="frame" x="15" y="10.5" width="350" height="21"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="numberPad" returnKeyType="done" textContentType="postal-code"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="zlL-yy-sEj" firstAttribute="centerY" secondItem="vtX-8y-yao" secondAttribute="centerY" id="77T-b1-c4S"/>
+                                        <constraint firstAttribute="trailing" secondItem="zlL-yy-sEj" secondAttribute="trailing" constant="10" id="QLD-3V-qmH"/>
+                                        <constraint firstItem="zlL-yy-sEj" firstAttribute="leading" secondItem="vtX-8y-yao" secondAttribute="leading" constant="15" id="e4F-DN-wOP"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="companyZipcodeTextField" destination="zlL-yy-sEj" id="cCB-Bj-2GE"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yWY-09-rMU" id="3gi-ne-pa5"/>
+                            <outlet property="delegate" destination="yWY-09-rMU" id="IQp-E4-x2d"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="qEC-F3-oVp" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="AdJ-cs-F7u"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hJi-aC-CXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qEC-F3-oVp" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-1586" y="1307"/>
+        </scene>
         <!--Edit Profile-->
         <scene sceneID="oqM-Ga-uoW">
             <objects>
@@ -220,7 +341,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I5N-Hs-U4O">
-                                            <rect key="frame" x="15" y="11.5" width="575" height="21"/>
+                                            <rect key="frame" x="15" y="11.5" width="350" height="21"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="email"/>
@@ -244,7 +365,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r9P-kA-pfW">
-                                            <rect key="frame" x="15" y="10" width="575" height="23.5"/>
+                                            <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES" textContentType="password"/>
@@ -286,7 +407,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jCR-0Z-oAh">
-                                            <rect key="frame" x="15" y="10" width="575" height="23"/>
+                                            <rect key="frame" x="15" y="10" width="350" height="23"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" textContentType="given-name"/>
@@ -311,7 +432,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6Y-iD-6oy">
-                                            <rect key="frame" x="15" y="10" width="575" height="23.5"/>
+                                            <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" textContentType="family-name"/>
@@ -449,7 +570,7 @@ The Markd Support Team</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cXx-nj-MUe">
-                                            <rect key="frame" x="10" y="10" width="580" height="23.5"/>
+                                            <rect key="frame" x="10" y="10" width="355" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="address-line1"/>
@@ -474,7 +595,7 @@ The Markd Support Team</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="y8x-Pr-tS1">
-                                            <rect key="frame" x="10" y="10" width="580" height="23.5"/>
+                                            <rect key="frame" x="10" y="10" width="355" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="address-level2"/>
@@ -525,7 +646,7 @@ The Markd Support Team</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="miO-0B-8wx" userLabel="Zip Text Field">
-                                            <rect key="frame" x="10" y="10" width="580" height="23.5"/>
+                                            <rect key="frame" x="10" y="10" width="355" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
@@ -556,7 +677,7 @@ The Markd Support Team</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="20" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8Ku-yj-YH3">
-                                            <rect key="frame" x="496" y="7" width="94" height="29"/>
+                                            <rect key="frame" x="271" y="7" width="94" height="29"/>
                                             <connections>
                                                 <action selector="onBedroomValueChanged:" destination="Z6f-OI-jAh" eventType="valueChanged" id="R4b-Hf-jPw"/>
                                             </connections>
@@ -590,7 +711,7 @@ The Markd Support Team</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="20" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BBb-2h-qq1">
-                                            <rect key="frame" x="496" y="7" width="94" height="29"/>
+                                            <rect key="frame" x="271" y="7" width="94" height="29"/>
                                             <connections>
                                                 <action selector="onBathroomValueChanged:" destination="aYD-bx-Urg" eventType="valueChanged" id="pMA-0e-pY3"/>
                                             </connections>
@@ -624,7 +745,7 @@ The Markd Support Team</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1250" minimumValue="1250" maximumValue="40000" stepValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="qBX-w9-9HL">
-                                            <rect key="frame" x="496" y="7" width="94" height="29"/>
+                                            <rect key="frame" x="271" y="7" width="94" height="29"/>
                                             <connections>
                                                 <action selector="onSquareFootageValueChanged:" destination="3UD-Qz-uhx" eventType="valueChanged" id="jR6-UY-9JV"/>
                                             </connections>

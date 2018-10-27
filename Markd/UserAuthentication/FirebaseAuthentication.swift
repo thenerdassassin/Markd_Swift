@@ -14,7 +14,6 @@ public class FirebaseAuthentication {
     func NEED_TO_ADD_ANDROID_METHODS😤() {
         var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
         //TODO: token handling
-        //TODO: getUserType
     }
     static let sharedInstance = FirebaseAuthentication()
     static private let auth:Auth = Auth.auth()
@@ -75,6 +74,14 @@ public class FirebaseAuthentication {
     
     func getAuthCredential(withEmail email:String, andPassword password: String) -> AuthCredential {
         return EmailAuthProvider.credential(withEmail: email, password: password)
+    }
+    func getUserType(in viewController: UIViewController, listener:@escaping (DataSnapshot) -> Void) {
+        guard let user = getCurrentUser() else {
+            AlertControllerUtilities.somethingWentWrong(with: viewController, because: MarkdError.UnexpectedNil)
+            return
+        }
+        let database:DatabaseReference = Database.database().reference().child("users").child(user.uid)
+        database.observeSingleEvent(of: .value, with: listener)
     }
     
     func forgotPassword(_ viewController: UIViewController, withEmail email:String) {

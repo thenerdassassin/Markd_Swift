@@ -20,8 +20,16 @@ public class ContractorDetails:CustomStringConvertible {
         self.websiteUrl = dictionary["websiteUrl"] != nil ? dictionary["websiteUrl"] as! String: ""
         self.zipCode = dictionary["zipCode"] != nil ? dictionary["zipCode"] as! String: ""
     }
-    
-    var TODO_toDictionary_Implementations🤬:AnyObject?
+    func toDictionary() -> Dictionary<String, AnyObject> {
+        var dictionary = Dictionary<String, AnyObject>()
+        
+        dictionary["companyName"] = self.companyName as AnyObject
+        dictionary["telephoneNumber"] = self.telephoneNumber as AnyObject
+        dictionary["websiteUrl"] = self.websiteUrl as AnyObject
+        dictionary["zipCode"] = self.zipCode as AnyObject
+        
+        return dictionary
+    }
     //Mark:- Getters/Setters
     public func getCompanyName() -> String {
         return self.companyName
@@ -38,6 +46,8 @@ public class ContractorDetails:CustomStringConvertible {
         let phoneNumber = telephoneNumber.replacingOccurrences(of: "[^0-9]", with: "", options:.regularExpression)
         if phoneNumber.count == 10 {
             self.telephoneNumber = phoneNumber
+        } else {
+            self.telephoneNumber = ""
         }
         return self
     }
@@ -56,6 +66,17 @@ public class ContractorDetails:CustomStringConvertible {
     public func setZipCode(to zipCode: String) -> ContractorDetails {
         self.zipCode = zipCode
         return self
+    }
+    
+    public var description:String {
+        var telephoneNumber = ""
+        if let formattedTelephoneNumber = getTelephoneNumber() {
+            telephoneNumber = formattedTelephoneNumber
+        }
+        return "Company: \(companyName)\n" +
+        "Telephone: \(telephoneNumber)\n" +
+        "Website: \(websiteUrl)\n" +
+        "Zipcode: \(zipCode)"
     }
 }
 

@@ -31,14 +31,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     }
     override func viewDidAppear(_ animated: Bool) {
         if authenticator.checkLogin(self) {
-            print("User is Logged In")
-            performSegue(withIdentifier: "Login", sender: self)
+            login()
         }
     }
     
     func configureView() {
         KeyboardUtilities.addKeyboardDismissal(self.view)
-        
         if let loginButton = loginButton {
             loginButton.layer.cornerRadius = 10
             loginButton.clipsToBounds = true
@@ -94,8 +92,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
             ], in: self)
     }
     //MARK:- Login Handlers
+    private func login() {
+        authenticator.getUserType(in: self, listener: performLoginSegue)
+    }
     func loginSuccessHandler(_ user: User) {
-        self.performSegue(withIdentifier: "Login", sender: self)
+        login()
     }
     
     func loginFailureHandler(_ error: Error) {
@@ -104,9 +105,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     }
     
     //MARK:- Segue Methods
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "createCustomerSegue" {
-            
+    private func performLoginSegue(snapShot: DataSnapshot) {
+        guard let snapShotDictionary = snapShot.value as? Dictionary<String, AnyObject> else {
+            authenticator.signOut(self)
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+            return
+        }
+        let userType = snapShotDictionary["userType"] as? String
+        if(userType == "customer") {
+            self.performSegue(withIdentifier: "CustomerLogin", sender: self)
+        } else if (userType == "contractor") {
+            self.performSegue(withIdentifier: "ContractorLogin", sender: self)
+        } else {
+            authenticator.signOut(self)
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
         }
     }
     @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue) {}
@@ -114,17 +126,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     //MARK:- Helper Methods
     func signIn() {
         if let email = email, let emailString = email.text, let password = password, let passwordString = password.text {
-            //Attempt firebase login
             authenticator.signIn(self, withEmail: emailString, andPassword: passwordString)
         } else {
-            displayErrorMessage()
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
         }
     }
-    
-    private func displayErrorMessage() {
-        let alert = UIAlertController(title: "Something went wrong", message: "Please try again.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.present(alert, animated: true)
-    }
-    
 }
