@@ -46,6 +46,8 @@ public class ContractorDetails:CustomStringConvertible {
         let phoneNumber = telephoneNumber.replacingOccurrences(of: "[^0-9]", with: "", options:.regularExpression)
         if phoneNumber.count == 10 {
             self.telephoneNumber = phoneNumber
+        } else {
+            self.telephoneNumber = ""
         }
         return self
     }

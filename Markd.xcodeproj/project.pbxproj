@@ -36,6 +36,7 @@
 		FF2CC32B20D1D26900A181F1 /* Breaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32A20D1D26900A181F1 /* Breaker.swift */; };
 		FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */; };
 		FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */; };
+		FF310DF32184C8070035766D /* EditCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF310DF22184C8070035766D /* EditCompanyViewController.swift */; };
 		FF45F4D720388F2A008B2007 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF45F4D620388F2A008B2007 /* LoginViewController.swift */; };
 		FF528C2520B62E7F00C357DB /* EditPaintingSurfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */; };
 		FF592F7320683E090031DA92 /* Boiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF592F7220683E090031DA92 /* Boiler.swift */; };
@@ -122,6 +123,7 @@
 		FF2CC32A20D1D26900A181F1 /* Breaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breaker.swift; sourceTree = "<group>"; };
 		FF2CC32E20D1E90300A181F1 /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		FF2CC33020D59B7000A181F1 /* EditPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPanelViewController.swift; sourceTree = "<group>"; };
+		FF310DF22184C8070035766D /* EditCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCompanyViewController.swift; sourceTree = "<group>"; };
 		FF45F4D620388F2A008B2007 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF528C2420B62E7F00C357DB /* EditPaintingSurfaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPaintingSurfaceViewController.swift; sourceTree = "<group>"; };
 		FF592F7220683E090031DA92 /* Boiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boiler.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				FFF351B0211600D100234D99 /* SelectStateViewController.swift */,
 				FF72DC1421161B8F00CF4982 /* EditProfileViewController.swift */,
 				FF9CDB2F216007AD00902C7F /* ServieFileViewController.swift */,
+				FF310DF22184C8070035766D /* EditCompanyViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 			files = (
 				FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */,
 				FFDE253620588868009D1790 /* SendEmail.swift in Sources */,
+				FF310DF32184C8070035766D /* EditCompanyViewController.swift in Sources */,
 				FFF351AF2115FD0C00234D99 /* StatePickerView.swift in Sources */,
 				FF0CA3B520C321F800630B16 /* NotificationsViewController.swift in Sources */,
 				FF807AF021769DE4002C3052 /* ContractorMainViewController.swift in Sources */,

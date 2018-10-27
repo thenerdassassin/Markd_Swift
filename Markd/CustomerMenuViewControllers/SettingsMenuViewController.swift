@@ -19,9 +19,9 @@ class SettingsMenuViewController: UITableViewController {
                     ("Reset Password", "An email will be sent to change password.", "resetPasswordSegue"),
                     ("Sign Out", "Log out of this account.", "signOutSegue")]
     let contractorOptions = [("Edit Profile", "Change email or name on account.", ""),
-                             ("Edit Company", "Change company telephone, phone number, etc.", "editCompanySegue"),
+                             ("Edit Company", "Change company website, phone number, etc.", "editCompanySegue"),
                              ("Contact Us", "Ask for help or tell us what you would like added.", "helpSegue"),
-                             ("Reset Password", "An email will be sent to change password.", ""),
+                             ("Reset Password", "An email will be sent to change password.", "resetPasswordSegue"),
                              ("Sign Out", "Log out of this account.", "signOutSegue")]
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -63,7 +63,9 @@ class SettingsMenuViewController: UITableViewController {
             FirebaseAuthentication.sharedInstance.signOut(self)
         } else if segue == "resetPasswordSegue" {
             print("Send password reset email")
-            FirebaseAuthentication.sharedInstance.forgotPassword(self, withEmail: FirebaseAuthentication.sharedInstance.getCurrentUser()!.email!)
+            authentication.forgotPassword(self, withEmail: FirebaseAuthentication.sharedInstance.getCurrentUser()!.email!)
+        } else if segue == "" {
+            print("Empty segue")
         } else {
             performSegue(withIdentifier: segue, sender: self)
         }
@@ -71,9 +73,7 @@ class SettingsMenuViewController: UITableViewController {
     
     // Mark:- Helper
     private func setUpOptions(snapShot: DataSnapshot) {
-        print("Setting up options")
         guard let snapShotDictionary = snapShot.value as? Dictionary<String, AnyObject> else {
-            print("Error")
             authentication.signOut(self)
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
             return
@@ -87,7 +87,6 @@ class SettingsMenuViewController: UITableViewController {
             tableView.reloadData()
         } else {
             authentication.signOut(self)
-            print(userType!)
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
         }
     }
