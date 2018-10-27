@@ -11,6 +11,7 @@ import Firebase
 
 class SettingsMenuViewController: UITableViewController {
     private let authentication = FirebaseAuthentication.sharedInstance
+    var userType:String?
     var options:[(String, String, String)] = []
     let customerOptions = [("Find Contractors", "Set your personal contractors.", "findContractorSegue"),
                     ("Edit Home", "Change address, bedrooms, square footage, etc.", "editHomeSegue"),
@@ -18,7 +19,7 @@ class SettingsMenuViewController: UITableViewController {
                     ("Contact Us", "Ask for help or tell us what you would like added.", "helpSegue"),
                     ("Reset Password", "An email will be sent to change password.", "resetPasswordSegue"),
                     ("Sign Out", "Log out of this account.", "signOutSegue")]
-    let contractorOptions = [("Edit Profile", "Change email or name on account.", ""),
+    let contractorOptions = [("Edit Profile", "Change email or name on account.", "editProfileSegue"),
                              ("Edit Company", "Change company website, phone number, etc.", "editCompanySegue"),
                              ("Contact Us", "Ask for help or tell us what you would like added.", "helpSegue"),
                              ("Reset Password", "An email will be sent to change password.", "resetPasswordSegue"),
@@ -64,10 +65,15 @@ class SettingsMenuViewController: UITableViewController {
         } else if segue == "resetPasswordSegue" {
             print("Send password reset email")
             authentication.forgotPassword(self, withEmail: FirebaseAuthentication.sharedInstance.getCurrentUser()!.email!)
-        } else if segue == "" {
-            print("Empty segue")
         } else {
             performSegue(withIdentifier: segue, sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editProfileSegue" {
+            let destination = segue.destination as! EditProfileViewController
+            destination.userType = self.userType
         }
     }
     
@@ -78,7 +84,7 @@ class SettingsMenuViewController: UITableViewController {
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
             return
         }
-        let userType = snapShotDictionary["userType"] as? String
+        userType = snapShotDictionary["userType"] as? String
         if(userType == "customer") {
             options = customerOptions
             tableView.reloadData()

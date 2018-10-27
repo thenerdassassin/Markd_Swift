@@ -12,6 +12,8 @@ import UIKit
 class EditProfileViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     var customerData: TempCustomerData?
+    var contractorData: TempContractorData?
+    var userType: String?
     var originalEmail:String?
     var newEmail:String?
     var password:String?
@@ -19,6 +21,7 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
     var firstName:String?
     var lastName:String?
     var maritalStatus:String?
+    var contractorType:String?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +32,15 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
         super.viewWillAppear(animated)
         if authentication.checkLogin(self) {
             print("Is Logged in at EditProfile")
-            customerData = TempCustomerData(self)
+            if userType == "customer" {
+                print("Customer!")
+                customerData = TempCustomerData(self)
+            } else if userType == "contractor" {
+                print("Contractor!")
+                contractorData = TempContractorData(self)
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+            }
         }
     }
     override public func viewDidAppear(_ animated: Bool) {
@@ -48,6 +59,9 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
         if let customerData = customerData {
             customerData.removeListeners()
         }
+        if let contractorData = contractorData {
+            contractorData.removeListeners()
+        }
     }
     
     // MARK: - Table view data source
@@ -58,6 +72,7 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
         return 6
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //TODO: getContractor Title, FirstName, and LastName
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "emailCell", for: indexPath) as! EmailCell
             originalEmail = authentication.getCurrentUser()?.email
@@ -97,14 +112,25 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
             cell.lastName = lastName
             return cell
         } else if indexPath.row == 5 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "maritalStatusCell", for: indexPath)
-            if maritalStatus == nil && customerData?.getMaritalStatus() != nil {
-                maritalStatus = customerData!.getMaritalStatus()
+            if userType == "customer" {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "maritalStatusCell", for: indexPath)
+                if maritalStatus == nil && customerData?.getMaritalStatus() != nil {
+                    maritalStatus = customerData!.getMaritalStatus()
+                }
+                if maritalStatus != nil {
+                    cell.textLabel?.text = maritalStatus
+                }
+                return cell
+            } else if userType == "contractor" {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "contractorTypeCell", for: indexPath)
+                if contractorType == nil && contractorData?.getContractorType() != nil {
+                    contractorType = contractorData!.getContractorType()
+                }
+                if contractorType != nil {
+                    cell.textLabel?.text = contractorType
+                }
+                return cell
             }
-            if maritalStatus != nil {
-                cell.textLabel?.text = maritalStatus
-            }
-            return cell
         }
         return UITableViewCell()
     }
@@ -121,12 +147,23 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
                 ],
                in: self)
         } else if indexPath.row == 5 {
-            AlertControllerUtilities.showActionSheet(withTitle: "Current Marital Status", andMessage: nil, withOptions: [
-                UIAlertAction(title: "Single", style: .default, handler: maritalStatusSelectionHandler),
-                UIAlertAction(title: "Married", style: .default, handler: maritalStatusSelectionHandler),
-                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                ],
-                 in: self)
+            if userType == "customer" {
+                AlertControllerUtilities.showActionSheet(withTitle: "Current Marital Status", andMessage: nil, withOptions: [
+                    UIAlertAction(title: "Single", style: .default, handler: maritalStatusSelectionHandler),
+                    UIAlertAction(title: "Married", style: .default, handler: maritalStatusSelectionHandler),
+                    UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    ],
+                    in: self)
+            } else {
+                AlertControllerUtilities.showActionSheet(withTitle: "Select Contractor Type", andMessage: nil, withOptions: [
+                    UIAlertAction(title: "Plumber", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "Hvac", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "Electrician", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "Painter", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    ],
+                    in: self)
+            }
         }
     }
     
@@ -140,6 +177,12 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
     func maritalStatusSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
             maritalStatus = title
+            self.tableView.reloadData()
+        }
+    }
+    func contractorTypeSelectionHandler(alert: UIAlertAction!) {
+        if let title = alert.title {
+            contractorType = title
             self.tableView.reloadData()
         }
     }
@@ -164,9 +207,15 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
                 let selectedTitle = self.selectedTitle != nil ? self.selectedTitle!:"Mr."
                 let firstName = self.firstName != nil ? self.firstName!:""
                 let lastName = self.lastName != nil ? self.lastName!:""
-                self.customerData?.updateName(title: selectedTitle, with: firstName, and: lastName)
-                let maritalStatus = self.maritalStatus != nil ? self.maritalStatus!:"Single"
-                self.customerData?.updateMaritalStatus(to: maritalStatus)
+                if self.userType == "customer" {
+                    self.customerData?.updateName(title: selectedTitle, with: firstName, and: lastName)
+                    let maritalStatus = self.maritalStatus != nil ? self.maritalStatus!:"Single"
+                    self.customerData?.updateMaritalStatus(to: maritalStatus)
+                } else if self.userType == "contractor" {
+                    //TODO: save Contractor name, and contractor type
+                } else {
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+                }
                 self.navigationController!.popViewController(animated: true)
             }
         })
@@ -178,7 +227,7 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
     }
     
     public func onSuccess() {
-        print("EditProfileViewController:- Got Customer Data")
+        print("EditProfileViewController:- Got Customer or Contractor Data")
         tableView.reloadData()
     }
     

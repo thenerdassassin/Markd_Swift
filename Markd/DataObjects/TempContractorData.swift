@@ -98,5 +98,8 @@ public class TempContractorData:CustomStringConvertible {
     public func updateContractorDetails(to updatedContractorDetails: ContractorDetails) {
         updateContractor(to: getContractor()?.setContractorDetails(to: updatedContractorDetails))
     }
+    public func getContractorType() -> String? {
+        return getContractor()?.getType()
+    }
     
 }
