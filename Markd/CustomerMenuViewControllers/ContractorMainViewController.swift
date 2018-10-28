@@ -14,10 +14,7 @@ public class ContractorMainViewController: UIViewController, OnGetDataListener {
     private var contractorData: TempContractorData?
     
     @IBOutlet weak var companyDetailsLabel: UILabel!
-    
-    @IBAction func onLogOut(_ sender: UIButton) {
-        FirebaseAuthentication.sharedInstance.signOut(self)
-    }
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerUtilities.insertMarkdLogo(into: self)

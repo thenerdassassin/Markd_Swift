@@ -71,6 +71,7 @@
 		FFB56592207AA8F500F6E8F1 /* Appliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB56591207AA8F500F6E8F1 /* Appliance.swift */; };
 		FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE8003205D8C8200A7D9FE /* HotWater.swift */; };
 		FFC5316B2093D2A00010D9AC /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC5316A2093D2A00010D9AC /* Services.storyboard */; };
+		FFD5175B218675A900407F9C /* Contractor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD5175A218675A900407F9C /* Contractor.storyboard */; };
 		FFD93B0D210CFE9D00B1E07A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFD93B0C210CFE9C00B1E07A /* GoogleService-Info.plist */; };
 		FFDE253620588868009D1790 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE253520588868009D1790 /* SendEmail.swift */; };
 		FFF2239920FFEADE00F823D6 /* ViewControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF2239820FFEADE00F823D6 /* ViewControllerUtilities.swift */; };
@@ -158,6 +159,7 @@
 		FFB56591207AA8F500F6E8F1 /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
 		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
 		FFC5316A2093D2A00010D9AC /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
+		FFD5175A218675A900407F9C /* Contractor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contractor.storyboard; sourceTree = "<group>"; };
 		FFD93B0C210CFE9C00B1E07A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFD93B0E210D074300B1E07A /* Markd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Markd.entitlements; sourceTree = "<group>"; };
 		FFDE253520588868009D1790 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				FFC5316A2093D2A00010D9AC /* Services.storyboard */,
 				FF5D7A6620AF7565008A05FC /* Details.storyboard */,
 				FF226D57210000820082215B /* Settings.storyboard */,
+				FFD5175A218675A900407F9C /* Contractor.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */,
+				FFD5175B218675A900407F9C /* Contractor.storyboard in Resources */,
 				FF9CDB2E215FF0A000902C7F /* Notifications.storyboard in Resources */,
 				FF5D7A6720AF7565008A05FC /* Details.storyboard in Resources */,
 				47E0EA491DF3865C001F417F /* Assets.xcassets in Resources */,

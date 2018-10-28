@@ -48,6 +48,7 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
         if !authentication.checkLogin(self) {
             performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
         }
+        KeyboardUtilities.addKeyboardDismissal(self.view)
     }
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -72,7 +73,6 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
         return 6
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //TODO: getContractor Title, FirstName, and LastName
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "emailCell", for: indexPath) as! EmailCell
             originalEmail = authentication.getCurrentUser()?.email
@@ -88,8 +88,12 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
-            if selectedTitle == nil && customerData?.getTitle() != nil {
-                selectedTitle = customerData!.getTitle()
+            if selectedTitle == nil {
+                if userType == "customer" && customerData?.getTitle() != nil {
+                    selectedTitle = customerData!.getTitle()
+                } else if userType == "contractor" && contractorData?.getTitle() != nil {
+                    selectedTitle = contractorData!.getTitle()
+                }
             }
             if selectedTitle != nil {
                 cell.textLabel?.text = selectedTitle
@@ -98,16 +102,24 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "firstNameCell", for: indexPath) as! FirstNameCell
             cell.viewController = self
-            if firstName == nil && customerData?.getFirstName() != nil {
-                firstName = customerData!.getFirstName()
+            if firstName == nil {
+                if userType == "customer" && customerData?.getFirstName() != nil {
+                    firstName = customerData!.getFirstName()
+                } else if userType == "contractor" && contractorData?.getFirstName() != nil {
+                    firstName = contractorData!.getFirstName()
+                }
             }
             cell.firstName = firstName
             return cell
         } else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "lastNameCell", for: indexPath) as! LastNameCell
             cell.viewController = self
-            if lastName == nil && customerData?.getLastName() != nil {
-                lastName = customerData!.getLastName()
+            if lastName == nil {
+                if userType == "customer" && customerData?.getLastName() != nil {
+                    lastName = customerData!.getLastName()
+                } else if userType == "contractor" && contractorData?.getLastName() != nil {
+                    lastName = contractorData!.getLastName()
+                }
             }
             cell.lastName = lastName
             return cell
@@ -212,7 +224,8 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
                     let maritalStatus = self.maritalStatus != nil ? self.maritalStatus!:"Single"
                     self.customerData?.updateMaritalStatus(to: maritalStatus)
                 } else if self.userType == "contractor" {
-                    //TODO: save Contractor name, and contractor type
+                    let contractorType = self.contractorType != nil ? self.contractorType!:"plumber"
+                    self.contractorData?.update(title: selectedTitle, with: firstName, and: lastName, type: contractorType)
                 } else {
                     AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
                 }

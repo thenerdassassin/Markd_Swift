@@ -107,10 +107,11 @@ public class Contractor:CustomStringConvertible {
     */
     
     //Mark:- Helper functions
-    public func updateProfile(namePrefix:String, firstName:String, lastName:String, contractorType:String) {
-        self.namePrefix = namePrefix;
-        self.firstName = firstName;
-        self.lastName = lastName;
-        self.type = contractorType;
+    public func updateProfile(namePrefix:String, firstName:String, lastName:String, contractorType:String) -> Contractor {
+        self.namePrefix = namePrefix
+        self.firstName = firstName
+        self.lastName = lastName
+        self.type = contractorType
+        return self
     }
 }
