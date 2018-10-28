@@ -183,13 +183,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ca7-aH-S6I">
-                                <rect key="frame" x="304" y="568" width="55" height="30"/>
-                                <state key="normal" title="Log Out"/>
-                                <connections>
-                                    <action selector="onLogOut:" destination="dRo-j4-X59" eventType="touchUpInside" id="YTB-tR-icv"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1o-U9-YaQ">
                                 <rect key="frame" x="119" y="307.5" width="137" height="21.5"/>
                                 <attributedString key="attributedText">
@@ -215,11 +208,8 @@
                             <constraint firstItem="eUc-PH-6r6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="a1o-U9-YaQ" secondAttribute="bottom" constant="10" id="QlJ-4A-HZc"/>
                             <constraint firstItem="a1o-U9-YaQ" firstAttribute="top" secondItem="56K-gn-R4W" secondAttribute="bottom" constant="40" id="Smr-t8-15T"/>
                             <constraint firstItem="a1o-U9-YaQ" firstAttribute="centerX" secondItem="lfJ-4y-1gg" secondAttribute="centerX" id="Xg0-nJ-gSv"/>
-                            <constraint firstAttribute="trailing" secondItem="ca7-aH-S6I" secondAttribute="trailing" constant="16" id="Z1e-Cz-Yr6"/>
-                            <constraint firstItem="ca7-aH-S6I" firstAttribute="leading" secondItem="lfJ-4y-1gg" secondAttribute="leading" constant="304" id="gsV-pb-oJL"/>
                             <constraint firstItem="56K-gn-R4W" firstAttribute="width" secondItem="lfJ-4y-1gg" secondAttribute="width" multiplier="0.6" id="h9i-Xb-1am"/>
                             <constraint firstItem="56K-gn-R4W" firstAttribute="centerX" secondItem="lfJ-4y-1gg" secondAttribute="centerX" id="jTf-ad-Uqj"/>
-                            <constraint firstItem="eUc-PH-6r6" firstAttribute="top" secondItem="ca7-aH-S6I" secondAttribute="bottom" constant="20" id="jdh-dT-05t"/>
                             <constraint firstItem="56K-gn-R4W" firstAttribute="centerY" secondItem="lfJ-4y-1gg" secondAttribute="centerY" multiplier="0.55" id="sX1-XQ-pwE"/>
                         </constraints>
                     </view>
@@ -246,6 +236,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="uiY-mF-Hnl" kind="relationship" relationship="viewControllers" id="9UR-cl-s62"/>
+                        <segue destination="Fin-Vx-C9n" kind="relationship" relationship="viewControllers" id="8NQ-40-Z3u"/>
+                        <segue destination="h7r-kg-qD8" kind="relationship" relationship="viewControllers" id="bq3-jH-mOR"/>
                         <segue destination="isy-bA-US9" kind="relationship" relationship="viewControllers" id="rgz-o8-Occ"/>
                     </connections>
                 </tabBarController>
@@ -689,9 +681,30 @@
             </objects>
             <point key="canvasLocation" x="-3946" y="-1331"/>
         </scene>
+        <!--contractorServiceViewController-->
+        <scene sceneID="ecE-7j-Kka">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Contractor" referencedIdentifier="contractorServiceViewController" id="Fin-Vx-C9n" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Service" image="ic_action_pages" selectedImage="ic_action_pages" id="F4e-u9-WnA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bh1-1I-7Lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3934" y="-1290"/>
+        </scene>
+        <!--customerViewController-->
+        <scene sceneID="2JS-c5-zpV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Contractor" referencedIdentifier="customerViewController" id="h7r-kg-qD8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Customers" image="ic_action_customers" selectedImage="ic_action_customers" id="UqN-Uw-myq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8De-ed-zsH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3938" y="-1223"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ic_action_camera" width="96" height="96"/>
+        <image name="ic_action_customers" width="32" height="32"/>
         <image name="ic_action_home" width="32" height="32"/>
         <image name="ic_action_notifications" width="32" height="32"/>
         <image name="ic_action_pages" width="24" height="24"/>

@@ -92,6 +92,22 @@ public class TempContractorData:CustomStringConvertible {
     }
     
     //Mark:- Getters/Setters
+    public func getTitle() -> String? {
+        return getContractor()?.getNamePrefix()
+    }
+    public func getFirstName() -> String? {
+        return getContractor()?.getFirstName()
+    }
+    public func getLastName() -> String? {
+        return getContractor()?.getLastName()
+    }
+    public func getContractorType() -> String? {
+        return getContractor()?.getType()
+    }
+    public func update(title prefix: String, with updatedFirstName: String, and updatedLastName:String, type: String) {
+        updateContractor(to: getContractor()?.updateProfile(namePrefix: prefix, firstName: updatedFirstName, lastName: updatedLastName, contractorType: type))
+    }
+    
     public func getContractorDetails() -> ContractorDetails? {
         return getContractor()?.getContractorDetails()
     }
