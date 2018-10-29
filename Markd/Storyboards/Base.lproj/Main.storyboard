@@ -201,9 +201,14 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="56K-gn-R4W" secondAttribute="height" multiplier="4:3" id="js1-EB-V15"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="vVk-as-EYg" appends="YES" id="udA-vR-4pT"/>
+                                    <outletCollection property="gestureRecognizers" destination="WrS-OZ-lw0" appends="YES" id="NKa-mL-4eE"/>
+                                </connections>
                             </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="z3l-kw-s6s">
                                 <rect key="frame" x="75" y="99" width="225" height="169"/>
+                                <gestureRecognizers/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -222,7 +227,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="M3b-8X-kty"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="z3l-kw-s6s" id="qb5-9K-0eD"/>
+                        <outlet property="activityIndicator" destination="z3l-kw-s6s" id="hl3-La-KnS"/>
                         <outlet property="companyDetailsLabel" destination="a1o-U9-YaQ" id="NZW-FD-8df"/>
                         <outlet property="logoImage" destination="56K-gn-R4W" id="uMv-6r-9Ka"/>
                         <segue destination="kkx-LB-bL6" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="fjk-Vj-o6x"/>
@@ -231,6 +236,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3SF-F7-kKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="kkx-LB-bL6" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="vVk-as-EYg">
+                    <connections>
+                        <action selector="logoImageTapped:" destination="dRo-j4-X59" id="XnV-ij-sVT"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="WrS-OZ-lw0">
+                    <connections>
+                        <action selector="logoImageLongPressed:" destination="dRo-j4-X59" id="SPz-lf-sUI"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3009" y="-1676"/>
         </scene>

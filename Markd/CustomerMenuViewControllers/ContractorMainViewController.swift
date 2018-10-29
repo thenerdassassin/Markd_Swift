@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-public class ContractorMainViewController: UIViewController, OnGetDataListener {
+public class ContractorMainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     private var contractorData: TempContractorData?
     private var logoImageExists = false
@@ -104,6 +104,16 @@ public class ContractorMainViewController: UIViewController, OnGetDataListener {
                 self.logoImage.contentMode = .center
             }
         })
+    }
+    
+    //Mark:- UIImagePickerController
+    @IBAction func logoImageTapped(_ sender: UITapGestureRecognizer) {
+        if(!logoImageExists) {
+            //PhotoUtilities(self).getImage()
+        }
+    }
+    @IBAction func logoImageLongPressed(_ sender: UILongPressGestureRecognizer) {
+        //PhotoUtilities(self).getImage()
     }
     
     private func addCompanyInformation(_ action:UIAlertAction) {
