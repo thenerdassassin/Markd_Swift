@@ -195,27 +195,36 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="56K-gn-R4W">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action_camera" translatesAutoresizingMaskIntoConstraints="NO" id="56K-gn-R4W">
                                 <rect key="frame" x="75" y="99" width="225" height="168.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="56K-gn-R4W" secondAttribute="height" multiplier="4:3" id="js1-EB-V15"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="z3l-kw-s6s">
+                                <rect key="frame" x="75" y="99" width="225" height="169"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="z3l-kw-s6s" firstAttribute="top" secondItem="56K-gn-R4W" secondAttribute="top" id="6lH-Qq-igz"/>
+                            <constraint firstItem="z3l-kw-s6s" firstAttribute="leading" secondItem="56K-gn-R4W" secondAttribute="leading" id="Giv-Ry-Vd8"/>
                             <constraint firstItem="eUc-PH-6r6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="a1o-U9-YaQ" secondAttribute="bottom" constant="10" id="QlJ-4A-HZc"/>
                             <constraint firstItem="a1o-U9-YaQ" firstAttribute="top" secondItem="56K-gn-R4W" secondAttribute="bottom" constant="40" id="Smr-t8-15T"/>
                             <constraint firstItem="a1o-U9-YaQ" firstAttribute="centerX" secondItem="lfJ-4y-1gg" secondAttribute="centerX" id="Xg0-nJ-gSv"/>
                             <constraint firstItem="56K-gn-R4W" firstAttribute="width" secondItem="lfJ-4y-1gg" secondAttribute="width" multiplier="0.6" id="h9i-Xb-1am"/>
                             <constraint firstItem="56K-gn-R4W" firstAttribute="centerX" secondItem="lfJ-4y-1gg" secondAttribute="centerX" id="jTf-ad-Uqj"/>
+                            <constraint firstItem="z3l-kw-s6s" firstAttribute="width" secondItem="56K-gn-R4W" secondAttribute="width" id="jew-O5-7fj"/>
                             <constraint firstItem="56K-gn-R4W" firstAttribute="centerY" secondItem="lfJ-4y-1gg" secondAttribute="centerY" multiplier="0.55" id="sX1-XQ-pwE"/>
+                            <constraint firstItem="z3l-kw-s6s" firstAttribute="height" secondItem="56K-gn-R4W" secondAttribute="height" id="szY-vg-bxW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M3b-8X-kty"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="z3l-kw-s6s" id="qb5-9K-0eD"/>
                         <outlet property="companyDetailsLabel" destination="a1o-U9-YaQ" id="NZW-FD-8df"/>
+                        <outlet property="logoImage" destination="56K-gn-R4W" id="uMv-6r-9Ka"/>
                         <segue destination="kkx-LB-bL6" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="fjk-Vj-o6x"/>
                     </connections>
                 </viewController>
