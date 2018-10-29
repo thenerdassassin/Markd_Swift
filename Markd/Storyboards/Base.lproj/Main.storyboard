@@ -195,34 +195,67 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="56K-gn-R4W">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action_camera" translatesAutoresizingMaskIntoConstraints="NO" id="56K-gn-R4W">
                                 <rect key="frame" x="75" y="99" width="225" height="168.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="56K-gn-R4W" secondAttribute="height" multiplier="4:3" id="js1-EB-V15"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="vVk-as-EYg" appends="YES" id="udA-vR-4pT"/>
+                                    <outletCollection property="gestureRecognizers" destination="WrS-OZ-lw0" appends="YES" id="NKa-mL-4eE"/>
+                                </connections>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="z3l-kw-s6s">
+                                <rect key="frame" x="75" y="99" width="225" height="169"/>
+                                <gestureRecognizers/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="z3l-kw-s6s" firstAttribute="top" secondItem="56K-gn-R4W" secondAttribute="top" id="6lH-Qq-igz"/>
+                            <constraint firstItem="z3l-kw-s6s" firstAttribute="leading" secondItem="56K-gn-R4W" secondAttribute="leading" id="Giv-Ry-Vd8"/>
                             <constraint firstItem="eUc-PH-6r6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="a1o-U9-YaQ" secondAttribute="bottom" constant="10" id="QlJ-4A-HZc"/>
                             <constraint firstItem="a1o-U9-YaQ" firstAttribute="top" secondItem="56K-gn-R4W" secondAttribute="bottom" constant="40" id="Smr-t8-15T"/>
                             <constraint firstItem="a1o-U9-YaQ" firstAttribute="centerX" secondItem="lfJ-4y-1gg" secondAttribute="centerX" id="Xg0-nJ-gSv"/>
                             <constraint firstItem="56K-gn-R4W" firstAttribute="width" secondItem="lfJ-4y-1gg" secondAttribute="width" multiplier="0.6" id="h9i-Xb-1am"/>
                             <constraint firstItem="56K-gn-R4W" firstAttribute="centerX" secondItem="lfJ-4y-1gg" secondAttribute="centerX" id="jTf-ad-Uqj"/>
+                            <constraint firstItem="z3l-kw-s6s" firstAttribute="width" secondItem="56K-gn-R4W" secondAttribute="width" id="jew-O5-7fj"/>
                             <constraint firstItem="56K-gn-R4W" firstAttribute="centerY" secondItem="lfJ-4y-1gg" secondAttribute="centerY" multiplier="0.55" id="sX1-XQ-pwE"/>
+                            <constraint firstItem="z3l-kw-s6s" firstAttribute="height" secondItem="56K-gn-R4W" secondAttribute="height" id="szY-vg-bxW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M3b-8X-kty"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="z3l-kw-s6s" id="hl3-La-KnS"/>
                         <outlet property="companyDetailsLabel" destination="a1o-U9-YaQ" id="NZW-FD-8df"/>
+                        <outlet property="logoImage" destination="56K-gn-R4W" id="uMv-6r-9Ka"/>
                         <segue destination="kkx-LB-bL6" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="fjk-Vj-o6x"/>
+                        <segue destination="UeS-v8-eWW" kind="show" identifier="addCompanyInformationSegue" id="J4B-nb-1sR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3SF-F7-kKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="kkx-LB-bL6" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="vVk-as-EYg">
+                    <connections>
+                        <action selector="logoImageTapped:" destination="dRo-j4-X59" id="XnV-ij-sVT"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="WrS-OZ-lw0">
+                    <connections>
+                        <action selector="logoImageLongPressed:" destination="dRo-j4-X59" id="SPz-lf-sUI"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3009" y="-1676"/>
+        </scene>
+        <!--EditCompanyViewController-->
+        <scene sceneID="NxH-Lz-7Jc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="EditCompanyViewController" id="UeS-v8-eWW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ixb-jf-eMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2370" y="-1677"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="doZ-9Y-1BP">

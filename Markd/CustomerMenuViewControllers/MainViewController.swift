@@ -114,7 +114,6 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
              PhotoUtilities(self).getImage()
         }
     }
-    
     @IBAction func homeImageLongPressed(_ sender: UILongPressGestureRecognizer) {
         PhotoUtilities(self).getImage()
     }
