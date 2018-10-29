@@ -109,11 +109,51 @@ public class ContractorMainViewController: UIViewController, UIImagePickerContro
     //Mark:- UIImagePickerController
     @IBAction func logoImageTapped(_ sender: UITapGestureRecognizer) {
         if(!logoImageExists) {
-            //PhotoUtilities(self).getImage()
+            PhotoUtilities(self).getImage()
         }
     }
     @IBAction func logoImageLongPressed(_ sender: UILongPressGestureRecognizer) {
-        //PhotoUtilities(self).getImage()
+        PhotoUtilities(self).getImage()
+    }
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            let logoImageRef = storage.reference().child("images").child(contractorData!.setLogoImageFileName()!)
+            let uploadImage = logoImageRef.putData(UIImagePNGRepresentation(pickedImage)!, metadata: metadata) { (metadata, error) in
+                logoImageRef.downloadURL { (url, error) in
+                    self.setLogoImage(with:url)
+                }
+            }
+            uploadImage.observe(.progress, handler: observeUploadProgress)
+            uploadImage.observe(.failure, handler: observeUploadError)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    private func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    //Mark:- Upload Image Observers
+    private func observeUploadProgress(_ snapshot:StorageTaskSnapshot) {
+        activityIndicator.startAnimating()
+        logoImage.isHidden = true
+    }
+    private func observeUploadError(_ snapshot:StorageTaskSnapshot) {
+        activityIndicator.stopAnimating()
+        logoImage.isHidden = false
+        if let error = snapshot.error as NSError? {
+            switch (StorageErrorCode(rawValue: error.code)!) {
+            case .retryLimitExceeded:
+                AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Time limit exceeded",
+                                                   withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
+                break
+            default:
+                AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Something went wrong",
+                                                   withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
+                break
+            }
+        }
     }
     
     private func addCompanyInformation(_ action:UIAlertAction) {

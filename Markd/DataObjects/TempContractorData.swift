@@ -122,4 +122,12 @@ public class TempContractorData:CustomStringConvertible {
             return nil
         }
     }
+    public func setLogoImageFileName() -> String? {
+        if let contractor = contractor {
+            updateContractor(to: contractor.setLogoFileName())
+            return self.getLogoImageFileName()
+        } else {
+            return nil
+        }
+    }
 }
