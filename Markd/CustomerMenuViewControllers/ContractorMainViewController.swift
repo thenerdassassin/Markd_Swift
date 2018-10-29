@@ -18,6 +18,7 @@ public class ContractorMainViewController: UIViewController, OnGetDataListener {
     let storage = Storage.storage()
     @IBOutlet weak var logoImage: UIImageView!
     let placeholderImage = UIImage(named: "ic_action_camera")!
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var companyDetailsLabel: UILabel!
 
@@ -53,13 +54,17 @@ public class ContractorMainViewController: UIViewController, OnGetDataListener {
     }
     
     func configureView() {
-        if let contractorData = contractorData, let contractorDetails = contractorData.getContractorDetails(), let companyDetailsLabel = companyDetailsLabel {
-            let attrString = NSMutableAttributedString(string: contractorDetails.description)
-            let style = NSMutableParagraphStyle()
-            //style.lineSpacing = 24 // change line spacing between paragraph like 36 or 48
-            style.minimumLineHeight = 30 // change line spacing between each line like 30 or 40
-            attrString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: contractorDetails.description.count))
-            companyDetailsLabel.attributedText = attrString
+        if let contractorData = contractorData, let companyDetailsLabel = companyDetailsLabel {
+            if let contractorDetails = contractorData.getContractorDetails() {
+                let attrString = NSMutableAttributedString(string: contractorDetails.description)
+                let style = NSMutableParagraphStyle()
+                style.minimumLineHeight = 30 // change line spacing between each line like 30 or 40
+                attrString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: contractorDetails.description.count))
+                companyDetailsLabel.attributedText = attrString
+            } else {
+                AlertControllerUtilities.showAlert(withTitle: "Welcome to Markd 😃", andMessage: "First, let's get some info about your company.", withOptions: [UIAlertAction(title: "Ok", style: .default, handler: addCompanyInformation)], in: self)
+                companyDetailsLabel.text = "Loading...."
+            }
             
             if let fileName = contractorData.getLogoImageFileName() {
                 storage.reference(withPath: "images/\(fileName)").downloadURL { url,error in
@@ -101,6 +106,10 @@ public class ContractorMainViewController: UIViewController, OnGetDataListener {
         })
     }
     
+    private func addCompanyInformation(_ action:UIAlertAction) {
+        print("Go to EditLogoVC")
+        performSegue(withIdentifier: "addCompanyInformationSegue", sender: self)
+    }
     //Mark:- OnGetDataListener Implementation
     public func onStart() {
         print("Getting Contractor Data")
