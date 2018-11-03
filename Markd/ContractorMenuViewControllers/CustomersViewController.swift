@@ -9,15 +9,18 @@
 import UIKit
 import Firebase
 
-class CustomersViewController: UITableViewController, OnGetDataListener {
+class CustomersViewController: UITableViewController, UISearchResultsUpdating, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var contractorData:TempContractorData?
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    var customersList:[String]?
+    var filteredCustomerList:[String]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerUtilities.insertMarkdLogo(into: self)
-        tableView.tableFooterView = UIView() //Removes seperators after list
-        self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+        tableView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,8 +53,12 @@ class CustomersViewController: UITableViewController, OnGetDataListener {
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
         return "Customers"
     }
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView() //Removes seperators after list
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customerInformationCell", for: indexPath) as! CustomerInformationCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "customerInformationCell", for: indexPath) as! CustomerInformationCell
         cell.viewController = self
         cell.customerId = contractorData?.getCustomers()?[indexPath.row]
         return cell
@@ -74,6 +81,19 @@ class CustomersViewController: UITableViewController, OnGetDataListener {
     public func onFailure(_ error: Error) {
         debugPrint(error)
         AlertControllerUtilities.somethingWentWrong(with: self, because: error)
+    }
+    
+    // Mark:- UISearchResultsUpdating
+    func updateSearchResults(for searchController: UISearchController) {
+        if let _ = searchController.searchBar.text {
+            /*
+             filteredData = searchText.isEmpty ? data : data.filter({(dataString: String) -> Bool in
+             return dataString.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
+             })
+             
+             tableView.reloadData()
+             */
+        }
     }
 }
 
