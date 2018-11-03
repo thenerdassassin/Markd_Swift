@@ -66,4 +66,8 @@ public class Address:CustomStringConvertible {
     func setZipCode(_ zipCode: String) {
         self.zipCode = zipCode
     }
+    
+    func toString() -> String {
+        return "\(street) \(city), \(state) \(zipCode)"
+    }
 }

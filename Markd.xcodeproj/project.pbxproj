@@ -47,6 +47,7 @@
 		FF63004220C74E05006C0208 /* ElectricalPanelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63004120C74E05006C0208 /* ElectricalPanelsViewController.swift */; };
 		FF63004420C74E22006C0208 /* ElectricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63004320C74E22006C0208 /* ElectricalViewController.swift */; };
 		FF63004620C768C6006C0208 /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63004520C768C6006C0208 /* Panel.swift */; };
+		FF65BBEA218DF9AE003D775C /* CustomersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF65BBE9218DF9AE003D775C /* CustomersViewController.swift */; };
 		FF6BF1E92093DF64001D55EF /* ServiceHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1E82093DF64001D55EF /* ServiceHistoryViewController.swift */; };
 		FF6BF1EB2094EC67001D55EF /* ContractorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1EA2094EC67001D55EF /* ContractorService.swift */; };
 		FF6BF1F320950CE1001D55EF /* ContractorServiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */; };
@@ -135,6 +136,7 @@
 		FF63004120C74E05006C0208 /* ElectricalPanelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricalPanelsViewController.swift; sourceTree = "<group>"; };
 		FF63004320C74E22006C0208 /* ElectricalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricalViewController.swift; sourceTree = "<group>"; };
 		FF63004520C768C6006C0208 /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
+		FF65BBE9218DF9AE003D775C /* CustomersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersViewController.swift; sourceTree = "<group>"; };
 		FF6BF1E82093DF64001D55EF /* ServiceHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHistoryViewController.swift; sourceTree = "<group>"; };
 		FF6BF1EA2094EC67001D55EF /* ContractorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorService.swift; sourceTree = "<group>"; };
 		FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorServiceTableViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				FFF45D81203CE57200EC732B /* Utilities */,
 				FF6C030C2038965A0058259F /* DataObjects */,
 				FF6C030B203896230058259F /* CustomerSubMenuViewControllers */,
+				FF65BBE8218DF961003D775C /* ContractorMenuViewControllers */,
 				FF6C030A203895E00058259F /* CustomerMenuViewControllers */,
 				FF6C0309203895B60058259F /* UserAuthentication */,
 				47E0EA411DF3865C001F417F /* AppDelegate.swift */,
@@ -264,6 +267,15 @@
 			path = PickerViewControllers;
 			sourceTree = "<group>";
 		};
+		FF65BBE8218DF961003D775C /* ContractorMenuViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FF807AEF21769DE4002C3052 /* ContractorMainViewController.swift */,
+				FF65BBE9218DF9AE003D775C /* CustomersViewController.swift */,
+			);
+			path = ContractorMenuViewControllers;
+			sourceTree = "<group>";
+		};
 		FF6C0309203895B60058259F /* UserAuthentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,7 +299,6 @@
 				FF5D7A6820AF79CA008A05FC /* PaintingSurfacesViewController.swift */,
 				FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */,
 				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
-				FF807AEF21769DE4002C3052 /* ContractorMainViewController.swift */,
 			);
 			path = CustomerMenuViewControllers;
 			sourceTree = "<group>";
@@ -550,6 +561,7 @@
 				FF5D7A6D20B0AEAD008A05FC /* PaintSurface.swift in Sources */,
 				FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */,
 				FFF27C8C2041DB2C00A9392E /* TempCustomerData.swift in Sources */,
+				FF65BBEA218DF9AE003D775C /* CustomersViewController.swift in Sources */,
 				FF63004620C768C6006C0208 /* Panel.swift in Sources */,
 				FF592F7320683E090031DA92 /* Boiler.swift in Sources */,
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,

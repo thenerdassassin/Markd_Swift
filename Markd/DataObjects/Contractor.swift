@@ -17,8 +17,7 @@ public class Contractor:CustomStringConvertible {
     private var lastName:String
     private var type:String
     private var contractorDetails:ContractorDetails?
-    //private var customers: [String]
-    var TODO_Customers_Field_🙄:AnyObject?
+    private var customers: [String]
     private var logoFileName: String
     
     //Constructors
@@ -30,7 +29,15 @@ public class Contractor:CustomStringConvertible {
         if let detailsDictionary = dictionary["contractorDetails"] as? Dictionary<String, AnyObject> {
             self.contractorDetails = ContractorDetails(detailsDictionary)
         }
-        //TODO: Customers
+        customers = []
+        if let customersArray = dictionary["customers"] as? NSArray {
+            for customer in customersArray {
+                if let customerString = customer as? String {
+                   customers.append(customerString)
+                }
+            }
+        }
+        customers.sort()
         self.logoFileName = dictionary["logoFileName"] != nil ? dictionary["logoFileName"] as! String: ""
     }
     func toDictionary() -> Dictionary<String, AnyObject> {
@@ -42,7 +49,12 @@ public class Contractor:CustomStringConvertible {
         dictionary["type"] = self.type as AnyObject
         dictionary["contractorDetails"] = self.contractorDetails?.toDictionary() as AnyObject
         dictionary["logoFileName"] = self.logoFileName as AnyObject
-        //TODO: Customers
+        let customers = self.customers.sorted()
+        var customersArray = NSArray()
+        for customer in customers {
+            customersArray = customersArray.adding(customer) as NSArray
+        }
+        dictionary["customers"] = customersArray
         dictionary["userType"] = self.userType as AnyObject
         
         return dictionary
@@ -96,15 +108,14 @@ public class Contractor:CustomStringConvertible {
         self.logoFileName = UUID.init().uuidString
         return self
     }
-    /*
-    public List<String> getCustomers() {
-        return customers;
+    
+    public func getCustomers() -> [String] {
+        return customers
     }
-    public Contractor setCustomers(List<String> customers) {
-        this.customers = customers;
-        return this;
+    public func setCustomers(to customers:[String]) -> Contractor {
+        self.customers = customers
+        return self
     }
-    */
     
     //Mark:- Helper functions
     public func updateProfile(namePrefix:String, firstName:String, lastName:String, contractorType:String) -> Contractor {
