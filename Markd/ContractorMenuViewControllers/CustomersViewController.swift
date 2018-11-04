@@ -9,18 +9,25 @@
 import UIKit
 import Firebase
 
-class CustomersViewController: UITableViewController, UISearchResultsUpdating, OnGetDataListener {
+class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var contractorData:TempContractorData?
     
+    @IBOutlet var searchController: UISearchDisplayController!
     @IBOutlet weak var searchBar: UISearchBar!
-    var customersList:[String]?
-    var filteredCustomerList:[String]?
+    var customersList:[Customer] = [] {
+        didSet {
+            customersList.sort(by: { $0.getLastName() < $1.getLastName()})
+            tableView.reloadData()
+        }
+    }
+    var filteredCustomerList:[Customer] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerUtilities.insertMarkdLogo(into: self)
         tableView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
+        self.definesPresentationContext = true
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,6 +47,8 @@ class CustomersViewController: UITableViewController, UISearchResultsUpdating, O
         if let contractorData = contractorData {
             contractorData.removeListeners()
         }
+        searchController.isActive = false
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -47,8 +56,7 @@ class CustomersViewController: UITableViewController, UISearchResultsUpdating, O
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = contractorData?.getCustomers()?.count
-        return count != nil ? count! : 0
+        return searchBarIsEmpty() ? customersList.count : filteredCustomerList.count
     }
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
         return "Customers"
@@ -59,13 +67,29 @@ class CustomersViewController: UITableViewController, UISearchResultsUpdating, O
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "customerInformationCell", for: indexPath) as! CustomerInformationCell
-        cell.viewController = self
-        cell.customerId = contractorData?.getCustomers()?[indexPath.row]
+        cell.customer = searchBarIsEmpty() ? customersList[indexPath.row] : filteredCustomerList[indexPath.row]
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    private func getCustomerData(with id:String) {
+        Database.database().reference().child("users").child(id)
+            .observeSingleEvent(of: .value, with: successListener, withCancel: errorListener)
+    }
+    //Mark: Firebase Event Listeners
+    private func successListener(snapshot:DataSnapshot) {
+        print("Got Customer")
+        if let dictionary = snapshot.value as? [String : AnyObject] {
+            customersList += [Customer(dictionary)]
+        } else {
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+        }
+    }
+    private func errorListener(error:Error) {
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
     
     // Mark:- OnGetDataListener
@@ -75,7 +99,13 @@ class CustomersViewController: UITableViewController, UISearchResultsUpdating, O
     
     public func onSuccess() {
         print("CustomersViewController:- Got Contractor Data")
-        self.tableView.reloadData()
+        customersList = []
+        filteredCustomerList = []
+        if let customerIdList = contractorData?.getCustomers() {
+            for contractorId in customerIdList {
+                getCustomerData(with: contractorId)
+            }
+        }
     }
     
     public func onFailure(_ error: Error) {
@@ -83,16 +113,36 @@ class CustomersViewController: UITableViewController, UISearchResultsUpdating, O
         AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
     
-    // Mark:- UISearchResultsUpdating
-    func updateSearchResults(for searchController: UISearchController) {
-        if let _ = searchController.searchBar.text {
-            /*
-             filteredData = searchText.isEmpty ? data : data.filter({(dataString: String) -> Bool in
-             return dataString.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
-             })
-             
-             tableView.reloadData()
-             */
+    // Mark:- UISearchBarDelegate
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchBar.text?.isEmpty ?? true
+    }
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        let searchText = searchBar.text != nil ? searchBar.text! : ""
+        customerList(filterOn: selectedScope, contains: searchText)
+        tableView.reloadData()
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        customerList(filterOn: searchBar.selectedScopeButtonIndex, contains: searchText)
+        tableView.reloadData()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        tableView.reloadData()
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    private func customerList(filterOn scopeIndex: Int, contains string: String) {
+        if scopeIndex == 0 {
+            filteredCustomerList =  customersList.filter({(customer: Customer) -> Bool in
+                return customer.getName().range(of: string, options: .caseInsensitive) != nil
+            }).sorted(by: {$0.getLastName() < $1.getLastName()})
+        } else {
+            filteredCustomerList = customersList.filter({(customer: Customer) -> Bool in
+                return customer.getAddress()?.toString().range(of: string, options: .caseInsensitive) != nil
+            }).sorted(by: {$0.getLastName() < $1.getLastName()})
         }
     }
 }
@@ -101,14 +151,6 @@ class CustomerInformationCell: UITableViewCell {
     @IBOutlet weak var customerNameLabel: UILabel!
     @IBOutlet weak var customerAddressLabel: UILabel!
     
-    var viewController:CustomersViewController?
-    var customerId:String? {
-        didSet {
-            if let customerId = customerId {
-                getCustomerData(with: customerId)
-            }
-        }
-    }
     var customer:Customer? {
         didSet {
             if let customer = customer {
@@ -116,25 +158,9 @@ class CustomerInformationCell: UITableViewCell {
             }
         }
     }
-    
-    private func getCustomerData(with id:String) {
-        Database.database().reference().child("users").child(id)
-                .observeSingleEvent(of: .value, with: successListener, withCancel: errorListener)
-    }
+
     private func configureView(with customer:Customer) {
         customerNameLabel.text = customer.getName()
         customerAddressLabel.text = customer.getAddress()?.toString()
-    }
-    
-    //Mark: Firebase Event Listeners
-    private func successListener(snapshot:DataSnapshot) {
-        if let dictionary = snapshot.value as? [String : AnyObject] {
-            self.customer = Customer(dictionary)
-        } else {
-            AlertControllerUtilities.somethingWentWrong(with: viewController!, because: MarkdError.UnexpectedNil)
-        }
-    }
-    private func errorListener(error:Error) {
-        AlertControllerUtilities.somethingWentWrong(with: viewController!, because: error)
     }
 }

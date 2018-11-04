@@ -78,6 +78,7 @@
                     <navigationItem key="navigationItem" id="cgk-aC-uxG"/>
                     <connections>
                         <outlet property="searchBar" destination="qjX-5T-28j" id="6MW-Wo-XTA"/>
+                        <outlet property="searchController" destination="1Cb-K5-JAL" id="Mkv-Cb-PwH"/>
                         <outlet property="searchDisplayController" destination="1Cb-K5-JAL" id="VXN-ex-QxY"/>
                         <segue destination="Ib1-CC-fZN" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="ehH-RC-WKl"/>
                     </connections>
