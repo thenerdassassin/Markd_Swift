@@ -52,6 +52,7 @@
 		FF6BF1EB2094EC67001D55EF /* ContractorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1EA2094EC67001D55EF /* ContractorService.swift */; };
 		FF6BF1F320950CE1001D55EF /* ContractorServiceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */; };
 		FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */; };
+		FF7172B821A0908200183953 /* SendNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7172B721A0908200183953 /* SendNotificationViewController.swift */; };
 		FF72DC1521161B8F00CF4982 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72DC1421161B8F00CF4982 /* EditProfileViewController.swift */; };
 		FF807AF021769DE4002C3052 /* ContractorMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF807AEF21769DE4002C3052 /* ContractorMainViewController.swift */; };
 		FF82F316205439BA00E33304 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82F315205439BA00E33304 /* HelpViewController.swift */; };
@@ -141,6 +142,7 @@
 		FF6BF1EA2094EC67001D55EF /* ContractorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorService.swift; sourceTree = "<group>"; };
 		FF6BF1F220950CE1001D55EF /* ContractorServiceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorServiceTableViewController.swift; sourceTree = "<group>"; };
 		FF6C030D2038B3650058259F /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
+		FF7172B721A0908200183953 /* SendNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNotificationViewController.swift; sourceTree = "<group>"; };
 		FF72DC1421161B8F00CF4982 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		FF807AEF21769DE4002C3052 /* ContractorMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorMainViewController.swift; sourceTree = "<group>"; };
 		FF82F315205439BA00E33304 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			children = (
 				FF807AEF21769DE4002C3052 /* ContractorMainViewController.swift */,
 				FF65BBE9218DF9AE003D775C /* CustomersViewController.swift */,
+				FF7172B721A0908200183953 /* SendNotificationViewController.swift */,
 			);
 			path = ContractorMenuViewControllers;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */,
 				FF9CDB3721768C5500902C7F /* TempContractorData.swift in Sources */,
 				476295BF1E1DF198008CDBFC /* EditPanelViewController-Old.swift in Sources */,
+				FF7172B821A0908200183953 /* SendNotificationViewController.swift in Sources */,
 				FF13E48A20E855CB00B5100B /* EditBreakerViewController.swift in Sources */,
 				FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */,
 				47C4E88F1E2477A2007A0A1D /* NewPanelTextFieldController.swift in Sources */,
