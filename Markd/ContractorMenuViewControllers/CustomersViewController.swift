@@ -50,6 +50,15 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         searchController.isActive = false
         self.tableView.reloadData()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "sendNotificationToCustomerSegue" {
+            let sender = sender as! CustomerInformationCell
+            let destination = segue.destination as! SendNotificationViewController
+            destination.customer = sender.customer
+            destination.customerId = sender.customer?.customerId
+        }
+    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,18 +81,22 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //print("Customer is \(selectedCustomer)")
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: tableView.cellForRow(at: indexPath))
     }
     
     private func getCustomerData(with id:String) {
         Database.database().reference().child("users").child(id)
             .observeSingleEvent(of: .value, with: successListener, withCancel: errorListener)
     }
+    
     //Mark: Firebase Event Listeners
     private func successListener(snapshot:DataSnapshot) {
         print("Got Customer")
+        print("Key \(snapshot.key)")
         if let dictionary = snapshot.value as? [String : AnyObject] {
-            customersList += [Customer(dictionary)]
+            customersList += [Customer(dictionary, customerId: snapshot.key)]
         } else {
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
         }
@@ -151,6 +164,7 @@ class CustomerInformationCell: UITableViewCell {
     @IBOutlet weak var customerNameLabel: UILabel!
     @IBOutlet weak var customerAddressLabel: UILabel!
     
+    var customerId:String?
     var customer:Customer? {
         didSet {
             if let customer = customer {

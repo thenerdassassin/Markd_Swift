@@ -11,6 +11,13 @@ import UIKit
 
 public class SendNotificationViewController: UIViewController, UITextViewDelegate {
     private var contractorData: TempContractorData?
+    public var customerId: String?
+    public var customer: Customer? {
+        didSet {
+            print("customer didSet")
+            configureView()
+        }
+    }
     private let defaultText = "Max Length: 140 Characters"
     
     @IBOutlet weak var customerNameLabel: UILabel!
@@ -18,6 +25,11 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        notificationMessageTextView.layer.borderWidth = 1
+        notificationMessageTextView.layer.borderColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0).cgColor
+        notificationMessageTextView.layer.cornerRadius = 5.0
+        notificationMessageTextView.text = defaultText
+        notificationMessageTextView.delegate = self
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -27,6 +39,7 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
             contractorData = TempContractorData(self)
         }
          */
+        configureView()
     }
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -35,11 +48,9 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
             performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
         }
          */
-        configureView()
     }
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //self.navigationController?.isNavigationBarHidden = false;
     }
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -50,11 +61,10 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
     }
     
     private func configureView() {
-        notificationMessageTextView.layer.borderWidth = 1
-        notificationMessageTextView.layer.borderColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0).cgColor
-        notificationMessageTextView.layer.cornerRadius = 5.0
-        notificationMessageTextView.text = defaultText
-        notificationMessageTextView.delegate = self
+        print("configureView")
+        if let label = customerNameLabel, let customer = customer {
+            label.text = customer.getName()
+        }
     }
     
     //Mark:- UITextView Handlers
@@ -64,8 +74,30 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
         }
     }
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            sendNotification()
+            return false
+        }
+        
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         return newText.count <= 140
+    }
+    
+    private func sendNotification() {
+        if let id = customerId {
+            AlertControllerUtilities.showAlert(withTitle: "Notification Sent  📬",
+                                               andMessage: nil,
+                                               withOptions: [UIAlertAction(title: "Ok", style: .default, handler: exit)],
+                                               in: self)
+        } else {
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+        }
+        
+    }
+    
+    private func exit(action: UIAlertAction) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     /*

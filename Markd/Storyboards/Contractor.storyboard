@@ -67,7 +67,6 @@
                                 <connections>
                                     <outlet property="customerAddressLabel" destination="BYj-VT-CaP" id="kZu-Bc-DXU"/>
                                     <outlet property="customerNameLabel" destination="cTc-tQ-fgJ" id="WB6-7V-6dp"/>
-                                    <segue destination="8Tg-3u-MfI" kind="show" id="Qsk-zz-9HH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -83,6 +82,7 @@
                         <outlet property="searchController" destination="1Cb-K5-JAL" id="Mkv-Cb-PwH"/>
                         <outlet property="searchDisplayController" destination="1Cb-K5-JAL" id="VXN-ex-QxY"/>
                         <segue destination="Ib1-CC-fZN" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="ehH-RC-WKl"/>
+                        <segue destination="8Tg-3u-MfI" kind="show" identifier="sendNotificationToCustomerSegue" id="L0h-mZ-hW3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hli-Xv-f2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
