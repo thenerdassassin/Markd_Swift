@@ -57,6 +57,7 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
             let destination = segue.destination as! SendNotificationViewController
             destination.customer = sender.customer
             destination.customerId = sender.customer?.customerId
+            destination.companyName = contractorData?.getContractorDetails()?.getCompanyName()
         }
     }
 
@@ -93,8 +94,6 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
     
     //Mark: Firebase Event Listeners
     private func successListener(snapshot:DataSnapshot) {
-        print("Got Customer")
-        print("Key \(snapshot.key)")
         if let dictionary = snapshot.value as? [String : AnyObject] {
             customersList += [Customer(dictionary, customerId: snapshot.key)]
         } else {

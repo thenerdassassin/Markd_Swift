@@ -46,6 +46,7 @@ public class HvacViewController: UIViewController, OnGetDataListener {
     }
     override public func viewDidLoad() {
         super.viewDidLoad()
+        ViewControllerUtilities.insertMarkdLogo(into: self)
         if let hvacView = hvacScrollView {
             hvacView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
         }

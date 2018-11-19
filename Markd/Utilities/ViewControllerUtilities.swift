@@ -16,6 +16,6 @@ public class ViewControllerUtilities {
         imageView.contentMode = .scaleAspectFit
         imageView.image = image
         viewController.navigationItem.titleView = imageView
-        viewController.navigationController!.navigationBar.setTitleVerticalPositionAdjustment(-3.0, for: .defaultPrompt)
+        viewController.navigationController?.navigationBar.setTitleVerticalPositionAdjustment(-3.0, for: .defaultPrompt)
     }
 }

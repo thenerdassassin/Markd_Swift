@@ -22,6 +22,7 @@
 		47E0EA4C1DF3865C001F417F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E0EA4A1DF3865C001F417F /* LaunchScreen.storyboard */; };
 		47E0EA541DF389C4001F417F /* CustomTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA531DF389C4001F417F /* CustomTableViewCells.swift */; };
 		47E0EA561DF3A8CD001F417F /* EditBreakerViewController-Old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA551DF3A8CD001F417F /* EditBreakerViewController-Old.swift */; };
+		FF0B330821A2445500224667 /* DetailsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B330721A2445500224667 /* DetailsNavigationController.swift */; };
 		FF0CA3B520C321F800630B16 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */; };
 		FF0CA3B720C326D500630B16 /* CustomerNotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */; };
 		FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */; };
@@ -112,6 +113,7 @@
 		47E0EA551DF3A8CD001F417F /* EditBreakerViewController-Old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditBreakerViewController-Old.swift"; sourceTree = "<group>"; };
 		5F8AAE28D9CA323AB69658E5 /* Pods-Markd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.release.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.release.xcconfig"; sourceTree = "<group>"; };
 		7C5098B1444AC29248521536 /* Pods_Markd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Markd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF0B330721A2445500224667 /* DetailsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNavigationController.swift; sourceTree = "<group>"; };
 		FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationMessage.swift; sourceTree = "<group>"; };
 		FF0CA3B820C32BF100630B16 /* NotificationsUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsUtilities.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				FF5D7A6820AF79CA008A05FC /* PaintingSurfacesViewController.swift */,
 				FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */,
 				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
+				FF0B330721A2445500224667 /* DetailsNavigationController.swift */,
 			);
 			path = CustomerMenuViewControllers;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				47E0EA441DF3865C001F417F /* ViewController.swift in Sources */,
 				FF0CA3B920C32BF100630B16 /* NotificationsUtilities.swift in Sources */,
 				FF9CDB2C215FEAF300902C7F /* FirebaseFile.swift in Sources */,
+				FF0B330821A2445500224667 /* DetailsNavigationController.swift in Sources */,
 				FF9CDB352174028100902C7F /* MarkdError.swift in Sources */,
 				FF1C3543210008610062CBA2 /* SettingsMenuViewController.swift in Sources */,
 				FF6C030E2038B3650058259F /* FirebaseAuthentication.swift in Sources */,

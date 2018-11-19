@@ -17,10 +17,10 @@ class ElectricalViewController: UIViewController, OnGetDataListener {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ViewControllerUtilities.insertMarkdLogo(into: self)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ViewControllerUtilities.insertMarkdLogo(into: self)
         if authentication.checkLogin(self) {
             customerData = TempCustomerData(self)
         }

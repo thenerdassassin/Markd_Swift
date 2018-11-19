@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 public class SendNotificationViewController: UIViewController, UITextViewDelegate {
-    private var contractorData: TempContractorData?
     public var customerId: String?
     public var customer: Customer? {
         didSet {
@@ -18,6 +17,7 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
             configureView()
         }
     }
+    public var companyName:String?
     private let defaultText = "Max Length: 140 Characters"
     
     @IBOutlet weak var customerNameLabel: UILabel!
@@ -34,30 +34,7 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("SendNotificationViewController:- viewWillAppear")
-        /*
-        if authentication.checkLogin(self) {
-            contractorData = TempContractorData(self)
-        }
-         */
         configureView()
-    }
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        /*
-        if !authentication.checkLogin(self) {
-            performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
-        }
-         */
-    }
-    override public func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override public func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        FirebaseAuthentication.sharedInstance.removeStateListener()
-        if let contractorData = contractorData {
-            contractorData.removeListeners()
-        }
     }
     
     private func configureView() {
@@ -76,7 +53,15 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
-            sendNotification()
+            if(textView.text != "") {
+                sendNotification()
+            } else {
+                AlertControllerUtilities.showAlert(
+                    withTitle: "Error",
+                    andMessage: "Notification message can not be empty.",
+                    withOptions: [UIAlertAction(title: "Ok", style: .default, handler: nil)],
+                    in: self)
+            }
             return false
         }
         
@@ -84,35 +69,25 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
         return newText.count <= 140
     }
     
+    //Mark: SendNotification
     private func sendNotification() {
-        if let id = customerId {
-            AlertControllerUtilities.showAlert(withTitle: "Notification Sent  📬",
-                                               andMessage: nil,
-                                               withOptions: [UIAlertAction(title: "Ok", style: .default, handler: exit)],
-                                               in: self)
+        if let company = companyName, let id = customerId {
+            NotificationsUtilities.sendNotification(from: company, with: notificationMessageTextView.text, to: id, successHandler: sendNotificationSuccess, errorHandler: sendNotificationFailure)
+            
         } else {
-            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+            sendNotificationFailure(MarkdError.UnexpectedNil)
         }
         
     }
-    
-    private func exit(action: UIAlertAction) {
-        self.navigationController?.popViewController(animated: true)
+    func sendNotificationSuccess() {
+        AlertControllerUtilities.showAlert(withTitle: "Notification Sent  📬",
+                                           andMessage: nil,
+                                           withOptions: [UIAlertAction(title: "Ok", style: .default, handler: {
+                                                _ in self.navigationController?.popViewController(animated: true)
+                                           })],
+                                           in: self)
     }
-    
-    /*
-    //Mark:- OnGetDataListener Implementation
-    public func onStart() {
-        print("Getting Contractor Data")
+    func sendNotificationFailure(_ error:Error) {
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
-    
-    public func onSuccess() {
-        print("ContractorMainViewController:- Got Contractor Data")
-        configureView()
-    }
-    
-    public func onFailure(_ error: Error) {
-        debugPrint(error)
-    }
- */
 }
