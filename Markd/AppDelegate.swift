@@ -12,7 +12,6 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
     override init() {
@@ -22,8 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
         registerForPushNotifications(application)
+        
+        if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
+            let _ = notification["aps"] as? [String: AnyObject] {
+            //TODO: Make this work and/or set badge value
+            //window?.rootViewController?.tabBarController?.selectedIndex = 3
+        }
         return true
     }
 
@@ -39,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        application.applicationIconBadgeNumber = 0
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -58,11 +63,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Device Token: \(token)")
         //HERE you would send to firebase server to store
     }
-    
-    func application(
-        _ application: UIApplication,
-        didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error)")
+    }
+    
+    //Notification while app is in foreground
+    func application(_ application: UIApplication,didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        guard let _ = userInfo["aps"] as? [String: AnyObject] else {
+            completionHandler(.failed)
+            return
+        }
+        //TODO: Make this work and/or set badge value
+        //window?.rootViewController?.tabBarController?.selectedIndex = 3
     }
 
     func registerForPushNotifications(_ application: UIApplication) {
