@@ -43,7 +43,6 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
         if !authentication.checkLogin(self) {
             performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
         }
-        configureView()
     }
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

@@ -39,7 +39,6 @@ public class ContractorMainViewController: UIViewController, UIImagePickerContro
         if !authentication.checkLogin(self) {
             performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
         }
-        configureView()
     }
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
