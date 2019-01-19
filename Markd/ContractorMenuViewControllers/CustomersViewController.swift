@@ -13,7 +13,7 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
     private let authentication = FirebaseAuthentication.sharedInstance
     public var contractorData:TempContractorData?
     
-    @IBOutlet var searchController: UISearchDisplayController!
+    @IBOutlet var searchController: UISearchController!
     @IBOutlet weak var searchBar: UISearchBar!
     var customersList:[Customer] = [] {
         didSet {

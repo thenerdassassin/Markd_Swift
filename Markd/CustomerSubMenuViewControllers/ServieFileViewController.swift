@@ -10,7 +10,8 @@ import UIKit
 import Foundation
 import PDFKit
 import WebKit
-import FirebaseStorage
+import Firebase
+import FirebaseDatabase
 import Crashlytics
 
 class ServieFileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WKNavigationDelegate, OnGetDataListener {
@@ -232,13 +233,16 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
         PhotoUtilities(self).getImage()
     }
     
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let uid = authentication.getCurrentUser()?.uid {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage, let uid = authentication.getCurrentUser()?.uid {
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             
             let fileReference = Storage.storage().reference(withPath: "images/services/\(uid)/\(file!.setGuid(to: nil))")
-            let uploadImage = fileReference.putData(UIImagePNGRepresentation(pickedImage)!, metadata: metadata) { (metadata, error) in
+            let uploadImage = fileReference.putData(pickedImage.pngData()!, metadata: metadata) { (metadata, error) in
                 fileReference.downloadURL { (url, error) in
                     self.setFileImage(with:url)
                 }
@@ -295,4 +299,14 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
         debugPrint(error)
         AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

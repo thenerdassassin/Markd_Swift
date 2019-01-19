@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import FirebaseStorage
+import Firebase
 import UIKit
 import Kingfisher
 
@@ -24,7 +24,7 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
             companyLabel.isHidden = true
             
             phoneNumberLabel.isUserInteractionEnabled = true
-            phoneNumberLabel.setAttributedTitle(NSAttributedString(string: noContractorText, attributes: [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue, .foregroundColor: UIColor.white]), for: .normal)
+            phoneNumberLabel.setAttributedTitle(NSAttributedString(string: noContractorText, attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.white]), for: .normal)
             
             websiteLabel.isUserInteractionEnabled = false
             websiteLabel.isHidden = true
@@ -34,10 +34,10 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
     private func configureView(with contractor: Contractor, at reference: String?) {
         if let companyLabel = companyLabel, let phoneNumberLabel = phoneNumberLabel, let websiteLabel = websiteLabel {
             if let contractorDetails = contractor.getContractorDetails() {
-                let attrs: [NSAttributedStringKey: Any] = [
-                    NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18.0),
-                    NSAttributedStringKey.foregroundColor : UIColor.white,
-                    NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue
+                let attrs: [NSAttributedString.Key: Any] = [
+                    NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18.0),
+                    NSAttributedString.Key.foregroundColor : UIColor.white,
+                    NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue
                 ]
                 companyLabel.isHidden = false
                 companyLabel.text = contractorDetails.getCompanyName()
@@ -104,7 +104,7 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
         }
         print(url)
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (success) in
                 print("Open url : \(success)")
             })
         } else {
@@ -144,4 +144,9 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
         debugPrint(error)
         AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

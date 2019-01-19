@@ -22,12 +22,12 @@ public class FirebaseAuthentication {
     private init() {}
     
     func signIn(_ sender: LoginHandler, withEmail email: String, andPassword password: String) {
-        FirebaseAuthentication.auth.signIn(withEmail: email, password: password) {  (user, error) in
+        FirebaseAuthentication.auth.signIn(withEmail: email, password: password) {  (authDataResult, error) in
             if let error = error {
                 print("Error: ", error)
                 sender.loginFailureHandler(error)
             }
-            if let user = user {
+            if let user = authDataResult?.user {
                 print("User:" , user)
                 sender.loginSuccessHandler(user)
             }
@@ -96,12 +96,12 @@ public class FirebaseAuthentication {
         }
     }
     func createUser(_ sender: LoginHandler, withEmail email: String, andPassword password: String) {
-        Auth.auth().createUser(withEmail: email, password: password) {  (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password) {  (authDataResult, error) in
             if let error = error {
                 print("Error: ", error)
                 sender.loginFailureHandler(error)
             }
-            if let user = user {
+            if let user = authDataResult?.user {
                 print("User:" , user)
                 sender.loginSuccessHandler(user)
             }

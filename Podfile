@@ -11,7 +11,7 @@ target 'Markd' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
-  pod 'Kingfisher', '~> 4.0'
+  pod 'Kingfisher', '~> 4.10.0'
   
   pod 'Fabric', '~> 1.7.11'
   pod 'Crashlytics', '~> 3.10.7'

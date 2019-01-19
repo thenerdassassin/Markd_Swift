@@ -125,7 +125,7 @@ class EditPaintingSurfaceViewController: UITableViewController {
     func showDatePicker() {
         if(!datePickerVisible) {
             tableView.beginUpdates()
-            tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: UITableView.RowAnimation.fade)
             datePickerVisible = true
             tableView.endUpdates()
         }
@@ -133,7 +133,7 @@ class EditPaintingSurfaceViewController: UITableViewController {
     func hideDatePicker() {
         if(datePickerVisible) {
             tableView.beginUpdates()
-            tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: UITableView.RowAnimation.fade)
             datePickerVisible = false
             tableView.endUpdates()
         }

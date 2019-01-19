@@ -159,7 +159,7 @@ class EditPanelViewController: UITableViewController, OnGetDataListener {
         if(!isEditingManufacturer) {
             tableView.beginUpdates()
             isEditingManufacturer = true
-            tableView.insertRows(at: [IndexPath(row: 5, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.insertRows(at: [IndexPath(row: 5, section: 0)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
@@ -167,7 +167,7 @@ class EditPanelViewController: UITableViewController, OnGetDataListener {
         if(isEditingManufacturer) {
             tableView.beginUpdates()
             isEditingManufacturer = false
-            tableView.deleteRows(at: [IndexPath(row: 5, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.deleteRows(at: [IndexPath(row: 5, section: 0)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
@@ -175,7 +175,7 @@ class EditPanelViewController: UITableViewController, OnGetDataListener {
         if(!isEditingInstallDate) {
             tableView.beginUpdates()
             isEditingInstallDate = true
-            tableView.insertRows(at: [IndexPath(row: 6, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.insertRows(at: [IndexPath(row: 6, section: 0)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
@@ -183,7 +183,7 @@ class EditPanelViewController: UITableViewController, OnGetDataListener {
         if(isEditingInstallDate) {
             tableView.beginUpdates()
             isEditingInstallDate = false
-            tableView.deleteRows(at: [IndexPath(row: 6, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.deleteRows(at: [IndexPath(row: 6, section: 0)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
