@@ -11,16 +11,16 @@ import Firebase
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     var window: UIWindow?
-
-    override init() {
-        FirebaseApp.configure()
-        Database.database().isPersistenceEnabled = true
-    }
+    let gcmMessageIDKey = "gcm.message_id"
+    var token: String?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = true
         // Override point for customization after application launch.
+        Messaging.messaging().delegate = self
         registerForPushNotifications(application)
         
         if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //TODO: Make this work and/or set badge value
             //window?.rootViewController?.tabBarController?.selectedIndex = 3
         }
+        application.applicationIconBadgeNumber = 0
         return true
     }
 
@@ -54,14 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(
-        _ application: UIApplication,
-        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
-        ) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
         print("Device Token: \(token)")
-        //HERE you would send to firebase server to store
+        self.token = token
     }
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error)")
@@ -77,9 +75,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //TODO: Make this work and/or set badge value
         //window?.rootViewController?.tabBarController?.selectedIndex = 3
     }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        let dataDict:[String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+    }
 
     func registerForPushNotifications(_ application: UIApplication) {
         if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
             UNUserNotificationCenter.current() // 1
                 .requestAuthorization(options: [.alert, .sound, .badge]) {
                     [weak self] granted, error in
@@ -109,3 +115,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+@available(iOS 10, *)
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+        
+        // Change this to your preferred presentation option
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+        
+        completionHandler()
+    }
+}

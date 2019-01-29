@@ -282,7 +282,7 @@ public class ServiceContractorTableViewCell: UITableViewCell, UITextFieldDelegat
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        serviceViewController!.service!.setContractor(textField.text!)
+        let _ = serviceViewController!.service!.setContractor(textField.text!)
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         contractorTextField.resignFirstResponder()
@@ -316,7 +316,7 @@ public class CommentsTableViewCell: UITableViewCell, UITextViewDelegate {
         return true
     }
     public func textViewDidEndEditing(_ textView: UITextView) {
-        serviceViewController!.service!.setComments(textView.text!)
+        let _ = serviceViewController!.service!.setComments(textView.text!)
         if StringUtilities.isNilOrEmpty(textView.text) {
             textView.textColor = UIColor.lightGray
             textView.text = "Comments"

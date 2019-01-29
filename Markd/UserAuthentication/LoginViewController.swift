@@ -45,10 +45,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         if let password = password {
             password.delegate = self
         }
-        
-        if(authenticator.checkLogin(self)) {
-            loginSuccessHandler(authenticator.getCurrentUser()!)
-        }
     }
 
     //MARK:- IBAction Methods

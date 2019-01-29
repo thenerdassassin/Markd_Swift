@@ -11,10 +11,6 @@ import os.log
 import Firebase
 
 public class FirebaseAuthentication {
-    func NEED_TO_ADD_ANDROID_METHODS😤() {
-        var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
-        //TODO: token handling
-    }
     static let sharedInstance = FirebaseAuthentication()
     static private let auth:Auth = Auth.auth()
     static var authStateDidChangeHandle: AuthStateDidChangeListenerHandle?
@@ -29,12 +25,16 @@ public class FirebaseAuthentication {
             }
             if let user = authDataResult?.user {
                 print("User:" , user)
+                sender.storeToken(user)
                 sender.loginSuccessHandler(user)
             }
         }
     }
     
     func signOut(_ sender: UIViewController) {
+        if let user = FirebaseAuthentication.auth.currentUser {
+            removeToken(user)
+        }
         do {
             try FirebaseAuthentication.auth.signOut()
             if !(sender is LoginViewController) {
@@ -42,6 +42,15 @@ public class FirebaseAuthentication {
             }
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
+            errorHandler(sender, forError: signOutError)
+        }
+    }
+    
+    func removeToken(_ user:User) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let deviceToken = appDelegate.token, let fcmToken = Messaging.messaging().fcmToken {
+            print("-----------\nRemoving user \(user.uid) on device \(deviceToken) with token \(fcmToken)------------------\n")
+            let reference = Database.database().reference().child("tokens").child(user.uid).child(deviceToken)
+            reference.removeValue()
         }
     }
     
@@ -103,6 +112,7 @@ public class FirebaseAuthentication {
             }
             if let user = authDataResult?.user {
                 print("User:" , user)
+                sender.storeToken(user)
                 sender.loginSuccessHandler(user)
             }
         }
