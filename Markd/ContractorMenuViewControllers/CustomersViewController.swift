@@ -63,28 +63,53 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(section == 0) {
+            return 1
+        }
         return searchBarIsEmpty() ? customersList.count : filteredCustomerList.count
     }
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
-        return "Customers"
+        if section == 1 {
+            return "Customers"
+        }
+        return ""
+    }
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if (section == 1) {
+            return 28.0;
+        }
+        else {
+            // One table view style will not allow 0 value for some reason
+            return 0.00001;
+        }
     }
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView() //Removes seperators after list
+        if section == 1 {
+           return UIView() //Removes seperators after list
+        }
+        return nil
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "Message All Customers"
+            return cell
+        }
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "customerInformationCell", for: indexPath) as! CustomerInformationCell
         cell.customer = searchBarIsEmpty() ? customersList[indexPath.row] : filteredCustomerList[indexPath.row]
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("Customer is \(selectedCustomer)")
-        tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: tableView.cellForRow(at: indexPath))
+        if indexPath.section == 1 {
+            //print("Customer is \(selectedCustomer)")
+            tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: tableView.cellForRow(at: indexPath))
+        }
     }
     
     private func getCustomerData(with id:String) {
