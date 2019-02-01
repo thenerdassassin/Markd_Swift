@@ -45,13 +45,32 @@ public class NotificationsUtilities {
                     notificationMessages.setValue(convertArray(notifications))
                     successHandler()
                 } else {
-                    errorHandler(MarkdError.UnexpectedNil)
+                    var notificationArray:[CustomerNotificationMessage] = []
+                    notificationArray.append(newNotification)
+                    notificationMessages.setValue(convertArray(notificationArray))
+                    successHandler()
                 }
             }, withCancel: errorHandler)
     }
     public static func sendNotifications(from company:String, with message: String, to customers:[String], successHandler:@escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
+        print("Customers:\(customers)")
+        var successCount = 0
+        var errorCount = 0
+        
         for customerId in customers {
-            sendNotification(from: company, with: message, to: customerId, successHandler: successHandler, errorHandler: errorHandler)
+            sendNotification(from: company, with: message, to: customerId, successHandler: {
+                //Error only if at least one notification attempt is succesfully and all have been sent
+                successCount += 1
+                if(successCount + errorCount == customers.count) {
+                    successHandler()
+                }
+            }, errorHandler: { error in
+                //Error only if all notification attempts are unsuccesfully
+                errorCount += 1
+                if(errorCount == customers.count) {
+                    errorHandler(error)
+                }
+            })
         }
     }
     

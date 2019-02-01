@@ -17,6 +17,12 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
             configureView()
         }
     }
+    public var customerList: [Customer]? {
+        didSet {
+            print("hasCustomerList")
+            configureView()
+        }
+    }
     public var companyName:String?
     private let defaultText = "Max Length: 140 Characters"
     
@@ -41,6 +47,8 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
         print("configureView")
         if let label = customerNameLabel, let customer = customer {
             label.text = customer.getName()
+        } else if let label = customerNameLabel, let _ = customerList {
+            label.text = "Type message to send to all customers."
         }
     }
     
@@ -74,6 +82,10 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
         if let company = companyName, let id = customerId {
             NotificationsUtilities.sendNotification(from: company, with: notificationMessageTextView.text, to: id, successHandler: sendNotificationSuccess, errorHandler: sendNotificationFailure)
             
+        } else if let company = companyName, let customers = customerList {
+            //Transform list to non-nil customer Id's
+            let customerIds = customers.filter { $0.customerId != nil }.map { $0.customerId! }
+            NotificationsUtilities.sendNotifications(from: company, with: notificationMessageTextView.text, to: customerIds, successHandler: sendNotificationSuccess, errorHandler: sendNotificationFailure)
         } else {
             sendNotificationFailure(MarkdError.UnexpectedNil)
         }
@@ -88,6 +100,10 @@ public class SendNotificationViewController: UIViewController, UITextViewDelegat
                                            in: self)
     }
     func sendNotificationFailure(_ error:Error) {
+        AlertControllerUtilities.somethingWentWrong(with: self, because: error)
+    }
+    
+    func sendNotificationsFailure(_ error:Error) {
         AlertControllerUtilities.somethingWentWrong(with: self, because: error)
     }
 }

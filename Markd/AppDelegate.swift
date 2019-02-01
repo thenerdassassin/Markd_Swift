@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        Database.database().isPersistenceEnabled = true
         // Override point for customization after application launch.
         Messaging.messaging().delegate = self
         registerForPushNotifications(application)

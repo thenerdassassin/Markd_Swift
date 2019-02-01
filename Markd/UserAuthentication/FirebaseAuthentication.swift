@@ -47,8 +47,7 @@ public class FirebaseAuthentication {
     }
     
     func removeToken(_ user:User) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let deviceToken = appDelegate.token, let fcmToken = Messaging.messaging().fcmToken {
-            print("-----------\nRemoving user \(user.uid) on device \(deviceToken) with token \(fcmToken)------------------\n")
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let deviceToken = appDelegate.token {
             let reference = Database.database().reference().child("tokens").child(user.uid).child(deviceToken)
             reference.removeValue()
         }

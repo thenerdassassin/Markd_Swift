@@ -53,11 +53,16 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "sendNotificationToCustomerSegue" {
-            let sender = sender as! CustomerInformationCell
-            let destination = segue.destination as! SendNotificationViewController
-            destination.customer = sender.customer
-            destination.customerId = sender.customer?.customerId
-            destination.companyName = contractorData?.getContractorDetails()?.getCompanyName()
+            if let sender = sender as? CustomerInformationCell {
+                let destination = segue.destination as! SendNotificationViewController
+                destination.customer = sender.customer
+                destination.customerId = sender.customer?.customerId
+                destination.companyName = contractorData?.getContractorDetails()?.getCompanyName()
+            } else {
+                let destination = segue.destination as! SendNotificationViewController
+                destination.companyName = contractorData?.getContractorDetails()?.getCompanyName()
+                destination.customerList = customersList
+            }
         }
     }
 
@@ -105,11 +110,8 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
-            //print("Customer is \(selectedCustomer)")
-            tableView.deselectRow(at: indexPath, animated: true)
-            performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: tableView.cellForRow(at: indexPath))
-        }
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: tableView.cellForRow(at: indexPath))
     }
     
     private func getCustomerData(with id:String) {

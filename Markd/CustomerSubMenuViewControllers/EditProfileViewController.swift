@@ -204,7 +204,7 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
         let email = originalEmail != nil ? originalEmail!:""
         let password = self.password != nil ? self.password!:""
         let credential = authentication.getAuthCredential(withEmail: email, andPassword: password)
-        authentication.getCurrentUser()?.reauthenticate(with: credential, completion: { (error) in
+        authentication.getCurrentUser()?.reauthenticateAndRetrieveData(with: credential) { (result, error) in
             if let error = error {
                 self.authentication.errorHandler(self, forError: error)
             } else {
@@ -231,7 +231,7 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
                 }
                 self.navigationController!.popViewController(animated: true)
             }
-        })
+        }
     }
     
     //Mark:- OnGetDataListener
