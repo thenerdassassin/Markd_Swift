@@ -188,7 +188,7 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
     func showDatePicker() {
         if(!datePickerVisible) {
             tableView.beginUpdates()
-            tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: UITableView.RowAnimation.fade)
             datePickerVisible = true
             tableView.endUpdates()
         }
@@ -196,7 +196,7 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
     func hideDatePicker() {
         if(datePickerVisible) {
             tableView.beginUpdates()
-            tableView.deleteRows(at: [IndexPath(row: 3, section: 0)], with: UITableViewRowAnimation.fade)
+            tableView.deleteRows(at: [IndexPath(row: 3, section: 0)], with: UITableView.RowAnimation.fade)
             datePickerVisible = false
             tableView.endUpdates()
         }
@@ -206,7 +206,7 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return (indexPath.section == 1)
     }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let customerData = customerData else {
                 print("Customer Data not set")
@@ -282,7 +282,7 @@ public class ServiceContractorTableViewCell: UITableViewCell, UITextFieldDelegat
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        serviceViewController!.service!.setContractor(textField.text!)
+        let _ = serviceViewController!.service!.setContractor(textField.text!)
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         contractorTextField.resignFirstResponder()
@@ -316,7 +316,7 @@ public class CommentsTableViewCell: UITableViewCell, UITextViewDelegate {
         return true
     }
     public func textViewDidEndEditing(_ textView: UITextView) {
-        serviceViewController!.service!.setComments(textView.text!)
+        let _ = serviceViewController!.service!.setComments(textView.text!)
         if StringUtilities.isNilOrEmpty(textView.text) {
             textView.textColor = UIColor.lightGray
             textView.text = "Comments"

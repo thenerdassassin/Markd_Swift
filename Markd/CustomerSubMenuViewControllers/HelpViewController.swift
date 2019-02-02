@@ -15,7 +15,7 @@ public class HelpViewController: UIViewController, OnGetDataListener {
     private var customerData: TempCustomerData?
     private var customerEmail: String?
     @IBOutlet weak var messageTextView: UITextView!
-    let sendingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    let sendingIndicator = UIActivityIndicatorView(style: .whiteLarge)
     
     override public func viewDidLoad() {
         super.viewDidLoad()

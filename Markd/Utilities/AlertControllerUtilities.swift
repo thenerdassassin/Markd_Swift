@@ -12,6 +12,7 @@ import Crashlytics
 
 public class AlertControllerUtilities {
     public static func somethingWentWrong(with viewController:UIViewController, because error:Error) {
+        print(error)
         Crashlytics.sharedInstance().recordError(error)
         let alert = UIAlertController(title: "Error", message: "Sorry, something went wrong! 😢", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))

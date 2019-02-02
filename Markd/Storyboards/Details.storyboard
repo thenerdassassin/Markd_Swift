@@ -234,12 +234,13 @@
         <!--PlumbingNavigation-->
         <scene sceneID="sJb-U5-NKZ">
             <objects>
-                <navigationController title="PlumbingNavigation" id="X90-fc-VtD" sceneMemberID="viewController">
+                <navigationController title="PlumbingNavigation" id="X90-fc-VtD" customClass="DetailsNavigationController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Details" image="ic_action_pages" selectedImage="ic_action_pages" id="0b5-E8-YCD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="Fsf-Uv-vRn">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
                         <segue destination="Qth-DH-Tc5" kind="relationship" relationship="rootViewController" id="8Uu-xM-GXN"/>

@@ -193,9 +193,11 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     func loginSuccessHandler(_ user: User) {
         print("Created Account")
         var data:Dictionary<String, AnyObject> = [:]
-        if let namePrefix = selectedTitle as? AnyObject, let firstName = firstName as? AnyObject, let lastName = lastName as? AnyObject, let maritalStatus = maritalStatus as? AnyObject {
-            data = ["namePrefix":namePrefix, "firstName":firstName, "lastName":lastName, "maritalStatus":maritalStatus]
-        }
+        let namePrefix = selectedTitle as AnyObject
+        let firstName = self.firstName as AnyObject
+        let lastName = self.lastName as AnyObject
+        let maritalStatus = self.maritalStatus as AnyObject
+        data = ["namePrefix":namePrefix, "firstName":firstName, "lastName":lastName, "maritalStatus":maritalStatus]
         let customer = Customer(data)
         customerData = TempCustomerData(self, create: customer, at: user.uid)
     }

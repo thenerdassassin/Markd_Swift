@@ -29,6 +29,15 @@ protocol LoginHandler {
     func loginSuccessHandler(_ user:User)
     func loginFailureHandler(_ error:Error)
 }
+extension LoginHandler {
+    func storeToken(_ user:User) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let deviceToken = appDelegate.token, let fcmToken = Messaging.messaging().fcmToken {
+            let reference = Database.database().reference().child("tokens").child(user.uid).child(deviceToken)
+            reference.setValue(fcmToken)
+            print("-----------\nSaving user \(user.uid) on device \(deviceToken) with token \(fcmToken)------------------\n")
+        }
+    }
+}
 
 public protocol OnGetDataListener {
     func onStart()

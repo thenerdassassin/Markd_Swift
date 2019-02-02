@@ -50,6 +50,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     }
     override public func viewDidLoad() {
         super.viewDidLoad()
+        ViewControllerUtilities.insertMarkdLogo(into: self)
         if let plumbingView = plumbingScrollView {
             plumbingView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
         }

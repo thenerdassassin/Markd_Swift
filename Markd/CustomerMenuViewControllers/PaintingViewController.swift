@@ -18,7 +18,6 @@ class PaintingViewController:UIViewController, OnGetDataListener {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         ViewControllerUtilities.insertMarkdLogo(into: self)
     }
     override func viewWillAppear(_ animated: Bool) {

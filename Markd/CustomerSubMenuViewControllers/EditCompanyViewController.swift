@@ -192,7 +192,7 @@ class EditCompanyTelephoneCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        viewController!.contractorDetails.setTelephoneNumber(to: textField.text!)
+        let _ = viewController!.contractorDetails.setTelephoneNumber(to: textField.text!)
         viewController!.navigationItem.hidesBackButton = !viewController!.isValidInput()
     }
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -130,4 +130,8 @@ public class TempContractorData:CustomStringConvertible {
             return nil
         }
     }
+    
+    public func getCustomers() -> [String]? {
+        return getContractor()?.getCustomers()
+    }
 }

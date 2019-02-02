@@ -161,7 +161,7 @@ class EditApplianceTableViewController: UITableViewController {
         if !isEditingField[section].0 {
             tableView.beginUpdates()
             isEditingField[section].0 = true
-            tableView.insertRows(at: [IndexPath(row: 3, section: section)], with: UITableViewRowAnimation.fade)
+            tableView.insertRows(at: [IndexPath(row: 3, section: section)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
@@ -169,7 +169,7 @@ class EditApplianceTableViewController: UITableViewController {
         if isEditingField[section].0 {
             tableView.beginUpdates()
             isEditingField[section].0 = false
-            tableView.deleteRows(at: [IndexPath(row: 3, section: section)], with: UITableViewRowAnimation.fade)
+            tableView.deleteRows(at: [IndexPath(row: 3, section: section)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
@@ -177,7 +177,7 @@ class EditApplianceTableViewController: UITableViewController {
         if !isEditingField[section].1 {
             tableView.beginUpdates()
             isEditingField[section].1 = true
-            tableView.insertRows(at: [IndexPath(row: 4, section: section)], with: UITableViewRowAnimation.fade)
+            tableView.insertRows(at: [IndexPath(row: 4, section: section)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
@@ -185,7 +185,7 @@ class EditApplianceTableViewController: UITableViewController {
         if isEditingField[section].1 {
             tableView.beginUpdates()
             isEditingField[section].1 = false
-            tableView.deleteRows(at: [IndexPath(row: 4, section: section)], with: UITableViewRowAnimation.fade)
+            tableView.deleteRows(at: [IndexPath(row: 4, section: section)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
@@ -401,6 +401,6 @@ public class ApplianceEditLifeSpanCell: UITableViewCell {
     @IBAction func onLifeSpanValueChanged(_ slider: UISlider) {
         let updatedLifeSpan = "\(Int(round(slider.value))) \(units[unitsSegmentedControl.selectedSegmentIndex])"
         viewController!.change("Projected Life Span", at: self.tag, to: updatedLifeSpan)
-        viewController!.tableView.reloadRows(at: [IndexPath(row: 3, section: self.tag)], with: UITableViewRowAnimation.none)
+        viewController!.tableView.reloadRows(at: [IndexPath(row: 3, section: self.tag)], with: UITableView.RowAnimation.none)
     }
 }

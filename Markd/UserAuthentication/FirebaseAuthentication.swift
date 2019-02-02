@@ -11,10 +11,6 @@ import os.log
 import Firebase
 
 public class FirebaseAuthentication {
-    func NEED_TO_ADD_ANDROID_METHODS😤() {
-        var NEED_TO_ADD_ANDROID_METHODS😤:AnyObject?
-        //TODO: token handling
-    }
     static let sharedInstance = FirebaseAuthentication()
     static private let auth:Auth = Auth.auth()
     static var authStateDidChangeHandle: AuthStateDidChangeListenerHandle?
@@ -22,19 +18,23 @@ public class FirebaseAuthentication {
     private init() {}
     
     func signIn(_ sender: LoginHandler, withEmail email: String, andPassword password: String) {
-        FirebaseAuthentication.auth.signIn(withEmail: email, password: password) {  (user, error) in
+        FirebaseAuthentication.auth.signIn(withEmail: email, password: password) {  (authDataResult, error) in
             if let error = error {
                 print("Error: ", error)
                 sender.loginFailureHandler(error)
             }
-            if let user = user {
+            if let user = authDataResult?.user {
                 print("User:" , user)
+                sender.storeToken(user)
                 sender.loginSuccessHandler(user)
             }
         }
     }
     
     func signOut(_ sender: UIViewController) {
+        if let user = FirebaseAuthentication.auth.currentUser {
+            removeToken(user)
+        }
         do {
             try FirebaseAuthentication.auth.signOut()
             if !(sender is LoginViewController) {
@@ -42,6 +42,14 @@ public class FirebaseAuthentication {
             }
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
+            errorHandler(sender, forError: signOutError)
+        }
+    }
+    
+    func removeToken(_ user:User) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let deviceToken = appDelegate.token {
+            let reference = Database.database().reference().child("tokens").child(user.uid).child(deviceToken)
+            reference.removeValue()
         }
     }
     
@@ -96,13 +104,14 @@ public class FirebaseAuthentication {
         }
     }
     func createUser(_ sender: LoginHandler, withEmail email: String, andPassword password: String) {
-        Auth.auth().createUser(withEmail: email, password: password) {  (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password) {  (authDataResult, error) in
             if let error = error {
                 print("Error: ", error)
                 sender.loginFailureHandler(error)
             }
-            if let user = user {
+            if let user = authDataResult?.user {
                 print("User:" , user)
+                sender.storeToken(user)
                 sender.loginSuccessHandler(user)
             }
         }

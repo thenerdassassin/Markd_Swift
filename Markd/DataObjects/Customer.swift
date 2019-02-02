@@ -11,6 +11,7 @@ import Firebase
 
 public class Customer:CustomStringConvertible {
     public final let userType = "customer"
+    public var customerId:String?
     
     //For Home Page
     private var namePrefix: String
@@ -46,7 +47,13 @@ public class Customer:CustomStringConvertible {
     private var exteriorPaintSurfaces: [PaintSurface]?
     private var painterReference: String
     
-    public init(_ dictionary: Dictionary<String, AnyObject>) {
+    public convenience init(_ dictionary: Dictionary<String, AnyObject>) {
+        self.init(dictionary, customerId: nil)
+    }
+    
+    public init(_ dictionary: Dictionary<String, AnyObject>, customerId id:String?) {
+        self.customerId = id
+        
         self.namePrefix = dictionary["namePrefix"] != nil ? dictionary["namePrefix"] as! String: ""
         self.firstName = dictionary["firstName"] != nil ? dictionary["firstName"] as! String: ""
         self.lastName = dictionary["lastName"] != nil ? dictionary["lastName"] as! String: ""

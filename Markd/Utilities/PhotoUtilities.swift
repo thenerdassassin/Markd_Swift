@@ -69,7 +69,7 @@ public class PhotoUtilities {
         }
     }
     
-    private func setupImagePicker(with sourceType:UIImagePickerControllerSourceType) {
+    private func setupImagePicker(with sourceType:UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = delegate
         imagePicker.allowsEditing = false

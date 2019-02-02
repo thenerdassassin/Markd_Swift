@@ -84,7 +84,7 @@ public class Panel:CustomStringConvertible, Comparable {
          }
          
          while(breakerList!.count > numberOfBreakers) {
-            self.deleteBreaker(breakerList!.count)
+            let _ = self.deleteBreaker(breakerList!.count)
          }
         return self
     }

@@ -90,7 +90,7 @@ class NotificationsViewController: UITableViewController {
         }
         return false
     }
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.notifications!.remove(at: indexPath.row)
             NotificationsUtilities.setNotifications(for: authentication.getCurrentUser()!.uid, to: self.notifications!)

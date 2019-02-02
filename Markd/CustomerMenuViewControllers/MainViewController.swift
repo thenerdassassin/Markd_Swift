@@ -43,7 +43,6 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
         if !authentication.checkLogin(self) {
             performSegue(withIdentifier: "unwindToLoginSegue", sender: self)
         }
-        configureView()
     }
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -117,12 +116,15 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func homeImageLongPressed(_ sender: UILongPressGestureRecognizer) {
         PhotoUtilities(self).getImage()
     }
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             let homeImageRef = storage.reference().child("images").child(customerData!.setHomeImageFileName()!)
-            let uploadImage = homeImageRef.putData(UIImagePNGRepresentation(pickedImage)!, metadata: metadata) { (metadata, error) in
+            let uploadImage = homeImageRef.putData(pickedImage.pngData()!, metadata: metadata) { (metadata, error) in
                 homeImageRef.downloadURL { (url, error) in
                     self.setHomeImage(with:url)
                 }
@@ -175,4 +177,14 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     public func onFailure(_ error: Error) {
         debugPrint(error)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }
