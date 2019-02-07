@@ -8,12 +8,14 @@
 
 import UIKit
 import MobileCoreServices
+import Firebase
 
 class ContractorServiceTableViewController: UITableViewController, UIDocumentPickerDelegate {
     var datePickerVisible = false
     var customerData:TempCustomerData?
     var serviceIndex: Int?
     var serviceType: String?
+    var pdfUrl: URL?
     public var service:ContractorService? {
         didSet {
             self.tableView.reloadData()
@@ -40,13 +42,13 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
                 print("Number: \(number) changes to###\n\(service!)")
                 customerData.update(service!, number, of: type)
             }
+            
         } else {
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
         }
     }
     
     @IBAction func onAddFileAction(_ sender: UIBarButtonItem) {
-        //TODO: Allow for UIDocumentPickerViewController
         AlertControllerUtilities.showActionSheet(withTitle: "File Type", andMessage: "Which type of file would you like to attach to this service?",
                                                  withOptions: [UIAlertAction(title: "Photo", style: .default, handler: addFile),
                                                                UIAlertAction(title: "PDF", style: .default, handler: addFile),
@@ -55,9 +57,55 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
         
     }
     
+    //Mark:- Segue
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        print("shouldPerformSegue")
+        if(identifier == "showServiceFileSegue") {
+            guard let _ = customerData?.getUid(), let service = service else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                return false
+            }
+            if let sender = sender as? UITableViewCell {
+                let files = service.getFiles()
+                if(sender.tag < 0 || sender.tag >= files.count) {
+                    return false
+                }
+            } else if let urlArray = sender as? Array<URL> {
+                guard urlArray.count > 0 else {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepareSegue")
+        // Pass the selected file to the new view controller.
+        if(segue.identifier == "showServiceFileSegue") {
+            let destination = segue.destination as! ServiceFileViewController
+            destination.serviceType = serviceType
+            destination.serviceIndex = serviceIndex
+            if let sender = sender as? UITableViewCell {
+                destination.fileIndex = sender.tag
+                destination.service = service
+            } else {
+                if let urls = sender as? Array<URL> {
+                    destination.pdfUrl = urls[0]
+                }
+                var files = service!.getFiles()
+                files.append(FirebaseFile([:]))
+                destination.fileIndex = files.count-1
+                destination.service = service!.setFiles(files)
+            }
+            customerData?.removeListeners()
+        }
+    }
+    
     private func addFile(action:UIAlertAction) {
         if(action.title == "Photo") {
-            performSegue(withIdentifier: "showServiceFileSegue", sender: self)
+            if(shouldPerformSegue(withIdentifier: "showServiceFileSegue", sender: self)) {
+                performSegue(withIdentifier: "showServiceFileSegue", sender: self)
+            }
         } else if(action.title == "PDF") {
             getPdfFile()
         } else {
@@ -66,8 +114,7 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
     }
     
     private func getPdfFile() {
-        //TODO: Need to Join Apple Developer Program
-        //TODO: See this:- https://medium.com/@santhosh3386/ios-document-picker-eae1d37aefea
+        //https://medium.com/@santhosh3386/ios-document-picker-eae1d37aefea
         let documentPicker = UIDocumentPickerViewController(documentTypes: [String(kUTTypePDF)], in: .import)
         documentPicker.delegate = self
         present(documentPicker, animated: true)
@@ -75,8 +122,9 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         print(urls)
-        AlertControllerUtilities.showAlert(withTitle: "PDF Urls", andMessage: "\(urls)",
-            withOptions: [UIAlertAction(title: "Ok", style: .default, handler: nil)], in: self)
+        if(shouldPerformSegue(withIdentifier: "showServiceFileSegue", sender: urls)) {
+            performSegue(withIdentifier: "showServiceFileSegue", sender: urls)
+        }
     }
 
     // MARK: - Table view data source
@@ -204,7 +252,12 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
 
     // Mark:- Files
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return (indexPath.section == 1)
+        if(indexPath.section == 1) {
+            if let files = service?.getFiles() {
+                return files.count > 0
+            }
+        }
+        return false
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -222,44 +275,12 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
             var files = service.getFiles()
             files.remove(at: indexPath.row)
             customerData.update(service.setFiles(files), index, of: type)
+            tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        print("shouldPerformSegue")
-        if(identifier == "showServiceFileSegue") {
-            if let sender = sender as? UITableViewCell {
-                guard let files = service?.getFiles(), let _ = customerData?.getUid() else {
-                    return false
-                }
-                if(sender.tag < 0 || sender.tag >= files.count) {
-                    return false
-                }
+            if(service.getFiles().count == 0) {
+                tableView.insertRows(at: [indexPath], with: .fade)
             }
-        }
-        return true
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepareSegue")
-        // Pass the selected file to the new view controller.
-        if(segue.identifier == "showServiceFileSegue") {
-            let destination = segue.destination as! ServieFileViewController
-            destination.serviceType = serviceType
-            destination.serviceIndex = serviceIndex
-            if let sender = sender as? UITableViewCell {
-                destination.fileIndex = sender.tag
-                destination.service = service
-            } else {
-                if let service = service {
-                    var files = service.getFiles()
-                    files.append(FirebaseFile([:]))
-                    destination.fileIndex = files.count-1
-                    destination.service = service.setFiles(files)
-                } else {
-                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
-                }
-            }
-            customerData?.removeListeners()
+            tableView.endUpdates()
         }
     }
 }

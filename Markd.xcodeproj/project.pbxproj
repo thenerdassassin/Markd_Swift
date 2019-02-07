@@ -54,7 +54,7 @@
 		FF9A5B42208AA484007E9669 /* ContractorFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9A5B41208AA484007E9669 /* ContractorFooterViewController.swift */; };
 		FF9CDB2C215FEAF300902C7F /* FirebaseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB2B215FEAF300902C7F /* FirebaseFile.swift */; };
 		FF9CDB2E215FF0A000902C7F /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9CDB2D215FF0A000902C7F /* Notifications.storyboard */; };
-		FF9CDB30216007AD00902C7F /* ServieFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB2F216007AD00902C7F /* ServieFileViewController.swift */; };
+		FF9CDB30216007AD00902C7F /* ServiceFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB2F216007AD00902C7F /* ServiceFileViewController.swift */; };
 		FF9CDB322161968B00902C7F /* PhotoUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB312161968B00902C7F /* PhotoUtilities.swift */; };
 		FF9CDB352174028100902C7F /* MarkdError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB342174028100902C7F /* MarkdError.swift */; };
 		FF9CDB3721768C5500902C7F /* TempContractorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CDB3621768C5500902C7F /* TempContractorData.swift */; };
@@ -136,7 +136,7 @@
 		FF9A5B41208AA484007E9669 /* ContractorFooterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractorFooterViewController.swift; sourceTree = "<group>"; };
 		FF9CDB2B215FEAF300902C7F /* FirebaseFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFile.swift; sourceTree = "<group>"; };
 		FF9CDB2D215FF0A000902C7F /* Notifications.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
-		FF9CDB2F216007AD00902C7F /* ServieFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServieFileViewController.swift; sourceTree = "<group>"; };
+		FF9CDB2F216007AD00902C7F /* ServiceFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFileViewController.swift; sourceTree = "<group>"; };
 		FF9CDB312161968B00902C7F /* PhotoUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUtilities.swift; sourceTree = "<group>"; };
 		FF9CDB342174028100902C7F /* MarkdError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdError.swift; sourceTree = "<group>"; };
 		FF9CDB3621768C5500902C7F /* TempContractorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempContractorData.swift; sourceTree = "<group>"; };
@@ -296,7 +296,7 @@
 				FFF351AC2115ED0800234D99 /* EditHomeViewController.swift */,
 				FFF351B0211600D100234D99 /* SelectStateViewController.swift */,
 				FF72DC1421161B8F00CF4982 /* EditProfileViewController.swift */,
-				FF9CDB2F216007AD00902C7F /* ServieFileViewController.swift */,
+				FF9CDB2F216007AD00902C7F /* ServiceFileViewController.swift */,
 				FF310DF22184C8070035766D /* EditCompanyViewController.swift */,
 			);
 			path = CustomerSubMenuViewControllers;
@@ -576,7 +576,7 @@
 				FF2CC33120D59B7000A181F1 /* EditPanelViewController.swift in Sources */,
 				FFA1E86B207D7417009D2FD3 /* EditApplianceTableViewController.swift in Sources */,
 				FFB5658C2079335100F6E8F1 /* AirHandler.swift in Sources */,
-				FF9CDB30216007AD00902C7F /* ServieFileViewController.swift in Sources */,
+				FF9CDB30216007AD00902C7F /* ServiceFileViewController.swift in Sources */,
 				FF63004420C74E22006C0208 /* ElectricalViewController.swift in Sources */,
 				FF2CC32F20D1E90300A181F1 /* PanelViewController.swift in Sources */,
 				FFF2239920FFEADE00F823D6 /* ViewControllerUtilities.swift in Sources */,
