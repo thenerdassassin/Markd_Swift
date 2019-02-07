@@ -21,25 +21,9 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
     var serviceIndex:Int?
     var pdfUrl:URL? {
         didSet {
-            /*
-             We have the file path at URL: >
-             Set variable which is URL >
-             Activate showServiceFileSegue >
-             Create file and add to end of Service Array >
-             Set fileIndex, Service, and URL in destination >
-             In ServiceFileViewController: >
-                upload Document to Firebase
-                observe Upload
-                    in uploadProgress start animating
-                    in upload error stop animating
-                when upload finished ensure successful upload
-                load file when uploaded >
-             */
             if let _ = pdfUrl, let _ = file, let _ = authentication.getCurrentUser()?.uid {
                 print("Uploading PDF")
                 configureView()
-            } else {
-                print("Have a nil")
             }
         }
     }
@@ -96,7 +80,6 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
 
     private func configureView() {
         print("Calling Configure View")
-        
         if let file = file {
             if StringUtilities.isNilOrEmpty(file.getFileName()){
                 file.setFileName(to: "File \(fileIndex != nil ? String(fileIndex! + 1) :"")")
@@ -173,8 +156,8 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
         print("Reference Location is \(fileReference.fullPath)")
         let metadata = StorageMetadata()
         metadata.contentType = "application/pdf"
-        let _ = fileReference.putFile(from: url, metadata: metadata) { (metadata, error) in
-            //TODO: End Animations
+        let uploadPdfTask = fileReference.putFile(from: url, metadata: metadata) { (metadata, error) in
+            self.endAnimate()
             guard let _ = metadata else {
                 AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Something went wrong",
                                                    withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
@@ -183,8 +166,8 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
             print("Upload Task Completed Success")
             self.loadPDF(from: fileReference)
         }
-        //uploadPdfTask.observe(.progress, handler: observeUploadProgress)
-        //uploadPdfTask.observe(.failure, handler: observeUploadError)
+        uploadPdfTask.observe(.progress, handler: observeUploadProgress)
+        uploadPdfTask.observe(.failure, handler: observeUploadError)
     }
     func loadPDF(from storage: StorageReference) {
         print("Loading PDF")
@@ -237,10 +220,8 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("loaded")
-        //if(!webView.isLoading) {
-            webView.isHidden = false
-            self.endAnimate()
-        //}
+        webView.isHidden = false
+        self.endAnimate()
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         print(error.localizedDescription)
@@ -280,14 +261,14 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    // Local variable inserted by Swift 4.2 migrator.
-    let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage, let uid = authentication.getCurrentUser()?.uid {
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             
             let fileReference = Storage.storage().reference(withPath: "images/services/\(uid)/\(file!.setGuid(to: nil))")
-            let uploadImage = fileReference.putData(pickedImage.pngData()!, metadata: metadata) { (metadata, error) in
+            let data = pickedImage.jpegData(compressionQuality: 0.5)
+            let uploadImage = fileReference.putData(data!, metadata: metadata) { (metadata, error) in
                 guard let _ = metadata else {
                     self.endAnimate()
                     AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Something went wrong",
@@ -328,29 +309,6 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
             }
         }
     }
-    /*
-    //Mark:- Upload Pdf Observers
-    private func observeUploadProgress(_ snapshot:StorageTaskSnapshot) {
-        //TODO: animate
-        print("Upload Progress starting")
-    }
-    private func observeUploadError(_ snapshot:StorageTaskSnapshot) {
-        //TODO: End animation
-        print("Upload Error")
-        if let error = snapshot.error as NSError? {
-            switch (StorageErrorCode(rawValue: error.code)!) {
-            case .retryLimitExceeded:
-                AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Time limit exceeded",
-                                                   withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
-                break
-            default:
-                AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Something went wrong",
-                                                   withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
-                break
-            }
-        }
-    }
- */
     private func animate() {
         activityIndicator.startAnimating()
         fileImageView.isHidden = true
