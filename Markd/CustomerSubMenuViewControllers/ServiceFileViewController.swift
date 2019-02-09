@@ -14,11 +14,19 @@ import Firebase
 import FirebaseDatabase
 import Crashlytics
 
-class ServieFileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WKNavigationDelegate, OnGetDataListener {
+class ServiceFileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WKNavigationDelegate, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     var customerData:TempCustomerData?
     var serviceType:String?
     var serviceIndex:Int?
+    var pdfUrl:URL? {
+        didSet {
+            if let _ = pdfUrl, let _ = file, let _ = authentication.getCurrentUser()?.uid {
+                print("Uploading PDF")
+                configureView()
+            }
+        }
+    }
     var service:ContractorService? {
         didSet {
             if let index = fileIndex, let service = service {
@@ -72,12 +80,16 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
 
     private func configureView() {
         print("Calling Configure View")
-        if let file = file, let uid = authentication.getCurrentUser()?.uid, let _ = fileImageView {
-            if(StringUtilities.isNilOrEmpty(file.getFileName())) {
+        if let file = file {
+            if StringUtilities.isNilOrEmpty(file.getFileName()){
                 file.setFileName(to: "File \(fileIndex != nil ? String(fileIndex! + 1) :"")")
             }
             self.navigationItem.title = file.getFileName()
-            
+        }
+        if let file = file, let url = pdfUrl, let uid = authentication.getCurrentUser()?.uid, let _ = activityIndicator  {
+            animate()
+            upload(documentAt: url, to: file, for: uid)
+        } else if let file = file, let uid = authentication.getCurrentUser()?.uid, let _ = fileImageView {
             animate()
             getMetaData(for: "images/services/\(uid)/\(file.getGuid())")
         } else if let fileImageView = fileImageView {
@@ -103,7 +115,6 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
             if(metadata.contentType == "image/jpeg") {
                 self.loadImage(from: storage)
             } else if(metadata.contentType == "application/pdf") {
-                //TODO: load pdf
                 self.loadPDF(from: storage)
             } else {
                 self.endAnimate()
@@ -139,6 +150,24 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
                 self.fileImageView.contentMode = .center
             }
         })
+    }
+    func upload(documentAt url: URL, to file: FirebaseFile, for uid: String) {
+        let fileReference = Storage.storage().reference(withPath: "images/services/\(uid)/\(file.setGuid(to: nil))")
+        print("Reference Location is \(fileReference.fullPath)")
+        let metadata = StorageMetadata()
+        metadata.contentType = "application/pdf"
+        let uploadPdfTask = fileReference.putFile(from: url, metadata: metadata) { (metadata, error) in
+            self.endAnimate()
+            guard let _ = metadata else {
+                AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Something went wrong",
+                                                   withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
+                return
+            }
+            print("Upload Task Completed Success")
+            self.loadPDF(from: fileReference)
+        }
+        uploadPdfTask.observe(.progress, handler: observeUploadProgress)
+        uploadPdfTask.observe(.failure, handler: observeUploadError)
     }
     func loadPDF(from storage: StorageReference) {
         print("Loading PDF")
@@ -191,10 +220,8 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("loaded")
-        //if(!webView.isLoading) {
-            webView.isHidden = false
-            self.endAnimate()
-        //}
+        webView.isHidden = false
+        self.endAnimate()
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         print(error.localizedDescription)
@@ -234,15 +261,20 @@ class ServieFileViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage, let uid = authentication.getCurrentUser()?.uid {
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             
             let fileReference = Storage.storage().reference(withPath: "images/services/\(uid)/\(file!.setGuid(to: nil))")
-            let uploadImage = fileReference.putData(pickedImage.pngData()!, metadata: metadata) { (metadata, error) in
+            let data = pickedImage.jpegData(compressionQuality: 0.5)
+            let uploadImage = fileReference.putData(data!, metadata: metadata) { (metadata, error) in
+                guard let _ = metadata else {
+                    self.endAnimate()
+                    AlertControllerUtilities.showAlert(withTitle: "Upload Error", andMessage: "Something went wrong",
+                                                       withOptions: [UIAlertAction(title: "Try uploading again", style: .default, handler: nil)], in: self)
+                    return
+                }
                 fileReference.downloadURL { (url, error) in
                     self.setFileImage(with:url)
                 }
