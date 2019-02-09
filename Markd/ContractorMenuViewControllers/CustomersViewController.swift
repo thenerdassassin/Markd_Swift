@@ -111,7 +111,83 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: tableView.cellForRow(at: indexPath))
+        let selectedCell = tableView.cellForRow(at: indexPath)
+        if indexPath.section == 0 {
+            performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: selectedCell)
+        } else {
+            AlertControllerUtilities.showActionSheet(
+                withTitle: "Select Action 🔨", andMessage: "What would you like to do for your customer?",
+                withOptions: [
+                    UIAlertAction(title: "Send Notification", style: .default, handler: { _ in
+                        self.performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: selectedCell)
+                        
+                    }),
+                    UIAlertAction(title: "Edit Home Details", style: .default, handler: { _ in
+                        self.editHomeDetails(
+                            of: self.contractorData?.getContractorType(),
+                            for: (selectedCell as? CustomerInformationCell)?.customerId)
+                    }),
+                    UIAlertAction(title: "Edit Service History", style: .default, handler: { _ in
+                        self.editServiceHistory(
+                            of: self.contractorData?.getContractorType(),
+                            for: (selectedCell as? CustomerInformationCell)?.customerId)
+                    }),
+                    UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                ],
+                in: self)
+        }
+    }
+    
+    private func editHomeDetails(of type:String?, for customerId: String?) {
+        guard let contractorType = type else {
+            print("Type is nil")
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+            return
+        }
+        guard let customerId = customerId else {
+            print("Customer Id is nil")
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+            return
+        }
+        
+        switch contractorType {
+        case "Plumber":
+            print("Edit Plumbing Page of \(customerId)")
+        case "Hvac":
+            print("Edit Hvac Page of \(customerId)")
+        case "Electrician":
+            print("Edit Electrical Page of \(customerId)")
+        case "Painter":
+            print("Edit Painting Page of \(customerId)")
+        default:
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+        }
+    }
+    
+    private func editServiceHistory(of type:String?, for customerId: String?) {
+        guard let contractorType = type else {
+            print("Type is nil")
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+            return
+        }
+        guard let customerId = customerId else {
+            print("Customer Id is nil")
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+            return
+        }
+        
+        switch contractorType {
+        case "Plumber":
+            print("Edit Plumbing Service of \(customerId)")
+        case "Hvac":
+            print("Edit Hvac Service of \(customerId)")
+        case "Electrician":
+            print("Edit Electrical Service of \(customerId)")
+        case "Painter":
+            print("Edit Painting Service of \(customerId)")
+        default:
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+        }
     }
     
     private func getCustomerData(with id:String) {
@@ -200,6 +276,7 @@ class CustomerInformationCell: UITableViewCell {
     }
 
     private func configureView(with customer:Customer) {
+        customerId = customer.customerId
         customerNameLabel.text = customer.getName()
         customerAddressLabel.text = customer.getAddress()?.toString()
     }

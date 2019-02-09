@@ -267,7 +267,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="uiY-mF-Hnl" kind="relationship" relationship="viewControllers" id="9UR-cl-s62"/>
-                        <segue destination="Fin-Vx-C9n" kind="relationship" relationship="viewControllers" id="8NQ-40-Z3u"/>
                         <segue destination="h7r-kg-qD8" kind="relationship" relationship="viewControllers" id="bq3-jH-mOR"/>
                         <segue destination="isy-bA-US9" kind="relationship" relationship="viewControllers" id="rgz-o8-Occ"/>
                     </connections>
@@ -711,16 +710,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IpE-a6-8he" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3946" y="-1331"/>
-        </scene>
-        <!--contractorServiceViewController-->
-        <scene sceneID="ecE-7j-Kka">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Contractor" referencedIdentifier="contractorServiceViewController" id="Fin-Vx-C9n" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Service" image="ic_action_pages" selectedImage="ic_action_pages" id="F4e-u9-WnA"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bh1-1I-7Lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3934" y="-1290"/>
         </scene>
         <!--customerViewController-->
         <scene sceneID="2JS-c5-zpV">
