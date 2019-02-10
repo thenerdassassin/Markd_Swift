@@ -1105,7 +1105,7 @@
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="BtB-ed-YNE" customClass="EditPaintingSurfaceViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F0b-DB-R4N">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -1899,8 +1899,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="bsT-Fw-W8S"/>
         <segue reference="feR-gR-wLN"/>
-        <segue reference="c1D-iW-PT6"/>
-        <segue reference="XcI-Le-B8Y"/>
+        <segue reference="0Rx-Ig-gy5"/>
+        <segue reference="jyb-JC-SRW"/>
         <segue reference="jFv-8g-0vH"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -316,11 +316,13 @@ public class TempCustomerData:CustomStringConvertible {
     public func getExteriorPaintSurfaces() -> [PaintSurface]? {
         return getCustomer()?.getExteriorPaintSurfaces()
     }
-    public func removePaintSurface(at index:Int, fromInterior isInterior:Bool) {
+    public func removePaintSurface(at index:Int, fromInterior isInterior:Bool) -> TempCustomerData {
         updateCustomer(to: getCustomer()?.deletePaintSurface(index, fromInteriorSurfaces: isInterior))
+        return self
     }
-    public func updatePaintSurface(at index: Int, fromInterior isInterior:Bool, to updatedSurface:PaintSurface) {
+    public func updatePaintSurface(at index: Int, fromInterior isInterior:Bool, to updatedSurface:PaintSurface) -> TempCustomerData {
         updateCustomer(to: getCustomer()?.updatePaintSurface(updatedSurface, index, isInterior: isInterior))
+        return self
     }
     public func getPainter(painterListener: OnGetContractorListener?) {
         guard let listener = painterListener else {
