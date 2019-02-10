@@ -66,13 +66,32 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         } else if segue.identifier == "showPlumbingDetailsSegue" {
             if let customer = sender as? Customer {
                 let destination = segue.destination as! EditApplianceTableViewController
-                if let hotWater = customer.getHotWater(), let boiler = customer.getBoiler(), let id = customer.customerId {
+                if let id = customer.customerId {
+                    let hotWater = customer.getHotWater() != nil ? customer.getHotWater()! : HotWater([:])
+                    let boiler = customer.getBoiler() != nil ? customer.getBoiler()! : Boiler([:])
                     destination.customerData = TempCustomerData(nil, at: id)
                     destination.appliances = [hotWater, boiler]
                     destination.viewTitle = "Edit Plumbing"
                 } else {
                     AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 }
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+            }
+        } else if segue.identifier == "showHvacDetailsSegue" {
+            if let customer = sender as? Customer {
+                let destination = segue.destination as! EditApplianceTableViewController
+                if let id = customer.customerId {
+                    let airHandler = customer.getAirHandler() != nil ? customer.getAirHandler()! : AirHandler([:])
+                    let compressor = customer.getCompressor() != nil ? customer.getCompressor()! : Compressor([:])
+                    destination.customerData = TempCustomerData(nil, at: id)
+                    destination.appliances = [airHandler, compressor]
+                    destination.viewTitle = "Edit Hvac"
+                } else {
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                }
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
             }
         }
     }
@@ -164,14 +183,15 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         
         switch contractorType {
         case "Plumber":
-            print("Edit Plumbing Page of \(customer.customerId)")
+            print("Edit Plumbing Page of \(customer.customerId ?? "NIL")")
             performSegue(withIdentifier: "showPlumbingDetailsSegue", sender: customer)
         case "Hvac":
-            print("Edit Hvac Page of \(customer.customerId)")
+            print("Edit Hvac Page of \(customer.customerId ?? "NIL")")
+            performSegue(withIdentifier: "showHvacDetailsSegue", sender: customer)
         case "Electrician":
-            print("Edit Electrical Page of \(customer.customerId)")
+            print("Edit Electrician Page of \(customer.customerId ?? "NIL")")
         case "Painter":
-            print("Edit Painting Page of \(customer.customerId)")
+            print("Edit Painter Page of \(customer.customerId ?? "NIL")")
         default:
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
         }
