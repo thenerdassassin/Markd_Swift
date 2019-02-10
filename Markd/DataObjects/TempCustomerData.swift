@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-public class TempCustomerData {
+public class TempCustomerData:CustomStringConvertible {
     private static let database:DatabaseReference = Database.database().reference().child("users");
     private var customer: Customer?
     private var customerId: String?
@@ -50,6 +50,18 @@ public class TempCustomerData {
         handle = userReference!.observe(DataEventType.value, with: customerSuccessListener, withCancel: customerCancelListener)
     }
     
+    public init(_ getDataListener: OnGetDataListener?, at customerId: String) {
+        TempCustomerData.database.keepSynced(true)
+        self.customerId = customerId
+        self.listener = getDataListener
+        userReference = TempCustomerData.database.child(customerId)
+        if let userReference = userReference {
+            handle = userReference.observe(DataEventType.value, with: customerSuccessListener, withCancel: customerCancelListener)
+        } else {
+            print("No userReference")
+        }
+    }
+    
     public func removeListeners() {
         if let userReference = userReference, let handle = handle {
             userReference.removeObserver(withHandle: handle)
@@ -57,7 +69,7 @@ public class TempCustomerData {
     }
     private func customerSuccessListener(_ snapshot:DataSnapshot) {
         if let dictionary = snapshot.value as? [String : AnyObject] {
-            customer = Customer(dictionary)
+            customer = Customer(dictionary, customerId: customerId)
             if let listener = self.listener {
                 listener.onSuccess()
             } else {

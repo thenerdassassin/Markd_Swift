@@ -82,6 +82,11 @@
                         <outlet property="searchDisplayController" destination="1Cb-K5-JAL" id="VXN-ex-QxY"/>
                         <segue destination="Ib1-CC-fZN" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="ehH-RC-WKl"/>
                         <segue destination="8Tg-3u-MfI" kind="show" identifier="sendNotificationToCustomerSegue" id="L0h-mZ-hW3"/>
+                        <segue destination="Uio-XI-eoC" kind="show" identifier="showPlumbingDetailsSegue" id="wfe-Gf-w9A"/>
+                        <segue destination="SeC-ta-xvi" kind="show" id="i8C-tk-6nO"/>
+                        <segue destination="Yiy-DL-iUH" kind="show" id="8a8-tn-2Hk"/>
+                        <segue destination="zEG-Ej-KFK" kind="show" id="jxR-xJ-sDj"/>
+                        <segue destination="VJ5-xc-kvg" kind="show" id="s9X-m2-m7C"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hli-Xv-f2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -144,6 +149,14 @@
             </objects>
             <point key="canvasLocation" x="1156" y="150"/>
         </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="Cov-On-sDE">
+            <objects>
+                <viewControllerPlaceholder id="zEG-Ej-KFK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PAb-jp-kQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047" y="-345"/>
+        </scene>
         <!--Customers-->
         <scene sceneID="GSu-wK-UXL">
             <objects>
@@ -163,6 +176,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0tV-uM-Ewl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-511" y="150"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="bvd-D2-GjO">
+            <objects>
+                <viewControllerPlaceholder id="SeC-ta-xvi" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e38-ad-yBL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047" y="-279"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="VRh-AZ-SGd">
+            <objects>
+                <viewControllerPlaceholder id="Yiy-DL-iUH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wK7-ks-FrI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047" y="-314"/>
+        </scene>
+        <!--EditApplianceTableViewController-->
+        <scene sceneID="C3c-09-NtA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Details" referencedIdentifier="EditApplianceTableViewController" id="Uio-XI-eoC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8js-kS-DJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1103" y="-249"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="p51-fC-2fR">
+            <objects>
+                <viewControllerPlaceholder id="VJ5-xc-kvg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L1T-pR-YNT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047" y="-376"/>
         </scene>
     </scenes>
     <resources>

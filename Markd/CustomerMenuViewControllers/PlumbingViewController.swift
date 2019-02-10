@@ -29,10 +29,6 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     @IBOutlet weak var boilerLifeSpan: UILabel!
     
     var plumberFooterViewController: OnGetContractorListener?
-    var TODO_NotYetImplementedPlumbingPage🤔:AnyObject?
-    /*
-     Check if Contractor or Home Owner on page
-     */
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -106,6 +102,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
         if segue.identifier == "editPlumbingSegue" {
             let destination = segue.destination as! EditApplianceTableViewController
             var hotWater = customerData?.getHotWater()
+            print("prepare \(hotWater?.getManufacturer())")
             var boiler = customerData?.getBoiler()
             if (hotWater == nil) {
                 hotWater = HotWater(Dictionary.init())

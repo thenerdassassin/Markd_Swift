@@ -63,6 +63,17 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
                 destination.companyName = contractorData?.getContractorDetails()?.getCompanyName()
                 destination.customerList = customersList
             }
+        } else if segue.identifier == "showPlumbingDetailsSegue" {
+            if let customer = sender as? Customer {
+                let destination = segue.destination as! EditApplianceTableViewController
+                if let hotWater = customer.getHotWater(), let boiler = customer.getBoiler(), let id = customer.customerId {
+                    destination.customerData = TempCustomerData(nil, at: id)
+                    destination.appliances = [hotWater, boiler]
+                    destination.viewTitle = "Edit Plumbing"
+                } else {
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                }
+            }
         }
     }
 
@@ -125,7 +136,7 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
                     UIAlertAction(title: "Edit Home Details", style: .default, handler: { _ in
                         self.editHomeDetails(
                             of: self.contractorData?.getContractorType(),
-                            for: (selectedCell as? CustomerInformationCell)?.customerId)
+                            for: (selectedCell as? CustomerInformationCell)?.customer)
                     }),
                     UIAlertAction(title: "Edit Service History", style: .default, handler: { _ in
                         self.editServiceHistory(
@@ -138,27 +149,29 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         }
     }
     
-    private func editHomeDetails(of type:String?, for customerId: String?) {
+    //Mark:- Select Table Row Actions
+    private func editHomeDetails(of type:String?, for customer: Customer?) {
         guard let contractorType = type else {
             print("Type is nil")
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
             return
         }
-        guard let customerId = customerId else {
-            print("Customer Id is nil")
+        guard let customer = customer else {
+            print("Customer Data is nil")
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
             return
         }
         
         switch contractorType {
         case "Plumber":
-            print("Edit Plumbing Page of \(customerId)")
+            print("Edit Plumbing Page of \(customer.customerId)")
+            performSegue(withIdentifier: "showPlumbingDetailsSegue", sender: customer)
         case "Hvac":
-            print("Edit Hvac Page of \(customerId)")
+            print("Edit Hvac Page of \(customer.customerId)")
         case "Electrician":
-            print("Edit Electrical Page of \(customerId)")
+            print("Edit Electrical Page of \(customer.customerId)")
         case "Painter":
-            print("Edit Painting Page of \(customerId)")
+            print("Edit Painting Page of \(customer.customerId)")
         default:
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
         }
