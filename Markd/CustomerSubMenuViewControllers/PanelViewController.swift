@@ -9,6 +9,7 @@
 import UIKit
 
 class PanelViewController: UITableViewController {
+    public var customerData:TempCustomerData?
     public var panelIndex:Int?
     public var panel:Panel? {
         didSet {
@@ -68,12 +69,20 @@ class PanelViewController: UITableViewController {
         }
     }
     // MARK:- Navigation
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "editPanelSegue" {
+            return customerData != nil
+        }
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editPanelSegue" {
             self.navigationItem.title = "Back"
             let destination = segue.destination as! EditPanelViewController
             destination.panel = panel
             destination.panelIndex = panelIndex
+            destination.customerData = customerData!
         }
         if segue.identifier == "leftBreakerSegue" {
             let sender = sender as! BreakerTableCell
@@ -83,6 +92,7 @@ class PanelViewController: UITableViewController {
                 destination.breakerIndex = breakerNumber - 1
                 destination.panelIndex = panelIndex
                 destination.delegate = self
+                destination.customerData = customerData
             }
         }
         if segue.identifier == "rightBreakerSegue" {
@@ -93,6 +103,7 @@ class PanelViewController: UITableViewController {
                 destination.breakerIndex = breakerNumber - 1
                 destination.panelIndex = panelIndex
                 destination.delegate = self
+                destination.customerData = customerData
             }
         }
     }

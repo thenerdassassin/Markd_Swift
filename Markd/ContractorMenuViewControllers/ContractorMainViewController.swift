@@ -115,14 +115,15 @@ public class ContractorMainViewController: UIViewController, UIImagePickerContro
         PhotoUtilities(self).getImage()
     }
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             let logoImageRef = storage.reference().child("images").child(contractorData!.setLogoImageFileName()!)
-            let uploadImage = logoImageRef.putData(pickedImage.pngData()!, metadata: metadata) { (metadata, error) in
+            let imageToUpload = pickedImage.jpegData(compressionQuality: 0.5)
+            let uploadImage = logoImageRef.putData(imageToUpload!, metadata: metadata) { (metadata, error) in
                 logoImageRef.downloadURL { (url, error) in
                     self.setLogoImage(with:url)
                 }

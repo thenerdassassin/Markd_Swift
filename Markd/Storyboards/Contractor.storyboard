@@ -82,6 +82,11 @@
                         <outlet property="searchDisplayController" destination="1Cb-K5-JAL" id="VXN-ex-QxY"/>
                         <segue destination="Ib1-CC-fZN" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="ehH-RC-WKl"/>
                         <segue destination="8Tg-3u-MfI" kind="show" identifier="sendNotificationToCustomerSegue" id="L0h-mZ-hW3"/>
+                        <segue destination="Uio-XI-eoC" kind="show" identifier="showPlumbingDetailsSegue" id="wfe-Gf-w9A"/>
+                        <segue destination="SeC-ta-xvi" kind="show" identifier="showHvacDetailsSegue" id="i8C-tk-6nO"/>
+                        <segue destination="Yiy-DL-iUH" kind="show" identifier="showElectricalDetailsSegue" id="8a8-tn-2Hk"/>
+                        <segue destination="zEG-Ej-KFK" kind="show" identifier="showPaintingDetailsSegue" id="jxR-xJ-sDj"/>
+                        <segue destination="VJ5-xc-kvg" kind="show" id="s9X-m2-m7C"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hli-Xv-f2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -144,6 +149,14 @@
             </objects>
             <point key="canvasLocation" x="1156" y="150"/>
         </scene>
+        <!--PaintingViewController-->
+        <scene sceneID="Cov-On-sDE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Details" referencedIdentifier="PaintingViewController" id="zEG-Ej-KFK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PAb-jp-kQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="-347"/>
+        </scene>
         <!--Customers-->
         <scene sceneID="GSu-wK-UXL">
             <objects>
@@ -164,61 +177,40 @@
             </objects>
             <point key="canvasLocation" x="-511" y="150"/>
         </scene>
-        <!--Services-->
-        <scene sceneID="rZI-iM-LX9">
+        <!--EditApplianceTableViewController-->
+        <scene sceneID="bvd-D2-GjO">
             <objects>
-                <tableViewController id="Jfs-xJ-Pck" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3n4-sO-Zsv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="idk" id="euk-32-2Ks">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="euk-32-2Ks" id="KbM-p6-5zS">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Jfs-xJ-Pck" id="MAB-yq-Q9r"/>
-                            <outlet property="delegate" destination="Jfs-xJ-Pck" id="oX5-Vi-rrj"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Services" id="FHa-vi-68S"/>
-                    <connections>
-                        <segue destination="ses-Yv-VRf" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="qS5-CA-HWF"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="foy-ok-awM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="ses-Yv-VRf" userLabel="Exit" sceneMemberID="exit"/>
+                <viewControllerPlaceholder storyboardName="Details" referencedIdentifier="EditApplianceTableViewController" id="SeC-ta-xvi" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e38-ad-yBL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="441" y="839"/>
+            <point key="canvasLocation" x="1103" y="-281"/>
         </scene>
-        <!--Services-->
-        <scene sceneID="aXv-xn-CjH">
+        <!--ElectricalViewController-->
+        <scene sceneID="VRh-AZ-SGd">
             <objects>
-                <navigationController storyboardIdentifier="contractorServiceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wiX-Li-0DX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Services" image="ic_action_services" selectedImage="ic_action_services" id="urn-gU-Cas"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="ZWL-Lk-9tK">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Jfs-xJ-Pck" kind="relationship" relationship="rootViewController" id="GE5-ay-fiF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6xC-vk-PqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Details" referencedIdentifier="ElectricalViewController" id="Yiy-DL-iUH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wK7-ks-FrI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-511" y="839"/>
+            <point key="canvasLocation" x="1055" y="-315"/>
+        </scene>
+        <!--EditApplianceTableViewController-->
+        <scene sceneID="C3c-09-NtA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Details" referencedIdentifier="EditApplianceTableViewController" id="Uio-XI-eoC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8js-kS-DJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1103" y="-249"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="p51-fC-2fR">
+            <objects>
+                <viewControllerPlaceholder id="VJ5-xc-kvg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L1T-pR-YNT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047" y="-376"/>
         </scene>
     </scenes>
     <resources>
         <image name="ic_action_customers" width="64" height="64"/>
-        <image name="ic_action_services" width="48" height="48"/>
     </resources>
 </document>

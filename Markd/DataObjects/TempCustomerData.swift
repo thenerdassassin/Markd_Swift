@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-public class TempCustomerData {
+public class TempCustomerData:CustomStringConvertible {
     private static let database:DatabaseReference = Database.database().reference().child("users");
     private var customer: Customer?
     private var customerId: String?
@@ -50,6 +50,18 @@ public class TempCustomerData {
         handle = userReference!.observe(DataEventType.value, with: customerSuccessListener, withCancel: customerCancelListener)
     }
     
+    public init(_ getDataListener: OnGetDataListener?, at customerId: String) {
+        TempCustomerData.database.keepSynced(true)
+        self.customerId = customerId
+        self.listener = getDataListener
+        userReference = TempCustomerData.database.child(customerId)
+        if let userReference = userReference {
+            handle = userReference.observe(DataEventType.value, with: customerSuccessListener, withCancel: customerCancelListener)
+        } else {
+            print("No userReference")
+        }
+    }
+    
     public func removeListeners() {
         if let userReference = userReference, let handle = handle {
             userReference.removeObserver(withHandle: handle)
@@ -57,7 +69,7 @@ public class TempCustomerData {
     }
     private func customerSuccessListener(_ snapshot:DataSnapshot) {
         if let dictionary = snapshot.value as? [String : AnyObject] {
-            customer = Customer(dictionary)
+            customer = Customer(dictionary, customerId: customerId)
             if let listener = self.listener {
                 listener.onSuccess()
             } else {
@@ -268,8 +280,9 @@ public class TempCustomerData {
     public func getPanels() -> [Panel]? {
         return getCustomer()?.getPanels()
     }
-    public func updatePanel(at index: Int, to updatedPanel:Panel) {
+    public func updatePanel(at index: Int, to updatedPanel:Panel) -> TempCustomerData {
        updateCustomer(to: getCustomer()?.updatePanel(updatedPanel, index))
+        return self
     }
     public func removeElectricalPanel(at index:Int) {
         updateCustomer(to: getCustomer()?.deletePanel(index))
@@ -303,11 +316,13 @@ public class TempCustomerData {
     public func getExteriorPaintSurfaces() -> [PaintSurface]? {
         return getCustomer()?.getExteriorPaintSurfaces()
     }
-    public func removePaintSurface(at index:Int, fromInterior isInterior:Bool) {
+    public func removePaintSurface(at index:Int, fromInterior isInterior:Bool) -> TempCustomerData {
         updateCustomer(to: getCustomer()?.deletePaintSurface(index, fromInteriorSurfaces: isInterior))
+        return self
     }
-    public func updatePaintSurface(at index: Int, fromInterior isInterior:Bool, to updatedSurface:PaintSurface) {
+    public func updatePaintSurface(at index: Int, fromInterior isInterior:Bool, to updatedSurface:PaintSurface) -> TempCustomerData {
         updateCustomer(to: getCustomer()?.updatePaintSurface(updatedSurface, index, isInterior: isInterior))
+        return self
     }
     public func getPainter(painterListener: OnGetContractorListener?) {
         guard let listener = painterListener else {

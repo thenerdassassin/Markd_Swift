@@ -18,15 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        // Override point for customization after application launch.
         Messaging.messaging().delegate = self
         registerForPushNotifications(application)
-        
-        if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
-            let _ = notification["aps"] as? [String: AnyObject] {
-            //TODO: Make this work and/or set badge value
-            //window?.rootViewController?.tabBarController?.selectedIndex = 3
-        }
         application.applicationIconBadgeNumber = 0
         return true
     }
@@ -71,8 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             completionHandler(.failed)
             return
         }
-        //TODO: Make this work and/or set badge value
-        //window?.rootViewController?.tabBarController?.selectedIndex = 3
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
@@ -122,9 +113,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
-        
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
         
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
