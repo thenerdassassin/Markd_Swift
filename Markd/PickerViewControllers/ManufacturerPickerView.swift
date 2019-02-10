@@ -31,7 +31,7 @@ public class ManufacturerPickerView: UIPickerView, UIPickerViewDataSource, UIPic
     }
 }
 
-enum PanelManufacturer: Int, CustomStringConvertible {
+enum PanelManufacturer: Int, CustomStringConvertible, CaseIterable {
     case bryant = 0
     case generalElectric = 1
     case murry = 2
@@ -42,7 +42,7 @@ enum PanelManufacturer: Int, CustomStringConvertible {
     case westinghouse = 7
     case other = 8
     
-    static var count: Int { return PanelManufacturer.other.hashValue + 1 }
+    static var count: Int { return PanelManufacturer.allCases.count }
     
     var description: String {
         switch self {

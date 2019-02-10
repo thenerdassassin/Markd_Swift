@@ -93,6 +93,18 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
             } else {
                 AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
             }
+        } else if segue.identifier == "showElectricalDetailsSegue" {
+            if let customer = sender as? Customer {
+                let destination = segue.destination as! ElectricalViewController
+                if let id = customer.customerId {
+                    destination.customerData = TempCustomerData(destination, at: id)
+                    destination.isContractor = true
+                } else {
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                }
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+            }
         }
     }
 
@@ -190,6 +202,7 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
             performSegue(withIdentifier: "showHvacDetailsSegue", sender: customer)
         case "Electrician":
             print("Edit Electrician Page of \(customer.customerId ?? "NIL")")
+            performSegue(withIdentifier: "showElectricalDetailsSegue", sender: customer)
         case "Painter":
             print("Edit Painter Page of \(customer.customerId ?? "NIL")")
         default:

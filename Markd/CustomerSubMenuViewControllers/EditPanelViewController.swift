@@ -11,6 +11,7 @@ import UIKit
 class EditPanelViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     var customerData:TempCustomerData?
+    var delegate: ElectricalViewController?
     var panelIndex:Int? {
         didSet {
             if panelIndex == nil || panelIndex! < 0 {
@@ -38,9 +39,7 @@ class EditPanelViewController: UITableViewController, OnGetDataListener {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if(authentication.checkLogin(self)) {
-            customerData = TempCustomerData(self)
-        }
+        let _ = authentication.checkLogin(self)
         self.tableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -49,9 +48,11 @@ class EditPanelViewController: UITableViewController, OnGetDataListener {
         if let customerData = customerData, let number = panelIndex, let panel = panel {
             super.viewWillDisappear(animated)
             if number < 0 {
-                customerData.updatePanel(at:number, to: panel.setNumberOfBreakers(numberOfBreakers!))
+                if let delegate = delegate {
+                    delegate.customerData = customerData.updatePanel(at:number, to: panel.setNumberOfBreakers(numberOfBreakers!))
+                }
             } else {
-                customerData.updatePanel(at:number, to: panel.setNumberOfBreakers(numberOfBreakers!))
+                let _ = customerData.updatePanel(at:number, to: panel.setNumberOfBreakers(numberOfBreakers!))
             }
         }
     }

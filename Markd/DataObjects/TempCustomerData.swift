@@ -280,8 +280,9 @@ public class TempCustomerData:CustomStringConvertible {
     public func getPanels() -> [Panel]? {
         return getCustomer()?.getPanels()
     }
-    public func updatePanel(at index: Int, to updatedPanel:Panel) {
+    public func updatePanel(at index: Int, to updatedPanel:Panel) -> TempCustomerData {
        updateCustomer(to: getCustomer()?.updatePanel(updatedPanel, index))
+        return self
     }
     public func removeElectricalPanel(at index:Int) {
         updateCustomer(to: getCustomer()?.deletePanel(index))

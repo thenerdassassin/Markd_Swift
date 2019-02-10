@@ -28,10 +28,10 @@ class ElectricalPanelsViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView() //Removes seperators after list
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
-        configureView()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureView()
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -106,6 +106,7 @@ class ElectricalPanelsViewController: UITableViewController {
                 AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
+            destination.customerData = customerData
             customerData.removeListeners()
             destination.panelIndex = sender.index
             destination.panel = panel

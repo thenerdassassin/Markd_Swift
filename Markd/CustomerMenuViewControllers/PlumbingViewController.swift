@@ -102,7 +102,6 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
         if segue.identifier == "editPlumbingSegue" {
             let destination = segue.destination as! EditApplianceTableViewController
             var hotWater = customerData?.getHotWater()
-            print("prepare \(hotWater?.getManufacturer())")
             var boiler = customerData?.getBoiler()
             if (hotWater == nil) {
                 hotWater = HotWater(Dictionary.init())

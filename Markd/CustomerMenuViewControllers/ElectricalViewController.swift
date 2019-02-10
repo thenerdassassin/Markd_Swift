@@ -10,10 +10,18 @@ import UIKit
 
 class ElectricalViewController: UIViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
-    public var customerData:TempCustomerData?
+    public var customerData:TempCustomerData? {
+        didSet {
+            if let controller = electricalPanelsViewController {
+                controller.customerData = customerData
+            }
+        }
+    }
     
     var electricalPanelsViewController: ElectricalPanelsViewController?
     var electricalFooterViewController: OnGetContractorListener?
+    
+    public var isContractor:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +30,9 @@ class ElectricalViewController: UIViewController, OnGetDataListener {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if authentication.checkLogin(self) {
-            customerData = TempCustomerData(self)
+            if(!isContractor) {
+                customerData = TempCustomerData(self)
+            }
         }
     }
     override public func viewDidAppear(_ animated: Bool) {
@@ -58,15 +68,20 @@ class ElectricalViewController: UIViewController, OnGetDataListener {
                 AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
-            customerData.removeListeners()
             destination.customerData = customerData
             destination.panel = Panel()
             destination.panelIndex = -1
+            destination.delegate = self
             return
         }
     }
     
     @IBAction func switchButtonAction(_ sender: UIBarButtonItem) {
+        if isContractor {
+            AlertControllerUtilities.showAlert(
+                withTitle: "Disabled", andMessage: "As an electrician, you may only edit this page.",
+                withOptions: [UIAlertAction(title: "Ok", style: .default, handler: nil)], in: self)
+        }
         AlertControllerUtilities.showActionSheet(
             withTitle: "Switch Page",
             andMessage: "Which page would you like to switch to?",

@@ -1636,7 +1636,7 @@
             <objects>
                 <tableViewController id="wn8-IO-D5u" customClass="EditPanelViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dZj-vD-URx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1897,10 +1897,10 @@
         <image name="ic_action_pages" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HyN-YB-4pC"/>
+        <segue reference="bsT-Fw-W8S"/>
         <segue reference="feR-gR-wLN"/>
         <segue reference="c1D-iW-PT6"/>
-        <segue reference="0lT-xg-Ick"/>
+        <segue reference="XcI-Le-B8Y"/>
         <segue reference="jFv-8g-0vH"/>
     </inferredMetricsTieBreakers>
 </document>
