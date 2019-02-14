@@ -12,6 +12,7 @@ import Firebase
 
 class CreateAccountViewController:UITableViewController, LoginHandler, OnGetDataListener {
     var customerData:TempCustomerData?
+    var contractorData: TempContractorData?
     var email:String?
     var password:String?
     var confirmedPassword:String?
@@ -19,6 +20,8 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     var firstName:String?
     var lastName:String?
     var maritalStatus:String?
+    var isContractor:Bool = false
+    var contractorType:String?
     var badField:Int? {
         willSet {
             if let row = badField, let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) {
@@ -97,13 +100,23 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             cell.lastName = lastName
             return cell
         } else if indexPath.row == 6 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "maritalStatusCell", for: indexPath)
-            if maritalStatus != nil {
-                cell.textLabel?.text = maritalStatus
+            if isContractor {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "contractorTypeCell", for: indexPath)
+                if contractorType != nil {
+                    cell.textLabel?.text = contractorType
+                } else {
+                    cell.textLabel?.text = "Contractor Type"
+                }
+                return cell
             } else {
-                cell.textLabel?.text = "Marital Status"
+                let cell = tableView.dequeueReusableCell(withIdentifier: "maritalStatusCell", for: indexPath)
+                if maritalStatus != nil {
+                    cell.textLabel?.text = maritalStatus
+                } else {
+                    cell.textLabel?.text = "Marital Status"
+                }
+                return cell
             }
-            return cell
         }
         return UITableViewCell()
     }
@@ -120,15 +133,23 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
                 UIAlertAction(title: "Dr.", style: .default, handler: titleSelectionHandler),
                 UIAlertAction(title: "Rev.", style: .default, handler: titleSelectionHandler),
                 UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                ],
-                                                     in: self)
+                ], in: self)
         } else if indexPath.row == 6 {
-            AlertControllerUtilities.showActionSheet(withTitle: "Current Marital Status", andMessage: nil, withOptions: [
-                UIAlertAction(title: "Single", style: .default, handler: maritalStatusSelectionHandler),
-                UIAlertAction(title: "Married", style: .default, handler: maritalStatusSelectionHandler),
-                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                ],
-                                                     in: self)
+            if isContractor {
+                AlertControllerUtilities.showActionSheet(withTitle: "What type of contractor are you?", andMessage: nil, withOptions: [
+                    UIAlertAction(title: "Plumber", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "HVAC", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "Electrical", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "Painting", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    ], in: self)
+            } else {
+                AlertControllerUtilities.showActionSheet(withTitle: "Current Marital Status", andMessage: nil, withOptions: [
+                    UIAlertAction(title: "Single", style: .default, handler: maritalStatusSelectionHandler),
+                    UIAlertAction(title: "Married", style: .default, handler: maritalStatusSelectionHandler),
+                    UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    ], in: self)
+            }
         }
     }
     
@@ -142,6 +163,12 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     func maritalStatusSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
             maritalStatus = title
+            self.tableView.reloadData()
+        }
+    }
+    func contractorTypeSelectionHandler(alert: UIAlertAction!) {
+        if let title = alert.title {
+            contractorType = title
             self.tableView.reloadData()
         }
     }
@@ -181,25 +208,46 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             AlertControllerUtilities.showAlert(withTitle: "Last name is required.", andMessage: nil, withOptions: [UIAlertAction(title: "Try again", style: .default, handler: nil)], in: self)
             badField = 5
             return false
-        } else if StringUtilities.isNilOrEmpty(maritalStatus) || maritalStatus == "Marital Status" {
-            AlertControllerUtilities.showAlert(withTitle: "Marital Status is required.", andMessage: nil, withOptions: [UIAlertAction(title: "Try again", style: .default, handler: nil)], in: self)
-            badField = 6
-            return false
+        } else {
+            if isContractor {
+                if StringUtilities.isNilOrEmpty(contractorType) || maritalStatus == "Contractor Type" {
+                    AlertControllerUtilities.showAlert(withTitle: "Contractor Type is required.", andMessage: nil, withOptions: [UIAlertAction(title: "Try again", style: .default, handler: nil)], in: self)
+                    badField = 6
+                    return false
+                }
+            } else {
+                if StringUtilities.isNilOrEmpty(maritalStatus) || maritalStatus == "Marital Status" {
+                    AlertControllerUtilities.showAlert(withTitle: "Marital Status is required.", andMessage: nil, withOptions: [UIAlertAction(title: "Try again", style: .default, handler: nil)], in: self)
+                    badField = 6
+                    return false
+                }
+            }
         }
         return true
     }
     
     //Mark:- LoginHandler
     func loginSuccessHandler(_ user: User) {
+        if isContractor {
+            var data:Dictionary<String, AnyObject> = [:]
+            let namePrefix = selectedTitle as AnyObject
+            let firstName = self.firstName as AnyObject
+            let lastName = self.lastName as AnyObject
+            let contractorType = self.contractorType as AnyObject
+            data = ["namePrefix":namePrefix, "firstName":firstName, "lastName":lastName, "type":contractorType]
+            let contractor = Contractor(data)
+            contractorData = TempContractorData(self, create: contractor, at: user.uid)
+        } else {
+            var data:Dictionary<String, AnyObject> = [:]
+            let namePrefix = selectedTitle as AnyObject
+            let firstName = self.firstName as AnyObject
+            let lastName = self.lastName as AnyObject
+            let maritalStatus = self.maritalStatus as AnyObject
+            data = ["namePrefix":namePrefix, "firstName":firstName, "lastName":lastName, "maritalStatus":maritalStatus]
+            let customer = Customer(data)
+            customerData = TempCustomerData(self, create: customer, at: user.uid)
+        }
         print("Created Account")
-        var data:Dictionary<String, AnyObject> = [:]
-        let namePrefix = selectedTitle as AnyObject
-        let firstName = self.firstName as AnyObject
-        let lastName = self.lastName as AnyObject
-        let maritalStatus = self.maritalStatus as AnyObject
-        data = ["namePrefix":namePrefix, "firstName":firstName, "lastName":lastName, "maritalStatus":maritalStatus]
-        let customer = Customer(data)
-        customerData = TempCustomerData(self, create: customer, at: user.uid)
     }
     
     func loginFailureHandler(_ error: Error) {
