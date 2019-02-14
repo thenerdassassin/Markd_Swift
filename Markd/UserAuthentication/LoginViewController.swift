@@ -34,7 +34,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
             login()
         }
     }
-    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.default
+    }
     func configureView() {
         KeyboardUtilities.addKeyboardDismissal(self.view)
         if let loginButton = loginButton {
@@ -86,6 +88,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
                 UIAlertAction(title: "Contractor", style: .default, handler: {_ in self.performSegue(withIdentifier: "createContractorSegue", sender: sender)}),
                 UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             ], in: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "createContractorSegue" {
+            let destination = segue.destination as! UINavigationController
+            let accountViewController = destination.viewControllers[0] as! CreateAccountViewController
+            accountViewController.isContractor = true
+        } else if segue.identifier == "createCustomerSegue" {
+            let destination = segue.destination as! UINavigationController
+            let accountViewController = destination.viewControllers[0] as! CreateAccountViewController
+            accountViewController.isContractor = false
+        }
     }
     //MARK:- Login Handlers
     private func login() {

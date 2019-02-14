@@ -278,6 +278,7 @@
 				FF0CA3B420C321F800630B16 /* NotificationsViewController.swift */,
 				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
 				FF0B330721A2445500224667 /* DetailsNavigationController.swift */,
+				FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */,
 			);
 			path = CustomerMenuViewControllers;
 			sourceTree = "<group>";
@@ -318,7 +319,6 @@
 				FF9A5B3B2086C69F007E9669 /* ContractorDetails.swift */,
 				FF6BF1EA2094EC67001D55EF /* ContractorService.swift */,
 				FF5D7A6C20B0AEAD008A05FC /* PaintSurface.swift */,
-				FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */,
 				FF63004520C768C6006C0208 /* Panel.swift */,
 				FF2CC32A20D1D26900A181F1 /* Breaker.swift */,
 				FF13E48520D9D59F00B5100B /* PanelAmerage.swift */,
