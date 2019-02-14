@@ -712,16 +712,6 @@
             </objects>
             <point key="canvasLocation" x="-4137" y="-1299"/>
         </scene>
-        <!--contractorServiceViewController-->
-        <scene sceneID="ecE-7j-Kka">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Contractor" referencedIdentifier="contractorServiceViewController" id="Fin-Vx-C9n" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Service" image="ic_action_pages" selectedImage="ic_action_pages" id="F4e-u9-WnA"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bh1-1I-7Lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-4018" y="-1248"/>
-        </scene>
         <!--customerViewController-->
         <scene sceneID="2JS-c5-zpV">
             <objects>
@@ -735,7 +725,6 @@
         <!--Navigation Controller-->
         <scene sceneID="HND-VA-5ks">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fUZ-ud-Eah" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="uZI-6c-rgd" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="GrT-BL-CO3">
@@ -746,6 +735,7 @@
                         <segue destination="eKd-MP-20y" kind="relationship" relationship="rootViewController" id="c4i-J0-phD"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fUZ-ud-Eah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4687" y="-2171"/>
         </scene>
