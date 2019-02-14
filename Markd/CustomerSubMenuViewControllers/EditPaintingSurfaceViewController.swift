@@ -14,6 +14,7 @@ class EditPaintingSurfaceViewController: UITableViewController {
     var customerData:TempCustomerData?
     var paintSurfaceIndex: Int?
     var isInterior: Bool = false
+    var delegate: PaintingViewController?
     public var paintSurface:PaintSurface? {
         didSet {
             self.tableView.reloadData()
@@ -32,10 +33,10 @@ class EditPaintingSurfaceViewController: UITableViewController {
         if let customerData = customerData, let number = paintSurfaceIndex, let paintSurface = paintSurface {
             if number < 0 {
                 print("Add PaintSurface: \(paintSurface)")
-                customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
+                delegate?.customerData = customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
             } else {
                 print("Number: \(number) changes to###\n\(paintSurface)")
-                customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
+                delegate?.customerData = customerData.updatePaintSurface(at:number, fromInterior: isInterior, to: paintSurface)
             }
         }
     }

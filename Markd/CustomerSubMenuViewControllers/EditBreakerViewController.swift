@@ -40,9 +40,7 @@ class EditBreakerViewController: UITableViewController, OnGetDataListener {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if(authentication.checkLogin(self)) {
-            customerData = TempCustomerData(self)
-        }
+        let _ = authentication.checkLogin(self)
         self.tableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,7 +48,7 @@ class EditBreakerViewController: UITableViewController, OnGetDataListener {
         if let customerData = customerData, let panels = customerData.getPanels(), let panelNumber = panelIndex, let number = breakerIndex, let breaker = breaker {
             super.viewWillDisappear(animated)
             if number >= 0 {
-                customerData.updatePanel(at: panelNumber, to: panels[panelNumber].editBreaker(index: number, to: breaker))
+                let _ = customerData.updatePanel(at: panelNumber, to: panels[panelNumber].editBreaker(index: number, to: breaker))
                 if let delegate = delegate {
                     delegate.panel = panels[panelNumber]
                 }
@@ -102,7 +100,7 @@ class EditBreakerViewController: UITableViewController, OnGetDataListener {
             self.breaker = nil
             if breakerIndex >= 0 {
                 let updatedPanel = panels[panelNumber].deleteBreaker(breakerIndex + 1)
-                customerData.updatePanel(at: panelNumber, to: updatedPanel)
+                let _ = customerData.updatePanel(at: panelNumber, to: updatedPanel)
                 if let delegate = delegate {
                     delegate.panel = updatedPanel
                 }

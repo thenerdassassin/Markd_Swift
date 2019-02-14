@@ -55,7 +55,7 @@ enum BreakerType: Int, CustomStringConvertible {
     }
 }
 
-enum BreakerAmperage: Int, CustomStringConvertible {
+enum BreakerAmperage: Int, CaseIterable,CustomStringConvertible {
     case fifteen = 0
     case twenty = 1
     case thirty = 2
@@ -70,7 +70,7 @@ enum BreakerAmperage: Int, CustomStringConvertible {
     case twoHundred = 11
     
     //Note: Change Fifty to last case if adding more amperages
-    static var count: Int { return BreakerAmperage.twoHundred.hashValue + 1 }
+    static var count: Int { return BreakerAmperage.allCases.count }
     
     //Note: Add Descriptions when adding more amperages
     var description: String {

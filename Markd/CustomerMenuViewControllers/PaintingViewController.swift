@@ -11,7 +11,12 @@ import UIKit
 
 class PaintingViewController:UIViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
-    public var customerData:TempCustomerData?
+    public var customerData:TempCustomerData? {
+        didSet {
+            paintingSurfacesViewController?.customerData = customerData
+        }
+    }
+    public var isContractor = false
     
     var paintingSurfacesViewController: PaintingSurfacesViewController?
     var painterFooterViewController: OnGetContractorListener?
@@ -23,7 +28,9 @@ class PaintingViewController:UIViewController, OnGetDataListener {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if authentication.checkLogin(self) {
-            customerData = TempCustomerData(self)
+            if(!isContractor) {
+                customerData = TempCustomerData(self)
+            }
         }
     }
     override public func viewDidAppear(_ animated: Bool) {
@@ -46,6 +53,7 @@ class PaintingViewController:UIViewController, OnGetDataListener {
             let destination = segue.destination as! PaintingSurfacesViewController
             self.paintingSurfacesViewController = destination
             destination.customerData = customerData
+            destination.delegate = self
             return
         }
         if segue.identifier == "painterFooterSegue" {
@@ -60,18 +68,24 @@ class PaintingViewController:UIViewController, OnGetDataListener {
                 AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
-            customerData.removeListeners()
             destination.customerData = customerData
+            customerData.removeListeners()
             if sender.title == "Interior" {
                 destination.isInterior = true
             }
             destination.paintSurfaceIndex = -1
             let newPaintSurface = PaintSurface()
             destination.paintSurface = newPaintSurface
+            destination.delegate = self
             return
         }
     }
     @IBAction func showActionSheet(_ sender: UIBarButtonItem) {
+        if isContractor {
+            AlertControllerUtilities.showAlert(
+                withTitle: "Disabled", andMessage: "As an painter, you may only edit this page.",
+                withOptions: [UIAlertAction(title: "Ok", style: .default, handler: nil)], in: self)
+        }
         let alert = UIAlertController(title: "Switch Page", message: "Which page would you like to switch to?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Plumbing", style: .default, handler: { _ in
             NSLog("Switching to Plumbing Page")

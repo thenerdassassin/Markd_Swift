@@ -124,7 +124,8 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             let homeImageRef = storage.reference().child("images").child(customerData!.setHomeImageFileName()!)
-            let uploadImage = homeImageRef.putData(pickedImage.pngData()!, metadata: metadata) { (metadata, error) in
+            let imageToUpload = pickedImage.jpegData(compressionQuality: 0.5)
+            let uploadImage = homeImageRef.putData(imageToUpload!, metadata: metadata) { (metadata, error) in
                 homeImageRef.downloadURL { (url, error) in
                     self.setHomeImage(with:url)
                 }

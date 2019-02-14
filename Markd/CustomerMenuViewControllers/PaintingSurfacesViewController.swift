@@ -11,6 +11,7 @@ import UIKit
 
 class PaintingSurfacesViewController:UITableViewController {
     private let authentication = FirebaseAuthentication.sharedInstance
+    var delegate: PaintingViewController?
     public var customerData:TempCustomerData? {
         didSet {
             if let customerData = customerData {
@@ -122,9 +123,9 @@ class PaintingSurfacesViewController:UITableViewController {
                 return
             }
             if indexPath.section == 0 {
-                customerData.removePaintSurface(at: indexPath.row, fromInterior: true)
+                delegate?.customerData = customerData.removePaintSurface(at: indexPath.row, fromInterior: true)
             } else if indexPath.section == 1 {
-                customerData.removePaintSurface(at: indexPath.row, fromInterior: false)
+                delegate?.customerData = customerData.removePaintSurface(at: indexPath.row, fromInterior: false)
             } else {
                 AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
             }
@@ -135,6 +136,7 @@ class PaintingSurfacesViewController:UITableViewController {
         if segue.identifier == "showPaintingSurfaceSegue" {
             let sender = sender as! PaintSurfaceTableViewCell
             let destination = segue.destination as! EditPaintingSurfaceViewController
+            destination.delegate = delegate
             guard let customerData = customerData, let paintSurface = sender.paintSurface else {
                 AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return

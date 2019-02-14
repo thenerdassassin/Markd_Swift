@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum MainPanelAmperage: Int, CustomStringConvertible, PanelAmperage {
+public enum MainPanelAmperage: Int, CaseIterable, CustomStringConvertible, PanelAmperage {
     case oneHundred = 0
     case twoHundred = 1
     case fourHundred = 2
@@ -17,7 +17,7 @@ public enum MainPanelAmperage: Int, CustomStringConvertible, PanelAmperage {
     case oneThousand = 5
     case oneThousandTwoHundred = 6
     
-    static var count: Int { return MainPanelAmperage.oneThousandTwoHundred.hashValue + 1 }
+    static var count: Int { return MainPanelAmperage.allCases.count }
     
     public var description: String {
         switch self {
@@ -45,13 +45,13 @@ public enum MainPanelAmperage: Int, CustomStringConvertible, PanelAmperage {
     }
 }
 
-public enum SubPanelAmperage: Int, CustomStringConvertible, PanelAmperage {
+public enum SubPanelAmperage: Int, CaseIterable, CustomStringConvertible, PanelAmperage {
     case oneHundred = 0
     case oneHundredTwentyFive = 1
     case oneHundredFifty = 2
     case twoHundred = 3
     
-    static var count: Int { return SubPanelAmperage.twoHundred.hashValue + 1 }
+    static var count: Int { return SubPanelAmperage.allCases.count }
     
     public var description: String {
         switch self {

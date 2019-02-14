@@ -29,10 +29,6 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     @IBOutlet weak var boilerLifeSpan: UILabel!
     
     var plumberFooterViewController: OnGetContractorListener?
-    var TODO_NotYetImplementedPlumbingPage🤔:AnyObject?
-    /*
-     Check if Contractor or Home Owner on page
-     */
     
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -63,6 +63,60 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
                 destination.companyName = contractorData?.getContractorDetails()?.getCompanyName()
                 destination.customerList = customersList
             }
+        } else if segue.identifier == "showPlumbingDetailsSegue" {
+            if let customer = sender as? Customer {
+                let destination = segue.destination as! EditApplianceTableViewController
+                if let id = customer.customerId {
+                    let hotWater = customer.getHotWater() != nil ? customer.getHotWater()! : HotWater([:])
+                    let boiler = customer.getBoiler() != nil ? customer.getBoiler()! : Boiler([:])
+                    destination.customerData = TempCustomerData(nil, at: id)
+                    destination.appliances = [hotWater, boiler]
+                    destination.viewTitle = "Edit Plumbing"
+                } else {
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                }
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+            }
+        } else if segue.identifier == "showHvacDetailsSegue" {
+            if let customer = sender as? Customer {
+                let destination = segue.destination as! EditApplianceTableViewController
+                if let id = customer.customerId {
+                    let airHandler = customer.getAirHandler() != nil ? customer.getAirHandler()! : AirHandler([:])
+                    let compressor = customer.getCompressor() != nil ? customer.getCompressor()! : Compressor([:])
+                    destination.customerData = TempCustomerData(nil, at: id)
+                    destination.appliances = [airHandler, compressor]
+                    destination.viewTitle = "Edit Hvac"
+                } else {
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                }
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+            }
+        } else if segue.identifier == "showElectricalDetailsSegue" {
+            if let customer = sender as? Customer {
+                let destination = segue.destination as! ElectricalViewController
+                if let id = customer.customerId {
+                    destination.customerData = TempCustomerData(destination, at: id)
+                    destination.isContractor = true
+                } else {
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                }
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+            }
+        } else if segue.identifier == "showPaintingDetailsSegue" {
+            if let customer = sender as? Customer {
+                let destination = segue.destination as! PaintingViewController
+                if let id = customer.customerId {
+                    destination.customerData = TempCustomerData(destination, at: id)
+                    destination.isContractor = true
+                } else {
+                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                }
+            } else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+            }
         }
     }
 
@@ -111,7 +165,88 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: tableView.cellForRow(at: indexPath))
+        let selectedCell = tableView.cellForRow(at: indexPath)
+        if indexPath.section == 0 {
+            performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: selectedCell)
+        } else {
+            AlertControllerUtilities.showActionSheet(
+                withTitle: "Select Action 🔨", andMessage: "What would you like to do for your customer?",
+                withOptions: [
+                    UIAlertAction(title: "Send Notification", style: .default, handler: { _ in
+                        self.performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: selectedCell)
+                        
+                    }),
+                    UIAlertAction(title: "Edit Home Details", style: .default, handler: { _ in
+                        self.editHomeDetails(
+                            of: self.contractorData?.getContractorType(),
+                            for: (selectedCell as? CustomerInformationCell)?.customer)
+                    }),
+                    UIAlertAction(title: "Edit Service History", style: .default, handler: { _ in
+                        self.editServiceHistory(
+                            of: self.contractorData?.getContractorType(),
+                            for: (selectedCell as? CustomerInformationCell)?.customerId)
+                    }),
+                    UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                ],
+                in: self)
+        }
+    }
+    
+    //Mark:- Select Table Row Actions
+    private func editHomeDetails(of type:String?, for customer: Customer?) {
+        guard let contractorType = type else {
+            print("Type is nil")
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+            return
+        }
+        guard let customer = customer else {
+            print("Customer Data is nil")
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+            return
+        }
+        
+        switch contractorType {
+        case "Plumber":
+            print("Edit Plumbing Page of \(customer.customerId ?? "NIL")")
+            performSegue(withIdentifier: "showPlumbingDetailsSegue", sender: customer)
+        case "Hvac":
+            print("Edit Hvac Page of \(customer.customerId ?? "NIL")")
+            performSegue(withIdentifier: "showHvacDetailsSegue", sender: customer)
+        case "Electrician":
+            print("Edit Electrician Page of \(customer.customerId ?? "NIL")")
+            performSegue(withIdentifier: "showElectricalDetailsSegue", sender: customer)
+        case "Painter":
+            print("Edit Painter Page of \(customer.customerId ?? "NIL")")
+            performSegue(withIdentifier: "showPaintingDetailsSegue", sender: customer)
+        default:
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+        }
+    }
+    
+    private func editServiceHistory(of type:String?, for customerId: String?) {
+        guard let contractorType = type else {
+            print("Type is nil")
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+            return
+        }
+        guard let customerId = customerId else {
+            print("Customer Id is nil")
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+            return
+        }
+        
+        switch contractorType {
+        case "Plumber":
+            print("Edit Plumbing Service of \(customerId)")
+        case "Hvac":
+            print("Edit Hvac Service of \(customerId)")
+        case "Electrician":
+            print("Edit Electrical Service of \(customerId)")
+        case "Painter":
+            print("Edit Painting Service of \(customerId)")
+        default:
+            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+        }
     }
     
     private func getCustomerData(with id:String) {
@@ -200,6 +335,7 @@ class CustomerInformationCell: UITableViewCell {
     }
 
     private func configureView(with customer:Customer) {
+        customerId = customer.customerId
         customerNameLabel.text = customer.getName()
         customerAddressLabel.text = customer.getAddress()?.toString()
     }
