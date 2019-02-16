@@ -12,6 +12,7 @@ import Firebase
 
 class ContractorServiceTableViewController: UITableViewController, UIDocumentPickerDelegate {
     var datePickerVisible = false
+    var delegate:ServiceHistoryViewController?
     var customerData:TempCustomerData?
     var serviceIndex: Int?
     var serviceType: String?
@@ -34,15 +35,14 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
         if let customerData = customerData, let number = serviceIndex, let type = serviceType {
             if number < 0 {
                 print("Add Service number: \(number) to \(type)")
-                customerData.update(service!, number, of: type)
+                delegate?.customerData = customerData.update(service!, number, of: type)
                 if let serviceCount = customerData.getServiceCount(of: type) {
                     serviceIndex = serviceCount - 1
                 }
             } else {
                 print("Number: \(number) changes to###\n\(service!)")
-                customerData.update(service!, number, of: type)
+                delegate?.customerData = customerData.update(service!, number, of: type)
             }
-            
         } else {
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
         }
@@ -97,6 +97,8 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
                 destination.fileIndex = files.count-1
                 destination.service = service!.setFiles(files)
             }
+            destination.delegate = self
+            destination.customerData = customerData
             customerData?.removeListeners()
         }
     }
@@ -274,7 +276,7 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
             // Delete the row from the data source
             var files = service.getFiles()
             files.remove(at: indexPath.row)
-            customerData.update(service.setFiles(files), index, of: type)
+            delegate?.customerData = customerData.update(service.setFiles(files), index, of: type)
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)
             if(service.getFiles().count == 0) {

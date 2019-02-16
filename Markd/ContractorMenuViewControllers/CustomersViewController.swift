@@ -51,6 +51,7 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         self.tableView.reloadData()
     }
     
+    //TODO: shouldPerformSegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "sendNotificationToCustomerSegue" {
             if let sender = sender as? CustomerInformationCell {
@@ -117,6 +118,13 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
             } else {
                 AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
             }
+        } else if segue.identifier == "editServiceHistorySegue" {
+            let contractorType = self.contractorData!.getContractorType()
+            let customer = sender as! Customer
+            let serviceViewController = segue.destination as! ServiceHistoryViewController
+            let id = customer.customerId!
+            serviceViewController.customerData = TempCustomerData(serviceViewController, at: id)
+            serviceViewController.contractorType = contractorType!
         }
     }
 
@@ -184,7 +192,7 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
                     UIAlertAction(title: "Edit Service History", style: .default, handler: { _ in
                         self.editServiceHistory(
                             of: self.contractorData?.getContractorType(),
-                            for: (selectedCell as? CustomerInformationCell)?.customerId)
+                            for: (selectedCell as? CustomerInformationCell)?.customer)
                     }),
                     UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                 ],
@@ -223,30 +231,31 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         }
     }
     
-    private func editServiceHistory(of type:String?, for customerId: String?) {
+    private func editServiceHistory(of type:String?, for customer: Customer?) {
         guard let contractorType = type else {
             print("Type is nil")
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
             return
         }
-        guard let customerId = customerId else {
-            print("Customer Id is nil")
+        guard let customer = customer else {
+            print("Customer is nil")
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
             return
         }
         
         switch contractorType {
         case "Plumber":
-            print("Edit Plumbing Service of \(customerId)")
+            print("Edit Plumbing Service of \(customer.customerId ?? "NIL")")
         case "Hvac":
-            print("Edit Hvac Service of \(customerId)")
+            print("Edit Hvac Service of \(customer.customerId ?? "NIL")")
         case "Electrician":
-            print("Edit Electrical Service of \(customerId)")
+            print("Edit Electrical Service of \(customer.customerId ?? "NIL")")
         case "Painter":
-            print("Edit Painting Service of \(customerId)")
+            print("Edit Painting Service of \(customer.customerId ?? "NIL")")
         default:
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
         }
+        performSegue(withIdentifier: "editServiceHistorySegue", sender: customer)
     }
     
     private func getCustomerData(with id:String) {

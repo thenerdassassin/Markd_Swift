@@ -34,9 +34,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
             login()
         }
     }
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.default
-    }
     func configureView() {
         KeyboardUtilities.addKeyboardDismissal(self.view)
         if let loginButton = loginButton {

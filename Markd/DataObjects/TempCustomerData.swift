@@ -332,11 +332,13 @@ public class TempCustomerData:CustomStringConvertible {
     public func getServiceCount(of type:String) -> Int? {
         return getCustomer()?.countServices(of: type)
     }
-    public func update(_ service:ContractorService, _  number:Int, of type:String) {
+    public func update(_ service:ContractorService, _  number:Int, of type:String) -> TempCustomerData {
         updateCustomer(to: getCustomer()?.update(service, number, of:type))
+        return self
     }
-    public func removeService(_ number:Int, of type:String) {
+    public func removeService(_ number:Int, of type:String) -> TempCustomerData {
         updateCustomer(to: getCustomer()?.deleteService(number, of:type))
+        return self
     }
     
     //Mark:- Settings
