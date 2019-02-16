@@ -119,7 +119,6 @@ class ElectricalPanelTableViewCell:UITableViewCell {
     var panel:Panel? {
         didSet {
             if let panel = panel {
-                print(panel)
                 StringUtilities.set(textOf: panelDescriptionLabel, to: panel.panelDescription)
                 amperageLabel.text = panel.amperage
                 installDateLabel.text = panel.installDate

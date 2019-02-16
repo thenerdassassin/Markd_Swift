@@ -86,7 +86,7 @@
                         <segue destination="SeC-ta-xvi" kind="show" identifier="showHvacDetailsSegue" id="i8C-tk-6nO"/>
                         <segue destination="Yiy-DL-iUH" kind="show" identifier="showElectricalDetailsSegue" id="8a8-tn-2Hk"/>
                         <segue destination="zEG-Ej-KFK" kind="show" identifier="showPaintingDetailsSegue" id="jxR-xJ-sDj"/>
-                        <segue destination="VJ5-xc-kvg" kind="show" id="s9X-m2-m7C"/>
+                        <segue destination="VJ5-xc-kvg" kind="show" identifier="editServiceHistorySegue" id="s9X-m2-m7C"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hli-Xv-f2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -201,13 +201,13 @@
             </objects>
             <point key="canvasLocation" x="1103" y="-249"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--ServiceHistoryViewController-->
         <scene sceneID="p51-fC-2fR">
             <objects>
-                <viewControllerPlaceholder id="VJ5-xc-kvg" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Services" referencedIdentifier="ServiceHistoryViewController" id="VJ5-xc-kvg" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L1T-pR-YNT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047" y="-376"/>
+            <point key="canvasLocation" x="1080" y="-381"/>
         </scene>
     </scenes>
     <resources>

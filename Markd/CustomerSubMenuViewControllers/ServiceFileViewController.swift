@@ -16,6 +16,7 @@ import Crashlytics
 
 class ServiceFileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WKNavigationDelegate, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
+    var delegate: ContractorServiceTableViewController?
     var customerData:TempCustomerData?
     var serviceType:String?
     var serviceIndex:Int?
@@ -55,11 +56,10 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if(authentication.checkLogin(self)) {
-            customerData = TempCustomerData(self)
-        }
+        let _ = authentication.checkLogin(self)
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         configureView()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,7 +67,7 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
         if let customerData = customerData, let type = serviceType, let index = serviceIndex, let service = service, let fileNumber = fileIndex, let updatedFile = file {
             var files = service.getFiles()
             files[fileNumber] = updatedFile
-            customerData.update(service.setFiles(files), index, of: type)
+            delegate?.customerData = customerData.update(service.setFiles(files), index, of: type)
         }
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -79,17 +79,16 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
     }
 
     private func configureView() {
-        print("Calling Configure View")
         if let file = file {
             if StringUtilities.isNilOrEmpty(file.getFileName()){
                 file.setFileName(to: "File \(fileIndex != nil ? String(fileIndex! + 1) :"")")
             }
             self.navigationItem.title = file.getFileName()
         }
-        if let file = file, let url = pdfUrl, let uid = authentication.getCurrentUser()?.uid, let _ = activityIndicator  {
+        if let file = file, let url = pdfUrl, let uid = customerData?.getUid(), let _ = activityIndicator  {
             animate()
             upload(documentAt: url, to: file, for: uid)
-        } else if let file = file, let uid = authentication.getCurrentUser()?.uid, let _ = fileImageView {
+        } else if let file = file, let uid = customerData?.getUid(), let _ = fileImageView {
             animate()
             getMetaData(for: "images/services/\(uid)/\(file.getGuid())")
         } else if let fileImageView = fileImageView {
@@ -262,7 +261,7 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage, let uid = authentication.getCurrentUser()?.uid {
+        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage, let uid = customerData?.getUid() {
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             

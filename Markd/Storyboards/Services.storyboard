@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eWa-Ja-7JJ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -9,17 +13,17 @@
         <!--Service History View Controller-->
         <scene sceneID="NrM-CS-2EM">
             <objects>
-                <tableViewController id="gwu-aW-8dG" customClass="ServiceHistoryViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ServiceHistoryViewController" modalTransitionStyle="flipHorizontal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gwu-aW-8dG" customClass="ServiceHistoryViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bZN-lU-47y">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="serviceCell" id="l7l-lV-53i" customClass="ServiceTableViewCell" customModule="Markd" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l7l-lV-53i" id="GJD-Gx-AaH">
-                                    <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contractor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lk-Wg-t5L">
@@ -29,13 +33,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBU-9M-zHA">
-                                            <rect key="frame" x="444.5" y="5" width="97.5" height="14.5"/>
+                                            <rect key="frame" x="223.5" y="5" width="97.5" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6m-KX-vjO">
-                                            <rect key="frame" x="20" y="17.5" width="522" height="21"/>
+                                            <rect key="frame" x="20" y="17.5" width="301" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -63,14 +67,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceDefaultCell" textLabel="Jx8-FS-A4l" style="IBUITableViewCellStyleDefault" id="NAU-ZQ-6J6" customClass="ServiceTableViewCell" customModule="Markd" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NAU-ZQ-6J6" id="DwN-FB-V9M">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="No services yet!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jx8-FS-A4l">
-                                            <rect key="frame" x="20" y="0.0" width="560" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -97,7 +101,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="zzN-K0-BnN" kind="show" identifier="addContractorServiceSegue" id="cho-ZN-Vm6"/>
                         <segue destination="bio-8j-xVa" kind="unwind" identifier="unwindToLoginSegue" unwindAction="unwindToLoginViewControllerWithSegue:" id="SZ3-bF-XFM"/>
@@ -145,15 +148,15 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentsCell" rowHeight="200" id="2Jb-pE-AoM" userLabel="Comments Cell" customClass="CommentsTableViewCell" customModule="Markd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="78" width="375" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Jb-pE-AoM" id="h4T-Tp-iMN">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Jb-pE-AoM" id="h4T-Tp-iMN">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" text="Comments" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YnE-vu-RYr">
-                                            <rect key="frame" x="15" y="5" width="345" height="200.5"/>
+                                            <rect key="frame" x="15" y="5" width="345" height="210.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="200" id="ZMv-Zt-tPx"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="210" id="8vS-Ou-W9I"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet" returnKeyType="done"/>
@@ -161,7 +164,6 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="YnE-vu-RYr" firstAttribute="centerX" secondItem="h4T-Tp-iMN" secondAttribute="centerX" id="7w8-mE-FbE"/>
-                                        <constraint firstItem="YnE-vu-RYr" firstAttribute="centerY" secondItem="h4T-Tp-iMN" secondAttribute="centerY" id="HDN-Ch-lbd"/>
                                         <constraint firstItem="YnE-vu-RYr" firstAttribute="width" secondItem="h4T-Tp-iMN" secondAttribute="width" constant="-30" id="VbN-CD-1wm"/>
                                         <constraint firstItem="YnE-vu-RYr" firstAttribute="top" secondItem="h4T-Tp-iMN" secondAttribute="top" constant="5" id="pNb-Ft-Ohc"/>
                                         <constraint firstAttribute="bottom" secondItem="YnE-vu-RYr" secondAttribute="bottom" constant="5" id="qZ4-MN-nLB"/>
@@ -264,18 +266,18 @@
             <objects>
                 <viewController id="U8B-Lb-NeI" customClass="ServiceFileViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Oj-df-wwl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_action_camera" translatesAutoresizingMaskIntoConstraints="NO" id="yy4-G1-bdw">
-                                <rect key="frame" x="0.0" y="10" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="32" width="375" height="667"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="NYw-0c-k1p" appends="YES" id="P6g-qd-zAg"/>
                                 </connections>
                             </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="reh-uo-a3W">
-                                <rect key="frame" x="0.0" y="10" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="32" width="375" height="667"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -315,7 +317,7 @@
         <!--Services-->
         <scene sceneID="c2k-jb-Seg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eWa-Ja-7JJ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="flipHorizontal" id="eWa-Ja-7JJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Services" image="ic_action_services" selectedImage="ic_action_services" id="5qR-e5-pkS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="zGW-2X-xba">
@@ -331,12 +333,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zc9-Fh-EaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1215.2" y="-108.39580209895054"/>
+            <point key="canvasLocation" x="-977" y="-58"/>
         </scene>
     </scenes>
     <resources>
         <image name="ic_action_camera" width="96" height="96"/>
-        <image name="ic_action_services" width="24" height="24"/>
+        <image name="ic_action_services" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0pf-RH-dv6"/>

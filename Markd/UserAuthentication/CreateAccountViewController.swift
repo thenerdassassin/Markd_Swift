@@ -138,9 +138,9 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             if isContractor {
                 AlertControllerUtilities.showActionSheet(withTitle: "What type of contractor are you?", andMessage: nil, withOptions: [
                     UIAlertAction(title: "Plumber", style: .default, handler: contractorTypeSelectionHandler),
-                    UIAlertAction(title: "HVAC", style: .default, handler: contractorTypeSelectionHandler),
-                    UIAlertAction(title: "Electrical", style: .default, handler: contractorTypeSelectionHandler),
-                    UIAlertAction(title: "Painting", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "Hvac", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "Electrician", style: .default, handler: contractorTypeSelectionHandler),
+                    UIAlertAction(title: "Painter", style: .default, handler: contractorTypeSelectionHandler),
                     UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                     ], in: self)
             } else {
