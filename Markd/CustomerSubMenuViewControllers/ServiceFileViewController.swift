@@ -59,6 +59,7 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
         let _ = authentication.checkLogin(self)
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         configureView()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -274,7 +275,6 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
                     return
                 }
                 fileReference.downloadURL { (url, error) in
-                    print(url)
                     self.setFileImage(with:url)
                 }
             }

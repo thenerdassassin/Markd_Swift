@@ -12,7 +12,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var customerData:TempCustomerData? {
         didSet {
-            self.tableView.reloadData()
+            self.onSuccess()
         }
     }
     let cellIdentifier = "serviceCell"
@@ -37,7 +37,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
         super.viewWillAppear(animated)
         if(authentication.checkLogin(self)) {
             if StringUtilities.isNilOrEmpty(contractorType) {
-                customerData = TempCustomerData(self, at: authentication.getCurrentUser()!.uid)
+                customerData = TempCustomerData(self)
             }
         }
     }
@@ -109,14 +109,20 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
         
         if indexPath.section == 0 {
             if contractorServices == nil {
-                service = plumbingServices?[indexPath.row]
+                if plumbingServices != nil && plumbingServices!.count > 0 {
+                    service = plumbingServices?[indexPath.row]
+                }
             } else if contractorServices!.count != 0 {
                 service = contractorServices?[indexPath.row]
             }
         } else if indexPath.section == 1 {
-            service = hvacServices?[indexPath.row]
+            if hvacServices != nil && hvacServices!.count > 0 {
+                service = hvacServices?[indexPath.row]
+            }
         } else if indexPath.section == 2 {
-            service = electricalServices?[indexPath.row]
+            if electricalServices != nil && electricalServices!.count > 0 {
+                service = electricalServices?[indexPath.row]
+            }
         } else {
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
         }
@@ -136,7 +142,8 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
     @IBAction func onAddServiceAction(_ sender: UIBarButtonItem) {
         var options:[UIAlertAction] = []
         if contractorServices != nil {
-            options = [UIAlertAction(title: contractorType, style: .default, handler: addServiceHandler)]
+            options = [UIAlertAction(title: "Add Service", style: .default, handler: addServiceHandler),
+                       UIAlertAction(title: "Cancel", style: .cancel, handler: nil)]
         } else {
             options = [
                 UIAlertAction(title: "Plumbing", style: .default, handler: addServiceHandler),
@@ -176,29 +183,38 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
                 print("TODO: delete when contractorService")
                 return
             }
+            tableView.beginUpdates()
             // Delete the row from the data source
             if indexPath.section == 0 {
                 plumbingServices!.remove(at: indexPath.row)
-                self.customerData = customerData.removeService(indexPath.row, of: "Plumbing")
+                customerData.removeService(indexPath.row, of: "Plumbing")
                 if(plumbingServices!.count == 0) {
+                    tableView.reloadSections([0], with: .fade)
+                    tableView.endUpdates()
                     return
                 }
             } else if indexPath.section == 1 {
                 hvacServices!.remove(at: indexPath.row)
-                self.customerData = customerData.removeService(indexPath.row, of: "Hvac")
+                customerData.removeService(indexPath.row, of: "Hvac")
                 if(hvacServices!.count == 0) {
+                    tableView.reloadSections([1], with: .fade)
+                    tableView.endUpdates()
                     return
                 }
             } else if indexPath.section == 2 {
                 electricalServices!.remove(at: indexPath.row)
-                self.customerData = customerData.removeService(indexPath.row, of: "Electrical")
+                customerData.removeService(indexPath.row, of: "Electrical")
                 if(electricalServices!.count == 0) {
+                    tableView.reloadSections([2], with: .fade)
+                    tableView.endUpdates()
                     return
                 }
             } else {
                 AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+                return
             }
             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
         }
     }
     
@@ -213,8 +229,8 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
             }
             customerData.removeListeners()
             destination.customerData = customerData
+            destination.delegate = self
             if contractorServices != nil {
-                destination.delegate = self
                 destination.serviceType = contractorType
             } else {
                 destination.serviceType = getTypeFromTag(sender.tag)
@@ -230,27 +246,42 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
             }
             customerData.removeListeners()
             destination.customerData = customerData
-            destination.serviceType = sender.title
+            if sender.title == "Add Service" {
+                destination.serviceType = contractorType
+            } else {
+                destination.serviceType = sender.title
+            }
             destination.serviceIndex = -1
             let newService = ContractorService()
             newService.setGuid(nil)
             destination.service = newService
-            if contractorServices != nil {
-                destination.delegate = self
-            }
+            destination.delegate = self
         }
     }
     private func setContractorServices(to type:String) {
         if StringUtilities.isNilOrEmpty(type) {
-            return;
+            contractorServices = nil
+            return
         }
         switch type {
         case "Plumber":
-            contractorServices = plumbingServices
+            if plumbingServices != nil {
+                contractorServices = plumbingServices
+            } else {
+                contractorServices = []
+            }
         case "Hvac":
-            contractorServices = hvacServices
+            if hvacServices != nil {
+                contractorServices = hvacServices
+            } else {
+                contractorServices = []
+            }
         case "Electrician":
-            contractorServices = electricalServices
+            if electricalServices != nil {
+                contractorServices = electricalServices
+            } else {
+                contractorServices = []
+            }
         default:
             contractorServices = []
         }

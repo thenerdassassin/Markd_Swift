@@ -27,6 +27,7 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
         tableView.tableFooterView = UIView()
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -35,12 +36,13 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
         if let customerData = customerData, let number = serviceIndex, let type = serviceType {
             if number < 0 {
                 print("Add Service number: \(number) to \(type)")
+                print(service!)
                 delegate?.customerData = customerData.update(service!, number, of: type)
                 if let serviceCount = customerData.getServiceCount(of: type) {
                     serviceIndex = serviceCount - 1
                 }
             } else {
-                print("Number: \(number) changes to###\n\(service!)")
+                print("Number: \(number) changes to \n\(service!)")
                 delegate?.customerData = customerData.update(service!, number, of: type)
             }
         } else {
@@ -275,9 +277,9 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
             }
             // Delete the row from the data source
             var files = service.getFiles()
-            files.remove(at: indexPath.row)
-            delegate?.customerData = customerData.update(service.setFiles(files), index, of: type)
             tableView.beginUpdates()
+            files.remove(at: indexPath.row)
+            customerData.update(service.setFiles(files), index, of: type)
             tableView.deleteRows(at: [indexPath], with: .fade)
             if(service.getFiles().count == 0) {
                 tableView.insertRows(at: [indexPath], with: .fade)

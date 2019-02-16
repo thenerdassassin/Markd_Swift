@@ -442,7 +442,7 @@ public class Customer:CustomStringConvertible {
             return plumbingServices?.count
         } else if type == "Hvac" {
             return hvacServices?.count
-        } else if type == "Electrical" {
+        } else if type == "Electrical" || type == "Electrician" {
             return electricalServices?.count
         }
         return nil
@@ -452,17 +452,17 @@ public class Customer:CustomStringConvertible {
             return updatePlumbingService(service, number)
         } else if type == "Hvac" {
             return updateHvacService(service, number)
-        } else if type == "Electrical" {
+        } else if type == "Electrical" || type == "Electrician" {
             return updateElectricalService(service, number)
         }
         return self
     }
-    public func deleteService(_ number:Int, of type:String) -> Customer{
+    public func deleteService(_ number:Int, of type:String) -> Customer {
         if type == "Plumbing" {
             return removePlumbingService(number)
         } else if type == "Hvac" {
             return removeHvacService(number)
-        } else if type == "Electrical" {
+        } else if type == "Electrical" || type == "Electrician" {
             return removeElectricalService(number)
         }
         return self
