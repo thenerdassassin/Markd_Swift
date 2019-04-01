@@ -88,8 +88,6 @@ class EditApplianceTableViewController: UITableViewController {
             cell.tag = indexPath.section
             cell.lifeSpan = appliance.lifeSpanAsString()
             return cell
-        } else {
-            fatalError("No case for: \(indexPath.row)")
         }
         return UITableViewCell()
     }

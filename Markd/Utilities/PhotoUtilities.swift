@@ -45,6 +45,7 @@ public class PhotoUtilities {
             
         case .denied: // The user has previously denied access.
             return
+            
         case .restricted: // The user can't grant access due to restrictions.
             return
         }
@@ -64,6 +65,7 @@ public class PhotoUtilities {
             }
         case .denied: // The user has previously denied access.
             return
+            
         case .restricted: // The user can't grant access due to restrictions.
             return
         }

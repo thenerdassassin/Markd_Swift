@@ -279,7 +279,7 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
             var files = service.getFiles()
             tableView.beginUpdates()
             files.remove(at: indexPath.row)
-            customerData.update(service.setFiles(files), index, of: type)
+            let  _ = customerData.update(service.setFiles(files), index, of: type)
             tableView.deleteRows(at: [indexPath], with: .fade)
             if(service.getFiles().count == 0) {
                 tableView.insertRows(at: [indexPath], with: .fade)

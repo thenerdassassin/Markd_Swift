@@ -187,7 +187,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
             // Delete the row from the data source
             if indexPath.section == 0 {
                 plumbingServices!.remove(at: indexPath.row)
-                customerData.removeService(indexPath.row, of: "Plumbing")
+                let _ = customerData.removeService(indexPath.row, of: "Plumbing")
                 if(plumbingServices!.count == 0) {
                     tableView.reloadSections([0], with: .fade)
                     tableView.endUpdates()
@@ -195,7 +195,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
                 }
             } else if indexPath.section == 1 {
                 hvacServices!.remove(at: indexPath.row)
-                customerData.removeService(indexPath.row, of: "Hvac")
+                let _ = customerData.removeService(indexPath.row, of: "Hvac")
                 if(hvacServices!.count == 0) {
                     tableView.reloadSections([1], with: .fade)
                     tableView.endUpdates()
@@ -203,7 +203,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
                 }
             } else if indexPath.section == 2 {
                 electricalServices!.remove(at: indexPath.row)
-                customerData.removeService(indexPath.row, of: "Electrical")
+                let _ = customerData.removeService(indexPath.row, of: "Electrical")
                 if(electricalServices!.count == 0) {
                     tableView.reloadSections([2], with: .fade)
                     tableView.endUpdates()

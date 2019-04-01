@@ -77,9 +77,13 @@ public class HelpViewController: UIViewController, OnGetDataListener {
             self.sendingIndicator.stopAnimating()
             if let response = response as? HTTPURLResponse {
                 if(response.statusCode == 200) {
-                    AlertControllerUtilities.showAlert(withTitle: "Thanks 😁", andMessage: "An email has been sent to the support team. We appreciate your feedback.",
-                                                       withOptions: [UIAlertAction(title: "Ok", style: .default, handler: self.emailSuccessAlertHandler)], in: self)
+                    AlertControllerUtilities.showAlert(
+                        withTitle: "Thanks 😁",
+                        andMessage: "An email has been sent to the support team. We appreciate your feedback.",
+                        withOptions: [UIAlertAction(title: "Ok", style: .default, handler: self.emailSuccessAlertHandler)],
+                        in: self)
                 } else {
+                    print(response.statusCode)
                     AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.HttpError)
                 }
             }
