@@ -730,6 +730,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0DFBB433CDDC1835F81D6E42 /* Pods-Markd.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Markd/Markd.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -750,6 +751,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F8AAE28D9CA323AB69658E5 /* Pods-Markd.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Markd/Markd.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
