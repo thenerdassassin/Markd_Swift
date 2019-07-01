@@ -44,10 +44,27 @@ public class PhotoUtilities {
             }
             
         case .denied: // The user has previously denied access.
-            return
+            AlertControllerUtilities.showAlert(withTitle: "Permission Denied", andMessage: "Markd does not have permission to access camera.", withOptions: [
+                UIAlertAction(title: "Cancel", style: .cancel, handler: nil),
+                UIAlertAction(title: "Go to Settings", style: .default, handler: {(_) in
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in print("Settings opened: \(success)") })
+                    }
+                })
+                ], in: delegate)
             
         case .restricted: // The user can't grant access due to restrictions.
-            return
+            return;
+                
+        @unknown default:
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+                if granted {
+                    self.setupImagePicker(with: .camera)
+                }
+            }
         }
     }
     private func checkPhotoLibraryAuthorizationStatus(alert:UIAlertAction? = nil) {
@@ -64,10 +81,29 @@ public class PhotoUtilities {
                 }
             }
         case .denied: // The user has previously denied access.
-            return
+            AlertControllerUtilities.showAlert(withTitle: "Permission Denied", andMessage: "Markd does not have permission to access photos.", withOptions: [
+                UIAlertAction(title: "Cancel", style: .cancel, handler: nil),
+                UIAlertAction(title: "Go to Settings", style: .default, handler: {(_) in
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (_) in return } )
+                    }
+                })
+                ], in: delegate)
             
         case .restricted: // The user can't grant access due to restrictions.
-            return
+            return;
+        
+        @unknown default:
+            PHPhotoLibrary.requestAuthorization { status in
+                if status == .authorized{
+                    self.setupImagePicker(with: .photoLibrary)
+                } else {
+                    return
+                }
+            }
         }
     }
     

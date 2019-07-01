@@ -192,7 +192,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             badField = 1
             return false
         } else if password != confirmedPassword {
-            AlertControllerUtilities.showAlert(withTitle: "These passwords don't match.", andMessage: nil, withOptions: [UIAlertAction(title: "Try again", style: .default, handler: nil)], in: self)
+            AlertControllerUtilities.showAlert(withTitle: "Passwords do not match.", andMessage: nil, withOptions: [UIAlertAction(title: "Try again", style: .default, handler: nil)], in: self)
             badField = 2
             return false
         } else if StringUtilities.isNilOrEmpty(selectedTitle) || selectedTitle == "Title" {
