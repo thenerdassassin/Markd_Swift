@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OfV-hV-Mku">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OfV-hV-Mku">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="4RF-bE-YIR">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="OfV-hV-Mku" customClass="LoginViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" hidesBottomBarWhenPushed="YES" id="OfV-hV-Mku" customClass="LoginViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ol1-Fg-iVa"/>
                         <viewControllerLayoutGuide type="bottom" id="6ev-I7-JNy"/>
@@ -50,7 +50,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nrC-kg-UBz">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nrC-kg-UBz">
                                 <rect key="frame" x="50" y="170" width="275" height="55"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -58,7 +58,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="username"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3xF-T2-8aK">
                                 <rect key="frame" x="50" y="235" width="275" height="55"/>
@@ -68,7 +68,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                 <connections>
                                     <action selector="passwordEditingDidEnd:" destination="OfV-hV-Mku" eventType="primaryActionTriggered" id="fLg-DT-rgn"/>
                                 </connections>
@@ -151,7 +151,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Gve-kr-fH6">
             <objects>
-                <tabBarController modalTransitionStyle="flipHorizontal" id="J6I-FX-Qjq" sceneMemberID="viewController">
+                <tabBarController modalTransitionStyle="crossDissolve" id="J6I-FX-Qjq" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="doN-jD-Fum">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -259,7 +259,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="doZ-9Y-1BP">
             <objects>
-                <tabBarController modalTransitionStyle="flipHorizontal" id="sS1-I9-amb" sceneMemberID="viewController">
+                <tabBarController modalTransitionStyle="crossDissolve" id="sS1-I9-amb" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dKY-As-jsJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -279,7 +279,7 @@
         <!--Main View Controller-->
         <scene sceneID="1XI-Ku-A56">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pQz-gG-xKX" customClass="MainViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pQz-gG-xKX" customClass="MainViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wzJ-0g-QmZ"/>
                         <viewControllerLayoutGuide type="bottom" id="lko-WE-AlZ"/>
@@ -411,7 +411,7 @@
         <!--MainNavigationController-->
         <scene sceneID="Aak-mF-DHk">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pxg-Cy-DRC" userLabel="MainNavigationController" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="pxg-Cy-DRC" userLabel="MainNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="ic_action_home" selectedImage="ic_action_home" id="Ll5-k6-ObB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="Hw9-Ub-ncf">
@@ -449,7 +449,7 @@
                                             <rect key="frame" x="15" y="11.5" width="350" height="21"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="email"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done" textContentType="email"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -473,7 +473,7 @@
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES" textContentType="password"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -498,7 +498,7 @@
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES" textContentType="password"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -540,7 +540,7 @@
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" textContentType="given-name"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done" textContentType="given-name"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -565,7 +565,7 @@
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" textContentType="family-name"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done" textContentType="family-name"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -938,12 +938,12 @@
     </scenes>
     <resources>
         <image name="ic_action_camera" width="96" height="96"/>
-        <image name="ic_action_customers" width="64" height="64"/>
-        <image name="ic_action_home" width="64" height="64"/>
-        <image name="ic_action_notifications" width="64" height="64"/>
-        <image name="ic_action_pages" width="48" height="48"/>
-        <image name="ic_action_services" width="48" height="48"/>
-        <image name="ic_action_settings" width="64" height="64"/>
-        <image name="whiteTransparentLogo" width="578.4000244140625" height="203"/>
+        <image name="ic_action_customers" width="32" height="32"/>
+        <image name="ic_action_home" width="32" height="32"/>
+        <image name="ic_action_notifications" width="32" height="32"/>
+        <image name="ic_action_pages" width="24" height="24"/>
+        <image name="ic_action_services" width="24" height="24"/>
+        <image name="ic_action_settings" width="32" height="32"/>
+        <image name="whiteTransparentLogo" width="803.33331298828125" height="282"/>
     </resources>
 </document>

@@ -74,7 +74,6 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             let cell = tableView.dequeueReusableCell(withIdentifier: "passwordCell", for: indexPath) as! CreatePasswordCell
             cell.viewController = self
             cell.password = password
-            
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "passwordConfirmationCell", for: indexPath) as! PasswordConfirmationCell
@@ -271,6 +270,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
 
 class CreateEmailCell:UITableViewCell, UITextFieldDelegate {
     var viewController: CreateAccountViewController?
+    
     @IBOutlet weak var emailTextField: UITextField! {
         didSet {
             emailTextField.delegate = self
@@ -290,6 +290,7 @@ class CreateEmailCell:UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         viewController!.email = textField.text
     }
 }
@@ -314,6 +315,7 @@ class CreatePasswordCell:UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         viewController!.password = textField.text
     }
 }
@@ -338,6 +340,7 @@ class PasswordConfirmationCell:UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         viewController!.confirmedPassword = textField.text
     }
 }
@@ -362,6 +365,7 @@ class CreateFirstNameCell:UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         viewController!.firstName = textField.text
     }
 }
@@ -386,6 +390,7 @@ class CreateLastNameCell:UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         viewController!.lastName = textField.text
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N8X-hu-RoW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N8X-hu-RoW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -588,7 +588,7 @@ The Markd Support Team</string>
                                             <rect key="frame" x="10" y="10" width="355" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="address-line1"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done" textContentType="address-line1"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -613,7 +613,7 @@ The Markd Support Team</string>
                                             <rect key="frame" x="10" y="10" width="355" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="address-level2"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done" textContentType="address-level2"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -664,7 +664,7 @@ The Markd Support Team</string>
                                             <rect key="frame" x="10" y="10" width="355" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" textContentType="postal-code"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -691,7 +691,7 @@ The Markd Support Team</string>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="20" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8Ku-yj-YH3">
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="20" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8Ku-yj-YH3">
                                             <rect key="frame" x="271" y="7.5" width="94" height="29"/>
                                             <connections>
                                                 <action selector="onBedroomValueChanged:" destination="Z6f-OI-jAh" eventType="valueChanged" id="R4b-Hf-jPw"/>
@@ -725,7 +725,7 @@ The Markd Support Team</string>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="20" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BBb-2h-qq1">
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="0.5" maximumValue="20" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BBb-2h-qq1">
                                             <rect key="frame" x="271" y="7.5" width="94" height="29"/>
                                             <connections>
                                                 <action selector="onBathroomValueChanged:" destination="aYD-bx-Urg" eventType="valueChanged" id="pMA-0e-pY3"/>
@@ -759,7 +759,7 @@ The Markd Support Team</string>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1250" minimumValue="1250" maximumValue="40000" stepValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="qBX-w9-9HL">
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1250" minimumValue="600" maximumValue="40000" stepValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="qBX-w9-9HL">
                                             <rect key="frame" x="271" y="7.5" width="94" height="29"/>
                                             <connections>
                                                 <action selector="onSquareFootageValueChanged:" destination="3UD-Qz-uhx" eventType="valueChanged" id="jR6-UY-9JV"/>
@@ -856,7 +856,7 @@ The Markd Support Team</string>
         </scene>
     </scenes>
     <resources>
-        <image name="ic_action_pages" width="48" height="48"/>
-        <image name="ic_action_settings" width="64" height="64"/>
+        <image name="ic_action_pages" width="24" height="24"/>
+        <image name="ic_action_settings" width="32" height="32"/>
     </resources>
 </document>

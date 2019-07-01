@@ -41,6 +41,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
             loginButton.clipsToBounds = true
         }
         
+        if let email = email {
+            email.delegate = self
+        }
+        
         if let password = password {
             password.delegate = self
         }
@@ -86,18 +90,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
                 UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             ], in: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "createContractorSegue" {
-            let destination = segue.destination as! UINavigationController
-            let accountViewController = destination.viewControllers[0] as! CreateAccountViewController
-            accountViewController.isContractor = true
-        } else if segue.identifier == "createCustomerSegue" {
-            let destination = segue.destination as! UINavigationController
-            let accountViewController = destination.viewControllers[0] as! CreateAccountViewController
-            accountViewController.isContractor = false
-        }
-    }
     //MARK:- Login Handlers
     private func login() {
         authenticator.getUserType(in: self, listener: performLoginSegue)
@@ -109,6 +101,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     func loginFailureHandler(_ error: Error) {
         debugPrint(error)
         authenticator.errorHandler(self, forError: error)
+    }
+    
+    //MARK:- TextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == email {
+            textField.resignFirstResponder()
+            password.becomeFirstResponder()
+        } else if textField == password {
+            password.resignFirstResponder()
+            signIn()
+        }
+        
+        return true
     }
     
     //MARK:- Segue Methods
@@ -131,6 +136,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
     @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue) {}
     
     //MARK:- Helper Methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "createContractorSegue" {
+            let destination = segue.destination as! UINavigationController
+            let accountViewController = destination.viewControllers[0] as! CreateAccountViewController
+            accountViewController.isContractor = true
+        } else if segue.identifier == "createCustomerSegue" {
+            let destination = segue.destination as! UINavigationController
+            let accountViewController = destination.viewControllers[0] as! CreateAccountViewController
+            accountViewController.isContractor = false
+        }
+    }
+    
     func signIn() {
         if let email = email, let emailString = email.text, let password = password, let passwordString = password.text {
             authenticator.signIn(self, withEmail: emailString, andPassword: passwordString)

@@ -228,6 +228,7 @@ class EditStreetAddressCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         viewController!.address.setStreet(textField.text!)
         viewController!.navigationItem.hidesBackButton = !viewController!.isValidInput()
     }
@@ -252,6 +253,7 @@ class EditCityAddressCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         viewController!.address.setCity(textField.text!)
         viewController!.navigationItem.hidesBackButton = !viewController!.isValidInput()
     }
@@ -288,7 +290,16 @@ class EditZipAddressCell: UITableViewCell, UITextFieldDelegate {
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
+    //Only allow changes if zipcode length stays under 5 characters
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text as NSString? {
+            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+            return txtAfterUpdate.count <= 5
+        }
+        return true
+    }
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         viewController!.address.setZipCode(textField.text!)
         viewController!.navigationItem.hidesBackButton = !viewController!.isValidInput()
     }
