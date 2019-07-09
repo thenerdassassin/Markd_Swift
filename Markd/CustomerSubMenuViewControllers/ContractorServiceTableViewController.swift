@@ -56,7 +56,6 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
                                                                UIAlertAction(title: "PDF", style: .default, handler: addFile),
                                                                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)],
                                                  in: self)
-        
     }
     
     //Mark:- Segue
@@ -70,13 +69,19 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
             if let sender = sender as? UITableViewCell {
                 let files = service.getFiles()
                 if(sender.tag < 0 || sender.tag >= files.count) {
+                    print("HERE")
+                    print(sender.tag)
+                    print(files.count)
                     return false
                 }
             } else if let urlArray = sender as? Array<URL> {
                 guard urlArray.count > 0 else {
+                    print("Count not up")
                     return false
                 }
             }
+        } else {
+            print("Wrong Identifier")
         }
         return true
     }
@@ -204,6 +209,7 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
             if files.count > 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "serviceFileTableCell", for: indexPath)
                 cell.textLabel?.text = files[indexPath.row].getFileName()
+                cell.accessoryType = .disclosureIndicator
                 cell.tag = indexPath.row
                 return cell
             }
@@ -275,16 +281,20 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
                 AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 return
             }
-            // Delete the row from the data source
             var files = service.getFiles()
-            tableView.beginUpdates()
+            //
             files.remove(at: indexPath.row)
-            let  _ = customerData.update(service.setFiles(files), index, of: type)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            if(service.getFiles().count == 0) {
+            let updatedService = service.setFiles(files)
+            let _ = customerData.update(updatedService, index, of: type)
+            //
+            if(updatedService.getFiles().count == 0) {
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.insertRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+            } else {
+                tableView.reloadSections([1], with: .fade)
             }
-            tableView.endUpdates()
         }
     }
 }

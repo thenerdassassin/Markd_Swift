@@ -238,6 +238,8 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
             textField.placeholder = "File"
+            textField.keyboardType = UIKeyboardType.asciiCapable
+            textField.returnKeyType = UIReturnKeyType.done
         }
         
         // 3. Grab the value from the text field, and print it when the user clicks OK.
@@ -246,7 +248,6 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
             if(!StringUtilities.isNilOrEmpty(alert!.textFields![0].text)) {
                 self.navigationItem.title = alert!.textFields![0].text
                 self.file!.setFileName(to: self.navigationItem.title!)
-                
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

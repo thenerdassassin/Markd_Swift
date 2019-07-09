@@ -65,7 +65,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
             textField.placeholder = "Email"
-            textField.returnKeyType = UIReturnKeyType.done
+            textField.returnKeyType = UIReturnKeyType.send
             textField.keyboardType = UIKeyboardType.emailAddress
         }
         
