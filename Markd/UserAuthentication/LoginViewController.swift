@@ -65,6 +65,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
             textField.placeholder = "Email"
+            textField.returnKeyType = UIReturnKeyType.done
+            textField.keyboardType = UIKeyboardType.emailAddress
         }
         
         // 3. Grab the value from the text field, and print it when the user clicks OK.
@@ -111,6 +113,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, LoginHandler {
         } else if textField == password {
             password.resignFirstResponder()
             signIn()
+        } else {
+            textField.resignFirstResponder()
         }
         
         return true
