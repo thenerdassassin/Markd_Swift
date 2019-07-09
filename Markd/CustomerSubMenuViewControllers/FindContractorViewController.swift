@@ -132,25 +132,36 @@ class FindContractorViewController:UITableViewController, OnGetDataListener {
         }
         zipCodeDatabase.observeSingleEvent(of: .value, with: { (snapshot) in
             if let zipCodes = snapshot.value as? NSDictionary {
+                var contractorsFoundInSearch:[String] = []
                 for zipcode in zipcodes {
                     if let contractorDictionary = zipCodes[zipcode] as? NSDictionary {
-                        self.filterContractors(from: contractorDictionary, with: self.selectedContractorType)
+                        contractorsFoundInSearch.append(contentsOf:
+                            self.filterContractors(from: contractorDictionary, with: self.selectedContractorType))
                     }
                 }
+                if(contractorsFoundInSearch.count == 0) {
+                    AlertControllerUtilities.showAlert(
+                        withTitle: "No \(self.selectedContractorType) Found",
+                        andMessage: "Tell your \(self.selectedContractorType) contractor to contact joshua@markdsoftware.com to be added to Markd",
+                        withOptions: [UIAlertAction(title: "Ok", style: .default, handler: nil)], in: self)
+                }
+                self.contractorReferences = contractorsFoundInSearch
                 self.tableView.reloadData()
             }
         }) { (error) in
             AlertControllerUtilities.somethingWentWrong(with: self, because: error)
         }
     }
-    private func filterContractors(from dictionary: NSDictionary, with type: String) {
+    private func filterContractors(from dictionary: NSDictionary, with type: String) -> [String] {
+        var contractorReferences:[String] = [];
         for (reference, contractorType) in dictionary {
             if let reference = reference as? String, let contractorType = contractorType as? String {
                 if contractorType == type {
-                    self.contractorReferences.append(reference)
+                    contractorReferences.append(reference)
                 }
             }
         }
+        return contractorReferences
     }
     //Mark:- OnGetDataListener
     public func onStart() {
