@@ -93,26 +93,27 @@ class PaintingSurfacesViewController:UITableViewController {
         paintSurfaceCell.index = indexPath.row
         
         var paintSurface:PaintSurface?
-        if indexPath.section == 0 {
-            paintSurface = interiorPaintSurfaces?[indexPath.row]
-        } else if indexPath.section == 1 {
-            paintSurface = exteriorPaintSurfaces?[indexPath.row]
-        } else {
+        
+        if indexPath.section == 0 && interiorPaintSurfaces != nil && interiorPaintSurfaces!.count > indexPath.row {
+                paintSurface = interiorPaintSurfaces?[indexPath.row]
+        } else if indexPath.section == 1 && exteriorPaintSurfaces != nil && exteriorPaintSurfaces!.count > indexPath.row {
+                paintSurface = exteriorPaintSurfaces?[indexPath.row]
+        } else if indexPath.section > 1 {
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
         }
+        
         if let paintSurface = paintSurface {
             paintSurfaceCell.paintSurface = paintSurface
-        } else {
-            return tableView.dequeueReusableCell(withIdentifier: "paintSurfaceDefaultCell", for: indexPath)
+            return paintSurfaceCell
         }
-        return paintSurfaceCell
+        return tableView.dequeueReusableCell(withIdentifier: "paintSurfaceDefaultCell", for: indexPath)
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return (indexPath.section == 0 && interiorPaintSurfaces != nil && interiorPaintSurfaces!.count > 0) ||
+            (indexPath.section == 1 && exteriorPaintSurfaces != nil && exteriorPaintSurfaces!.count > 0)
     }
     
     // Override to support editing the table view.
