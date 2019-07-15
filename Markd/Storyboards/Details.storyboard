@@ -1120,7 +1120,7 @@
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="next"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -1145,7 +1145,7 @@
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="next"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -1170,7 +1170,7 @@
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="next"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
