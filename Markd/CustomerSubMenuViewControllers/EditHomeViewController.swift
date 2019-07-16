@@ -292,8 +292,9 @@ class EditZipAddressCell: UITableViewCell, UITextFieldDelegate {
     }
     //Only allow changes if zipcode length stays under 5 characters
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let text = textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) as NSString? {
-            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+        if let text = textField.text as NSString? {
+            let txtAfterUpdate = text.replacingCharacters(in: range, with: string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
+            print("\(txtAfterUpdate) with count \(txtAfterUpdate.count)")
             return txtAfterUpdate.count <= 5
         }
         return true
