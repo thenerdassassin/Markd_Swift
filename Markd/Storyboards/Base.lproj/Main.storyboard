@@ -759,7 +759,7 @@
                                             <rect key="frame" x="15" y="11.5" width="350" height="21"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="email"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" textContentType="email"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -783,7 +783,7 @@
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES" textContentType="password"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -808,7 +808,7 @@
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES" textContentType="password"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -850,7 +850,7 @@
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" textContentType="given-name"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="next" textContentType="given-name"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -875,7 +875,7 @@
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" textContentType="family-name"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="next" textContentType="family-name"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
