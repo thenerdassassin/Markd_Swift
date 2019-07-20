@@ -222,7 +222,7 @@
                                             <rect key="frame" x="15" y="11.5" width="350" height="21"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done" textContentType="organization"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="next" textContentType="organization"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -246,7 +246,7 @@
                                             <rect key="frame" x="15" y="11.5" width="350" height="21"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done" textContentType="tel"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="tel"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -270,7 +270,7 @@
                                             <rect key="frame" x="15" y="11.5" width="350" height="21"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="done" textContentType="url"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="next" textContentType="url"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -490,6 +490,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Edit Profile" id="DXs-I6-NA9">
                         <barButtonItem key="rightBarButtonItem" title="Confirm" id="Kaf-7f-OaL">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="onConfirmAction:" destination="a8b-O5-Icn" id="PxA-Ie-60f"/>
                             </connections>
@@ -552,6 +553,7 @@ The Markd Support Team</string>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="LT3-Nb-xGa">
                         <barButtonItem key="rightBarButtonItem" title="Send" id="OK9-kr-Lfc">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="sendMessage:" destination="oQO-7W-wVc" id="AyY-MY-dlm"/>
                             </connections>
@@ -859,4 +861,5 @@ The Markd Support Team</string>
         <image name="ic_action_pages" width="24" height="24"/>
         <image name="ic_action_settings" width="32" height="32"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

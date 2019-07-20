@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class EditCompanyViewController: UITableViewController, OnGetDataListener {
+    private var textFields:[UITextField] = [UITextField](repeating: UITextField(), count: 4)
     private let authentication = FirebaseAuthentication.sharedInstance
     var contractorData: TempContractorData?
     var contractorDetails = ContractorDetails([:])
@@ -67,6 +68,8 @@ class EditCompanyViewController: UITableViewController, OnGetDataListener {
                 }
             }
             cell.viewController = self
+            cell.tag = 0
+            textFields[0] = cell.companyNameTextField
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "companyTelephoneCell", for: indexPath) as! EditCompanyTelephoneCell
@@ -80,6 +83,8 @@ class EditCompanyViewController: UITableViewController, OnGetDataListener {
                 }
             }
             cell.viewController = self
+            cell.tag = 1
+            textFields[1] = cell.companyTelephoneTextField
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "companyWebsiteCell", for: indexPath) as! EditCompanyWebsiteCell
@@ -93,6 +98,8 @@ class EditCompanyViewController: UITableViewController, OnGetDataListener {
                 }
             }
             cell.viewController = self
+            cell.tag = 2
+            textFields[2] = cell.companyWebsiteTextField
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "companyZipcodeCell", for: indexPath) as! EditCompanyZipcodeCell
@@ -106,6 +113,8 @@ class EditCompanyViewController: UITableViewController, OnGetDataListener {
                 }
             }
             cell.viewController = self
+            cell.tag = 3
+            textFields[3] = cell.companyZipcodeTextField
             return cell
         }
         return UITableViewCell()
@@ -123,6 +132,14 @@ class EditCompanyViewController: UITableViewController, OnGetDataListener {
             contractorData.updateContractorDetails(to: contractorDetails)
         } else {
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+        }
+    }
+    
+    func changeTextField(from previousIndex:Int) {
+        if(previousIndex < 3) {
+            textFields[previousIndex + 1].becomeFirstResponder()
+        } else {
+            textFields[previousIndex].resignFirstResponder()
         }
     }
     
@@ -156,7 +173,7 @@ class EditCompanyNameCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        viewController?.changeTextField(from: self.tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -185,7 +202,7 @@ class EditCompanyTelephoneCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        viewController?.changeTextField(from: self.tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -197,12 +214,21 @@ class EditCompanyTelephoneCell: UITableViewCell, UITextFieldDelegate {
     }
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text as NSString? {
-            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+            // Added trim/filter and StringUtilities empty logic to support auto insert from iPhone
+            let txtAfterUpdate = text.replacingCharacters(
+                in: range,
+                with: string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).filter("01234567890".contains))
+            if StringUtilities.isNilOrEmpty(txtAfterUpdate) {
+                return true
+            }
             if txtAfterUpdate.count < textField.text!.count {
+                print("TRUE")
                 return true
             } else if (txtAfterUpdate.count > 14) {
+                print("FALSE")
                 return false
             } else {
+                print("formatting")
                 textField.text = StringUtilities.format(phoneNumber: txtAfterUpdate, isStrict: false)
             }
         }
@@ -223,7 +249,7 @@ class EditCompanyWebsiteCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        viewController?.changeTextField(from: self.tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -248,7 +274,7 @@ class EditCompanyZipcodeCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        viewController?.changeTextField(from: self.tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -257,7 +283,7 @@ class EditCompanyZipcodeCell: UITableViewCell, UITextFieldDelegate {
     //Only allow changes if zipcode length stays under 5 characters
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text as NSString? {
-            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+            let txtAfterUpdate = text.replacingCharacters(in: range, with: string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
             return txtAfterUpdate.count <= 5
         }
         return true

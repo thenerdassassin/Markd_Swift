@@ -946,4 +946,5 @@
         <image name="ic_action_settings" width="32" height="32"/>
         <image name="whiteTransparentLogo" width="803.33331298828125" height="282"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
