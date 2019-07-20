@@ -18,9 +18,9 @@ public class PhotoUtilities {
         delegate = viewController
     }
     
-    public func getImage() {
+    public func getImage(with actionSheetTitle: String) {
         if(UIImagePickerController.isSourceTypeAvailable(.camera)) {
-            AlertControllerUtilities.showActionSheet(withTitle: "Picture of your Home", andMessage: nil,
+            AlertControllerUtilities.showActionSheet(withTitle: actionSheetTitle, andMessage: nil,
                                                      withOptions: [
                                                         UIAlertAction(title: "Take Photo", style: .default, handler: checkCameraAuthorizationStatus),
                                                         UIAlertAction(title:"Select Photo", style: .default, handler: checkPhotoLibraryAuthorizationStatus),

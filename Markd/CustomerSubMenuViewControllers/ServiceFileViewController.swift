@@ -257,7 +257,7 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func fileImageTapGesture(_ sender: UITapGestureRecognizer) {
-        PhotoUtilities(self).getImage()
+        PhotoUtilities(self).getImage(with: "Picture of Services")
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

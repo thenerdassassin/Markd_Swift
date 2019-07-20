@@ -222,10 +222,8 @@ class EditCompanyTelephoneCell: UITableViewCell, UITextFieldDelegate {
                 return true
             }
             if txtAfterUpdate.count < textField.text!.count {
-                print("TRUE")
                 return true
             } else if (txtAfterUpdate.count > 14) {
-                print("FALSE")
                 return false
             } else {
                 print("formatting")
@@ -289,6 +287,7 @@ class EditCompanyZipcodeCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         let _ = viewController!.contractorDetails.setZipCode(to: textField.text!)
         viewController!.navigationItem.hidesBackButton = !viewController!.isValidInput()
     }
