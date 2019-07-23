@@ -189,7 +189,6 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     func titleSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
             selectedTitle = title
-            //self.tableView.reloadData()
             self.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
             changeTextField(from: 3)
         }
@@ -197,7 +196,6 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     func maritalStatusSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
             maritalStatus = title
-            //self.tableView.reloadData()
             self.tableView.reloadRows(at: [IndexPath(row: 6, section: 0)], with: .none)
             changeTextField(from: 6)
         }
@@ -205,7 +203,6 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     func contractorTypeSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
             contractorType = title
-            //self.tableView.reloadData()
             self.tableView.reloadRows(at: [IndexPath(row: 6, section: 0)], with: .none)
             changeTextField(from: 6)
         }

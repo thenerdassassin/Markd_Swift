@@ -136,7 +136,8 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         if(section == 0) {
             return 1
         }
-        return searchBarIsEmpty() ? customersList.count : filteredCustomerList.count
+        let customerCount = searchBarIsEmpty() ? customersList.count : filteredCustomerList.count
+        return customerCount == 0 ? 1 : customerCount
     }
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
         if section == 1 {
@@ -165,10 +166,15 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
             let cell = UITableViewCell()
             cell.textLabel?.text = "Message All Customers"
             return cell
+        } else if indexPath.section == 1 {
+            let customerCount = searchBarIsEmpty() ? customersList.count : filteredCustomerList.count
+            if customerCount != 0 {
+                let cell = self.tableView.dequeueReusableCell(withIdentifier: "customerInformationCell", for: indexPath) as! CustomerInformationCell
+                cell.customer = searchBarIsEmpty() ? customersList[indexPath.row] : filteredCustomerList[indexPath.row]
+                return cell
+            }
         }
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "customerInformationCell", for: indexPath) as! CustomerInformationCell
-        cell.customer = searchBarIsEmpty() ? customersList[indexPath.row] : filteredCustomerList[indexPath.row]
-        return cell
+        return self.tableView.dequeueReusableCell(withIdentifier: "noCustomersCell", for: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -177,26 +183,29 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         if indexPath.section == 0 {
             performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: selectedCell)
         } else {
-            AlertControllerUtilities.showActionSheet(
-                withTitle: "Select Action 🔨", andMessage: "What would you like to do for your customer?",
-                withOptions: [
-                    UIAlertAction(title: "Send Notification", style: .default, handler: { _ in
-                        self.performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: selectedCell)
-                        
-                    }),
-                    UIAlertAction(title: "Edit Home Details", style: .default, handler: { _ in
-                        self.editHomeDetails(
-                            of: self.contractorData?.getContractorType(),
-                            for: (selectedCell as? CustomerInformationCell)?.customer)
-                    }),
-                    UIAlertAction(title: "Edit Service History", style: .default, handler: { _ in
-                        self.editServiceHistory(
-                            of: self.contractorData?.getContractorType(),
-                            for: (selectedCell as? CustomerInformationCell)?.customer)
-                    }),
-                    UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                ],
-                in: self)
+            let customerCount = searchBarIsEmpty() ? customersList.count : filteredCustomerList.count
+            if customerCount != 0 {
+                AlertControllerUtilities.showActionSheet(
+                    withTitle: "Select Action 🔨", andMessage: "What would you like to do for your customer?",
+                    withOptions: [
+                        UIAlertAction(title: "Send Notification", style: .default, handler: { _ in
+                            self.performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: selectedCell)
+                            
+                        }),
+                        UIAlertAction(title: "Edit Home Details", style: .default, handler: { _ in
+                            self.editHomeDetails(
+                                of: self.contractorData?.getContractorType(),
+                                for: (selectedCell as? CustomerInformationCell)?.customer)
+                        }),
+                        UIAlertAction(title: "Edit Service History", style: .default, handler: { _ in
+                            self.editServiceHistory(
+                                of: self.contractorData?.getContractorType(),
+                                for: (selectedCell as? CustomerInformationCell)?.customer)
+                        }),
+                        UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                    ],
+                    in: self)
+            }
         }
     }
     
