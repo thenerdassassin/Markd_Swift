@@ -19,6 +19,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
     var plumbingServices:[ContractorService]?
     var hvacServices:[ContractorService]?
     var electricalServices:[ContractorService]?
+    var paintingServices:[ContractorService]?
     var contractorServices:[ContractorService]?
     var contractorType:String = "" {
         didSet {
@@ -59,7 +60,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
         if contractorServices != nil {
             return 1
         }
-        return 3 // Plumbing, Hvac, Electrical
+        return 4 // Plumbing, Hvac, Electrical, Painting
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -84,6 +85,12 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
                     return electricalServices.count
                 }
             }
+        } else if section == 3 {
+            if let paintingServices = paintingServices {
+                if paintingServices.count != 0 {
+                    return paintingServices.count
+                }
+            }
         }
         return 1
     }
@@ -97,6 +104,8 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
             return "Hvac Service History"
         } else if section == 2 {
             return "Electrical Service History"
+        } else if section == 3 {
+            return "Painting Service History"
         } else {
             return "Service History"
         }
@@ -110,18 +119,22 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
         if indexPath.section == 0 {
             if contractorServices == nil {
                 if plumbingServices != nil && plumbingServices!.count > 0 {
-                    service = plumbingServices?[indexPath.row]
+                    service = plumbingServices![indexPath.row]
                 }
             } else if contractorServices!.count != 0 {
-                service = contractorServices?[indexPath.row]
+                service = contractorServices![indexPath.row]
             }
         } else if indexPath.section == 1 {
             if hvacServices != nil && hvacServices!.count > 0 {
-                service = hvacServices?[indexPath.row]
+                service = hvacServices![indexPath.row]
             }
         } else if indexPath.section == 2 {
             if electricalServices != nil && electricalServices!.count > 0 {
-                service = electricalServices?[indexPath.row]
+                service = electricalServices![indexPath.row]
+            }
+        } else if indexPath.section == 3 {
+            if paintingServices != nil && paintingServices!.count > 0 {
+                service = paintingServices![indexPath.row]
             }
         } else {
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
@@ -149,6 +162,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
                 UIAlertAction(title: "Plumbing", style: .default, handler: addServiceHandler),
                 UIAlertAction(title: "Hvac", style: .default, handler: addServiceHandler),
                 UIAlertAction(title: "Electrical", style: .default, handler: addServiceHandler),
+                UIAlertAction(title: "Painting", style: .default, handler: addServiceHandler),
                 UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             ]
         }
@@ -169,6 +183,10 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
         if(tableView.cellForRow(at: indexPath)?.reuseIdentifier == "serviceDefaultCell") {
             return false
         }
+        // Contractors Cannot delete a service
+        if contractorServices != nil {
+            return false
+        }
         return true
     }
     
@@ -177,10 +195,6 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
         if editingStyle == .delete {
             guard let customerData = customerData else {
                 AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
-                return
-            }
-            if contractorServices != nil {
-                print("TODO: delete when contractorService")
                 return
             }
             tableView.beginUpdates()
@@ -205,6 +219,14 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
                 electricalServices!.remove(at: indexPath.row)
                 let _ = customerData.removeService(indexPath.row, of: "Electrical")
                 if(electricalServices!.count == 0) {
+                    tableView.reloadSections([2], with: .fade)
+                    tableView.endUpdates()
+                    return
+                }
+            } else if indexPath.section == 3 {
+                paintingServices!.remove(at: indexPath.row)
+                let _ = customerData.removeService(indexPath.row, of: "Painting")
+                if(paintingServices!.count == 0) {
                     tableView.reloadSections([2], with: .fade)
                     tableView.endUpdates()
                     return
@@ -282,6 +304,12 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
             } else {
                 contractorServices = []
             }
+        case "Painter":
+            if paintingServices != nil {
+                contractorServices = paintingServices
+            } else {
+                contractorServices = []
+            }
         default:
             contractorServices = []
         }
@@ -293,6 +321,8 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
             return "Hvac"
         } else if tag == 2 {
             return "Electrical"
+        } else if tag == 3 {
+            return "Painting"
         }
         return nil
     }
@@ -307,6 +337,7 @@ class ServiceHistoryViewController: UITableViewController, OnGetDataListener {
         plumbingServices = customerData!.getPlumbingServices()
         hvacServices = customerData!.getHvacServices()
         electricalServices = customerData!.getElectricalServices()
+        paintingServices = customerData!.getPaintingServices()
         setContractorServices(to: contractorType)
         self.tableView.reloadData()
     }

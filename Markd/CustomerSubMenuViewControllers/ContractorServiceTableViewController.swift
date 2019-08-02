@@ -51,11 +51,14 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
     }
     
     @IBAction func onAddFileAction(_ sender: UIBarButtonItem) {
-        AlertControllerUtilities.showActionSheet(withTitle: "File Type", andMessage: "Which type of file would you like to attach to this service?",
-                                                 withOptions: [UIAlertAction(title: "Photo", style: .default, handler: addFile),
-                                                               UIAlertAction(title: "PDF", style: .default, handler: addFile),
-                                                               UIAlertAction(title: "Cancel", style: .cancel, handler: nil)],
-                                                 in: self)
+        AlertControllerUtilities
+            .showActionSheet(withTitle: "File Type",
+                             andMessage: "Which type of file would you like to attach to this service?",
+                             withOptions: [
+                                UIAlertAction(title: "Photo", style: .default, handler: addFile),
+                                UIAlertAction(title: "PDF", style: .default, handler: addFile),
+                                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)],
+                             in: self)
     }
     
     //Mark:- Segue
@@ -90,12 +93,14 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
         // Pass the selected file to the new view controller.
         if(segue.identifier == "showServiceFileSegue") {
             let destination = segue.destination as! ServiceFileViewController
-            destination.serviceType = serviceType
-            destination.serviceIndex = serviceIndex
+            
             if let sender = sender as? UITableViewCell {
+                // Old Service being updated
                 destination.fileIndex = sender.tag
                 destination.service = service
+                destination.serviceIndex = serviceIndex
             } else {
+                // New Service being createad
                 if let urls = sender as? Array<URL> {
                     destination.pdfUrl = urls[0]
                 }
@@ -103,7 +108,11 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
                 files.append(FirebaseFile([:]))
                 destination.fileIndex = files.count-1
                 destination.service = service!.setFiles(files)
+                // Service index will be equal to the current count because it will be appended
+                destination.serviceIndex = customerData?.getServiceCount(of: serviceType!)
             }
+            
+            destination.serviceType = serviceType
             destination.delegate = self
             destination.customerData = customerData
             customerData?.removeListeners()

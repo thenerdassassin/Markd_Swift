@@ -46,6 +46,7 @@ public class Customer:CustomStringConvertible {
     private var interiorPaintSurfaces: [PaintSurface]?
     private var exteriorPaintSurfaces: [PaintSurface]?
     private var painterReference: String
+    private var paintingServices: [ContractorService]?
     
     public convenience init(_ dictionary: Dictionary<String, AnyObject>) {
         self.init(dictionary, customerId: nil)
@@ -142,6 +143,15 @@ public class Customer:CustomStringConvertible {
             exteriorPaintSurfaces!.sort()
         }
         self.painterReference = dictionary["painterReference"] != nil ? dictionary["painterReference"] as! String: ""
+        if let paintingArray = dictionary["paintingServices"] as? NSArray {
+            paintingServices = [ContractorService]()
+            for service in paintingArray {
+                if let serviceDictionary = service as? Dictionary<String, AnyObject> {
+                    paintingServices!.append(ContractorService(serviceDictionary))
+                }
+            }
+            paintingServices!.sort()
+        }
     }
     
     //:- Home Page
@@ -391,6 +401,30 @@ public class Customer:CustomStringConvertible {
         self.painterReference = reference
         return self
     }
+    func getPaintingServices() -> [ContractorService]? {
+        return paintingServices
+    }
+    func updatePaintingService(_ service:ContractorService, _  number:Int) -> Customer {
+        if let _ = paintingServices {
+            if(number == -1) {
+                self.paintingServices!.append(service)
+            } else {
+                self.paintingServices![number] = service
+            }
+            return self
+        } else {
+            self.paintingServices = [ContractorService]()
+            self.paintingServices!.append(service)
+            return self
+        }
+    }
+    func removePaintingService(_ index:Int) -> Customer {
+        guard self.paintingServices != nil else {
+            return self
+        }
+        self.paintingServices!.remove(at: index)
+        return self
+    }
     func updatePaintSurface(_ surface:PaintSurface, _  number:Int, isInterior:Bool) -> Customer {
         if(isInterior) {
             if let _ = interiorPaintSurfaces {
@@ -444,6 +478,8 @@ public class Customer:CustomStringConvertible {
             return hvacServices?.count
         } else if type == "Electrical" || type == "Electrician" {
             return electricalServices?.count
+        } else if type == "Painting" || type == "Painter" {
+            return paintingServices?.count
         }
         return nil
     }
@@ -454,6 +490,8 @@ public class Customer:CustomStringConvertible {
             return updateHvacService(service, number)
         } else if type == "Electrical" || type == "Electrician" {
             return updateElectricalService(service, number)
+        } else if type == "Painting" || type == "Painter" {
+            return updatePaintingService(service, number)
         }
         return self
     }
@@ -464,6 +502,8 @@ public class Customer:CustomStringConvertible {
             return removeHvacService(number)
         } else if type == "Electrical" || type == "Electrician" {
             return removeElectricalService(number)
+        } else if type == "Painting" || type == "Painter" {
+            return removePaintingService(number)
         }
         return self
     }
@@ -535,6 +575,13 @@ public class Customer:CustomStringConvertible {
             dictionary["exteriorPaintSurfaces"] = exteriorPaintSurfaceArray
         }
         dictionary["painterReference"] = self.painterReference as AnyObject
+        if let paintingServices = paintingServices?.sorted() {
+            var paintingArray = NSArray()
+            for service in paintingServices {
+                paintingArray = paintingArray.adding(service.toDictionary()) as NSArray
+            }
+            dictionary["paintingServices"] = paintingArray
+        }
         dictionary["userType"] = self.userType as AnyObject
         
         return dictionary

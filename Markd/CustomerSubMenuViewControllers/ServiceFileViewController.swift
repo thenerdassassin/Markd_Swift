@@ -67,6 +67,7 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
         if let customerData = customerData, let type = serviceType, let index = serviceIndex, let service = service, let fileNumber = fileIndex, let updatedFile = file {
             var files = service.getFiles()
             files[fileNumber] = updatedFile
+            print("Updating index: \(index)")
             delegate?.customerData = customerData.update(service.setFiles(files), index, of: type)
         }
     }
