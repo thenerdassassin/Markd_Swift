@@ -129,6 +129,7 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contractor" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rtR-Di-K0a">
                                             <rect key="frame" x="20" y="10" width="335" height="29.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" textContentType="organization"/>
@@ -155,6 +156,7 @@
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" text="Comments" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YnE-vu-RYr">
                                             <rect key="frame" x="15" y="5" width="345" height="210.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="210" id="8vS-Ou-W9I"/>
                                             </constraints>
