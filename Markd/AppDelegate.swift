@@ -74,38 +74,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 
     func registerForPushNotifications(_ application: UIApplication) {
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().delegate = self
-            UNUserNotificationCenter.current() // 1
-                .requestAuthorization(options: [.alert, .sound, .badge]) {
-                    [weak self] granted, error in
-                    
-                    print("Permission granted: \(granted)")
-                    guard granted else { return }
-                    self?.getNotificationSettings(application)
-            }
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            
-            application.registerUserNotificationSettings(settings)
-            self.getNotificationSettings(application)
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current() // 1
+            .requestAuthorization(options: [.alert, .sound, .badge]) {
+                [weak self] granted, error in
+                
+                print("Permission granted: \(granted)")
+                guard granted else { return }
+                self?.getNotificationSettings(application)
         }
     }
     func getNotificationSettings(_ application: UIApplication) {
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().getNotificationSettings { settings in
-                print("Notification settings: \(settings)")
-                guard settings.authorizationStatus == .authorized else { return }
-                DispatchQueue.main.async {
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("Notification settings: \(settings)")
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
             }
         }
     }
 }
 
-@available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
     // Receive displayed notifications for iOS 10 devices.

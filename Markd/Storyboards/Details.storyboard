@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="X90-fc-VtD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="X90-fc-VtD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -268,6 +268,7 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Manufacturer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WVF-JR-IeH">
                                             <rect key="frame" x="30" y="5" width="325" height="33.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done"/>
@@ -293,6 +294,7 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Model" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E4X-Uu-X3e">
                                             <rect key="frame" x="30" y="5" width="325" height="33.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done"/>
@@ -318,6 +320,7 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Install Date" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="6RZ-fN-qXW">
                                             <rect key="frame" x="30" y="5" width="100.5" height="33.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -343,6 +346,7 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Life Span" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Qhz-eY-AjM">
                                             <rect key="frame" x="30" y="5" width="85.5" height="33.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -379,6 +383,7 @@
                                         </segmentedControl>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="atA-Hi-xWt">
                                             <rect key="frame" x="8" y="7" width="167" height="31"/>
+                                            <color key="tintColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="onLifeSpanValueChanged:" destination="1Zs-b3-c3k" eventType="valueChanged" id="PyP-hV-yH8"/>
                                             </connections>
@@ -1105,7 +1110,7 @@
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="BtB-ed-YNE" customClass="EditPaintingSurfaceViewController" customModule="Markd" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F0b-DB-R4N">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="529.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -1118,9 +1123,10 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AEr-9L-0xo">
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="next"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -1143,9 +1149,10 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Brand" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fVI-c9-s5V">
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="next"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -1168,9 +1175,10 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Color" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GjJ-hl-QSX">
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="next"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -1522,6 +1530,7 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Breaker Description" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pwQ-h8-cIq">
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done"/>
@@ -1650,6 +1659,7 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Panel Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-bb-Zrm">
                                             <rect key="frame" x="20" y="10" width="335" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done"/>
@@ -1894,13 +1904,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_action_pages" width="48" height="48"/>
+        <image name="ic_action_pages" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bsT-Fw-W8S"/>
         <segue reference="feR-gR-wLN"/>
-        <segue reference="0Rx-Ig-gy5"/>
+        <segue reference="c1D-iW-PT6"/>
         <segue reference="0lT-xg-Ick"/>
         <segue reference="jFv-8g-0vH"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

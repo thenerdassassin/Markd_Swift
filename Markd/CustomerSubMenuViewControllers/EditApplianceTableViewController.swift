@@ -12,8 +12,6 @@ class EditApplianceTableViewController: UITableViewController {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var customerData:TempCustomerData?
     let cellIdentifier = "editApplianceCell"
-    
-    var TODO_Check_If_Contractor🤯:AnyObject?
 
     public var appliances = [Appliance]()
     public var viewTitle = "Edit"
@@ -114,7 +112,7 @@ class EditApplianceTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        //0=Man, 1==Mod, 2==Date, 3==Life
+        //0=Manufacturer, 1==Model, 2==Date, 3==LifeSpan
         if indexPath.row < 2 {
             hideEditCells()
         } else if indexPath.row == 2 {
@@ -329,16 +327,18 @@ public class ApplianceEditLifeSpanCell: UITableViewCell {
     
     var lifeSpan: String? {
         didSet {
-            setLifeSpan(lifeSpan)
+            if(StringUtilities.isNilOrEmpty(lifeSpan)) {
+                print("Life Span was null or empty")
+                self.lifeSpan = "10 years"
+                setLifeSpan("10 years")
+            } else {
+                print("Setting life span")
+                setLifeSpan(lifeSpan)
+            }
         }
     }
     func setLifeSpan(_ lifeSpan: String?) {
-        guard !StringUtilities.isNilOrEmpty(lifeSpan) else {
-            print("Life Span was null or empty")
-            return
-        }
-        
-        guard let lifeSpanCompenents = lifeSpan?.split(separator: " ") else {
+        guard let lifeSpanCompenents = self.lifeSpan?.split(separator: " ") else {
             print("Not able to get lifeSpanComponents")
             return
         }

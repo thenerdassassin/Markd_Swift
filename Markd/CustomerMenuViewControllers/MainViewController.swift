@@ -110,15 +110,15 @@ public class MainViewController: UIViewController, UIImagePickerControllerDelega
     //Mark:- UIImagePickerController
     @IBAction func homeImageTapped(_ sender: UITapGestureRecognizer) {
         if(!homeImageExists) {
-             PhotoUtilities(self).getImage()
+            PhotoUtilities(self).getImage(with: "Picture of your Home")
         }
     }
     @IBAction func homeImageLongPressed(_ sender: UILongPressGestureRecognizer) {
-        PhotoUtilities(self).getImage()
+        PhotoUtilities(self).getImage(with: "Picture of your Home")
     }
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             let metadata = StorageMetadata()

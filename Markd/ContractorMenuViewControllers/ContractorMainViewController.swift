@@ -108,11 +108,11 @@ public class ContractorMainViewController: UIViewController, UIImagePickerContro
     //Mark:- UIImagePickerController
     @IBAction func logoImageTapped(_ sender: UITapGestureRecognizer) {
         if(!logoImageExists) {
-            PhotoUtilities(self).getImage()
+            PhotoUtilities(self).getImage(with: "Picture of your Logo")
         }
     }
     @IBAction func logoImageLongPressed(_ sender: UILongPressGestureRecognizer) {
-        PhotoUtilities(self).getImage()
+        PhotoUtilities(self).getImage(with: "Picture of your Logo")
     }
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Local variable inserted by Swift 4.2 migrator.

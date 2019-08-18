@@ -327,6 +327,9 @@ public class TempCustomerData:CustomStringConvertible {
             listener.onFailure(error)
         }
     }
+    public func getPaintingServices() -> [ContractorService]? {
+        return getCustomer()?.getPaintingServices()
+    }
     
     //Mark:- Services
     public func getServiceCount(of type:String) -> Int? {

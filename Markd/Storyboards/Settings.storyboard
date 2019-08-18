@@ -107,6 +107,7 @@
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" maximumValue="50" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="QMR-hc-SLv">
                                             <rect key="frame" x="261" y="7.5" width="94" height="29"/>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <action selector="onRangeValueChanged:" destination="2GN-Qh-Hg2" eventType="valueChanged" id="i5F-4X-tc3"/>
                                             </connections>
@@ -220,9 +221,10 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Company Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Euh-fd-qcF">
                                             <rect key="frame" x="15" y="11.5" width="350" height="21"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done" textContentType="organization"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="next" textContentType="organization"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -244,9 +246,10 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Telephone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dUJ-aV-IWW">
                                             <rect key="frame" x="15" y="11.5" width="350" height="21"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done" textContentType="tel"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="tel"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -268,9 +271,10 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FM9-Xq-yth">
                                             <rect key="frame" x="15" y="11.5" width="350" height="21"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="done" textContentType="url"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="next" textContentType="url"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -292,6 +296,7 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zlL-yy-sEj">
                                             <rect key="frame" x="15" y="11.5" width="350" height="21"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="numberPad" returnKeyType="done" textContentType="postal-code"/>
@@ -340,9 +345,10 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I5N-Hs-U4O">
                                             <rect key="frame" x="15" y="11.5" width="350" height="21"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="email"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" textContentType="email"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -364,9 +370,10 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r9P-kA-pfW">
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" secureTextEntry="YES" textContentType="password"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -406,9 +413,10 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jCR-0Z-oAh">
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" textContentType="given-name"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="next" textContentType="given-name"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -431,9 +439,10 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6Y-iD-6oy">
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" textContentType="family-name"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="next" textContentType="family-name"/>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -490,6 +499,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Edit Profile" id="DXs-I6-NA9">
                         <barButtonItem key="rightBarButtonItem" title="Confirm" id="Kaf-7f-OaL">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="onConfirmAction:" destination="a8b-O5-Icn" id="PxA-Ie-60f"/>
                             </connections>
@@ -534,6 +544,7 @@ The Markd Support Team</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="l4A-BK-Otr">
                                 <rect key="frame" x="20" y="273.5" width="335" height="240.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet"/>
                             </textView>
@@ -552,6 +563,7 @@ The Markd Support Team</string>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="LT3-Nb-xGa">
                         <barButtonItem key="rightBarButtonItem" title="Send" id="OK9-kr-Lfc">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="sendMessage:" destination="oQO-7W-wVc" id="AyY-MY-dlm"/>
                             </connections>
@@ -586,6 +598,7 @@ The Markd Support Team</string>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street Address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cXx-nj-MUe">
                                             <rect key="frame" x="10" y="10" width="355" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done" textContentType="address-line1"/>
@@ -611,6 +624,7 @@ The Markd Support Team</string>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="y8x-Pr-tS1">
                                             <rect key="frame" x="10" y="10" width="355" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" returnKeyType="done" textContentType="address-level2"/>
@@ -662,6 +676,7 @@ The Markd Support Team</string>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="miO-0B-8wx" userLabel="Zip Text Field">
                                             <rect key="frame" x="10" y="10" width="355" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" textContentType="postal-code"/>
@@ -693,6 +708,7 @@ The Markd Support Team</string>
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="20" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8Ku-yj-YH3">
                                             <rect key="frame" x="271" y="7.5" width="94" height="29"/>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <action selector="onBedroomValueChanged:" destination="Z6f-OI-jAh" eventType="valueChanged" id="R4b-Hf-jPw"/>
                                             </connections>
@@ -727,6 +743,7 @@ The Markd Support Team</string>
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="0.5" maximumValue="20" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BBb-2h-qq1">
                                             <rect key="frame" x="271" y="7.5" width="94" height="29"/>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <action selector="onBathroomValueChanged:" destination="aYD-bx-Urg" eventType="valueChanged" id="pMA-0e-pY3"/>
                                             </connections>
@@ -761,6 +778,7 @@ The Markd Support Team</string>
                                         </label>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1250" minimumValue="600" maximumValue="40000" stepValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="qBX-w9-9HL">
                                             <rect key="frame" x="271" y="7.5" width="94" height="29"/>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <action selector="onSquareFootageValueChanged:" destination="3UD-Qz-uhx" eventType="valueChanged" id="jR6-UY-9JV"/>
                                             </connections>
@@ -859,4 +877,5 @@ The Markd Support Team</string>
         <image name="ic_action_pages" width="24" height="24"/>
         <image name="ic_action_settings" width="32" height="32"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

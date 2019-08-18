@@ -11,6 +11,7 @@ import UIKit
 
 class EditProfileViewController: UITableViewController, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance
+    private var textFields: [UITextField] = [UITextField](repeating:UITextField(), count: 6)
     var customerData: TempCustomerData?
     var contractorData: TempContractorData?
     var userType: String?
@@ -81,10 +82,14 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
             }
             cell.viewController = self
             cell.email = newEmail
+            textFields[0] = cell.emailTextField
+            cell.tag = 0
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "passwordConfirmationCell", for: indexPath) as! ConfirmPasswordCell
             cell.viewController = self
+            textFields[1] = cell.confirmPasswordTextField
+            cell.tag = 1
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
@@ -98,6 +103,7 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
             if selectedTitle != nil {
                 cell.textLabel?.text = selectedTitle
             }
+            cell.tag = 2
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "firstNameCell", for: indexPath) as! FirstNameCell
@@ -110,6 +116,8 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
                 }
             }
             cell.firstName = firstName
+            cell.tag = 3
+            textFields[3] = cell.firstNameTextField
             return cell
         } else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "lastNameCell", for: indexPath) as! LastNameCell
@@ -122,6 +130,8 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
                 }
             }
             cell.lastName = lastName
+            cell.tag = 4
+            textFields[4] = cell.lastNameTextField
             return cell
         } else if indexPath.row == 5 {
             if userType == "customer" {
@@ -149,53 +159,89 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 2 {
-            AlertControllerUtilities.showActionSheet(withTitle: "Which title do you prefer?", andMessage: nil, withOptions: [
-                    UIAlertAction(title: "Mr.", style: .default, handler: titleSelectionHandler),
-                    UIAlertAction(title: "Mrs.", style: .default, handler: titleSelectionHandler),
-                    UIAlertAction(title: "Ms.", style: .default, handler: titleSelectionHandler),
-                    UIAlertAction(title: "Dr.", style: .default, handler: titleSelectionHandler),
-                    UIAlertAction(title: "Rev.", style: .default, handler: titleSelectionHandler),
-                    UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                ],
-               in: self)
+            showTitleActionSheet()
         } else if indexPath.row == 5 {
             if userType == "customer" {
-                AlertControllerUtilities.showActionSheet(withTitle: "Current Marital Status", andMessage: nil, withOptions: [
-                    UIAlertAction(title: "Single", style: .default, handler: maritalStatusSelectionHandler),
-                    UIAlertAction(title: "Married", style: .default, handler: maritalStatusSelectionHandler),
-                    UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                    ],
-                    in: self)
+                showMaritalStatusActionSheet()
             } else {
-                AlertControllerUtilities.showActionSheet(withTitle: "Select Contractor Type", andMessage: nil, withOptions: [
-                    UIAlertAction(title: "Plumber", style: .default, handler: contractorTypeSelectionHandler),
-                    UIAlertAction(title: "Hvac", style: .default, handler: contractorTypeSelectionHandler),
-                    UIAlertAction(title: "Electrician", style: .default, handler: contractorTypeSelectionHandler),
-                    UIAlertAction(title: "Painter", style: .default, handler: contractorTypeSelectionHandler),
-                    UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                    ],
-                    in: self)
+                showContractorTypeActionSheet()
             }
         }
     }
     
     //Mark:- Action Handlers
+    func showTitleActionSheet() {
+        AlertControllerUtilities.showActionSheet(withTitle: "Which title do you prefer?", andMessage: nil, withOptions: [
+            UIAlertAction(title: "Mr.", style: .default, handler: titleSelectionHandler),
+            UIAlertAction(title: "Mrs.", style: .default, handler: titleSelectionHandler),
+            UIAlertAction(title: "Ms.", style: .default, handler: titleSelectionHandler),
+            UIAlertAction(title: "Dr.", style: .default, handler: titleSelectionHandler),
+            UIAlertAction(title: "Rev.", style: .default, handler: titleSelectionHandler),
+            UIAlertAction(title: "Cancel", style: .cancel, handler: titleSelectionHandler)
+            ],
+                                                 in: self)
+    }
+    func showMaritalStatusActionSheet() {
+        AlertControllerUtilities.showActionSheet(withTitle: "Current Marital Status", andMessage: nil, withOptions: [
+            UIAlertAction(title: "Single", style: .default, handler: maritalStatusSelectionHandler),
+            UIAlertAction(title: "Married", style: .default, handler: maritalStatusSelectionHandler),
+            UIAlertAction(title: "Cancel", style: .cancel, handler: maritalStatusSelectionHandler)
+            ],
+                                                 in: self)
+    }
+    func showContractorTypeActionSheet() {
+        AlertControllerUtilities.showActionSheet(withTitle: "Select Contractor Type", andMessage: nil, withOptions: [
+            UIAlertAction(title: "Plumber", style: .default, handler: contractorTypeSelectionHandler),
+            UIAlertAction(title: "Hvac", style: .default, handler: contractorTypeSelectionHandler),
+            UIAlertAction(title: "Electrician", style: .default, handler: contractorTypeSelectionHandler),
+            UIAlertAction(title: "Painter", style: .default, handler: contractorTypeSelectionHandler),
+            UIAlertAction(title: "Cancel", style: .cancel, handler: contractorTypeSelectionHandler)
+            ],
+                                                 in: self)
+    }
     func titleSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
-            selectedTitle = title
-            self.tableView.reloadData()
+            if title != "Cancel" {
+                selectedTitle = title
+                self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .none)
+            }
         }
+        changeTextField(from: 2)
     }
     func maritalStatusSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
-            maritalStatus = title
-            self.tableView.reloadData()
+            if title != "Cancel" {
+                maritalStatus = title
+                self.tableView.reloadData()
+            }
         }
+        changeTextField(from: 6)
     }
     func contractorTypeSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
-            contractorType = title
-            self.tableView.reloadData()
+            if title != "Cancel" {
+                contractorType = title
+                self.tableView.reloadData()
+            }
+        }
+        changeTextField(from: 6)
+    }
+    func changeTextField(from previousRow: Int) {
+        if previousRow == 0 {
+            textFields[previousRow + 1].becomeFirstResponder()
+        } else if previousRow == 1 {
+            showTitleActionSheet()
+        } else if previousRow < 4 {
+            textFields[previousRow + 1].becomeFirstResponder()
+        } else if previousRow == 4 {
+            textFields[previousRow].resignFirstResponder()
+            if userType == "customer" {
+                showMaritalStatusActionSheet()
+            } else {
+                showContractorTypeActionSheet()
+            }
+        } else {
+            resignFirstResponder()
         }
     }
     @IBAction func onConfirmAction(_ sender: UIBarButtonItem) {
@@ -263,7 +309,7 @@ class EmailCell:UITableViewCell, UITextFieldDelegate {
         }
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        viewController?.changeTextField(from: tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -281,7 +327,7 @@ class ConfirmPasswordCell:UITableViewCell, UITextFieldDelegate {
         }
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        viewController?.changeTextField(from: tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -304,7 +350,7 @@ class FirstNameCell:UITableViewCell, UITextFieldDelegate {
         }
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        viewController?.changeTextField(from: tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -327,7 +373,7 @@ class LastNameCell:UITableViewCell, UITextFieldDelegate {
         }
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        viewController?.changeTextField(from: tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {

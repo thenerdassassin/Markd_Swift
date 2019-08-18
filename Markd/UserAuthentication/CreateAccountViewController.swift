@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 
 class CreateAccountViewController:UITableViewController, LoginHandler, OnGetDataListener {
+    var textFields = [UITextField](repeating: UITextField(), count: 6)
     var customerData:TempCustomerData?
     var contractorData: TempContractorData?
     var email:String?
@@ -48,6 +49,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     }
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("Opening CrateAccountVC")
     }
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -69,16 +71,22 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             let cell = tableView.dequeueReusableCell(withIdentifier: "emailCell", for: indexPath) as! CreateEmailCell
             cell.viewController = self
             cell.email = email
+            cell.tag = 0
+            textFields[0] = cell.emailTextField
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "passwordCell", for: indexPath) as! CreatePasswordCell
             cell.viewController = self
             cell.password = password
+            cell.tag = 1
+            textFields[1] = cell.passwordTextField
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "passwordConfirmationCell", for: indexPath) as! PasswordConfirmationCell
             cell.viewController = self
             cell.password = confirmedPassword
+            cell.tag = 2
+            textFields[2] = cell.passwordTextField
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath)
@@ -87,16 +95,21 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             } else {
                 cell.textLabel?.text = "Title"
             }
+            cell.tag = 3
             return cell
         } else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "firstNameCell", for: indexPath) as! CreateFirstNameCell
             cell.viewController = self
             cell.firstName = firstName
+            cell.tag = 4
+            textFields[4] = cell.firstNameTextField
             return cell
         } else if indexPath.row == 5 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "lastNameCell", for: indexPath) as! CreateLastNameCell
             cell.viewController = self
             cell.lastName = lastName
+            cell.tag = 5
+            textFields[5] = cell.lastNameTextField
             return cell
         } else if indexPath.row == 6 {
             if isContractor {
@@ -106,6 +119,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
                 } else {
                     cell.textLabel?.text = "Contractor Type"
                 }
+                cell.tag = 6
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "maritalStatusCell", for: indexPath)
@@ -114,6 +128,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
                 } else {
                     cell.textLabel?.text = "Marital Status"
                 }
+                cell.tag = 6
                 return cell
             }
         }
@@ -124,7 +139,25 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
         if indexPath.row == badField {
             badField = nil
         }
-        if indexPath.row == 3 {
+        showActionSheet(for: indexPath.row)
+    }
+    //Mark:- Helper Functions
+    func changeTextField(from previousCell:Int) {
+        if previousCell < 2 {
+            textFields[previousCell + 1].becomeFirstResponder()
+        } else if previousCell == 2 {
+            showActionSheet(for: previousCell+1)
+        } else if previousCell < 5 {
+            textFields[previousCell + 1].becomeFirstResponder()
+        } else if previousCell == 5 {
+            showActionSheet(for: previousCell+1)
+        } else {
+            self.view.endEditing(true)
+        }
+    }
+    
+    func showActionSheet(for row:Int) {
+        if row == 3 {
             AlertControllerUtilities.showActionSheet(withTitle: "Which title do you prefer?", andMessage: nil, withOptions: [
                 UIAlertAction(title: "Mr.", style: .default, handler: titleSelectionHandler),
                 UIAlertAction(title: "Mrs.", style: .default, handler: titleSelectionHandler),
@@ -133,7 +166,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
                 UIAlertAction(title: "Rev.", style: .default, handler: titleSelectionHandler),
                 UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                 ], in: self)
-        } else if indexPath.row == 6 {
+        } else if row == 6 {
             if isContractor {
                 AlertControllerUtilities.showActionSheet(withTitle: "What type of contractor are you?", andMessage: nil, withOptions: [
                     UIAlertAction(title: "Plumber", style: .default, handler: contractorTypeSelectionHandler),
@@ -156,19 +189,22 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     func titleSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
             selectedTitle = title
-            self.tableView.reloadData()
+            self.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
+            changeTextField(from: 3)
         }
     }
     func maritalStatusSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
             maritalStatus = title
-            self.tableView.reloadData()
+            self.tableView.reloadRows(at: [IndexPath(row: 6, section: 0)], with: .none)
+            changeTextField(from: 6)
         }
     }
     func contractorTypeSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
             contractorType = title
-            self.tableView.reloadData()
+            self.tableView.reloadRows(at: [IndexPath(row: 6, section: 0)], with: .none)
+            changeTextField(from: 6)
         }
     }
     @IBAction func onDoneAction(_ sender: UIBarButtonItem) {
@@ -192,7 +228,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             badField = 1
             return false
         } else if password != confirmedPassword {
-            AlertControllerUtilities.showAlert(withTitle: "These passwords don't match.", andMessage: nil, withOptions: [UIAlertAction(title: "Try again", style: .default, handler: nil)], in: self)
+            AlertControllerUtilities.showAlert(withTitle: "Passwords do not match.", andMessage: nil, withOptions: [UIAlertAction(title: "Try again", style: .default, handler: nil)], in: self)
             badField = 2
             return false
         } else if StringUtilities.isNilOrEmpty(selectedTitle) || selectedTitle == "Title" {
@@ -282,7 +318,8 @@ class CreateEmailCell:UITableViewCell, UITextFieldDelegate {
         }
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        //textField.resignFirstResponder()
+        viewController?.changeTextField(from: self.tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -308,6 +345,7 @@ class CreatePasswordCell:UITableViewCell, UITextFieldDelegate {
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        viewController?.changeTextField(from: self.tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -333,6 +371,7 @@ class PasswordConfirmationCell:UITableViewCell, UITextFieldDelegate {
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        viewController?.changeTextField(from: self.tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -358,6 +397,7 @@ class CreateFirstNameCell:UITableViewCell, UITextFieldDelegate {
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        viewController?.changeTextField(from: self.tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -383,6 +423,7 @@ class CreateLastNameCell:UITableViewCell, UITextFieldDelegate {
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        viewController?.changeTextField(from: self.tag)
         return true;
     }
     public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {

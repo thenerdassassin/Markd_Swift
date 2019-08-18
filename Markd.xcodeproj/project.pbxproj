@@ -209,14 +209,14 @@
 			isa = PBXGroup;
 			children = (
 				FFD93B0E210D074300B1E07A /* Markd.entitlements */,
+				FF6C030C2038965A0058259F /* DataObjects */,
 				FF9A5B3D208AA405007E9669 /* Storyboards */,
 				FF40718B20827E980008883A /* PickerViewControllers */,
-				FFF45D81203CE57200EC732B /* Utilities */,
-				FF6C030C2038965A0058259F /* DataObjects */,
-				FF6C030B203896230058259F /* CustomerSubMenuViewControllers */,
 				FF65BBE8218DF961003D775C /* ContractorMenuViewControllers */,
 				FF6C030A203895E00058259F /* CustomerMenuViewControllers */,
+				FF6C030B203896230058259F /* CustomerSubMenuViewControllers */,
 				FF6C0309203895B60058259F /* UserAuthentication */,
+				FFF45D81203CE57200EC732B /* Utilities */,
 				47E0EA411DF3865C001F417F /* AppDelegate.swift */,
 				4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */,
 				FFD93B0C210CFE9C00B1E07A /* GoogleService-Info.plist */,
@@ -738,12 +738,12 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SZ3DXFSCH3;
 				INFOPLIST_FILE = Markd/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.schmidt.happens.markd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -758,12 +758,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SZ3DXFSCH3;
 				INFOPLIST_FILE = Markd/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.schmidt.happens.markd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

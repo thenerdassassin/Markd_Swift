@@ -89,12 +89,7 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
         
         if let url = URL(string: "tel://\(phoneNumber)") {
             if(UIApplication.shared.canOpenURL(url)) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url)
-                } else {
-                    // Fallback on earlier versions
-                    UIApplication.shared.openURL(url)
-                }
+                UIApplication.shared.open(url)
             }
         }
     }
@@ -103,13 +98,9 @@ public class ContractorFooterViewController: UIViewController, OnGetContractorLi
             return
         }
         print(url)
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (success) in
-                print("Open url : \(success)")
-            })
-        } else {
-            UIApplication.shared.openURL(url)
-        }
+        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (success) in
+            print("Open url : \(success)")
+        })
     }
     private func getWebsiteUrl(from string:String) -> URL? {
         let charSet = NSMutableCharacterSet()

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class EditPaintingSurfaceViewController: UITableViewController {
+    var textFields = [UITextField](repeating: UITextField(), count: 3)
     var datePickerVisible = false
     var customerData:TempCustomerData?
     var paintSurfaceIndex: Int?
@@ -73,6 +74,8 @@ class EditPaintingSurfaceViewController: UITableViewController {
                     cell.surfaceViewController = self
                     cell.location = paintSurface.getLocation()
                 }
+                cell.tag = 0
+                textFields[0] = cell.locationTextField
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "brandCell", for: indexPath) as! BrandTableViewCell
@@ -80,6 +83,8 @@ class EditPaintingSurfaceViewController: UITableViewController {
                     cell.surfaceViewController = self
                     cell.brand = paintSurface.getBrand()
                 }
+                cell.tag = 1
+                textFields[1] = cell.brandTextView
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "colorCell", for: indexPath) as! ColorTableViewCell
@@ -87,12 +92,15 @@ class EditPaintingSurfaceViewController: UITableViewController {
                     cell.surfaceViewController = self
                     cell.color = paintSurface.getColor()
                 }
+                cell.tag = 2
+                textFields[2] = cell.colorTextView
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath) as! PaintDateTableViewCell
                 if let paintSurface = paintSurface {
                     cell.date = paintSurface.installDateAsString()
                 }
+                cell.tag = 3
                 return cell
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "datePickerTableCell", for: indexPath) as! PaintDatePickerTableViewCell
@@ -139,6 +147,16 @@ class EditPaintingSurfaceViewController: UITableViewController {
             tableView.endUpdates()
         }
     }
+    
+    func changeFirstResponder(fromIndex currentRow:Int) {
+        if currentRow == 0 {
+           textFields[1].becomeFirstResponder()
+        } else if currentRow == 1 {
+            textFields[2].becomeFirstResponder()
+        } else if currentRow == 2 {
+            toggleDatePicker()
+        }
+    }
 }
 
 //Mark:- TableViewCells
@@ -163,6 +181,7 @@ public class LocationTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        surfaceViewController!.changeFirstResponder(fromIndex: self.tag)
         return true;
     }
 }
@@ -187,6 +206,7 @@ public class BrandTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        surfaceViewController!.changeFirstResponder(fromIndex: self.tag)
         return true;
     }
 }
@@ -211,6 +231,7 @@ public class ColorTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        surfaceViewController!.changeFirstResponder(fromIndex: self.tag)
         return true;
     }
 }

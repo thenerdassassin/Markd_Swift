@@ -58,6 +58,14 @@ public class StringUtilities {
                              withYear: calendar.component(Calendar.Component.year, from: date))!
     }
     
+    public static func getCurrentDateString(seperatedBy seperator:String) -> String {
+        let date = Date()
+        let calendar = Calendar.current
+        return "\(calendar.component(Calendar.Component.year, from: date))/"
+                + "\( calendar.component(Calendar.Component.month, from: date))/"
+                + "\(calendar.component(Calendar.Component.day, from: date))"
+    }
+    
     public static func getComponentsFrom(dotFormmattedString date: String?) -> [Int?] {
         var componentsToReturn = [Int?](repeating: nil, count:3)
         guard StringUtilities.isNotNilOrEmpty(date) else {

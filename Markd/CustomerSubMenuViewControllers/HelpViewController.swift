@@ -72,21 +72,14 @@ public class HelpViewController: UIViewController, OnGetDataListener {
     }
 
     //Mark: SendEmailHandlers
-    private func sendSuccess(_ data: Data?, _ response: URLResponse?) {
+    private func sendSuccess() {
         OperationQueue.main.addOperation {
             self.sendingIndicator.stopAnimating()
-            if let response = response as? HTTPURLResponse {
-                if(response.statusCode == 200) {
-                    AlertControllerUtilities.showAlert(
-                        withTitle: "Thanks 😁",
-                        andMessage: "An email has been sent to the support team. We appreciate your feedback.",
-                        withOptions: [UIAlertAction(title: "Ok", style: .default, handler: self.emailSuccessAlertHandler)],
-                        in: self)
-                } else {
-                    print(response.statusCode)
-                    AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.HttpError)
-                }
-            }
+            AlertControllerUtilities.showAlert(
+                withTitle: "Thanks 😁",
+                andMessage: "An email has been sent to the support team. We appreciate your feedback.",
+                withOptions: [UIAlertAction(title: "Ok", style: .default, handler: self.emailSuccessAlertHandler)],
+                in: self)
         }
     }
     private func emailSuccessAlertHandler(action:UIAlertAction) {

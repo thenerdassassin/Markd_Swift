@@ -67,6 +67,7 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
         if let customerData = customerData, let type = serviceType, let index = serviceIndex, let service = service, let fileNumber = fileIndex, let updatedFile = file {
             var files = service.getFiles()
             files[fileNumber] = updatedFile
+            print("Updating index: \(index)")
             delegate?.customerData = customerData.update(service.setFiles(files), index, of: type)
         }
     }
@@ -238,6 +239,8 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
         //2. Add the text field. You can configure it however you need.
         alert.addTextField { (textField) in
             textField.placeholder = "File"
+            textField.keyboardType = UIKeyboardType.asciiCapable
+            textField.returnKeyType = UIReturnKeyType.done
         }
         
         // 3. Grab the value from the text field, and print it when the user clicks OK.
@@ -246,7 +249,6 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
             if(!StringUtilities.isNilOrEmpty(alert!.textFields![0].text)) {
                 self.navigationItem.title = alert!.textFields![0].text
                 self.file!.setFileName(to: self.navigationItem.title!)
-                
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -256,7 +258,7 @@ class ServiceFileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func fileImageTapGesture(_ sender: UITapGestureRecognizer) {
-        PhotoUtilities(self).getImage()
+        PhotoUtilities(self).getImage(with: "Picture of Services")
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
