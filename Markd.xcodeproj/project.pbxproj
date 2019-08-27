@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4067C6E07EFE63BA165B7ECB /* Pods_Markd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5098B1444AC29248521536 /* Pods_Markd.framework */; };
+		4332BD64230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332BD63230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift */; };
 		4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */; };
 		47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA411DF3865C001F417F /* AppDelegate.swift */; };
 		47E0EA471DF3865C001F417F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E0EA451DF3865C001F417F /* Main.storyboard */; };
@@ -86,6 +87,7 @@
 
 /* Begin PBXFileReference section */
 		0DFBB433CDDC1835F81D6E42 /* Pods-Markd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.debug.xcconfig"; sourceTree = "<group>"; };
+		4332BD63230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchasesObserver.swift; sourceTree = "<group>"; };
 		4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		47E0EA3E1DF3865C001F417F /* Markd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Markd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E0EA411DF3865C001F417F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -306,24 +308,24 @@
 		FF6C030C2038965A0058259F /* DataObjects */ = {
 			isa = PBXGroup;
 			children = (
-				FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */,
-				FFF27C8D2041E18600A9392E /* Customer.swift */,
 				FFF27C91204203E500A9392E /* Address.swift */,
-				FFF27C93204619A700A9392E /* Home.swift */,
-				FFBE8003205D8C8200A7D9FE /* HotWater.swift */,
-				FF592F7220683E090031DA92 /* Boiler.swift */,
 				FFB5658B2079335100F6E8F1 /* AirHandler.swift */,
-				FFB5658D2079335B00F6E8F1 /* Compressor.swift */,
 				FFB56591207AA8F500F6E8F1 /* Appliance.swift */,
+				FF592F7220683E090031DA92 /* Boiler.swift */,
+				FF2CC32A20D1D26900A181F1 /* Breaker.swift */,
+				FFB5658D2079335B00F6E8F1 /* Compressor.swift */,
 				FF9A5B392086C2D3007E9669 /* Contractor.swift */,
 				FF9A5B3B2086C69F007E9669 /* ContractorDetails.swift */,
 				FF6BF1EA2094EC67001D55EF /* ContractorService.swift */,
+				FFF27C8D2041E18600A9392E /* Customer.swift */,
+				FF9CDB2B215FEAF300902C7F /* FirebaseFile.swift */,
+				FFF27C93204619A700A9392E /* Home.swift */,
+				FFBE8003205D8C8200A7D9FE /* HotWater.swift */,
 				FF5D7A6C20B0AEAD008A05FC /* PaintSurface.swift */,
 				FF63004520C768C6006C0208 /* Panel.swift */,
-				FF2CC32A20D1D26900A181F1 /* Breaker.swift */,
 				FF13E48520D9D59F00B5100B /* PanelAmerage.swift */,
-				FF9CDB2B215FEAF300902C7F /* FirebaseFile.swift */,
 				FF9CDB3621768C5500902C7F /* TempContractorData.swift */,
+				FFF27C8B2041DB2C00A9392E /* TempCustomerData.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -357,6 +359,7 @@
 				FF1C354621039FA50062CBA2 /* ZipCodeUtitilities.swift */,
 				FF9CDB312161968B00902C7F /* PhotoUtilities.swift */,
 				FF9CDB342174028100902C7F /* MarkdError.swift */,
+				4332BD63230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				FF9A5B42208AA484007E9669 /* ContractorFooterViewController.swift in Sources */,
 				FFF45D85203CE77200EC732B /* ToastUtilities.swift in Sources */,
 				FF13E48820E4550700B5100B /* ManufacturerPickerView.swift in Sources */,
+				4332BD64230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift in Sources */,
 				FF9A5B3C2086C69F007E9669 /* ContractorDetails.swift in Sources */,
 				FFF27C902041F76E00A9392E /* StringUtilities.swift in Sources */,
 				FFB5658E2079335B00F6E8F1 /* Compressor.swift in Sources */,

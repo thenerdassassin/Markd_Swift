@@ -19,6 +19,16 @@ public class AlertControllerUtilities {
         viewController.present(alert, animated: true)
     }
     
+    public static func showPurchaseAlert(in viewController: UIViewController & PurchaseHandler) {
+        showAlert(
+            withTitle: "Purchase Subscription",
+            andMessage: "To send notifications to customers or log services done on customer's homes a subscription is needed.\nAnnual Subscription costs\n$199.99 per year",
+            withOptions: [
+                UIAlertAction(title: "Not now", style: .cancel, handler: viewController.purchase),
+                UIAlertAction(title: "Subscribe", style: .default, handler: viewController.purchase)
+                ], in: viewController)
+    }
+    
     public static func showAlert(withTitle title: String, andMessage message: String?, withOptions actions:[UIAlertAction], in viewController: UIViewController) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         for action in actions {

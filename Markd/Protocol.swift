@@ -48,6 +48,10 @@ public protocol OnGetContractorListener {
     func onFinished(contractor: Contractor?, at reference: String?)
     func onFailure(_ error: Error)
 }
+public protocol PurchaseHandler {
+    func purchase(_: UIAlertAction) -> Void
+    func purchase(wasSuccessful:Bool)
+}
 
 extension CustomStringConvertible {
     public var description: String {

@@ -17,8 +17,9 @@ public class Contractor:CustomStringConvertible {
     private var lastName:String
     private var type:String
     private var contractorDetails:ContractorDetails?
-    private var customers: [String]
-    private var logoFileName: String
+    private var customers:[String]
+    private var logoFileName:String
+    private var subscriptionExpiration:String?
     
     //Constructors
     public init(_ dictionary: Dictionary<String, AnyObject>) {
@@ -39,6 +40,7 @@ public class Contractor:CustomStringConvertible {
         }
         customers.sort()
         self.logoFileName = dictionary["logoFileName"] != nil ? dictionary["logoFileName"] as! String: ""
+        self.subscriptionExpiration = dictionary["subscriptionExpiration"] as? String
     }
     func toDictionary() -> Dictionary<String, AnyObject> {
         var dictionary = Dictionary<String, AnyObject>()
@@ -56,6 +58,7 @@ public class Contractor:CustomStringConvertible {
         }
         dictionary["customers"] = customersArray
         dictionary["userType"] = self.userType as AnyObject
+        dictionary["subscriptionExpiration"] = self.subscriptionExpiration as AnyObject
         
         return dictionary
     }
@@ -114,6 +117,34 @@ public class Contractor:CustomStringConvertible {
     }
     public func setCustomers(to customers:[String]) -> Contractor {
         self.customers = customers
+        return self
+    }
+    
+    public func getSubscriptionExpiration() -> Date? {
+        guard let subscriptionExpiration = self.subscriptionExpiration else {
+            return nil
+        }
+        
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM.dd.yyyy"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+         // set locale to reliable US_POSIX
+        return dateFormatter.date(from:subscriptionExpiration)!
+    }
+    
+    public func setSubscriptionExpiration(to date:Date?) -> Contractor {
+        guard let date = date else {
+            self.subscriptionExpiration = nil
+            return self
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM.dd.yyyy"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        self.subscriptionExpiration = dateFormatter.string(from: date)
         return self
     }
     
