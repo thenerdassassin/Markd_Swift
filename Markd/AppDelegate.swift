@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import UserNotifications
+import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        SKPaymentQueue.default().add(InAppPurchasesObserver.instance)
+        InAppPurchasesObserver.instance.getSKProduct()
         Messaging.messaging().delegate = self
         registerForPushNotifications(application)
         application.applicationIconBadgeNumber = 0
@@ -45,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        SKPaymentQueue.default().remove(InAppPurchasesObserver.instance)
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

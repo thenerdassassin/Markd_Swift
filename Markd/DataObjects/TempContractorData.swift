@@ -118,17 +118,22 @@ public class TempContractorData:CustomStringConvertible {
     public func getLogoImageFileName() -> String? {
         if let contractor = contractor, let contractorId = contractorId {
             return "logos/" + contractorId + "/" + contractor.getLogoFileName();
-        } else {
-            return nil
         }
+        return nil
     }
     public func setLogoImageFileName() -> String? {
         if let contractor = contractor {
             updateContractor(to: contractor.setLogoFileName())
             return self.getLogoImageFileName()
-        } else {
-            return nil
         }
+        return nil
+    }
+    
+    public func getSubscriptionExpirationDate() -> Date? {
+        return getContractor()?.getSubscriptionExpiration()
+    }
+    public func setSubscriptionExpiration(to date:Date?){
+        updateContractor(to: getContractor()?.setSubscriptionExpiration(to: date))
     }
     
     public func getCustomers() -> [String]? {

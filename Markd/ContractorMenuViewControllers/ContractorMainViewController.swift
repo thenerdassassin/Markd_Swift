@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-public class ContractorMainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OnGetDataListener {
+public class ContractorMainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, OnGetDataListener, PurchaseHandler {
     private let authentication = FirebaseAuthentication.sharedInstance
     private var contractorData: TempContractorData?
     private var logoImageExists = false
@@ -63,6 +63,7 @@ public class ContractorMainViewController: UIViewController, UIImagePickerContro
             } else {
                 AlertControllerUtilities.showAlert(withTitle: "Welcome to Markd 😃", andMessage: "First, let's get some info about your company.", withOptions: [UIAlertAction(title: "Ok", style: .default, handler: addCompanyInformation)], in: self)
                 companyDetailsLabel.text = "Loading...."
+                return
             }
             
             if let fileName = contractorData.getLogoImageFileName() {
@@ -82,6 +83,10 @@ public class ContractorMainViewController: UIViewController, UIImagePickerContro
             } else {
                 self.logoImageExists = false
                 logoImage.kf.setImage(with: nil, placeholder: placeholderImage)
+            }
+            
+            if contractorData.getSubscriptionExpirationDate() == nil {
+                AlertControllerUtilities.showPurchaseAlert(in: self)
             }
         }
     }
@@ -175,6 +180,27 @@ public class ContractorMainViewController: UIViewController, UIImagePickerContro
     
     public func onFailure(_ error: Error) {
         debugPrint(error)
+    }
+    
+    //Mark:- PurchaseHandler Implementation
+    public func purchase(_ action: UIAlertAction) {
+        //Prevent message from being shown every time by setting subscription expiration to the past
+        let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        contractorData?.setSubscriptionExpiration(to: sevenDaysAgo)
+        if action.title == "Subscribe" {
+            //The Observer will set the expiration date to the future if purchase is successful
+            InAppPurchasesObserver.instance.purchase(self)
+        }
+    }
+    
+    public func purchase(wasSuccessful: Bool) {
+        if wasSuccessful {
+            let oneYearFromNow = Calendar.current.date(byAdding: .year, value: 1, to: Date())
+            contractorData?.setSubscriptionExpiration(to: oneYearFromNow)
+        } else {
+            let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+            contractorData?.setSubscriptionExpiration(to: sevenDaysAgo)
+        }
     }
 }
 

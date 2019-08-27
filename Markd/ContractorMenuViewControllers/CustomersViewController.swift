@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGetDataListener {
+class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGetDataListener, PurchaseHandler {
     private let authentication = FirebaseAuthentication.sharedInstance
     public var contractorData:TempContractorData?
     
@@ -51,7 +51,11 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         self.tableView.reloadData()
     }
     
-    //TODO: shouldPerformSegue
+    private func isSubscribed() -> Bool {
+        // Give them three days to renew subscription otherwise show purchase alert
+        return contractorData?.getSubscriptionExpirationDate() != nil && Calendar.current.date(byAdding: .day, value: 3, to: Date())! < contractorData!.getSubscriptionExpirationDate()!
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "sendNotificationToCustomerSegue" {
             if let sender = sender as? CustomerInformationCell {
@@ -128,7 +132,7 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         }
     }
 
-    // MARK: - Table view data source
+    //MARK:- Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -164,7 +168,12 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = UITableViewCell()
-            cell.textLabel?.text = "Message All Customers"
+            
+            if isSubscribed() {
+                cell.textLabel?.text = "Message All Customers"
+            } else {
+                cell.textLabel?.text = "Subscribe"
+            }
             return cell
         } else if indexPath.section == 1 {
             let customerCount = searchBarIsEmpty() ? customersList.count : filteredCustomerList.count
@@ -181,6 +190,10 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedCell = tableView.cellForRow(at: indexPath)
         if indexPath.section == 0 {
+            guard isSubscribed() else {
+                AlertControllerUtilities.showPurchaseAlert(in: self)
+                return
+            }
             performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: selectedCell)
         } else {
             let customerCount = searchBarIsEmpty() ? customersList.count : filteredCustomerList.count
@@ -189,6 +202,10 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
                     withTitle: "Select Action 🔨", andMessage: "What would you like to do for your customer?",
                     withOptions: [
                         UIAlertAction(title: "Send Notification", style: .default, handler: { _ in
+                            guard self.isSubscribed() else {
+                                AlertControllerUtilities.showPurchaseAlert(in: self)
+                                return
+                            }
                             self.performSegue(withIdentifier: "sendNotificationToCustomerSegue", sender: selectedCell)
                             
                         }),
@@ -221,6 +238,10 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
             return
         }
+        guard isSubscribed() else {
+            AlertControllerUtilities.showPurchaseAlert(in: self)
+            return
+        }
         
         switch contractorType {
         case "Plumber":
@@ -251,6 +272,10 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
             return
         }
+        guard isSubscribed() else {
+            AlertControllerUtilities.showPurchaseAlert(in: self)
+            return
+        }
         
         switch contractorType {
         case "Plumber":
@@ -279,6 +304,11 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
         } else {
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
         }
+        
+        guard isSubscribed() else {
+            AlertControllerUtilities.showPurchaseAlert(in: self)
+            return
+        }
     }
     private func errorListener(error:Error) {
         AlertControllerUtilities.somethingWentWrong(with: self, because: error)
@@ -298,6 +328,7 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
                 getCustomerData(with: contractorId)
             }
         }
+        
     }
     
     public func onFailure(_ error: Error) {
@@ -335,6 +366,27 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
             filteredCustomerList = customersList.filter({(customer: Customer) -> Bool in
                 return customer.getAddress()?.toString().range(of: string, options: .caseInsensitive) != nil
             }).sorted(by: {$0.getLastName() < $1.getLastName()})
+        }
+    }
+    
+    //Mark:- PurchaseHandler Implementation
+    public func purchase(_ action: UIAlertAction) {
+        //Prevent message from being shown every time by setting subscription expiration to the past
+        let oneDayAgo = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+        contractorData?.setSubscriptionExpiration(to: oneDayAgo)
+        if action.title == "Subscribe" {
+            //The Observer will set the expiration date to the future if purchase is successful
+            InAppPurchasesObserver.instance.purchase(self)
+        }
+    }
+    
+    public func purchase(wasSuccessful: Bool) {
+        if wasSuccessful {
+            let oneYearFromNow = Calendar.current.date(byAdding: .year, value: 1, to: Date())
+            contractorData?.setSubscriptionExpiration(to: oneYearFromNow)
+        } else {
+            let fourDaysAgo = Calendar.current.date(byAdding: .day, value: -4, to: Date())
+            contractorData?.setSubscriptionExpiration(to: fourDaysAgo)
         }
     }
 }
