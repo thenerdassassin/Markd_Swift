@@ -128,7 +128,10 @@ class FindContractorViewController:UITableViewController, OnGetDataListener {
 
     private func getContractors(from zipcodes: [String]) {
         if zipcodes.isEmpty {
-            AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnsupportedConfiguration)
+            AlertControllerUtilities.showAlert(
+                withTitle: "No \(self.selectedContractorType) Found 😢",
+                andMessage: "Check the Zip Code is valid or contact us to investigate.",
+                withOptions: [UIAlertAction(title: "Ok", style: .default, handler: nil)], in: self)
         }
         zipCodeDatabase.observeSingleEvent(of: .value, with: { (snapshot) in
             if let zipCodes = snapshot.value as? NSDictionary {

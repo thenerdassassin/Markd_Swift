@@ -377,12 +377,13 @@
                                                 <segment title="Months"/>
                                                 <segment title="Years"/>
                                             </segments>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <action selector="onUnitsValueChanged:" destination="1Zs-b3-c3k" eventType="valueChanged" id="Ncx-3Y-Cw1"/>
                                             </connections>
                                         </segmentedControl>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1.5" translatesAutoresizingMaskIntoConstraints="NO" id="atA-Hi-xWt">
-                                            <rect key="frame" x="8" y="7" width="167" height="31"/>
+                                            <rect key="frame" x="28" y="7" width="147" height="31"/>
                                             <color key="tintColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="onLifeSpanValueChanged:" destination="1Zs-b3-c3k" eventType="valueChanged" id="PyP-hV-yH8"/>
@@ -395,7 +396,7 @@
                                         <constraint firstItem="atA-Hi-xWt" firstAttribute="centerY" secondItem="PyG-gx-2P0" secondAttribute="centerY" id="Sjs-Jx-5Kx"/>
                                         <constraint firstAttribute="height" secondItem="JVm-b4-TV4" secondAttribute="height" constant="10" id="fvb-JK-AGp"/>
                                         <constraint firstAttribute="trailing" secondItem="JVm-b4-TV4" secondAttribute="trailing" constant="10" id="hOh-d8-fW2"/>
-                                        <constraint firstItem="atA-Hi-xWt" firstAttribute="leading" secondItem="PyG-gx-2P0" secondAttribute="leading" constant="10" id="saT-ZZ-gEp"/>
+                                        <constraint firstItem="atA-Hi-xWt" firstAttribute="leading" secondItem="PyG-gx-2P0" secondAttribute="leading" constant="30" id="saT-ZZ-gEp"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

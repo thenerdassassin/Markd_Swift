@@ -95,12 +95,13 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
             let destination = segue.destination as! ServiceFileViewController
             
             if let sender = sender as? UITableViewCell {
-                // Old Service being updated
+                print("Old file being updated")
+                // Old file being updated
                 destination.fileIndex = sender.tag
                 destination.service = service
-                destination.serviceIndex = serviceIndex
             } else {
-                // New Service being createad
+                print("New file being created")
+                // New file being createad
                 if let urls = sender as? Array<URL> {
                     destination.pdfUrl = urls[0]
                 }
@@ -108,8 +109,16 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
                 files.append(FirebaseFile([:]))
                 destination.fileIndex = files.count-1
                 destination.service = service!.setFiles(files)
+            }
+            
+            //Check if this is a new file
+            if serviceIndex == nil || serviceIndex! < 0 {
+                print("New service")
                 // Service index will be equal to the current count because it will be appended
                 destination.serviceIndex = customerData?.getServiceCount(of: serviceType!)
+            } else {
+                print("Old service")
+                destination.serviceIndex = serviceIndex
             }
             
             destination.serviceType = serviceType
@@ -220,6 +229,7 @@ class ContractorServiceTableViewController: UITableViewController, UIDocumentPic
                 cell.textLabel?.text = files[indexPath.row].getFileName()
                 cell.accessoryType = .disclosureIndicator
                 cell.tag = indexPath.row
+                print("Row: \(indexPath.row)")
                 return cell
             }
             return noFilesCell(indexPath)
