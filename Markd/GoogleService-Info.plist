@@ -2,39 +2,35 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
-	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>302940232325-4acbhum7o2imfcm45os36nlpghhmva97.apps.googleusercontent.com</string>
+	<string>659561774379-d0sd1odcmlkqg5kpv4pnm02ghhr5pnr0.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.302940232325-4acbhum7o2imfcm45os36nlpghhmva97</string>
+	<string>com.googleusercontent.apps.659561774379-d0sd1odcmlkqg5kpv4pnm02ghhr5pnr0</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDDhJ_0jQr5-p3WJ6uLUiQ_73QOVBGfHUw</string>
+	<string>AIzaSyDw5T6nyxbQoZfjWP2NbmKFkqRltRtdmeE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>302940232325</string>
+	<string>659561774379</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.schmidthappens.markd</string>
+	<string>com.markd.applications.ios.home</string>
 	<key>PROJECT_ID</key>
-	<string>markd-schmidt-happens</string>
+	<string>markd-home</string>
 	<key>STORAGE_BUCKET</key>
-	<string>markd-schmidt-happens.appspot.com</string>
+	<string>markd-home.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
 	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:302940232325:ios:9cdf23137b54e7dd</string>
+	<string>1:659561774379:ios:e29e974adc4317f2</string>
 	<key>DATABASE_URL</key>
-	<string>https://markd-schmidt-happens.firebaseio.com</string>
+	<string>https://markd-home.firebaseio.com</string>
 </dict>
 </plist>
