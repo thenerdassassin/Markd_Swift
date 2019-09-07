@@ -13,7 +13,7 @@ class InAppPurchasesObserver: NSObject, SKProductsRequestDelegate, SKPaymentTran
     static let instance = InAppPurchasesObserver()
     
     private var handler:PurchaseHandler?
-    fileprivate var productId = "contractor_annual_subscription"
+    fileprivate var productId = "markd_contractor_annual" //Will need to change for development
     fileprivate var productsRequest = SKProductsRequest()
     fileprivate var productToPurchase: SKProduct?
     
