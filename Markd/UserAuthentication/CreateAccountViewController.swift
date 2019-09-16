@@ -20,7 +20,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     var selectedTitle:String?
     var firstName:String?
     var lastName:String?
-    var maritalStatus:String?
+    var maritalStatus:String = ""
     var isContractor:Bool = false
     var contractorType:String?
     var badField:Int? {
@@ -123,7 +123,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "maritalStatusCell", for: indexPath)
-                if maritalStatus != nil {
+                if !StringUtilities.isNilOrEmpty(maritalStatus) {
                     cell.textLabel?.text = maritalStatus
                 } else {
                     cell.textLabel?.text = "Marital Status"
@@ -179,6 +179,7 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
                 AlertControllerUtilities.showActionSheet(withTitle: "Current Marital Status", andMessage: nil, withOptions: [
                     UIAlertAction(title: "Single", style: .default, handler: maritalStatusSelectionHandler),
                     UIAlertAction(title: "Married", style: .default, handler: maritalStatusSelectionHandler),
+                    UIAlertAction(title: "Prefer not to say", style: .default, handler: maritalStatusSelectionHandler),
                     UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                     ], in: self)
             }
@@ -195,7 +196,11 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
     }
     func maritalStatusSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
-            maritalStatus = title
+            if title == "Prefer not to say" {
+                maritalStatus = ""
+            } else {
+                maritalStatus = title
+            }
             self.tableView.reloadRows(at: [IndexPath(row: 6, section: 0)], with: .none)
             changeTextField(from: 6)
         }
@@ -247,12 +252,6 @@ class CreateAccountViewController:UITableViewController, LoginHandler, OnGetData
             if isContractor {
                 if StringUtilities.isNilOrEmpty(contractorType) || maritalStatus == "Contractor Type" {
                     AlertControllerUtilities.showAlert(withTitle: "Contractor Type is required.", andMessage: nil, withOptions: [UIAlertAction(title: "Try again", style: .default, handler: nil)], in: self)
-                    badField = 6
-                    return false
-                }
-            } else {
-                if StringUtilities.isNilOrEmpty(maritalStatus) || maritalStatus == "Marital Status" {
-                    AlertControllerUtilities.showAlert(withTitle: "Marital Status is required.", andMessage: nil, withOptions: [UIAlertAction(title: "Try again", style: .default, handler: nil)], in: self)
                     badField = 6
                     return false
                 }

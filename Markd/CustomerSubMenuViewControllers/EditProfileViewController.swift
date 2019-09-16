@@ -139,8 +139,10 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
                 if maritalStatus == nil && customerData?.getMaritalStatus() != nil {
                     maritalStatus = customerData!.getMaritalStatus()
                 }
-                if maritalStatus != nil {
+                if !StringUtilities.isNilOrEmpty(maritalStatus) {
                     cell.textLabel?.text = maritalStatus
+                } else {
+                    cell.textLabel?.text = "Marital Status"
                 }
                 return cell
             } else if userType == "contractor" {
@@ -185,6 +187,7 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
         AlertControllerUtilities.showActionSheet(withTitle: "Current Marital Status", andMessage: nil, withOptions: [
             UIAlertAction(title: "Single", style: .default, handler: maritalStatusSelectionHandler),
             UIAlertAction(title: "Married", style: .default, handler: maritalStatusSelectionHandler),
+            UIAlertAction(title: "Prefer not to say", style: .default, handler: maritalStatusSelectionHandler),
             UIAlertAction(title: "Cancel", style: .cancel, handler: maritalStatusSelectionHandler)
             ],
                                                  in: self)
@@ -210,7 +213,10 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
     }
     func maritalStatusSelectionHandler(alert: UIAlertAction!) {
         if let title = alert.title {
-            if title != "Cancel" {
+            if title == "Prefer not to say" {
+                maritalStatus = ""
+                self.tableView.reloadData()
+            } else if title != "Cancel" {
                 maritalStatus = title
                 self.tableView.reloadData()
             }
@@ -267,8 +273,7 @@ class EditProfileViewController: UITableViewController, OnGetDataListener {
                 let lastName = self.lastName != nil ? self.lastName!:""
                 if self.userType == "customer" {
                     self.customerData?.updateName(title: selectedTitle, with: firstName, and: lastName)
-                    let maritalStatus = self.maritalStatus != nil ? self.maritalStatus!:"Single"
-                    self.customerData?.updateMaritalStatus(to: maritalStatus)
+                    self.customerData?.updateMaritalStatus(to: self.maritalStatus)
                 } else if self.userType == "contractor" {
                     let contractorType = self.contractorType != nil ? self.contractorType!:"plumber"
                     self.contractorData?.update(title: selectedTitle, with: firstName, and: lastName, type: contractorType)

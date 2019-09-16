@@ -94,8 +94,14 @@ public class StringUtilities {
         return componentsToReturn
     }
     
-    public static func getFormattedName(withPrefix prefix: String, withFirstName firstName: String, withLastName lastName: String, withMaritalStatus maritalStatus: String) -> String{
-        return "\(isNotNilOrEmpty(prefix) ? prefix + " " : "")\(maritalStatus == "Married" && isNotNilOrEmpty(prefix) ? "and Mrs. " : "")\(isNotNilOrEmpty(firstName) ? "\(firstName) " : "") \(lastName)"
+    public static func getFormattedName(withPrefix prefix: String?, withFirstName firstName: String, withLastName lastName: String, withMaritalStatus maritalStatus: String?) -> String {
+        if maritalStatus == "Married" && isNotNilOrEmpty(lastName) {
+            return "The \(lastName)'s home"
+        } else if isNotNilOrEmpty(prefix) {
+            return "\(prefix!) \(firstName) \(lastName)"
+        } else {
+            return "\(firstName) \(lastName)"
+        }
     }
     
     public static func set(_ datePicker:UIDatePicker, to date:String) {
