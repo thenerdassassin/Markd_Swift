@@ -26,14 +26,14 @@ public class Customer:CustomStringConvertible {
     private var homeImageFileName: String
     
     //For Plumbing Page
-    private var hotWater: HotWater?
-    private var boiler: Boiler?
+    private var hotWater: [HotWater]?
+    private var boiler: [Boiler]?
     private var plumberReference: String
     private var plumbingServices: [ContractorService]?
     
     //For HVAC Page
-    private var airHandler: AirHandler?
-    private var compressor: Compressor?
+    private var airHandler: [AirHandler]?
+    private var compressor: [Compressor]?
     private var hvactechnicianReference: String
     private var hvacServices: [ContractorService]?
     
@@ -71,10 +71,26 @@ public class Customer:CustomStringConvertible {
         self.homeImageFileName = dictionary["homeImageFileName"] != nil ? dictionary["homeImageFileName"] as! String: ""
         
         if let hotWaterDictionary = dictionary["hotWater"] as? Dictionary<String, AnyObject> {
-            self.hotWater = HotWater(hotWaterDictionary)
+            self.hotWater = [HotWater(hotWaterDictionary)]
+        } else if let hotWatersDictionary = dictionary["hotWater"] as? NSArray {
+            self.hotWater = [HotWater]()
+            for hotWater in hotWatersDictionary {
+                if let hotWaterDictionary = hotWater as? Dictionary<String, AnyObject> {
+                    self.hotWater!.append(HotWater(hotWaterDictionary))
+                }
+            }
+            self.hotWater!.sort()
         }
         if let boilerDictionary = dictionary["boiler"] as? Dictionary<String, AnyObject> {
-            self.boiler = Boiler(boilerDictionary)
+            self.boiler = [Boiler(boilerDictionary)]
+        } else if let boilersDictionary = dictionary["boiler"] as? NSArray {
+            self.boiler = [Boiler]()
+            for boiler in boilersDictionary {
+                if let boilerDictionary = boiler as? Dictionary<String, AnyObject> {
+                    self.boiler!.append(Boiler(boilerDictionary))
+                }
+            }
+            self.boiler!.sort()
         }
         self.plumberReference = dictionary["plumberReference"] != nil ? dictionary["plumberReference"] as! String: ""
         if let plumbingArray = dictionary["plumbingServices"] as? NSArray {
@@ -88,10 +104,26 @@ public class Customer:CustomStringConvertible {
         }
         
         if let airHandlerDictionary = dictionary["airHandler"] as? Dictionary<String, AnyObject> {
-            self.airHandler = AirHandler(airHandlerDictionary)
+            self.airHandler = [AirHandler(airHandlerDictionary)]
+        } else if let airHandlerDictionary = dictionary["airHandler"] as? NSArray {
+            self.airHandler = [AirHandler]()
+            for airHandler in airHandlerDictionary {
+                if let airHandlerDictionary = airHandler as? Dictionary<String, AnyObject> {
+                    self.airHandler!.append(AirHandler(airHandlerDictionary))
+                }
+            }
+            self.airHandler!.sort()
         }
         if let compressorDictionary = dictionary["compressor"] as? Dictionary<String, AnyObject> {
-            self.compressor = Compressor(compressorDictionary)
+            self.compressor = [Compressor(compressorDictionary)]
+        } else if let compressorDictionary = dictionary["compressor"] as? NSArray {
+            self.compressor = [Compressor]()
+            for compressor in compressorDictionary {
+                if let compressorDictionary = compressor as? Dictionary<String, AnyObject> {
+                    self.compressor!.append(Compressor(compressorDictionary))
+                }
+            }
+            self.compressor!.sort()
         }
         self.hvactechnicianReference = dictionary["hvactechnicianReference"] != nil ? dictionary["hvactechnicianReference"] as! String: ""
         if let hvacArray = dictionary["hvacServices"] as? NSArray {
@@ -154,7 +186,7 @@ public class Customer:CustomStringConvertible {
         }
     }
     
-    //:- Home Page
+    //MARK: Home Page
     func getNamePrefix() -> String {
         return namePrefix
     }
@@ -223,19 +255,51 @@ public class Customer:CustomStringConvertible {
         return self;
     }
     
-    //Mark:- Plumbing Page
-    func getHotWater() -> HotWater? {
+    // MARK: Plumbing Page
+    func getHotWater() -> [HotWater]? {
         return hotWater
     }
-    func setHotWater(to hotWater:HotWater) -> Customer {
-        self.hotWater = hotWater
+    func setHotWater(to hotWater:HotWater, at index:Int) -> Customer {
+        if self.hotWater != nil {
+            if(index == -1) {
+                self.hotWater!.append(hotWater)
+            } else {
+                self.hotWater![index] = hotWater
+            }
+        } else {
+            self.hotWater = [HotWater]()
+            self.hotWater!.append(hotWater)
+        }
         return self
     }
-    func getBoiler() -> Boiler? {
+    func deleteHotWater(at index:Int) -> Customer {
+        guard self.hotWater != nil else {
+            return self
+        }
+        self.hotWater!.remove(at: index)
+        return self
+    }
+    func getBoiler() -> [Boiler]? {
         return boiler
     }
-    func setBoiler(to boiler:Boiler) -> Customer {
-        self.boiler = boiler
+    func setBoiler(to boiler:Boiler, at index:Int) -> Customer {
+        if self.boiler != nil {
+            if(index == -1) {
+                self.boiler!.append(boiler)
+            } else {
+                self.boiler![index] = boiler
+            }
+        } else {
+            self.boiler = [Boiler]()
+            self.boiler!.append(boiler)
+        }
+        return self
+    }
+    func deleteBoiler(at index:Int) -> Customer {
+        guard self.boiler != nil else {
+            return self
+        }
+        self.boiler!.remove(at: index)
         return self
     }
     func getPlumber() -> String? {
@@ -251,7 +315,7 @@ public class Customer:CustomStringConvertible {
         self.plumberReference = reference
         return self
     }
-    func updatePlumbingService(_ service:ContractorService, _  number:Int) -> Customer {
+    func updatePlumbingService(_ service:ContractorService, _ number:Int) -> Customer {
         if self.plumbingServices != nil {
             if(number == -1) {
                 self.plumbingServices!.append(service)
@@ -274,19 +338,51 @@ public class Customer:CustomStringConvertible {
     }
     
     
-    //Mark:- HVAC
-    func getAirHandler() -> AirHandler? {
+    // MARK:- HVAC Page
+    func getAirHandler() -> [AirHandler]? {
         return airHandler
     }
-    func setAirHandler(to airHandler:AirHandler) -> Customer {
-        self.airHandler = airHandler
+    func setAirHandler(to airHandler:AirHandler, at index:Int) -> Customer {
+        if self.airHandler != nil {
+            if(index == -1) {
+                self.airHandler!.append(airHandler)
+            } else {
+                self.airHandler![index] = airHandler
+            }
+        } else {
+            self.airHandler = [AirHandler]()
+            self.airHandler!.append(airHandler)
+        }
         return self
     }
-    func getCompressor() -> Compressor? {
+    func deleteAirHandler(at index:Int) -> Customer {
+        guard self.airHandler != nil else {
+            return self
+        }
+        self.airHandler!.remove(at: index)
+        return self
+    }
+    func getCompressor() -> [Compressor]? {
         return compressor
     }
-    func setCompressor(to compressor:Compressor) -> Customer {
-        self.compressor = compressor
+    func setCompressor(to compressor:Compressor, at index:Int) -> Customer {
+        if self.compressor != nil {
+            if(index == -1) {
+                self.compressor!.append(compressor)
+            } else {
+                self.compressor![index] = compressor
+            }
+        } else {
+            self.compressor = [Compressor]()
+            self.compressor!.append(compressor)
+        }
+        return self
+    }
+    func deleteCompressor(at index:Int) -> Customer {
+        guard self.compressor != nil else {
+            return self
+        }
+        self.compressor!.remove(at: index)
         return self
     }
     func getHvacTechnician() -> String? {
@@ -522,8 +618,20 @@ public class Customer:CustomStringConvertible {
         dictionary["realtorReference"] = self.realtorReference as AnyObject
         dictionary["homeImageFileName"] = self.homeImageFileName as AnyObject
         
-        dictionary["hotWater"] = self.hotWater?.toDictionary() as AnyObject
-        dictionary["boiler"] = self.boiler?.toDictionary() as AnyObject
+        if let hotWater = self.hotWater?.sorted() {
+            var hotWaterArray = NSArray()
+            for appliance in hotWater {
+                hotWaterArray = hotWaterArray.adding(appliance.toDictionary()) as NSArray
+            }
+            dictionary["hotWater"] = hotWaterArray
+        }
+        if let boiler = self.boiler?.sorted() {
+            var boilerArray = NSArray()
+            for appliance in boiler {
+                boilerArray = boilerArray.adding(appliance.toDictionary()) as NSArray
+            }
+            dictionary["boiler"] = boilerArray
+        }
         dictionary["plumberReference"] = self.plumberReference as AnyObject
         if let plumbingServices = plumbingServices?.sorted() {
             var plumbingArray = NSArray()
@@ -533,8 +641,20 @@ public class Customer:CustomStringConvertible {
             dictionary["plumbingServices"] = plumbingArray
         }
         
-        dictionary["airHandler"] = self.airHandler?.toDictionary() as AnyObject
-        dictionary["compressor"] = self.compressor?.toDictionary() as AnyObject
+        if let airHandler = self.airHandler?.sorted() {
+            var airHandlerArray = NSArray()
+            for appliance in airHandler {
+                airHandlerArray = airHandlerArray.adding(appliance.toDictionary()) as NSArray
+            }
+            dictionary["airHandler"] = airHandlerArray
+        }
+        if let compressor = self.compressor?.sorted() {
+            var compressorArray = NSArray()
+            for appliance in compressor {
+                compressorArray = compressorArray.adding(appliance.toDictionary()) as NSArray
+            }
+            dictionary["compressor"] = compressorArray
+        }
         dictionary["hvactechnicianReference"] = self.hvactechnicianReference as AnyObject
         if let hvacServices = hvacServices?.sorted() {
             var hvacArray = NSArray()

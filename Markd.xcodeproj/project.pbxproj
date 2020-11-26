@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4067C6E07EFE63BA165B7ECB /* Pods_Markd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5098B1444AC29248521536 /* Pods_Markd.framework */; };
+		42066BE22564B142003A5076 /* ApplianceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42523D5C255EFC9C00A20471 /* ApplianceTableViewController.swift */; };
 		4332BD64230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332BD63230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift */; };
 		4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */; };
 		47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA411DF3865C001F417F /* AppDelegate.swift */; };
@@ -87,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		0DFBB433CDDC1835F81D6E42 /* Pods-Markd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.debug.xcconfig"; sourceTree = "<group>"; };
+		42523D5C255EFC9C00A20471 /* ApplianceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceTableViewController.swift; sourceTree = "<group>"; };
 		4332BD63230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchasesObserver.swift; sourceTree = "<group>"; };
 		4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		47E0EA3E1DF3865C001F417F /* Markd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Markd.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -281,6 +283,7 @@
 				FF1C3542210008610062CBA2 /* SettingsMenuViewController.swift */,
 				FF0B330721A2445500224667 /* DetailsNavigationController.swift */,
 				FF0CA3B620C326D500630B16 /* CustomerNotificationMessage.swift */,
+				42523D5C255EFC9C00A20471 /* ApplianceTableViewController.swift */,
 			);
 			path = CustomerMenuViewControllers;
 			sourceTree = "<group>";
@@ -400,7 +403,7 @@
 					47E0EA3D1DF3865C001F417F = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = SZ3DXFSCH3;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1220;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -532,6 +535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42066BE22564B142003A5076 /* ApplianceTableViewController.swift in Sources */,
 				FFB5658A2079274400F6E8F1 /* HvacViewController.swift in Sources */,
 				FFDE253620588868009D1790 /* SendEmail.swift in Sources */,
 				FF310DF32184C8070035766D /* EditCompanyViewController.swift in Sources */,
@@ -749,15 +753,17 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SZ3DXFSCH3;
 				INFOPLIST_FILE = Markd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.schmidthappens.markd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -770,14 +776,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SZ3DXFSCH3;
 				INFOPLIST_FILE = Markd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.schmidthappens.markd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

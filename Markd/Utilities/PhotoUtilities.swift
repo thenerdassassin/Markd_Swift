@@ -69,7 +69,7 @@ public class PhotoUtilities {
     }
     private func checkPhotoLibraryAuthorizationStatus(alert:UIAlertAction? = nil) {
         switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized: // The user has previously granted access to the camera.
+        case .authorized, .limited: // The user has previously granted access to the camera.
             self.setupImagePicker(with: .photoLibrary)
             
         case .notDetermined: // The user has not yet been asked for camera access.

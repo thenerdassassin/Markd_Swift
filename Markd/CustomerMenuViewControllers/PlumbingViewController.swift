@@ -10,34 +10,24 @@ import Foundation
 import UIKit
 import Firebase
 
-public class PlumbingViewController: UIViewController, OnGetDataListener {
+public class PlumbingViewController: UIViewController, OnGetDataListener, ApplianceViewController {
     private let authentication = FirebaseAuthentication.sharedInstance
-    private var customerData: TempCustomerData?
     private var applianceToEdit: Appliance?
-    var plumber: DataSnapshot?
+    public var customerData: TempCustomerData?
+    var isContractor: Bool = false
     
-    @IBOutlet weak var plumbingScrollView: UIScrollView!
-    //Hot Water
-    @IBOutlet weak var hotWaterManufacturer: UILabel!
-    @IBOutlet weak var hotWaterModel: UILabel!
-    @IBOutlet weak var hotWaterInstallDate: UILabel!
-    @IBOutlet weak var hotWaterLifeSpan: UILabel!
-    //Boiler
-    @IBOutlet weak var boilerManufacturer: UILabel!
-    @IBOutlet weak var boilerModel: UILabel!
-    @IBOutlet weak var boilerInstallDate: UILabel!
-    @IBOutlet weak var boilerLifeSpan: UILabel!
-    
+    var applianceTableViewController: ApplianceTableViewController?
     var plumberFooterViewController: OnGetContractorListener?
     
+    // MARK: View Lifecycle
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if authentication.checkLogin(self) {
-            customerData = TempCustomerData(self)
+            if(!isContractor) {
+                customerData = TempCustomerData(self)
+            }
         }
-        configureView()
     }
-    
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !authentication.checkLogin(self) {
@@ -47,11 +37,7 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
     override public func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerUtilities.insertMarkdLogo(into: self)
-        if let plumbingView = plumbingScrollView {
-            plumbingView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
-        }
     }
-    
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()
@@ -60,58 +46,15 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
         }
     }
     
-    private func configureView() {
-        initializeHotWater()
-        initializeBoiler()
-    }
-    private func initializeHotWater() {
-        if let hotWater = customerData?.getHotWater() {
-            if let hotWaterManufacturer = hotWaterManufacturer {
-                StringUtilities.set(textOf: hotWaterManufacturer, to: hotWater.getManufacturer())
-            }
-            if let hotWaterModel = hotWaterModel {
-                StringUtilities.set(textOf: hotWaterModel, to: hotWater.getModel())
-            }
-            if let hotWaterInstallDate = hotWaterInstallDate {
-                StringUtilities.set(textOf: hotWaterInstallDate, to: hotWater.installDateAsString())
-            }
-            if let hotWaterLifeSpan = hotWaterLifeSpan {
-                StringUtilities.set(textOf: hotWaterLifeSpan, to: hotWater.lifeSpanAsString())
-            }
-        }
-    }
-    private func initializeBoiler() {
-        if let boiler = customerData?.getBoiler() {
-            if let boilerManufacturer = boilerManufacturer {
-                StringUtilities.set(textOf: boilerManufacturer, to: boiler.getManufacturer())
-            }
-            if let boilerModel = boilerModel {
-                StringUtilities.set(textOf: boilerModel, to: boiler.getModel())
-            }
-            if let boilerInstallDate = boilerInstallDate {
-                StringUtilities.set(textOf: boilerInstallDate, to: boiler.installDateAsString())
-            }
-            if let boilerLifeSpan = boilerLifeSpan {
-                StringUtilities.set(textOf: boilerLifeSpan, to: boiler.lifeSpanAsString())
-            }
-        }
-    }
-    
-    //Mark:- Segue
+    // MARK: Segue
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editPlumbingSegue" {
-            let destination = segue.destination as! EditApplianceTableViewController
-            var hotWater = customerData?.getHotWater()
-            var boiler = customerData?.getBoiler()
-            if (hotWater == nil) {
-                hotWater = HotWater(Dictionary.init())
-            }
-            if (boiler == nil) {
-                boiler = Boiler(Dictionary.init())
-            }
-            destination.appliances = [hotWater!, boiler!]
-            destination.viewTitle = "Edit Plumbing"
+        if segue.identifier == "plumbingTableSegue" {
+            let destination = segue.destination as! ApplianceTableViewController
+            self.applianceTableViewController = destination
             destination.customerData = customerData
+            destination.delegate = self
+            destination.sectionOneAppliances = customerData?.getBoiler()
+            destination.sectionTwoAppliances = customerData?.getHotWater()
             return
         }
         if segue.identifier == "plumberFooterSegue" {
@@ -119,49 +62,95 @@ public class PlumbingViewController: UIViewController, OnGetDataListener {
             self.plumberFooterViewController = destination
             return
         }
+        if segue.identifier == "addApplianceSegue" {
+            let sender = sender as! UIAlertAction
+            let destination = segue.destination as! EditApplianceTableViewController
+            destination.delegate = self
+            guard let customerData = customerData else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                return
+            }
+            
+            destination.index = -1
+            if sender.title == "Boiler" {
+                destination.appliance = Boiler([:])
+            } else {
+                destination.appliance = HotWater([:])
+            }
+            
+            customerData.removeListeners()
+            destination.customerData = customerData
+        }
     }
     
+    // MARK: Navigation Buttons
     @IBAction func switchButtonAction(_ sender: UIBarButtonItem) {
+        if isContractor {
+            AlertControllerUtilities.showAlert(
+                withTitle: "Disabled", andMessage: "As an painter, you may only edit this page.",
+                withOptions: [UIAlertAction(title: "Ok", style: .default, handler: nil)], in: self)
+        } else {
+            AlertControllerUtilities.showActionSheet(
+                withTitle: "Switch Page",
+                andMessage: "Which page would you like to switch to?",
+                withOptions: [
+                    UIAlertAction(title: "HVAC", style: .default, handler: { _ in
+                        NSLog("Switching to HVAC Page")
+                        if let navigationController = self.navigationController {
+                            let hvacViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "HvacViewController") as! HvacViewController
+                            navigationController.setViewControllers([hvacViewController], animated: true)
+                        }
+                    }),
+                    UIAlertAction(title: "Electrical", style: .default, handler: { _ in
+                        NSLog("Switching to Electrical Page")
+                        if let navigationController = self.navigationController {
+                            let electricalViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "ElectricalViewController") as! ElectricalViewController
+                            navigationController.setViewControllers([electricalViewController], animated: true)
+                        }
+                    }),UIAlertAction(title: "Painting", style: .default, handler: { _ in
+                        NSLog("Switching to Painting Page")
+                        if let navigationController = self.navigationController {
+                            let paintingViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "PaintingViewController") as! PaintingViewController
+                            navigationController.setViewControllers([paintingViewController], animated: true)
+                        }
+                    }),
+                    UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                        NSLog("Canceling Edit")
+                    })
+                ],
+                in: self)
+        }
+    }
+    
+    @IBAction func addButtonAction(_ sender: UIBarButtonItem) {
         AlertControllerUtilities.showActionSheet(
-            withTitle: "Switch Page",
-            andMessage: "Which page would you like to switch to?",
+            withTitle: "Add Appliance",
+            andMessage: "What appliance would you like to add?",
             withOptions: [
-                UIAlertAction(title: "HVAC", style: .default, handler: { _ in
-                    NSLog("Switching to HVAC Page")
-                    if let navigationController = self.navigationController {
-                        let hvacViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "HvacViewController") as! HvacViewController
-                        navigationController.setViewControllers([hvacViewController], animated: true)
-                    }
-                }),
-                UIAlertAction(title: "Electrical", style: .default, handler: { _ in
-                    NSLog("Switching to Electrical Page")
-                    if let navigationController = self.navigationController {
-                        let electricalViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "ElectricalViewController") as! ElectricalViewController
-                        navigationController.setViewControllers([electricalViewController], animated: true)
-                    }
-                }),UIAlertAction(title: "Painting", style: .default, handler: { _ in
-                    NSLog("Switching to Painting Page")
-                    if let navigationController = self.navigationController {
-                        let paintingViewController = UIStoryboard(name: "Details", bundle: nil).instantiateViewController(withIdentifier: "PaintingViewController") as! PaintingViewController
-                        navigationController.setViewControllers([paintingViewController], animated: true)
-                    }
-                }),
-                UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-                    NSLog("Canceling Edit")
-                })
+                UIAlertAction(title: "Boiler", style: .default, handler: addApplianceHandler),
+                UIAlertAction(title: "Hot Water", style: .default, handler: addApplianceHandler),
+                UIAlertAction(title: "Cancel", style: .cancel)
             ],
             in: self)
     }
-    
-    //Mark:- GetData Protocols
+    func addApplianceHandler(alert: UIAlertAction!) {
+        if alert.title != nil && alert.title != "Cancel" {
+            self.performSegue(withIdentifier: "addApplianceSegue", sender: alert)
+        }
+    }
+    // MARK:- GetData Protocols
     public func onStart() {
         print("Getting Data")
     }
     
     public func onSuccess() {
         print("PlumbingViewController:- Got Customer Data")
-        configureView()
         customerData!.getPlumber(plumberListener: plumberFooterViewController)
+        if let controller = applianceTableViewController {
+            controller.customerData = customerData
+            controller.sectionOneAppliances = customerData?.getBoiler()
+            controller.sectionTwoAppliances = customerData?.getHotWater()
+        }
     }
     
     public func onFailure(_ error: Error) {

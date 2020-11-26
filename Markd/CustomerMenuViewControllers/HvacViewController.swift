@@ -9,34 +9,23 @@
 import Foundation
 import UIKit
 
-public class HvacViewController: UIViewController, OnGetDataListener {
+public class HvacViewController: UIViewController, OnGetDataListener, ApplianceViewController {
     private let authentication = FirebaseAuthentication.sharedInstance
-    private var customerData: TempCustomerData?
+    private var applianceToEdit: Appliance?
+    public var customerData: TempCustomerData?
+    var isContractor: Bool = false
     
-    @IBOutlet weak var hvacScrollView: UIScrollView!
-    //Air Handler
-    @IBOutlet weak var airHandlerManufacturer: UILabel!
-    @IBOutlet weak var airHandlerModel: UILabel!
-    @IBOutlet weak var airHandlerInstallDate: UILabel!
-    @IBOutlet weak var airHandlerLifeSpan: UILabel!
-    //Compressor
-    @IBOutlet weak var compressorManufacturer: UILabel!
-    @IBOutlet weak var compressorModel: UILabel!
-    @IBOutlet weak var compressorInstallDate: UILabel!
-    @IBOutlet weak var compressorLifeSpan: UILabel!
-    
+    var applianceTableViewController: ApplianceTableViewController?
     var hvacTechnicianFooterViewController: OnGetContractorListener?
-    var TODO_NotYetImplementedHvacPage:AnyObject?
-    /*
-     Check if Contractor or Home Owner on page
-     */
     
+    // MARK: View Lifecycle
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if authentication.checkLogin(self) {
-            customerData = TempCustomerData(self)
+            if(!isContractor) {
+                customerData = TempCustomerData(self)
+            }
         }
-        configureView()
     }
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -47,9 +36,6 @@ public class HvacViewController: UIViewController, OnGetDataListener {
     override public func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerUtilities.insertMarkdLogo(into: self)
-        if let hvacView = hvacScrollView {
-            hvacView.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundTexture")!)
-        }
     }
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -59,58 +45,16 @@ public class HvacViewController: UIViewController, OnGetDataListener {
         }
     }
     
-    private func configureView() {
-        initializeAirHandler()
-        initializeCompressor()
-    }
-    private func initializeAirHandler() {
-        if let airHandler = customerData?.getAirHandler() {
-            if let airHandlerManufacturer = airHandlerManufacturer {
-                StringUtilities.set(textOf: airHandlerManufacturer, to: airHandler.getManufacturer())
-            }
-            if let airHandlerModel = airHandlerModel {
-                StringUtilities.set(textOf: airHandlerModel, to: airHandler.getModel())
-            }
-            if let airHandlerInstallDate = airHandlerInstallDate {
-                StringUtilities.set(textOf: airHandlerInstallDate, to: airHandler.installDateAsString())
-            }
-            if let airHandlerLifeSpan = airHandlerLifeSpan {
-                StringUtilities.set(textOf: airHandlerLifeSpan, to: airHandler.lifeSpanAsString())
-            }
-        }
-    }
-    private func initializeCompressor() {
-        if let compressor = customerData?.getCompressor() {
-            if let compressorManufacturer = compressorManufacturer {
-                StringUtilities.set(textOf: compressorManufacturer, to: compressor.getManufacturer())
-            }
-            if let compressorModel = compressorModel {
-                StringUtilities.set(textOf: compressorModel, to: compressor.getModel())
-            }
-            if let compressorInstallDate = compressorInstallDate {
-                StringUtilities.set(textOf: compressorInstallDate, to: compressor.installDateAsString())
-            }
-            if let compressorLifeSpan = compressorLifeSpan {
-                StringUtilities.set(textOf: compressorLifeSpan, to: compressor.lifeSpanAsString())
-            }
-        }
-    }
-    
     //Mark:- Segue
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editHvacSegue" {
-            let destination = segue.destination as! EditApplianceTableViewController
-            var airHandler = customerData?.getAirHandler()
-            var compressor = customerData?.getCompressor()
-            if(airHandler == nil) {
-                airHandler = AirHandler(Dictionary.init())
-            }
-            if (compressor == nil) {
-                compressor = Compressor(Dictionary.init())
-            }
-            destination.appliances = [airHandler!, compressor!]
-            destination.viewTitle = "Edit Hvac"
+        if segue.identifier == "hvacTableSegue" {
+            let destination = segue.destination as! ApplianceTableViewController
+            self.applianceTableViewController = destination
+            destination.isPlumbing = false
             destination.customerData = customerData
+            destination.delegate = self
+            destination.sectionOneAppliances = customerData?.getCompressor()
+            destination.sectionTwoAppliances = customerData?.getAirHandler()
             return
         }
         if segue.identifier == "hvacFooterSegue" {
@@ -118,8 +62,28 @@ public class HvacViewController: UIViewController, OnGetDataListener {
             self.hvacTechnicianFooterViewController = destination
             return
         }
+        if segue.identifier == "addApplianceSegue" {
+            let sender = sender as! UIAlertAction
+            let destination = segue.destination as! EditApplianceTableViewController
+            destination.delegate = self
+            guard let customerData = customerData else {
+                AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
+                return
+            }
+            
+            destination.index = -1
+            if sender.title == "Compressor" {
+                destination.appliance = Compressor([:])
+            } else {
+                destination.appliance = AirHandler([:])
+            }
+            
+            customerData.removeListeners()
+            destination.customerData = customerData
+        }
     }
     
+    // MARK: Navigation Buttons
     @IBAction func showActionSheet(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Switch Page", message: "Which page would you like to switch to?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Plumbing", style: .default, handler: { _ in
@@ -149,14 +113,35 @@ public class HvacViewController: UIViewController, OnGetDataListener {
         self.present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func addButtonAction(_ sender: UIBarButtonItem) {
+        AlertControllerUtilities.showActionSheet(
+            withTitle: "Add Appliance",
+            andMessage: "What appliance would you like to add?",
+            withOptions: [
+                UIAlertAction(title: "Compressor", style: .default, handler: addApplianceHandler),
+                UIAlertAction(title: "Air Handler", style: .default, handler: addApplianceHandler),
+                UIAlertAction(title: "Cancel", style: .cancel)
+            ],
+            in: self)
+    }
+    func addApplianceHandler(alert: UIAlertAction!) {
+        if alert.title != nil && alert.title != "Cancel" {
+            self.performSegue(withIdentifier: "addApplianceSegue", sender: alert)
+        }
+    }
+    
     public func onStart() {
         print("Getting Customer Data")
     }
     
     public func onSuccess() {
         print("HvacViewController:- Got Customer Data")
-        configureView()
         customerData!.getHvacTechnician(hvacTechnicianListener: hvacTechnicianFooterViewController)
+        if let controller = applianceTableViewController {
+            controller.customerData = customerData
+            controller.sectionOneAppliances = customerData?.getCompressor()
+            controller.sectionTwoAppliances = customerData?.getAirHandler()
+        }
     }
     
     public func onFailure(_ error: Error) {

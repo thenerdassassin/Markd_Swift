@@ -10,13 +10,20 @@ import UIKit
 
 class EditApplianceTableViewController: UITableViewController {
     private let authentication = FirebaseAuthentication.sharedInstance
+    public var delegate: ApplianceViewController?
     public var customerData:TempCustomerData?
     let cellIdentifier = "editApplianceCell"
 
-    public var appliances = [Appliance]()
+    public var index: Int = -1
+    public var appliance:Appliance? {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
     public var viewTitle = "Edit"
-    //section.0 == isEditingInstallDate, section.1 == isEditingLifeSpan
-    var isEditingField:[(Bool, Bool)] = [(false, false), (false, false)]
+    
+    var isEditingField:(Bool, Bool) = (false, false) // 0 == isEditingInstallDate, 1 == isEditingLifeSpan
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,55 +42,50 @@ class EditApplianceTableViewController: UITableViewController {
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         FirebaseAuthentication.sharedInstance.removeStateListener()
+        self.view.endEditing(true)
     }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2 //AirHandler/Compressor or Boiler/Hot Water
+        return 1 //AirHandler/Compressor or Boiler/Hot Water
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Manufacturer, Model, InstallDate, LifeSpan
-        if isEditing(in: section) {
+        if isEditing() {
             return 5
         }
         return 4
     }
   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let appliance = appliances[indexPath.section]
+        guard let appliance = appliance else { return UITableViewCell() }
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "editManufacturerCell", for: indexPath) as! EditManufacturerCell
             cell.manufacturer = appliance.getManufacturer()
             cell.viewController = self
-            cell.tag = indexPath.section
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "editModelCell", for: indexPath) as! EditModelCell
             cell.model = appliance.getModel()
             cell.viewController = self
-            cell.tag = indexPath.section
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "applianceInstallDateCell", for: indexPath) as! ApplianceInstallDateCell
             cell.installDate = appliance.installDateAsString()
-            cell.tag = indexPath.section
             return cell
-        } else if isLifeSpanRow(for: indexPath.row, in: indexPath.section) {
+        } else if isLifeSpanRow(for: indexPath.row) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "lifeSpanCell", for: indexPath) as! ApplianceLifeSpanCell
             cell.lifeSpan = appliance.lifeSpanAsString()
-            cell.tag = indexPath.section
             return cell
         } else if indexPath.row == 3 {
             //Install Date Picker installDatePickerCell
             let cell = tableView.dequeueReusableCell(withIdentifier: "installDatePickerCell", for: indexPath) as! ApplianceInstallDatePickerCell
             cell.viewController = self
-            cell.tag = indexPath.section
             cell.installDate = appliance.installDateAsString()
             return cell
         } else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "editLifeSpanCell", for: indexPath) as! ApplianceEditLifeSpanCell
             cell.viewController = self
-            cell.tag = indexPath.section
             cell.lifeSpan = appliance.lifeSpanAsString()
             return cell
         }
@@ -91,20 +93,18 @@ class EditApplianceTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView : UITableView,  titleForHeaderInSection section: Int) -> String {
-        if(viewTitle.lowercased().contains("plumbing")) {
-            if let _ = appliances[section] as? Boiler {
-                return "Boiler"
-            } else {
-                return "Hot Water"
-            }
-        } else if(viewTitle.lowercased().contains("hvac")) {
-            if let _ = appliances[section] as? AirHandler {
-                return "Air Handler"
-            } else {
-                return "Compressor"
-            }
+        switch appliance {
+        case is Boiler:
+            return "Boiler"
+        case is HotWater:
+            return "Hot Water"
+        case is AirHandler:
+            return "Air Handler"
+        case is Compressor:
+            return "Compressor"
+        default:
+            return "Appliance"
         }
-        return ""
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -116,89 +116,75 @@ class EditApplianceTableViewController: UITableViewController {
         if indexPath.row < 2 {
             hideEditCells()
         } else if indexPath.row == 2 {
-            toggleEditInstallDate(in: indexPath.section)
-        } else if isLifeSpanRow(for: indexPath.row, in: indexPath.section) {
-            toggleEditLifeSpan(in: indexPath.section)
+            toggleEditInstallDate()
+        } else if isLifeSpanRow(for: indexPath.row) {
+            toggleEditLifeSpan()
         }
     }
     
     //Mark:- Helpers
-    func toggleEditInstallDate(in section: Int) {
+    func toggleEditInstallDate() {
         self.view.endEditing(true)
-        for index in isEditingField.indices {
-            hideEditLifeSpanPicker(in: index)
-            if index != section {
-                hideEditInstallDatePicker(in: index)
-            } else {
-                if isEditingField[section].0 {
-                    hideEditInstallDatePicker(in: section)
-                } else {
-                    showEditInstallDatePicker(in: section)
-                }
-            }
+        hideEditLifeSpanPicker()
+        if isEditingField.0 {
+            hideEditInstallDatePicker()
+        } else {
+            showEditInstallDatePicker()
         }
     }
-    func toggleEditLifeSpan(in section: Int) {
+    func toggleEditLifeSpan() {
         self.view.endEditing(true)
-        for index in isEditingField.indices {
-            hideEditInstallDatePicker(in: index)
-            if index != section {
-                hideEditLifeSpanPicker(in: index)
-            } else {
-                if isEditingField[section].1 {
-                    hideEditLifeSpanPicker(in: section)
-                } else {
-                    showEditLifeSpanPicker(in: section)
-                }
-            }
+        hideEditInstallDatePicker()
+        if isEditingField.1 {
+            hideEditLifeSpanPicker()
+        } else {
+            showEditLifeSpanPicker()
         }
     }
-    func showEditInstallDatePicker(in section: Int) {
-        if !isEditingField[section].0 {
+    func showEditInstallDatePicker() {
+        if !isEditingField.0 {
             tableView.beginUpdates()
-            isEditingField[section].0 = true
-            tableView.insertRows(at: [IndexPath(row: 3, section: section)], with: UITableView.RowAnimation.fade)
+            isEditingField.0 = true
+            tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
-    func hideEditInstallDatePicker(in section: Int) {
-        if isEditingField[section].0 {
+    func hideEditInstallDatePicker() {
+        if isEditingField.0 {
             tableView.beginUpdates()
-            isEditingField[section].0 = false
-            tableView.deleteRows(at: [IndexPath(row: 3, section: section)], with: UITableView.RowAnimation.fade)
+            isEditingField.0 = false
+            tableView.deleteRows(at: [IndexPath(row: 3, section: 0)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
-    func showEditLifeSpanPicker(in section: Int) {
-        if !isEditingField[section].1 {
+    func showEditLifeSpanPicker() {
+        if !isEditingField.1 {
             tableView.beginUpdates()
-            isEditingField[section].1 = true
-            tableView.insertRows(at: [IndexPath(row: 4, section: section)], with: UITableView.RowAnimation.fade)
+            isEditingField.1 = true
+            tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
-    func hideEditLifeSpanPicker(in section: Int) {
-        if isEditingField[section].1 {
+    func hideEditLifeSpanPicker() {
+        if isEditingField.1 {
             tableView.beginUpdates()
-            isEditingField[section].1 = false
-            tableView.deleteRows(at: [IndexPath(row: 4, section: section)], with: UITableView.RowAnimation.fade)
+            isEditingField.1 = false
+            tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: UITableView.RowAnimation.fade)
             tableView.endUpdates()
         }
     }
     func hideEditCells() {
-        for index in isEditingField.indices {
-            hideEditLifeSpanPicker(in: index)
-            hideEditInstallDatePicker(in: index)
-        }
+        hideEditLifeSpanPicker()
+        hideEditInstallDatePicker()
     }
     
-    public func change(_ field: String, at index:Int, to updatedValue: String, shouldReloadTable: Bool = false) {
-        print("Changing \(field) at \(index) to \(updatedValue)")
-        let updatedAppliance = appliances[index]
+    public func change(_ field: String, to updatedValue: String, shouldReloadTable: Bool = false) {
+        print("Changing \(field) to \(updatedValue)")
+        guard let updatedAppliance = appliance else { return }
         updatedAppliance.set(field, to: updatedValue)
         print(updatedAppliance)
         if let customerData = customerData {
-            customerData.setAppliance(to: updatedAppliance)
+            self.index = customerData.setAppliance(to: updatedAppliance, at: index)
             if shouldReloadTable {
                 self.tableView.reloadData()
             }
@@ -207,13 +193,13 @@ class EditApplianceTableViewController: UITableViewController {
             AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
         }
     }
-    private func isEditing(in section:Int) -> Bool {
-        return isEditingField[section].0 || isEditingField[section].1
+    private func isEditing() -> Bool {
+        return isEditingField.0 || isEditingField.1
     }
-    private func isLifeSpanRow(for row:Int, in section:Int) -> Bool {
-        if row == 3 && !isEditingField[section].0 {
+    private func isLifeSpanRow(for row:Int) -> Bool {
+        if row == 3 && !isEditingField.0 {
             return true
-        } else if row == 4 && isEditingField[section].0 {
+        } else if row == 4 && isEditingField.0 {
             return true
         }
         return false
@@ -241,7 +227,7 @@ public class EditManufacturerCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        viewController!.change("Manufacturer", at: self.tag, to: textField.text!)
+        viewController!.change("Manufacturer", to: textField.text!)
     }
 }
 
@@ -266,7 +252,7 @@ public class EditModelCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        viewController!.change("Model", at: self.tag, to: textField.text!)
+        viewController!.change("Model", to: textField.text!)
     }
 }
 
@@ -314,7 +300,7 @@ public class ApplianceInstallDatePickerCell: UITableViewCell {
             withMonth: calendar.component(Calendar.Component.month, from: sender.date),
             withDay: calendar.component(Calendar.Component.day, from: sender.date),
             withYear: calendar.component(Calendar.Component.year, from: sender.date))
-        viewController!.change("Install Date", at: self.tag, to: newDate!, shouldReloadTable: true)
+        viewController!.change("Install Date", to: newDate!, shouldReloadTable: true)
     }
 }
 
@@ -398,7 +384,7 @@ public class ApplianceEditLifeSpanCell: UITableViewCell {
     
     @IBAction func onLifeSpanValueChanged(_ slider: UISlider) {
         let updatedLifeSpan = "\(Int(round(slider.value))) \(units[unitsSegmentedControl.selectedSegmentIndex])"
-        viewController!.change("Projected Life Span", at: self.tag, to: updatedLifeSpan)
-        viewController!.tableView.reloadRows(at: [IndexPath(row: 3, section: self.tag)], with: UITableView.RowAnimation.none)
+        viewController!.change("Projected Life Span", to: updatedLifeSpan)
+        viewController!.tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: UITableView.RowAnimation.none)
     }
 }

@@ -70,14 +70,12 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
             }
         } else if segue.identifier == "showPlumbingDetailsSegue" {
             if let customer = sender as? Customer {
-                let destination = segue.destination as! EditApplianceTableViewController
+                let destination = segue.destination as! PlumbingViewController
                 if let id = customer.customerId {
-                    let hotWater = customer.getHotWater() != nil ? customer.getHotWater()! : HotWater([:])
-                    let boiler = customer.getBoiler() != nil ? customer.getBoiler()! : Boiler([:])
-                    destination.customerData = TempCustomerData(nil, at: id)
-                    destination.appliances = [hotWater, boiler]
-                    destination.viewTitle = "Edit Plumbing"
+                    destination.customerData = TempCustomerData(destination, at: id)
+                    destination.isContractor = true
                 } else {
+                    print("No customer Id")
                     AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 }
             } else {
@@ -85,14 +83,12 @@ class CustomersViewController: UITableViewController, UISearchBarDelegate, OnGet
             }
         } else if segue.identifier == "showHvacDetailsSegue" {
             if let customer = sender as? Customer {
-                let destination = segue.destination as! EditApplianceTableViewController
+                let destination = segue.destination as! HvacViewController
                 if let id = customer.customerId {
-                    let airHandler = customer.getAirHandler() != nil ? customer.getAirHandler()! : AirHandler([:])
-                    let compressor = customer.getCompressor() != nil ? customer.getCompressor()! : Compressor([:])
-                    destination.customerData = TempCustomerData(nil, at: id)
-                    destination.appliances = [airHandler, compressor]
-                    destination.viewTitle = "Edit Hvac"
+                    destination.customerData = TempCustomerData(destination, at: id)
+                    destination.isContractor = true
                 } else {
+                    print("No customer Id")
                     AlertControllerUtilities.somethingWentWrong(with: self, because: MarkdError.UnexpectedNil)
                 }
             } else {
