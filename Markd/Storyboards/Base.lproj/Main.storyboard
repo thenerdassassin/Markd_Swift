@@ -861,6 +861,7 @@
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3zH-Q4-Aa1">
                                             <rect key="frame" x="15" y="10" width="350" height="23.5"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="next" textContentType="given-name"/>

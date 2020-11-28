@@ -17,7 +17,7 @@ public class Customer:CustomStringConvertible {
     private var namePrefix: String
     private var firstName: String
     private var lastName: String
-    private var maritalStatus: String
+    private var maritalStatus: String?
     private var address: Address?
     private var home: Home?
     private var architectReference: String
@@ -205,10 +205,10 @@ public class Customer:CustomStringConvertible {
     func setLastName(_ lastName: String) {
         self.lastName = lastName
     }
-    func getMaritalStatus() -> String{
+    func getMaritalStatus() -> String? {
         return maritalStatus
     }
-    func setMaritalStatus(_ maritalStatus: String) -> Customer {
+    func setMaritalStatus(_ maritalStatus: String?) -> Customer {
         self.maritalStatus = maritalStatus
         return self
     }

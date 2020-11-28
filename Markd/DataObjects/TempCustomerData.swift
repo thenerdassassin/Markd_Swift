@@ -383,7 +383,7 @@ public class TempCustomerData:CustomStringConvertible {
             updateCustomer(to: customer)
         }
     }
-    public func updateMaritalStatus(to newMaritalStatus:String) {
+    public func updateMaritalStatus(to newMaritalStatus:String?) {
         updateCustomer(to: getCustomer()?.setMaritalStatus(newMaritalStatus))
     }
     public func updateContractor(of type: String, to reference: String) {
