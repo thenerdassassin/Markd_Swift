@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Appliance:CustomStringConvertible {
+public class Appliance:CustomStringConvertible, Comparable {
     
     private var manufacturer: String
     private var model: String
@@ -107,5 +107,29 @@ public class Appliance:CustomStringConvertible {
             default:
                 print("Field: \(field) does not exist")
         }
+    }
+    
+    // Mark:- Comparable
+    public static func < (lhs: Appliance, rhs: Appliance) -> Bool {
+        if lhs.year != rhs.year {
+            return lhs.year > rhs.year
+        }
+        if lhs.month != rhs.month {
+            return lhs.month > rhs.month
+        }
+        if lhs.day != rhs.day {
+            return lhs.day > rhs.day
+        }
+        if lhs.manufacturer != rhs.manufacturer {
+            return lhs.manufacturer < rhs.manufacturer
+        }
+        if lhs.model != rhs.model {
+            return lhs.model < rhs.model
+        }
+        return lhs.lifeSpanAsString() < rhs.lifeSpanAsString()
+    }
+    
+    public static func == (lhs: Appliance, rhs: Appliance) -> Bool {
+        return false
     }
 }

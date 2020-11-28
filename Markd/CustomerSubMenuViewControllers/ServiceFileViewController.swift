@@ -12,7 +12,6 @@ import PDFKit
 import WebKit
 import Firebase
 import FirebaseDatabase
-import Crashlytics
 
 class ServiceFileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WKNavigationDelegate, OnGetDataListener {
     private let authentication = FirebaseAuthentication.sharedInstance

@@ -39,6 +39,9 @@ extension LoginHandler {
     }
 }
 
+public protocol ApplianceViewController {
+    var customerData: TempCustomerData? { get set }
+}
 public protocol OnGetDataListener {
     func onStart()
     func onSuccess()

@@ -185,18 +185,24 @@ public class TempCustomerData:CustomStringConvertible {
         return nil
     }
     
-    //Mark:- PlumbingPage
-    public func getHotWater() -> HotWater? {
+    // MARK: PlumbingPage
+    public func getHotWater() -> [HotWater]? {
         return getCustomer()?.getHotWater()
     }
-    public func updateHotWater(to hotWater:HotWater) {
-         updateCustomer(to: getCustomer()?.setHotWater(to: hotWater))
+    public func updateHotWater(to hotWater:HotWater, at index:Int) {
+        updateCustomer(to: getCustomer()?.setHotWater(to: hotWater, at: index))
     }
-    public func getBoiler() -> Boiler? {
+    public func removeHotWater(at index:Int) {
+        updateCustomer(to: getCustomer()?.deleteHotWater(at: index))
+    }
+    public func getBoiler() -> [Boiler]? {
         return getCustomer()?.getBoiler()
     }
-    public func updateBoiler(to boiler:Boiler) {
-         updateCustomer(to: getCustomer()?.setBoiler(to: boiler))
+    public func updateBoiler(to boiler:Boiler, at index:Int) {
+        updateCustomer(to: getCustomer()?.setBoiler(to: boiler, at: index))
+    }
+    public func removeBoiler(at index:Int) {
+        updateCustomer(to: getCustomer()?.deleteBoiler(at: index))
     }
     public func getPlumber(plumberListener: OnGetContractorListener?) {
         guard let listener = plumberListener else {
@@ -223,18 +229,24 @@ public class TempCustomerData:CustomStringConvertible {
         return getCustomer()?.getPlumbingServices()
     }
     
-    //Mark:- HvacPage
-    public func getAirHandler() -> AirHandler? {
+    // MARK: HvacPage
+    public func getAirHandler() -> [AirHandler]? {
         return getCustomer()?.getAirHandler()
     }
-    public func updateAirHandler(to airHandler:AirHandler) {
-        updateCustomer(to: getCustomer()?.setAirHandler(to: airHandler))
+    public func updateAirHandler(to airHandler:AirHandler, at index: Int) {
+        updateCustomer(to: getCustomer()?.setAirHandler(to: airHandler, at: index))
     }
-    public func getCompressor() -> Compressor? {
+    public func removeAirHandler(at index:Int) {
+        updateCustomer(to: getCustomer()?.deleteAirHandler(at: index))
+    }
+    public func getCompressor() -> [Compressor]? {
         return getCustomer()?.getCompressor()
     }
-    public func updateCompressor(to compressor:Compressor) {
-         updateCustomer(to: getCustomer()?.setCompressor(to: compressor))
+    public func updateCompressor(to compressor:Compressor, at index: Int) {
+         updateCustomer(to: getCustomer()?.setCompressor(to: compressor, at: index))
+    }
+    public func removeCompressor(at index:Int) {
+        updateCustomer(to: getCustomer()?.deleteCompressor(at: index))
     }
     public func getHvacTechnician(hvacTechnicianListener: OnGetContractorListener?) {
         guard let listener = hvacTechnicianListener else {
@@ -261,7 +273,7 @@ public class TempCustomerData:CustomStringConvertible {
         return getCustomer()?.getHvacServices()
     }
     
-    //Mark:- ElectricalPage
+    // Mark: ElectricalPage
     public func getPanels() -> [Panel]? {
         return getCustomer()?.getPanels()
     }
@@ -390,18 +402,31 @@ public class TempCustomerData:CustomStringConvertible {
     }
     
     
-    public func setAppliance(to newAppliance: Appliance) {
+    public func setAppliance(to newAppliance: Appliance, at index: Int) -> Int {
         if let hotWater = newAppliance as? HotWater {
-            self.updateHotWater(to: hotWater)
+            self.updateHotWater(to: hotWater, at: index)
+            if (index < 0) {
+                return self.getHotWater()!.count - 1
+            }
         } else if let boiler = newAppliance as? Boiler {
-            self.updateBoiler(to: boiler)
+            self.updateBoiler(to: boiler, at: index)
+            if (index < 0) {
+                return self.getBoiler()!.count - 1
+            }
         } else if let airHandler = newAppliance as? AirHandler {
-            self.updateAirHandler(to: airHandler)
+            self.updateAirHandler(to: airHandler, at: index)
+            if (index < 0) {
+                return self.getAirHandler()!.count - 1
+            }
         } else if let compressor = newAppliance as? Compressor {
-            self.updateCompressor(to: compressor)
+            self.updateCompressor(to: compressor, at: index)
+            if (index < 0) {
+                return self.getCompressor()!.count - 1
+            }
         } else {
             print("Appliance type does not match")
         }
+        return index
     }
 }
 
