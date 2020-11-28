@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4067C6E07EFE63BA165B7ECB /* Pods_Markd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5098B1444AC29248521536 /* Pods_Markd.framework */; };
 		42066BE22564B142003A5076 /* ApplianceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42523D5C255EFC9C00A20471 /* ApplianceTableViewController.swift */; };
+		42B38C252572D318005406DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42B38C242572D318005406DE /* GoogleService-Info.plist */; };
 		4332BD64230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4332BD63230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift */; };
 		4710A9B01DFC8B0C00BADF25 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */; };
 		47E0EA421DF3865C001F417F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0EA411DF3865C001F417F /* AppDelegate.swift */; };
@@ -68,7 +69,6 @@
 		FFBE8004205D8C8200A7D9FE /* HotWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE8003205D8C8200A7D9FE /* HotWater.swift */; };
 		FFC5316B2093D2A00010D9AC /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC5316A2093D2A00010D9AC /* Services.storyboard */; };
 		FFD5175B218675A900407F9C /* Contractor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD5175A218675A900407F9C /* Contractor.storyboard */; };
-		FFD93B0D210CFE9D00B1E07A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFD93B0C210CFE9C00B1E07A /* GoogleService-Info.plist */; };
 		FFDE253620588868009D1790 /* SendEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE253520588868009D1790 /* SendEmail.swift */; };
 		FFF2239920FFEADE00F823D6 /* ViewControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF2239820FFEADE00F823D6 /* ViewControllerUtilities.swift */; };
 		FFF27C8A2041D3B500A9392E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF27C892041D3B500A9392E /* MainViewController.swift */; };
@@ -89,6 +89,7 @@
 /* Begin PBXFileReference section */
 		0DFBB433CDDC1835F81D6E42 /* Pods-Markd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Markd/Pods-Markd.debug.xcconfig"; sourceTree = "<group>"; };
 		42523D5C255EFC9C00A20471 /* ApplianceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceTableViewController.swift; sourceTree = "<group>"; };
+		42B38C242572D318005406DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4332BD63230A3EBC00D4CBE6 /* InAppPurchasesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchasesObserver.swift; sourceTree = "<group>"; };
 		4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		47E0EA3E1DF3865C001F417F /* Markd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Markd.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,7 +153,6 @@
 		FFBE8003205D8C8200A7D9FE /* HotWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWater.swift; sourceTree = "<group>"; };
 		FFC5316A2093D2A00010D9AC /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
 		FFD5175A218675A900407F9C /* Contractor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contractor.storyboard; sourceTree = "<group>"; };
-		FFD93B0C210CFE9C00B1E07A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFD93B0E210D074300B1E07A /* Markd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Markd.entitlements; sourceTree = "<group>"; };
 		FFDE253520588868009D1790 /* SendEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmail.swift; sourceTree = "<group>"; };
 		FFF2239820FFEADE00F823D6 /* ViewControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtilities.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 				FFF45D81203CE57200EC732B /* Utilities */,
 				47E0EA411DF3865C001F417F /* AppDelegate.swift */,
 				4710A9AF1DFC8B0C00BADF25 /* Protocol.swift */,
-				FFD93B0C210CFE9C00B1E07A /* GoogleService-Info.plist */,
+				42B38C242572D318005406DE /* GoogleService-Info.plist */,
 				47E0EA481DF3865C001F417F /* Assets.xcassets */,
 				47E0EA4D1DF3865C001F417F /* Info.plist */,
 			);
@@ -398,7 +398,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 1220;
-				ORGANIZATIONNAME = "Joshua Daniel Schmidt";
+				ORGANIZATIONNAME = Markd;
 				TargetAttributes = {
 					47E0EA3D1DF3865C001F417F = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -452,7 +452,7 @@
 				47E0EA491DF3865C001F417F /* Assets.xcassets in Resources */,
 				FF9A5B40208AA429007E9669 /* ContractorFooter.storyboard in Resources */,
 				FF226D58210000820082215B /* Settings.storyboard in Resources */,
-				FFD93B0D210CFE9D00B1E07A /* GoogleService-Info.plist in Resources */,
+				42B38C252572D318005406DE /* GoogleService-Info.plist in Resources */,
 				FFC5316B2093D2A00010D9AC /* Services.storyboard in Resources */,
 				47E0EA471DF3865C001F417F /* Main.storyboard in Resources */,
 			);
@@ -760,7 +760,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.schmidthappens.markd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.markd.applications.ios.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -782,7 +782,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.schmidthappens.markd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.markd.applications.ios.home;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
