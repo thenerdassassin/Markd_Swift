@@ -24,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         Messaging.messaging().delegate = self
         registerForPushNotifications(application)
         application.applicationIconBadgeNumber = 0
+        
+        if #available(iOS 13.0, *) {
+            window?.overrideUserInterfaceStyle = .light
+        }
+        
         return true
     }
 
